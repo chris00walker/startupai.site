@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="400" rx="20" fill="#EFF6FF"/>
+  
+  <!-- Server Racks -->
+  <rect x="120" y="120" width="100" height="200" rx="5" fill="#DBEAFE" stroke="#2563EB" stroke-width="3"/>
+  <rect x="130" y="140" width="80" height="20" rx="3" fill="#93C5FD"/>
+  <rect x="130" y="170" width="80" height="20" rx="3" fill="#93C5FD"/>
+  <rect x="130" y="200" width="80" height="20" rx="3" fill="#93C5FD"/>
+  <rect x="130" y="230" width="80" height="20" rx="3" fill="#93C5FD"/>
+  <rect x="130" y="260" width="80" height="20" rx="3" fill="#93C5FD"/>
+  
+  <!-- Connection Lines -->
+  <path d="M220 170 L280 170" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/>
+  <path d="M220 200 L280 200" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/>
+  <path d="M220 230 L280 230" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Cloud -->
+  <ellipse cx="320" cy="170" rx="40" ry="25" fill="#DBEAFE" stroke="#2563EB" stroke-width="3"/>
+  <ellipse cx="290" cy="155" rx="25" ry="20" fill="#DBEAFE" stroke="#2563EB" stroke-width="3"/>
+  <ellipse cx="350" cy="155" rx="25" ry="20" fill="#DBEAFE" stroke="#2563EB" stroke-width="3"/>
+  
+  <!-- Devices -->
+  <rect x="380" y="120" width="60" height="40" rx="5" fill="white" stroke="#2563EB" stroke-width="2"/>
+  <rect x="385" y="125" width="50" height="25" rx="2" fill="#DBEAFE"/>
+  <rect x="395" y="165" width="30" height="5" rx="2" fill="#2563EB"/>
+  
+  <rect x="380" y="190" width="100" height="70" rx="5" fill="white" stroke="#2563EB" stroke-width="2"/>
+  <rect x="390" y="200" width="80" height="40" rx="2" fill="#DBEAFE"/>
+  <rect x="420" y="250" width="20" height="5" rx="2" fill="#2563EB"/>
+  
+  <rect x="460" y="130" width="30" height="60" rx="5" fill="white" stroke="#2563EB" stroke-width="2"/>
+  <rect x="465" y="140" width="20" height="35" rx="2" fill="#DBEAFE"/>
+  <circle cx="475" cy="182" r="3" fill="#2563EB"/>
+  
+  <!-- Growth Chart -->
+  <path d="M120 340 L480 340" stroke="#2563EB" stroke-width="2"/>
+  <path d="M120 340 L120 80" stroke="#2563EB" stroke-width="2"/>
+  
+  <path d="M120 340 L180 320 L240 280 L300 230 L360 170 L420 120 L480 100" 
+        stroke="#2563EB" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Dots on Chart -->
+  <circle cx="180" cy="320" r="5" fill="#2563EB"/>
+  <circle cx="240" cy="280" r="5" fill="#2563EB"/>
+  <circle cx="300" cy="230" r="5" fill="#2563EB"/>
+  <circle cx="360" cy="170" r="5" fill="#2563EB"/>
+  <circle cx="420" cy="120" r="5" fill="#2563EB"/>
+  <circle cx="480" cy="100" r="5" fill="#2563EB"/>
+  
+  <!-- Text Label -->
+  <text x="300" y="370" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#2563EB">Scaling Phase</text>
+</svg>

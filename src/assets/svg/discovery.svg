@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="400" rx="20" fill="#F0F9FF"/>
+  
+  <!-- Magnifying Glass -->
+  <circle cx="240" cy="200" r="100" fill="#E0F2FE" stroke="#0284C7" stroke-width="8"/>
+  <rect x="310" y="270" width="30" height="120" rx="10" transform="rotate(-45 310 270)" fill="#0284C7"/>
+  
+  <!-- Document Elements -->
+  <rect x="380" y="100" width="150" height="200" rx="10" fill="white" stroke="#0284C7" stroke-width="3"/>
+  <rect x="400" y="130" width="110" height="10" rx="5" fill="#BAE6FD"/>
+  <rect x="400" y="150" width="110" height="10" rx="5" fill="#BAE6FD"/>
+  <rect x="400" y="170" width="110" height="10" rx="5" fill="#BAE6FD"/>
+  <rect x="400" y="190" width="80" height="10" rx="5" fill="#BAE6FD"/>
+  <rect x="400" y="210" width="60" height="10" rx="5" fill="#BAE6FD"/>
+  
+  <!-- Lightbulb -->
+  <circle cx="170" cy="130" r="40" fill="#FBBF24" opacity="0.8"/>
+  <path d="M170 90 L170 70" stroke="#FBBF24" stroke-width="6" stroke-linecap="round"/>
+  <path d="M130 130 L110 130" stroke="#FBBF24" stroke-width="6" stroke-linecap="round"/>
+  <path d="M210 130 L230 130" stroke="#FBBF24" stroke-width="6" stroke-linecap="round"/>
+  <path d="M140 100 L125 85" stroke="#FBBF24" stroke-width="6" stroke-linecap="round"/>
+  <path d="M200 100 L215 85" stroke="#FBBF24" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Text Label -->
+  <text x="300" y="350" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#0284C7">Discovery Phase</text>
+</svg>

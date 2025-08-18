@@ -1,0 +1,199 @@
+/* A simple stylesheet with basic styling.
+   Customize fonts, colors, and spacing as desired. */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f7f7f7;
+}
+
+/* Header & Navbar */
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #333;
+    }
+
+.navbar a:last-child {
+    margin-right: 0;
+}
+
+.navbar a:hover {
+    color: #007bff;
+}
+
+/* Horizontal nav for ul.nav-links */
+.nav-links {
+    /* Remove default bullets */
+    list-style: none;
+    display: flex;
+    /* Lay items out horizontally */
+    /* Vertically center them within the nav */
+    align-items: center;
+    margin: 0;
+    /* Remove default ul margin */
+    /* Remove default ul padding */
+    padding: 0;
+}
+
+.nav-links li {
+    /* Spacing between links */
+    margin-right: 1.5rem;
+}
+
+.nav-links li:last-child {
+    /* Optional: remove trailing spacing */
+    margin-right: 0;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    /* so it can contain the dropdown-content below */
+    display: inline-block;
+}
+
+.dropbtn {
+    /* Optional styling for the Services link; you can leave this empty if you want. */
+    cursor: pointer;
+}
+
+.dropdown-content {
+    /* default is hidden */
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 99;
+    /* space below the dropbtn */
+    margin-top: 0;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show the dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: #eaf4ff;
+    margin-bottom: 2rem;
+}
+
+.hero h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Sections */
+section {
+    margin-bottom: 2rem;
+}
+
+h2 {
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* Buttons/CTAs */
+.btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    margin-top: 1rem;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar a {
+        margin-bottom: 0.5rem;
+    }
+
+    main {
+        margin: 1rem;
+    }
+}
+
+/* For responsiveness, you can decide how it behaves under 768px: */
+@media (max-width: 768px) {
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        margin-top: 0;
+    }
+
+    /* Ensure it's displayed when the parent is hovered */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+}
