@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/chriswalker.consulting',
-  assetPrefix: '/chriswalker.consulting/',
+  basePath: '',
+  assetPrefix: '',
   images: {
     unoptimized: true, // Required for static export
     domains: ['fonts.googleapis.com'],
