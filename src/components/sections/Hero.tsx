@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 export function Hero() {
   return (
     <section className="business-gradient text-foreground py-16 md:py-24 relative overflow-hidden tech-grid">
-      <div className="absolute inset-0 bg-[url('/src/assets/pattern.svg')] opacity-10"></div>
+      <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-10"></div>
       
       {/* Floating geometric elements */}
       <div className="absolute top-20 left-10 w-20 h-20 border border-primary/20 rounded-lg floating-element opacity-30"></div>

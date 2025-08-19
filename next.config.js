@@ -1,12 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  basePath: '',
+  assetPrefix: '',
   images: {
     unoptimized: true, // Required for static export
     domains: ['fonts.googleapis.com'],
     formats: ['image/webp', 'image/avif'],
   },
-  trailingSlash: true, // Ensures consistent URLs with DreamHost
+  trailingSlash: true, // Ensures consistent URLs
   async redirects() {
     return [
       // Redirect old HTML files to new routes
