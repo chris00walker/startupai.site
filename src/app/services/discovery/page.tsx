@@ -69,7 +69,7 @@ export default function DiscoveryPage() {
                   </div>
                   <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/5 transition-colors">
                     <Badge variant="outline" className="glow-effect">✓</Badge>
-                    <span>Technical Feasibility Study</span>
+                    <span>Customer Desirability Validation</span>
                   </div>
                   <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/5 transition-colors">
                     <Badge variant="outline" className="glow-effect">✓</Badge>

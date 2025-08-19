@@ -18,7 +18,7 @@ const services = [
       'Market research and competitive analysis',
       'Customer persona development',
       'Opportunity assessment',
-      'Technical feasibility study'
+      'Customer desirability validation'
     ],
     href: '/services/discovery',
     badge: 'Popular'
@@ -67,7 +67,7 @@ export default function HomePage() {
       <section className="bg-gray-50 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid-professional-1-4 container-professional-xl">
             {services.map((service, index) => (
               <ServiceCard
                 key={index}

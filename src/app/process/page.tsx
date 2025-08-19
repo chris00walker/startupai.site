@@ -49,10 +49,10 @@ export default function ProcessPage() {
             </div>
 
             {/* Process Steps */}
-            <div className="grid md:grid-cols-2 gap-8 mb-16">
+            <div className="grid-professional-1-2 container-professional-lg mb-16">
               {/* Step 1: Discovery */}
               <Link href="/services/discovery" className="block">
-                <Card className="business-card glow-effect hover:scale-105 transition-all duration-500 relative overflow-hidden cursor-pointer">
+                <Card className="professional-card-wide glow-effect hover:scale-105 transition-all duration-500 relative overflow-hidden cursor-pointer group">
                   <div className="absolute top-4 right-4">
                     <Badge variant="outline" className="text-foreground glow-effect font-bold">01</Badge>
                   </div>
@@ -86,7 +86,7 @@ export default function ProcessPage() {
 
               {/* Step 2: Validation */}
               <Link href="/services/validation" className="block">
-                <Card className="business-card glow-effect hover:scale-105 transition-all duration-500 relative overflow-hidden cursor-pointer">
+                <Card className="professional-card-wide glow-effect hover:scale-105 transition-all duration-500 relative overflow-hidden cursor-pointer group">
                   <div className="absolute top-4 right-4">
                     <Badge variant="outline" className="glow-effect font-bold">02</Badge>
                   </div>
@@ -120,7 +120,7 @@ export default function ProcessPage() {
 
               {/* Step 3: Scaling */}
               <Link href="/services/scaling" className="block">
-                <Card className="business-card glow-effect hover:scale-105 transition-all duration-500 relative overflow-hidden cursor-pointer">
+                <Card className="professional-card-wide glow-effect hover:scale-105 transition-all duration-500 relative overflow-hidden cursor-pointer group">
                   <div className="absolute top-4 right-4">
                     <Badge variant="outline" className="glow-effect font-bold">03</Badge>
                   </div>
@@ -154,7 +154,7 @@ export default function ProcessPage() {
 
               {/* Step 4: Optimization */}
               <Link href="/services/optimization" className="block">
-                <Card className="business-card glow-effect hover:scale-105 transition-all duration-500 relative overflow-hidden cursor-pointer">
+                <Card className="professional-card-wide glow-effect hover:scale-105 transition-all duration-500 relative overflow-hidden cursor-pointer group">
                   <div className="absolute top-4 right-4">
                     <Badge variant="outline" className="glow-effect font-bold">04</Badge>
                   </div>

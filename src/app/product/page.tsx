@@ -155,7 +155,7 @@ export default function ProductPage() {
                   <CardDescription className="text-base leading-relaxed mb-4">
                     {feature.description}
                   </CardDescription>
-                  <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-white transition-all duration-300" asChild>
+                  <Button variant="outline" className="btn-card group-hover:bg-primary group-hover:text-white transition-all duration-300" asChild>
                     <Link href={feature.href}>
                       {feature.cta}
                       <ArrowRight className="h-4 w-4 ml-2" />

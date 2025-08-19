@@ -78,8 +78,7 @@ export function Hero() {
           <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
             {[
               { icon: Zap, text: "Evidence-Based Validation", index: 0 },
-              { icon: Shield, text: "Private-by-Design AI", index: 1 },
-              { icon: null, text: "Validated Demand Score", badge: "82.6/100", index: 2 }
+              { icon: Shield, text: "Private-by-Design AI", index: 1 }
             ].map((feature) => {
               const IconComponent = feature.icon;
               const isHovered = hoveredFeature === feature.index;
