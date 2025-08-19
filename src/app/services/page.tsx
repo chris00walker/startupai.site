@@ -5,58 +5,68 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { CheckIcon } from 'lucide-react';
+import { CheckIcon, Brain, Sparkles, ShieldCheck, Zap, Target, Rocket } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Services | Chris Walker Consulting',
-  description: 'Comprehensive eCommerce strategy and development services including discovery, validation, scaling, advisory, and optimization.',
+  title: 'AI-Powered Services | Chris Walker Consulting',
+  description: 'AI FDE-powered strategy development and technical architecture services. From idea validation to production deployment in days, not months.',
 };
 
 const serviceCategories = {
   strategy: [
     {
-      name: 'Discovery',
+      name: 'AI Discovery Sprint',
       href: '/services/discovery',
-      description: 'Validate your business idea and identify market opportunities with comprehensive research and analysis.',
-      features: ['Market Research', 'Competitive Analysis', 'Business Model Validation', 'Technical Feasibility'],
-      duration: '2-4 weeks',
-      deliverables: ['Market Analysis Report', 'Competitive Landscape', 'Business Model Canvas', 'Technical Roadmap']
+      icon: Brain,
+      badge: '82.6% Demand Score',
+      description: 'AI-powered market validation and strategy development with evidence traceability.',
+      features: ['40+ competitor analysis', 'Evidence-backed BMC & VPC', 'Market demand scoring', 'DDD architecture design'],
+      duration: '5 days',
+      deliverables: ['Business Model Canvas', 'Value Proposition Canvas', 'Demand Validation Report', 'Technical Architecture']
     },
     {
-      name: 'Advisory',
+      name: 'AI Advisory Co-Pilot',
       href: '/services/advisory',
-      description: 'Strategic guidance and ongoing support to help you make informed decisions and avoid common pitfalls.',
-      features: ['Strategic Planning', 'Technical Architecture', 'Risk Assessment', 'Growth Strategy'],
-      duration: 'Ongoing',
-      deliverables: ['Strategic Recommendations', 'Architecture Guidelines', 'Risk Mitigation Plan', 'Growth Roadmap']
+      icon: Target,
+      badge: 'Always-On Support',
+      description: 'Continuous AI-powered strategic guidance with private-by-design architecture.',
+      features: ['Real-time strategy iteration', 'Architecture reviews', 'Market trend monitoring', 'Evidence-based pivots'],
+      duration: 'Monthly',
+      deliverables: ['Weekly Strategy Updates', 'Architecture Evolution', 'Market Intelligence', 'Pivot Recommendations']
     },
   ],
   development: [
     {
-      name: 'Validation',
+      name: 'Evidence-Based Validation',
       href: '/services/validation',
-      description: 'Test your concepts with real customers and refine your approach based on data-driven insights.',
-      features: ['MVP Development', 'User Testing', 'A/B Testing', 'Performance Analytics'],
-      duration: '4-8 weeks',
-      deliverables: ['MVP Platform', 'User Testing Results', 'Analytics Dashboard', 'Optimization Recommendations']
+      icon: ShieldCheck,
+      badge: '100% Traceable',
+      description: 'Test assumptions with AI-analyzed market data before writing code.',
+      features: ['Testing Business Ideas framework', 'Automated market monitoring', 'Evidence chain tracking', 'Pivot decision support'],
+      duration: '1 week',
+      deliverables: ['Validation Report', 'Evidence Database', 'Go/No-Go Recommendation', 'Pivot Options']
     },
     {
-      name: 'Scaling',
+      name: 'AI-Powered Scaling',
       href: '/services/scaling',
-      description: 'Build robust systems and processes that support sustainable growth and operational excellence.',
-      features: ['Infrastructure Scaling', 'Process Optimization', 'Team Building', 'Performance Monitoring'],
-      duration: '8-12 weeks',
-      deliverables: ['Scalable Infrastructure', 'Optimized Processes', 'Team Structure', 'Monitoring Systems']
+      icon: Rocket,
+      badge: 'Production-Ready',
+      description: 'From validated idea to production architecture with AI-generated code scaffolding.',
+      features: ['DDD to code generation', 'API contract design', 'Microservices architecture', 'CI/CD pipeline setup'],
+      duration: '2 weeks',
+      deliverables: ['Production Codebase', 'API Documentation', 'Deployment Pipeline', 'Monitoring Dashboard']
     },
   ],
   optimization: [
     {
-      name: 'Optimization',
+      name: 'AI Optimization Engine',
       href: '/services/optimization',
-      description: 'Improve existing systems and processes to maximize efficiency, performance, and user experience.',
-      features: ['Performance Tuning', 'UX Optimization', 'Conversion Rate Optimization', 'Cost Reduction'],
-      duration: '6-10 weeks',
-      deliverables: ['Performance Report', 'UX Improvements', 'Conversion Analysis', 'Cost Optimization Plan']
+      icon: Zap,
+      badge: 'Continuous Improvement',
+      description: 'AI-driven optimization of strategy, architecture, and market positioning.',
+      features: ['Real-time market analysis', 'Architecture evolution', 'Automated A/B testing', 'Performance monitoring'],
+      duration: 'Ongoing',
+      deliverables: ['Monthly Optimization Report', 'Updated Canvases', 'Architecture Improvements', 'Growth Recommendations']
     },
   ],
 };
@@ -68,16 +78,21 @@ export default function ServicesPage() {
       <section className="bg-gradient-to-br from-blue-50 to-indigo-100 section-padding">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Sparkles className="mr-1 h-3 w-3" />
+              AI-Powered Services
+            </Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              eCommerce Services
+              Your AI FDE at Every Stage
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Comprehensive strategy and development services to help your startup succeed in the competitive eCommerce landscape.
+              From idea validation to production deployment, our AI-powered services deliver 
+              evidence-backed strategies and architectures in days, not months.
             </p>
             <div className="flex flex-wrap justify-center gap-2">
-              <Badge variant="secondary">Strategy</Badge>
-              <Badge variant="secondary">Development</Badge>
-              <Badge variant="secondary">Optimization</Badge>
+              <Badge variant="secondary">Evidence-Based</Badge>
+              <Badge variant="secondary">Private-by-Design</Badge>
+              <Badge variant="secondary">100% Traceable</Badge>
             </div>
           </div>
         </div>
@@ -97,12 +112,18 @@ export default function ServicesPage() {
               <TabsContent value="strategy" className="mt-8">
                 <div className="grid md:grid-cols-2 gap-6">
                   {serviceCategories.strategy.map((service) => (
-                    <Card key={service.name}>
+                    <Card key={service.name} className="hover:shadow-lg transition-all duration-300">
                       <CardHeader>
-                        <CardTitle className="flex items-center justify-between">
-                          {service.name}
-                          <Badge variant="outline">{service.duration}</Badge>
-                        </CardTitle>
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            {service.icon && <service.icon className="h-5 w-5 text-primary" />}
+                            <CardTitle>{service.name}</CardTitle>
+                          </div>
+                          <div className="flex flex-col items-end gap-1">
+                            {service.badge && <Badge variant="secondary" className="text-xs">{service.badge}</Badge>}
+                            <Badge variant="outline">{service.duration}</Badge>
+                          </div>
+                        </div>
                         <CardDescription>{service.description}</CardDescription>
                       </CardHeader>
                       <CardContent>
@@ -148,12 +169,18 @@ export default function ServicesPage() {
               <TabsContent value="development" className="mt-8">
                 <div className="grid md:grid-cols-2 gap-6">
                   {serviceCategories.development.map((service) => (
-                    <Card key={service.name}>
+                    <Card key={service.name} className="hover:shadow-lg transition-all duration-300">
                       <CardHeader>
-                        <CardTitle className="flex items-center justify-between">
-                          {service.name}
-                          <Badge variant="outline">{service.duration}</Badge>
-                        </CardTitle>
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            {service.icon && <service.icon className="h-5 w-5 text-primary" />}
+                            <CardTitle>{service.name}</CardTitle>
+                          </div>
+                          <div className="flex flex-col items-end gap-1">
+                            {service.badge && <Badge variant="secondary" className="text-xs">{service.badge}</Badge>}
+                            <Badge variant="outline">{service.duration}</Badge>
+                          </div>
+                        </div>
                         <CardDescription>{service.description}</CardDescription>
                       </CardHeader>
                       <CardContent>
@@ -199,12 +226,18 @@ export default function ServicesPage() {
               <TabsContent value="optimization" className="mt-8">
                 <div className="grid md:grid-cols-2 gap-6">
                   {serviceCategories.optimization.map((service) => (
-                    <Card key={service.name}>
+                    <Card key={service.name} className="hover:shadow-lg transition-all duration-300">
                       <CardHeader>
-                        <CardTitle className="flex items-center justify-between">
-                          {service.name}
-                          <Badge variant="outline">{service.duration}</Badge>
-                        </CardTitle>
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            {service.icon && <service.icon className="h-5 w-5 text-primary" />}
+                            <CardTitle>{service.name}</CardTitle>
+                          </div>
+                          <div className="flex flex-col items-end gap-1">
+                            {service.badge && <Badge variant="secondary" className="text-xs">{service.badge}</Badge>}
+                            <Badge variant="outline">{service.duration}</Badge>
+                          </div>
+                        </div>
                         <CardDescription>{service.description}</CardDescription>
                       </CardHeader>
                       <CardContent>
@@ -262,7 +295,7 @@ export default function ServicesPage() {
               Let's discuss which services are right for your business.
             </p>
             <Button asChild size="lg">
-              <Link href="/contact">Contact Me</Link>
+              <Link href="/product#waitlist">Join the Waitlist</Link>
             </Button>
           </div>
         </div>

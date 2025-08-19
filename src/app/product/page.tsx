@@ -269,9 +269,9 @@ export default function ProductPage() {
                     </a>
                   </Button>
                   <Button variant="outline" className="hover:scale-105 transition-all duration-300" asChild>
-                    <Link href="/contact">
+                    <Link href="#waitlist">
                       <Target className="h-4 w-4 mr-2" />
-                      Schedule Consultation
+                      Join the Waitlist
                     </Link>
                   </Button>
                 </div>

@@ -11,12 +11,24 @@ import {
   ArrowRight,
   Target,
   Rocket,
-  Crown,
-  Sparkles,
-  Calendar,
   Users,
-  TrendingUp
+  Shield,
+  TrendingUp,
+  Clock,
+  Lightbulb,
+  Brain,
+  Code,
+  Crown,
+  Sparkles
 } from 'lucide-react';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
 
 export default function PricingPage() {
   const [hoveredCard, setHoveredCard] = React.useState<number | null>(null);
@@ -24,69 +36,69 @@ export default function PricingPage() {
   const pricingTiers = [
     {
       name: "Strategy Sprint",
-      price: "$750",
+      price: "$1,500",
       period: "one-time",
-      description: "AI-powered strategy development in 1 week - replaces $3K+ consultant fees",
+      description: "Evidence-backed strategy canvases & DDD architecture in 1 week",
       badge: "Most Popular",
       badgeVariant: "default" as const,
       icon: Target,
       savings: "Save $2,250 vs traditional consulting",
       timeValue: "20+ hours of founder time saved",
       features: [
-        "AI-generated Business Model Canvas",
-        "Value Proposition Canvas with validation",
-        "Market research & competitive analysis",
-        "Customer segment identification",
-        "Assumptions list & testing roadmap",
-        "Domain model architecture",
-        "1-week delivery timeline",
-        "Perfect for investor meetings"
+        "Business Model Canvas with evidence chain",
+        "Value Proposition Canvas with market data",
+        "Competitive analysis of 40+ competitors",
+        "Domain-Driven Design architecture",
+        "Bounded contexts & entity models",
+        "API contracts & data flows",
+        "Testing Business Ideas roadmap",
+        "100% traceable to data sources"
       ],
       cta: "Start Sprint",
       highlighted: true
     },
     {
-      name: "SaaS Subscription",
-      price: "$99",
+      name: "Founder Platform",
+      price: "$199",
       period: "month",
-      description: "Continuous AI strategy support - cheaper than your current tool stack",
+      description: "Your AI FDE-in-a-box for continuous iteration and validation",
       badge: "Best Value",
       badgeVariant: "secondary" as const,
       icon: Zap,
       savings: "Replaces $150+/mo in separate tools",
       timeValue: "Always-available AI strategists",
       features: [
-        "Unlimited Strategy Sprints",
-        "Multi-project management",
-        "Continuous idea iteration",
-        "Team collaboration features",
-        "Export to popular formats",
-        "Priority email support",
-        "Monthly strategy reviews",
-        "Cancel anytime"
+        "Unlimited Strategy Canvases",
+        "Real-time market validation",
+        "Code scaffolding from strategy",
+        "Multi-project workspace",
+        "Private-by-design architecture",
+        "GitHub integration",
+        "Export to Strategyzer formats",
+        "Weekly office hours"
       ],
       cta: "Start Subscription",
       highlighted: false
     },
     {
-      name: "Pro & Enterprise",
-      price: "$299",
+      name: "Agency Co-Pilot",
+      price: "$499",
       period: "month",
-      description: "Advanced features for agencies and privacy-sensitive teams",
+      description: "Embedded AI FDE for agencies serving multiple clients",
       badge: "Enterprise",
       badgeVariant: "outline" as const,
       icon: Rocket,
       savings: "Fraction of hiring junior developer ($8K+/mo)",
       timeValue: "Prevents costly architecture refactors",
       features: [
-        "Everything in SaaS Subscription",
-        "Private cloud deployment",
-        "Custom AI agent training",
-        "GitHub integration",
-        "Advanced collaboration tools",
-        "White-label options",
-        "Dedicated support manager",
-        "Custom integrations available"
+        "Everything in Founder Platform",
+        "White-label deployment",
+        "Client workspace management",
+        "Custom AI training on your IP",
+        "Advanced DDD modeling tools",
+        "Private cloud or on-premise",
+        "API access for automation",
+        "Dedicated success manager"
       ],
       cta: "Go Pro",
       highlighted: false
@@ -118,21 +130,44 @@ export default function PricingPage() {
   ];
 
   return (
-    <div className="min-h-screen business-gradient">
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 border border-primary/20 rounded-lg floating-element opacity-30"></div>
-      <div className="absolute top-40 right-20 w-16 h-16 border border-secondary/20 rounded-full floating-element opacity-20" style={{animationDelay: '1s'}}></div>
-      <div className="absolute bottom-40 left-20 w-12 h-12 border border-accent/20 rounded-lg floating-element opacity-25" style={{animationDelay: '2s'}}></div>
+    <div className="min-h-screen business-gradient tech-grid">
+      {/* Floating geometric elements */}
+      <div className="absolute top-40 right-20 w-10 h-10 border border-primary/20 rounded-lg floating-element opacity-20"></div>
+      <div className="absolute top-64 left-20 w-16 h-16 bg-primary/5 rounded-full floating-element" style={{animationDelay: '1.8s'}}></div>
+      <div className="absolute bottom-52 left-2/3 w-8 h-8 border border-primary/15 rotate-45 floating-element" style={{animationDelay: '3.2s'}}></div>
+      
+      {/* Breadcrumb Navigation */}
+      <div className="container mx-auto px-4 pt-6 relative z-10">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">Home</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Pricing</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
 
       {/* Hero Section */}
       <section className="container mx-auto px-6 py-20">
         <div className="text-center space-y-6 max-w-4xl mx-auto">
+          <Badge variant="secondary" className="mb-4">
+            <Sparkles className="mr-1 h-3 w-3" />
+            Evidence-Based Pricing
+          </Badge>
           <h1 className="business-title text-4xl md:text-6xl mb-6">
-            Invest in Your <span className="text-gradient">Success</span>
+            From Idea to Production
+            <br />
+            <span className="text-gradient">Without Breaking the Bank</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            AI-powered strategy development at a fraction of traditional consulting costs. 
-            Save thousands while getting faster, data-driven results.
+            Get the strategy validation of a $10K consultant and the technical architecture 
+            of a senior developer—all powered by your AI FDE-in-a-box.
           </p>
         </div>
       </section>
@@ -217,7 +252,7 @@ export default function PricingPage() {
                     }`} 
                     asChild
                   >
-                    <Link href="/signup">
+                    <Link href="/product#waitlist">
                       {tier.cta}
                       <ArrowRight className="h-4 w-4 ml-2" />
                     </Link>
@@ -336,9 +371,9 @@ export default function PricingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="glow-effect hover:scale-105 transition-all duration-300" asChild>
-                <Link href="/signup">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  Book Free Consultation
+                <Link href="/product#waitlist">
+                  <Sparkles className="h-4 w-4 mr-2" />
+                  Join the Waitlist
                 </Link>
               </Button>
               <Button variant="outline" size="lg" className="hover:scale-105 transition-all duration-300" asChild>

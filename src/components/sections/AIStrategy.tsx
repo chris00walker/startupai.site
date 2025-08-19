@@ -46,10 +46,10 @@ export function AIStrategySection() {
               </p>
               <div className="mt-6 flex gap-3">
                 <Button asChild size="lg">
-                  <Link href="/contact">Talk to Chris</Link>
+                  <Link href="/product#waitlist">Join the Waitlist</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <Link href="#waitlist">Join the Pilot</Link>
+                  <Link href="/contact">Talk to Chris</Link>
                 </Button>
               </div>
             </div>

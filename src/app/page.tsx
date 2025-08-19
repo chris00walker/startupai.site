@@ -6,8 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 
 export const metadata: Metadata = {
-  title: 'Chris Walker | eCommerce Strategy & Development',
-  description: 'Expert eCommerce strategy and development services for early-stage startups. Validate, build, and scale your custom platform with data-driven approaches.',
+  title: 'Chris Walker | AI-Powered Forward Deployed Engineer',
+  description: 'Transform startup ideas into evidence-backed business models and production-ready architectures in hours, not months. Your AI FDE-in-a-box for rapid validation and execution.',
 };
 
 const services = [
@@ -93,11 +93,11 @@ export default function HomePage() {
               Ready to Transform Your Startup
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Let's discuss how CWC can help you achieve your startup' goals.
+              Let's discuss how CWC can help you achieve your startup's goals.
             </p>
             <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100">
-              <Link href="/contact">
-                Schedule a Consultation
+              <Link href="/product#waitlist">
+                Join the Waitlist
               </Link>
             </Button>
           </div>

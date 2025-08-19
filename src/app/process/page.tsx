@@ -30,7 +30,7 @@ export default function ProcessPage() {
               </h1>
               <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
                 A systematic approach that transforms ideas into thriving digital platforms, 
-                from strategic discovery through scalable implementation and continuous optimization.
+                from discovery and validation through scaling and continuous optimization.
               </p>
               <div className="flex items-center justify-center gap-4 mt-8">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -50,7 +50,7 @@ export default function ProcessPage() {
 
             {/* Process Steps */}
             <div className="grid md:grid-cols-2 gap-8 mb-16">
-              {/* Step 1: Discovery & Research */}
+              {/* Step 1: Discovery */}
               <Link href="/services/discovery" className="block">
                 <Card className="business-card glow-effect hover:scale-105 transition-all duration-500 relative overflow-hidden cursor-pointer">
                   <div className="absolute top-4 right-4">
@@ -64,26 +64,27 @@ export default function ProcessPage() {
                         </svg>
                       </div>
                       <div>
-                        <CardTitle className="text-2xl">Discovery & Research</CardTitle>
-                        <CardDescription className="text-base">Foundation Phase</CardDescription>
+                        <CardTitle className="text-2xl">Discovery</CardTitle>
+                        <CardDescription className="text-base">Phase 1 — Discovery</CardDescription>
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We start by understanding your business goals, target market, and competitive landscape. 
-                      This phase includes stakeholder interviews, market research, and technical assessment.
+                      This phase includes market research, persona development, opportunity assessment, and technical feasibility.
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <Badge variant="secondary" className="text-xs">Market Analysis</Badge>
-                      <Badge variant="secondary" className="text-xs">Stakeholder Interviews</Badge>
-                      <Badge variant="secondary" className="text-xs">Technical Assessment</Badge>
+                      <Badge variant="secondary" className="text-xs">Market Research</Badge>
+                      <Badge variant="secondary" className="text-xs">Persona Development</Badge>
+                      <Badge variant="secondary" className="text-xs">Opportunity Assessment</Badge>
+                      <Badge variant="secondary" className="text-xs">Feasibility Study</Badge>
                     </div>
                   </CardContent>
                 </Card>
               </Link>
 
-              {/* Step 2: Strategy & Planning */}
+              {/* Step 2: Validation */}
               <Link href="/services/validation" className="block">
                 <Card className="business-card glow-effect hover:scale-105 transition-all duration-500 relative overflow-hidden cursor-pointer">
                   <div className="absolute top-4 right-4">
@@ -97,26 +98,27 @@ export default function ProcessPage() {
                         </svg>
                       </div>
                       <div>
-                        <CardTitle className="text-2xl">Strategy & Planning</CardTitle>
-                        <CardDescription className="text-base">Blueprint Phase</CardDescription>
+                        <CardTitle className="text-2xl">Validation</CardTitle>
+                        <CardDescription className="text-base">Phase 2 — Validation</CardDescription>
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground leading-relaxed mb-4">
-                      Based on our findings, we develop a comprehensive strategy and roadmap. 
-                      This includes technical architecture, feature prioritization, and timeline planning.
+                      We validate assumptions with real users through MVPs and experiments. 
+                      Collect feedback, run A/B tests, and confirm product‑market fit before scaling.
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <Badge variant="secondary" className="text-xs">Architecture Design</Badge>
-                      <Badge variant="secondary" className="text-xs">Feature Planning</Badge>
-                      <Badge variant="secondary" className="text-xs">Timeline Roadmap</Badge>
+                      <Badge variant="secondary" className="text-xs">MVP Testing</Badge>
+                      <Badge variant="secondary" className="text-xs">User Feedback</Badge>
+                      <Badge variant="secondary" className="text-xs">A/B Testing</Badge>
+                      <Badge variant="secondary" className="text-xs">PMF Validation</Badge>
                     </div>
                   </CardContent>
                 </Card>
               </Link>
 
-              {/* Step 3: Implementation & Testing */}
+              {/* Step 3: Scaling */}
               <Link href="/services/scaling" className="block">
                 <Card className="business-card glow-effect hover:scale-105 transition-all duration-500 relative overflow-hidden cursor-pointer">
                   <div className="absolute top-4 right-4">
@@ -130,26 +132,27 @@ export default function ProcessPage() {
                         </svg>
                       </div>
                       <div>
-                        <CardTitle className="text-2xl">Implementation & Testing</CardTitle>
-                        <CardDescription className="text-base">Development Phase</CardDescription>
+                        <CardTitle className="text-2xl">Scaling</CardTitle>
+                        <CardDescription className="text-base">Phase 3 — Scaling</CardDescription>
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground leading-relaxed mb-4">
-                      We build and test solutions iteratively, ensuring quality and performance at every step. 
-                      Regular check-ins keep you informed of progress and allow for adjustments.
+                      We optimize infrastructure, automate key processes, and implement performance monitoring—
+                      building robust systems that support sustainable growth.
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <Badge variant="secondary" className="text-xs">Iterative Development</Badge>
-                      <Badge variant="secondary" className="text-xs">Quality Testing</Badge>
-                      <Badge variant="secondary" className="text-xs">Progress Updates</Badge>
+                      <Badge variant="secondary" className="text-xs">Infra Optimization</Badge>
+                      <Badge variant="secondary" className="text-xs">Automation</Badge>
+                      <Badge variant="secondary" className="text-xs">Monitoring</Badge>
+                      <Badge variant="secondary" className="text-xs">Growth Strategy</Badge>
                     </div>
                   </CardContent>
                 </Card>
               </Link>
 
-              {/* Step 4: Launch & Optimization */}
+              {/* Step 4: Optimization */}
               <Link href="/services/optimization" className="block">
                 <Card className="business-card glow-effect hover:scale-105 transition-all duration-500 relative overflow-hidden cursor-pointer">
                   <div className="absolute top-4 right-4">
@@ -163,20 +166,21 @@ export default function ProcessPage() {
                         </svg>
                       </div>
                       <div>
-                        <CardTitle className="text-2xl">Launch & Optimization</CardTitle>
-                        <CardDescription className="text-base">Growth Phase</CardDescription>
+                        <CardTitle className="text-2xl">Optimization</CardTitle>
+                        <CardDescription className="text-base">Phase 4 — Optimization</CardDescription>
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground leading-relaxed mb-4">
-                      After launch, we monitor performance and make data-driven optimizations. 
-                      Ongoing support ensures your platform continues to meet evolving business needs.
+                      We continually analyze performance, improve conversions, reduce costs, and refine strategy—
+                      ensuring your platform keeps delivering better results over time.
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <Badge variant="secondary" className="text-xs">Performance Monitoring</Badge>
-                      <Badge variant="secondary" className="text-xs">Data Analysis</Badge>
-                      <Badge variant="secondary" className="text-xs">Ongoing Support</Badge>
+                      <Badge variant="secondary" className="text-xs">Performance Analytics</Badge>
+                      <Badge variant="secondary" className="text-xs">Conversion Optimization</Badge>
+                      <Badge variant="secondary" className="text-xs">Cost Reduction</Badge>
+                      <Badge variant="secondary" className="text-xs">Strategic Refinements</Badge>
                     </div>
                   </CardContent>
                 </Card>
@@ -191,12 +195,12 @@ export default function ProcessPage() {
                 and build a platform that drives real business results.
               </p>
               <Button asChild size="lg" className="glow-effect hover:scale-105 transition-all duration-300">
-                <Link href="/contact">
+                <Link href="/product#waitlist">
                   <span className="flex items-center gap-2">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    Start Your Project
+                    Join the Waitlist
                   </span>
                 </Link>
               </Button>

@@ -26,14 +26,7 @@ import { Menu } from 'lucide-react';
 const navigation = [
   { name: 'Process', href: '/process' },
   { name: 'Product', href: '/product' },
-  { 
-    name: 'Services', 
-    href: '/services',
-    dropdown: [
-      { name: 'Advisory', href: '/services/advisory' },
-      { name: 'Blog', href: '/blog' },
-    ]
-  },
+  { name: 'Advisory', href: '/services/advisory' },
   { name: 'Pricing', href: '/pricing' },
   { name: 'Sign-up', href: '/signup' },
   { name: 'Login', href: '/login' },
@@ -47,10 +40,6 @@ export function Navigation() {
     return pathname.startsWith(href);
   };
 
-  const services = [
-    { name: 'Advisory', href: '/services/advisory', description: 'Strategic guidance and ongoing support' },
-    { name: 'Blog', href: '/blog', description: 'Insights, tutorials, and industry thought leadership' },
-  ];
 
   return (
     <header className="bg-gray-900 sticky top-0 z-50 border-b border-gray-800">
@@ -80,23 +69,11 @@ export function Navigation() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className={cn('text-white hover:bg-gray-700 hover:text-white bg-gray-900', isActive('/services') && 'text-white bg-gray-800')}>
-                    Services
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-gray-900 border-gray-800">
-                      {services.map((service) => (
-                        <ListItem
-                          key={service.name}
-                          title={service.name}
-                          href={service.href}
-                          className="text-white hover:bg-gray-800"
-                        >
-                          <span className="text-gray-300">{service.description}</span>
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
+                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                    <Link href="/services/advisory" className={cn('text-white hover:bg-gray-700 hover:text-white bg-gray-900', isActive('/services/advisory') && 'text-white bg-gray-800')}>
+                      Advisory
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
                 
                 <NavigationMenuItem>
@@ -153,28 +130,15 @@ export function Navigation() {
                     Product
                   </Link>
                   
-                  <div className="space-y-2">
-                    <Link
-                      href="/services"
-                      className={cn(
-                        'block px-3 py-2 text-base font-medium text-white hover:text-primary hover:bg-gray-800 rounded-md',
-                        isActive('/services') && 'text-primary bg-gray-800'
-                      )}
-                    >
-                      Services
-                    </Link>
-                    <div className="pl-4 space-y-1">
-                      {services.map((service) => (
-                        <Link
-                          key={service.name}
-                          href={service.href}
-                          className="block px-3 py-2 text-sm text-gray-300 hover:text-primary hover:bg-gray-800 rounded-md"
-                        >
-                          {service.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
+                  <Link
+                    href="/services/advisory"
+                    className={cn(
+                      'block px-3 py-2 text-base font-medium text-white hover:text-primary hover:bg-gray-800 rounded-md',
+                      isActive('/services/advisory') && 'text-primary bg-gray-800'
+                    )}
+                  >
+                    Advisory
+                  </Link>
 
                   <Link
                     href="/process"
