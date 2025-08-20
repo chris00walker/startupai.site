@@ -2,6 +2,15 @@ import { Metadata } from 'next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+import { PageContainer } from '@/components/ui/layout/page-container';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -12,10 +21,35 @@ export const metadata: Metadata = {
 export default function ScalingPage() {
   return (
     <div className="min-h-screen business-gradient tech-grid">
+      {/* Breadcrumb Navigation */}
+      <PageContainer variant="wide" padding="none" className="pt-6 relative z-10">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">Home</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/services">Services</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Scaling</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </PageContainer>
+
       {/* Floating geometric elements */}
-      <div className="absolute top-28 right-32 w-18 h-18 border border-primary/20 rounded-lg floating-element opacity-20"></div>
-      <div className="absolute top-60 left-8 w-6 h-6 bg-primary/5 rounded-full floating-element" style={{animationDelay: '4s'}}></div>
-      <div className="absolute bottom-36 right-1/5 w-8 h-8 border border-primary/15 rotate-45 floating-element" style={{animationDelay: '1.5s'}}></div>
+      <>
+        <div className="absolute top-28 right-32 w-18 h-18 border border-primary/20 rounded-lg floating-element opacity-20"></div>
+        <div className="absolute top-60 left-8 w-6 h-6 bg-primary/5 rounded-full floating-element" style={{animationDelay: '4s'}}></div>
+        <div className="absolute bottom-36 right-1/5 w-8 h-8 border border-primary/15 rotate-45 floating-element" style={{animationDelay: '1.5s'}}></div>
+      </>
       
       <section className="section-padding relative z-10">
         <div className="container">

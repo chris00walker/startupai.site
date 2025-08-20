@@ -16,6 +16,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
+import { PageContainer } from '@/components/ui/layout/page-container';
+import { PageHeader, PageTitle, PageDescription } from '@/components/ui/layout/page-header';
 import {
   ArrowRight,
   Brain,
@@ -47,7 +49,7 @@ export default function AIStrategyPage() {
       <div className="absolute bottom-52 left-2/3 w-8 h-8 border border-primary/15 rotate-45 floating-element" style={{animationDelay: '3.2s'}}></div>
       
       {/* Breadcrumb Navigation */}
-      <div className="container mx-auto px-4 pt-6">
+      <PageContainer variant="wide" padding="sm">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -61,26 +63,26 @@ export default function AIStrategyPage() {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-      </div>
+      </PageContainer>
 
       {/* Hero Section */}
       <section className="business-gradient text-foreground py-16 md:py-24 relative overflow-hidden">
         {/* Sophisticated AI-themed background */}
         <div className="absolute inset-0 bg-[url('/graphics/neural-network.svg')] bg-right bg-contain bg-no-repeat opacity-15"></div>
         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-l from-primary/5 to-transparent rounded-full blur-3xl"></div>
-        <div className="mx-auto max-w-4xl text-center">
-          <Badge variant="secondary" className="mb-4">
-            <Sparkles className="mr-1 h-3 w-3" />
-            AI Strategy Sprint
-          </Badge>
-          <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-6xl">
-            Your AI Cofounder
-          </h1>
-          <p className="mb-8 text-xl text-muted-foreground">
-            Transform your startup idea into a validated business model and technical architecture 
-            in just one week. Get evidence-based validation and production-ready plans without 
-            the guesswork.
-          </p>
+        <PageContainer variant="centered" padding="lg">
+          <PageHeader variant="centered" className="mb-8">
+            <Badge variant="secondary" className="mb-4">
+              <Sparkles className="mr-1 h-3 w-3" />
+              AI Strategy Sprint
+            </Badge>
+            <PageTitle className="text-4xl md:text-6xl">Your AI Cofounder</PageTitle>
+            <PageDescription className="text-xl">
+              Transform your startup idea into a validated business model and technical architecture 
+              in just one week. Get evidence-based validation and production-ready plans without 
+              the guesswork.
+            </PageDescription>
+          </PageHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Button size="lg" asChild>
               <Link href="/product#waitlist">
@@ -94,18 +96,18 @@ export default function AIStrategyPage() {
               </Link>
             </Button>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Pain Points We Solve */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold">The Problem We Solve</h2>
-            <p className="text-lg text-muted-foreground">
+      <section className="py-16">
+        <PageContainer variant="wide" padding="lg">
+          <PageHeader variant="centered" className="mb-12">
+            <PageTitle>The Problem We Solve</PageTitle>
+            <PageDescription>
               Stop drowning in generic AI outputs and fragmented tools
-            </p>
-          </div>
+            </PageDescription>
+          </PageHeader>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <Card>
               <CardHeader>
@@ -150,7 +152,7 @@ export default function AIStrategyPage() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Features Section */}

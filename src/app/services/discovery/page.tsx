@@ -2,6 +2,15 @@ import { Metadata } from 'next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+import { PageContainer } from '@/components/ui/layout/page-container';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -12,10 +21,35 @@ export const metadata: Metadata = {
 export default function DiscoveryPage() {
   return (
     <div className="min-h-screen business-gradient tech-grid">
+      {/* Breadcrumb Navigation */}
+      <PageContainer variant="wide" padding="none" className="pt-6 relative z-10">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">Home</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/services">Services</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Discovery</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </PageContainer>
+
       {/* Floating geometric elements */}
-      <div className="absolute top-24 right-20 w-14 h-14 border border-primary/20 rounded-lg floating-element opacity-20"></div>
-      <div className="absolute top-48 left-16 w-10 h-10 bg-primary/5 rounded-full floating-element" style={{animationDelay: '2s'}}></div>
-      <div className="absolute bottom-32 right-1/3 w-12 h-12 border border-primary/15 rotate-45 floating-element" style={{animationDelay: '1s'}}></div>
+      <>
+        <div className="absolute top-24 right-20 w-14 h-14 border border-primary/20 rounded-lg floating-element opacity-20"></div>
+        <div className="absolute top-48 left-16 w-10 h-10 bg-primary/5 rounded-full floating-element" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-32 right-1/3 w-12 h-12 border border-primary/15 rotate-45 floating-element" style={{animationDelay: '1s'}}></div>
+      </>
       
       <section className="section-padding relative z-10">
         <div className="container">
@@ -103,7 +137,7 @@ export default function DiscoveryPage() {
                   Our discovery process begins with understanding your vision and goals. 
                   We then conduct thorough market research to validate assumptions and 
                   identify opportunities for differentiation. Through systematic analysis 
-                  and stakeholder interviews, we provide actionable insights that guide 
+                  and stakeholder surveys, we provide actionable insights that guide 
                   your strategic decisions.
                 </p>
               </CardContent>

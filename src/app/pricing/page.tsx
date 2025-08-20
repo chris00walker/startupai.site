@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { PageContainer } from '@/components/ui/layout/page-container';
+import { PageHeader, PageTitle, PageDescription } from '@/components/ui/layout/page-header';
 import { 
   Check, 
   Zap,
@@ -61,7 +63,7 @@ export default function PricingPage() {
       name: "Founder Platform",
       price: "$199",
       period: "month",
-      description: "Your AI FDE-in-a-box for continuous iteration and validation",
+      description: "Your AI strategy consultant for continuous iteration and validation",
       badge: "Best Value",
       badgeVariant: "secondary" as const,
       icon: Zap,
@@ -84,7 +86,7 @@ export default function PricingPage() {
       name: "Agency Co-Pilot",
       price: "$499",
       period: "month",
-      description: "Embedded AI FDE for agencies serving multiple clients",
+      description: "Embedded AI strategy consultant for agencies serving multiple clients",
       badge: "Enterprise",
       badgeVariant: "outline" as const,
       icon: Rocket,
@@ -122,7 +124,7 @@ export default function PricingPage() {
     },
     {
       service: "Our AI Platform",
-      price: "$750 one-time",
+      price: "$1,500 one-time",
       timeline: "1 week",
       quality: "Consistent & Fast",
       icon: Sparkles
@@ -130,14 +132,9 @@ export default function PricingPage() {
   ];
 
   return (
-    <div className="min-h-screen business-gradient tech-grid">
-      {/* Floating geometric elements */}
-      <div className="absolute top-40 right-20 w-10 h-10 border border-primary/20 rounded-lg floating-element opacity-20"></div>
-      <div className="absolute top-64 left-20 w-16 h-16 bg-primary/5 rounded-full floating-element" style={{animationDelay: '1.8s'}}></div>
-      <div className="absolute bottom-52 left-2/3 w-8 h-8 border border-primary/15 rotate-45 floating-element" style={{animationDelay: '3.2s'}}></div>
-      
+    <div className="min-h-screen">
       {/* Breadcrumb Navigation */}
-      <div className="container mx-auto px-4 pt-6 relative z-10">
+      <PageContainer variant="wide" padding="none" className="pt-6">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -151,30 +148,37 @@ export default function PricingPage() {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-      </div>
+      </PageContainer>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-6 py-20">
-        <div className="text-center space-y-6 max-w-4xl mx-auto">
-          <Badge variant="secondary" className="mb-4">
-            <Sparkles className="mr-1 h-3 w-3" />
-            Evidence-Based Pricing
-          </Badge>
-          <h1 className="business-title text-4xl md:text-6xl mb-6">
-            From Idea to Production
-            <br />
-            <span className="text-gradient">Without Breaking the Bank</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Get the strategy validation of a $10K consultant and the technical architecture 
-            of a senior developer—all powered by your AI FDE-in-a-box.
-          </p>
+      <section className="business-gradient relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="gradient-blob absolute top-20 left-10 w-64 h-64 opacity-30"></div>
+          <div className="gradient-blob absolute bottom-20 right-10 w-48 h-48 opacity-20" style={{animationDelay: '2s'}}></div>
         </div>
+        <PageContainer variant="wide" padding="lg" className="relative z-10">
+          <div className="text-center">
+            <Badge variant="secondary" className="mb-4 glow-effect">
+              <Sparkles className="mr-1 h-3 w-3" />
+              Evidence-Based Pricing
+            </Badge>
+            <PageHeader variant="centered">
+              <PageTitle className="business-title text-4xl md:text-6xl mb-6">
+                From Idea to Production Without Breaking the Bank
+              </PageTitle>
+              <PageDescription className="business-subtitle text-xl max-w-3xl mx-auto">
+                Get the strategy validation of a $10K consultant and the technical architecture of a senior developer—all powered by your AI strategy consultant.
+              </PageDescription>
+            </PageHeader>
+          </div>
+        </PageContainer>
       </section>
 
       {/* Pricing Tiers */}
-      <section className="container mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <section className="bg-gray-50 py-12">
+        <PageContainer variant="wide">
+          <div className="grid md:grid-cols-3 gap-8">
           {pricingTiers.map((tier, index) => {
             const IconComponent = tier.icon;
             const isHovered = hoveredCard === index;
@@ -186,7 +190,7 @@ export default function PricingPage() {
                 key={index}
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className={`business-card relative overflow-hidden transition-all duration-500 ${
+                className={`business-card relative overflow-hidden transition-all duration-500 flex flex-col ${
                   tier.highlighted 
                     ? 'border-primary/30 shadow-2xl' 
                     : ''
@@ -236,8 +240,8 @@ export default function PricingPage() {
                   </div>
                 </CardHeader>
                 
-                <CardContent className="space-y-4">
-                  <ul className="space-y-3">
+                <CardContent className="space-y-4 flex-grow flex flex-col">
+                  <ul className="space-y-3 flex-grow">
                     {tier.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-3">
                         <Check className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
@@ -261,12 +265,14 @@ export default function PricingPage() {
               </Card>
             );
           })}
-        </div>
+          </div>
+        </PageContainer>
       </section>
 
       {/* Cost Comparison Section */}
-      <section className="container mx-auto px-6 py-16">
-        <div className="text-center mb-12">
+      <section className="bg-background py-12">
+        <PageContainer variant="wide">
+          <div className="text-center mb-12">
           <h2 className="business-title text-3xl md:text-4xl mb-4">Why Choose AI Over Traditional Methods?</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             See how our AI-powered approach compares to traditional consulting and DIY solutions.
@@ -317,12 +323,14 @@ export default function PricingPage() {
               </Card>
             );
           })}
-        </div>
+          </div>
+        </PageContainer>
       </section>
 
       {/* FAQ Section */}
-      <section className="container mx-auto px-6 py-16">
-        <div className="text-center mb-12">
+      <section className="bg-gray-50 py-12">
+        <PageContainer variant="narrow">
+          <div className="text-center mb-12">
           <h2 className="business-title text-3xl md:text-4xl mb-4">Frequently Asked Questions</h2>
         </div>
         
@@ -332,7 +340,7 @@ export default function PricingPage() {
               <h3 className="font-semibold mb-2">What's included in the Discovery phase?</h3>
               <p className="text-muted-foreground">
                 The Discovery phase includes comprehensive market research, competitive analysis, 
-                customer segment identification, and technical feasibility assessment. You'll receive 
+                customer segment identification, and desirability assessment. You'll receive 
                 a detailed report with actionable recommendations for your next steps.
               </p>
             </CardContent>
@@ -357,34 +365,30 @@ export default function PricingPage() {
               </p>
             </CardContent>
           </Card>
-        </div>
+          </div>
+        </PageContainer>
       </section>
 
       {/* CTA Section */}
-      <section className="container mx-auto px-6 py-20">
+      <section className="bg-background py-12">
+        <PageContainer variant="centered">
         <Card className="business-card bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20">
           <CardContent className="text-center py-12">
             <h2 className="business-title text-3xl md:text-4xl mb-4">Ready to Get Started?</h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Book a free 30-minute consultation to discuss your project and determine 
-              the best approach for your business goals.
+              Limited spots available for our Q4 2025 pilot program. Secure your spot now!
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="glow-effect hover:scale-105 transition-all duration-300" asChild>
+            <div className="flex justify-center">
+              <Button size="lg" className="hover:scale-105 transition-all duration-300" asChild>
                 <Link href="/product#waitlist">
-                  <Sparkles className="h-4 w-4 mr-2" />
+                  <Target className="h-4 w-4 mr-2" />
                   Join the Waitlist
-                </Link>
-              </Button>
-              <Button variant="outline" size="lg" className="hover:scale-105 transition-all duration-300" asChild>
-                <Link href="/process">
-                  Learn About Our Process
-                  <ArrowRight className="h-4 w-4 ml-2" />
                 </Link>
               </Button>
             </div>
           </CardContent>
         </Card>
+        </PageContainer>
       </section>
     </div>
   );

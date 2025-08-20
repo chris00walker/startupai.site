@@ -2,6 +2,15 @@ import { Metadata } from 'next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+import { PageContainer } from '@/components/ui/layout/page-container';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -12,10 +21,35 @@ export const metadata: Metadata = {
 export default function OptimizationPage() {
   return (
     <div className="min-h-screen business-gradient tech-grid">
+      {/* Breadcrumb Navigation */}
+      <PageContainer variant="wide" padding="none" className="pt-6 relative z-10">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">Home</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/services">Services</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Optimization</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </PageContainer>
+
       {/* Floating geometric elements */}
-      <div className="absolute top-36 left-28 w-12 h-12 border border-primary/20 rounded-lg floating-element opacity-20"></div>
-      <div className="absolute top-52 right-16 w-14 h-14 bg-primary/5 rounded-full floating-element" style={{animationDelay: '2.5s'}}></div>
-      <div className="absolute bottom-44 right-2/5 w-6 h-6 border border-primary/15 rotate-45 floating-element" style={{animationDelay: '0.5s'}}></div>
+      <>
+        <div className="absolute top-36 left-28 w-12 h-12 border border-primary/20 rounded-lg floating-element opacity-20"></div>
+        <div className="absolute top-52 right-16 w-14 h-14 bg-primary/5 rounded-full floating-element" style={{animationDelay: '2.5s'}}></div>
+        <div className="absolute bottom-44 right-2/5 w-6 h-6 border border-primary/15 rotate-45 floating-element" style={{animationDelay: '0.5s'}}></div>
+      </>
       
       <section className="section-padding relative z-10">
         <div className="container">

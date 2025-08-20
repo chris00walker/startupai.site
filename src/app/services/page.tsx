@@ -52,6 +52,7 @@ export default function ServicesPage() {
         description: 'Test your concepts with real customers and refine your approach based on data-driven insights.',
         icon: Target,
         duration: '2-3 weeks',
+        badge: undefined,
         features: [
           'MVP development and testing',
           'Customer feedback collection',
@@ -121,6 +122,7 @@ export default function ServicesPage() {
         description: 'Continuously improve and optimize your existing solutions for better performance and results.',
         icon: BarChart3,
         duration: '2-4 weeks',
+        badge: undefined,
         features: [
           'Performance analysis and tuning',
           'User experience optimization',

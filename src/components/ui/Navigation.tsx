@@ -34,23 +34,28 @@ const navigation = [
 
 export function Navigation() {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
     return pathname.startsWith(href);
   };
 
+  const handleMobileMenuClick = () => {
+    setIsOpen(false);
+  };
+
 
   return (
-    <header className="bg-gray-900 sticky top-0 z-50 border-b border-gray-800">
+    <header className="bg-slate-900 sticky top-0 z-50 border-b border-slate-800">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link
               href="/"
-              className="text-xl font-bold text-primary hover:text-secondary transition-all duration-300 flex items-center group"
+              className="text-xl font-bold text-white hover:text-primary transition-all duration-300 flex items-center group"
             >
-              <span className="bg-primary text-white w-12 h-8 rounded-md flex items-center justify-center font-bold text-sm glow-effect group-hover:scale-110 transition-all duration-300">
+              <span className="bg-primary text-primary-foreground w-12 h-8 rounded-md flex items-center justify-center font-bold text-sm group-hover:scale-110 transition-all duration-300">
                 CWC
               </span>
             </Link>
@@ -58,73 +63,80 @@ export function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center flex-1 justify-end">
-            <NavigationMenu>
-              <NavigationMenuList className="space-x-4">
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                    <Link href="/product" className={cn('text-white hover:bg-gray-700 hover:text-white bg-gray-900', isActive('/product') && 'text-white bg-gray-800')}>
-                      Product
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                    <Link href="/services/advisory" className={cn('text-white hover:bg-gray-700 hover:text-white bg-gray-900', isActive('/services/advisory') && 'text-white bg-gray-800')}>
-                      Advisory
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                    <Link href="/process" className={cn('text-white hover:bg-gray-700 hover:text-white bg-gray-900', isActive('/process') && 'text-white bg-gray-800')}>
-                      Process
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                    <Link href="/pricing" className={cn('text-white hover:bg-gray-700 hover:text-white bg-gray-900', isActive('/pricing') && 'text-white bg-gray-800')}>
-                      Pricing
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-
-              </NavigationMenuList>
-            </NavigationMenu>
+            <nav className="flex items-center space-x-1">
+              <Link
+                href="/product"
+                className={cn(
+                  'px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-slate-800 rounded-md transition-all duration-200',
+                  isActive('/product') && 'text-white bg-slate-800'
+                )}
+              >
+                Product
+              </Link>
+              <Link
+                href="/services/advisory"
+                className={cn(
+                  'px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-slate-800 rounded-md transition-all duration-200',
+                  isActive('/services/advisory') && 'text-white bg-slate-800'
+                )}
+              >
+                Advisory
+              </Link>
+              <Link
+                href="/process"
+                className={cn(
+                  'px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-slate-800 rounded-md transition-all duration-200',
+                  isActive('/process') && 'text-white bg-slate-800'
+                )}
+              >
+                Process
+              </Link>
+              <Link
+                href="/pricing"
+                className={cn(
+                  'px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-slate-800 rounded-md transition-all duration-200',
+                  isActive('/pricing') && 'text-white bg-slate-800'
+                )}
+              >
+                Pricing
+              </Link>
+            </nav>
           </div>
 
           {/* Action Buttons */}
-          <div className="hidden md:flex items-center gap-2">
-            <Button variant="ghost" asChild className="text-white hover:bg-gray-700 hover:text-white bg-gray-900">
+          <div className="hidden md:flex items-center gap-3 ml-6">
+            <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white hover:bg-slate-800 text-sm" asChild>
               <Link href="/signup">Sign-up</Link>
             </Button>
-            <Button asChild className="bg-gray-900 text-white hover:bg-primary hover:text-white">
+            <Button size="sm" className="bg-primary hover:bg-primary/90 text-white text-sm" asChild>
               <Link href="/login">Login</Link>
             </Button>
           </div>
 
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center">
-            <Sheet>
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:bg-gray-800">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-gray-300 hover:text-white hover:bg-slate-800"
+                >
                   <Menu className="h-6 w-6" />
                   <span className="sr-only">Toggle navigation menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-gray-900 border-gray-800">
+              <SheetContent side="right" className="bg-slate-900 border-slate-800">
                 <SheetHeader>
                   <SheetTitle className="text-white">Navigation</SheetTitle>
                 </SheetHeader>
                 <div className="grid gap-4 py-4">
                   <Link
                     href="/product"
+                    onClick={handleMobileMenuClick}
                     className={cn(
-                      'block px-3 py-2 text-base font-medium text-white hover:text-primary hover:bg-gray-800 rounded-md',
-                      isActive('/product') && 'text-primary bg-gray-800'
+                      'block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 rounded-md transition-colors',
+                      isActive('/product') && 'text-white bg-slate-800'
                     )}
                   >
                     Product
@@ -132,9 +144,10 @@ export function Navigation() {
                   
                   <Link
                     href="/services/advisory"
+                    onClick={handleMobileMenuClick}
                     className={cn(
-                      'block px-3 py-2 text-base font-medium text-white hover:text-primary hover:bg-gray-800 rounded-md',
-                      isActive('/services/advisory') && 'text-primary bg-gray-800'
+                      'block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 rounded-md transition-colors',
+                      isActive('/services/advisory') && 'text-white bg-slate-800'
                     )}
                   >
                     Advisory
@@ -142,9 +155,10 @@ export function Navigation() {
 
                   <Link
                     href="/process"
+                    onClick={handleMobileMenuClick}
                     className={cn(
-                      'block px-3 py-2 text-base font-medium text-white hover:text-primary hover:bg-gray-800 rounded-md',
-                      isActive('/process') && 'text-primary bg-gray-800'
+                      'block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 rounded-md transition-colors',
+                      isActive('/process') && 'text-white bg-slate-800'
                     )}
                   >
                     Process
@@ -152,19 +166,29 @@ export function Navigation() {
 
                   <Link
                     href="/pricing"
+                    onClick={handleMobileMenuClick}
                     className={cn(
-                      'block px-3 py-2 text-base font-medium text-white hover:text-primary hover:bg-gray-800 rounded-md',
-                      isActive('/pricing') && 'text-primary bg-gray-800'
+                      'block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 rounded-md transition-colors',
+                      isActive('/pricing') && 'text-white bg-slate-800'
                     )}
                   >
                     Pricing
                   </Link>
 
                   <div className="flex flex-col gap-2 mt-4">
-                    <Button variant="outline" asChild className="border-gray-600 text-white hover:bg-gray-800 hover:text-white">
+                    <Button 
+                      variant="outline" 
+                      className="border-slate-700 text-gray-300 hover:text-white hover:bg-slate-800" 
+                      onClick={handleMobileMenuClick}
+                      asChild
+                    >
                       <Link href="/signup">Sign-up</Link>
                     </Button>
-                    <Button asChild>
+                    <Button 
+                      className="bg-primary hover:bg-primary/90 text-white"
+                      onClick={handleMobileMenuClick}
+                      asChild
+                    >
                       <Link href="/login">Login</Link>
                     </Button>
                   </div>

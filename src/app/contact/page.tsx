@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import { ContactForm } from '@/components/sections/ContactForm';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { PageContainer } from '@/components/ui/layout/page-container';
+import { PageHeader, PageTitle, PageDescription } from '@/components/ui/layout/page-header';
 import { Mail } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -13,16 +15,14 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen">
       <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <PageContainer variant="wide" padding="lg">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Contact
-              </h1>
-              <p className="text-xl text-gray-600">
+            <PageHeader variant="centered" className="mb-12">
+              <PageTitle>Contact</PageTitle>
+              <PageDescription className="text-xl">
                 Ready to discuss your eCommerce project? Let's start a conversation about how I can help your business succeed.
-              </p>
-            </div>
+              </PageDescription>
+            </PageHeader>
             
             <div className="grid md:grid-cols-2 gap-12">
               <div>
@@ -73,7 +73,7 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
     </div>
   );

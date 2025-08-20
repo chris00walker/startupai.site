@@ -2,6 +2,16 @@ import { Metadata } from 'next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { PageContainer } from '@/components/ui/layout/page-container';
+import { PageHeader, PageTitle, PageDescription } from '@/components/ui/layout/page-header';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -11,45 +21,63 @@ export const metadata: Metadata = {
 
 export default function ProcessPage() {
   return (
-    <div className="min-h-screen business-gradient tech-grid">
-      {/* Floating geometric elements */}
-      <div className="absolute top-20 right-24 w-20 h-20 border border-primary/20 rounded-lg floating-element opacity-20"></div>
-      <div className="absolute top-72 left-8 w-16 h-16 bg-primary/5 rounded-full floating-element" style={{animationDelay: '2s'}}></div>
-      <div className="absolute bottom-32 right-1/3 w-12 h-12 border border-primary/15 rotate-45 floating-element" style={{animationDelay: '4s'}}></div>
-      <div className="absolute top-96 right-12 w-8 h-8 bg-primary/10 rounded-lg floating-element" style={{animationDelay: '1s'}}></div>
-      
-      <section className="section-padding relative z-10">
-        <div className="container">
-          <div className="max-w-6xl mx-auto">
-            {/* Hero Section */}
-            <div className="text-center mb-16">
-              <h1 className="business-title text-4xl md:text-6xl mb-6 text-gradient">
-                Proven Process for
-                <br />
-                <span className="text-primary">Startup Success</span>
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-                A systematic approach that transforms ideas into thriving digital platforms, 
-                from discovery and validation through scaling and continuous optimization.
-              </p>
-              <div className="flex items-center justify-center gap-4 mt-8">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span>4-Phase Framework</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                  <span>Proven Results</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-2 h-2 bg-accent rounded-full"></div>
-                  <span>Scalable Solutions</span>
-                </div>
+    <div className="min-h-screen">
+      {/* Breadcrumb Navigation */}
+      <PageContainer variant="wide" padding="none" className="pt-6">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">Home</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Process</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </PageContainer>
+
+      {/* Hero Section */}
+      <section className="business-gradient relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="gradient-blob absolute top-20 left-10 w-64 h-64 opacity-30"></div>
+          <div className="gradient-blob absolute bottom-20 right-10 w-48 h-48 opacity-20" style={{animationDelay: '2s'}}></div>
+        </div>
+        <PageContainer variant="wide" padding="lg" className="relative z-10">
+          <div className="text-center">
+            <PageHeader variant="centered">
+              <PageTitle className="business-title text-4xl md:text-6xl mb-6">
+                Proven Process for Startup Success
+              </PageTitle>
+              <PageDescription className="business-subtitle text-xl max-w-3xl mx-auto">
+                A systematic approach that transforms ideas into thriving digital platforms, from discovery and validation through scaling and continuous optimization.
+              </PageDescription>
+            </PageHeader>
+            <div className="flex items-center justify-center gap-4 mt-8">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="w-2 h-2 bg-primary rounded-full glow-effect"></div>
+                <span>4-Phase Framework</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="w-2 h-2 bg-secondary rounded-full glow-effect"></div>
+                <span>Proven Results</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="w-2 h-2 bg-accent rounded-full glow-effect"></div>
+                <span>Scalable Solutions</span>
               </div>
             </div>
+          </div>
+        </PageContainer>
+      </section>
 
-            {/* Process Steps */}
-            <div className="grid-professional-1-2 container-professional-lg mb-16">
+      {/* Process Steps */}
+      <section className="bg-gray-50 py-12">
+        <PageContainer variant="wide">
+          <div className="grid md:grid-cols-2 gap-8">
               {/* Step 1: Discovery */}
               <Link href="/services/discovery" className="block">
                 <Card className="professional-card-wide glow-effect hover:scale-105 transition-all duration-500 relative overflow-hidden cursor-pointer group">
@@ -185,10 +213,14 @@ export default function ProcessPage() {
                   </CardContent>
                 </Card>
               </Link>
-            </div>
+          </div>
+        </PageContainer>
+      </section>
 
-            {/* CTA Section */}
-            <div className="text-center bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl p-8 border border-primary/10">
+      {/* CTA Section */}
+      <section className="bg-background py-12">
+        <PageContainer variant="centered">
+          <div className="text-center bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl p-8 border border-primary/10">
               <h2 className="text-3xl font-bold mb-4">Ready to Start Your Project?</h2>
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                 Let's discuss how this proven process can help you achieve your eCommerce goals 
@@ -204,9 +236,8 @@ export default function ProcessPage() {
                   </span>
                 </Link>
               </Button>
-            </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
     </div>
   );

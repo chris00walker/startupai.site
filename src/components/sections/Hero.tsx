@@ -55,17 +55,8 @@ export function Hero() {
             the guesswork.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex justify-center">
             <Button asChild size="lg" className="glow-effect hover:scale-105 transition-all duration-300">
-              <Link href="/ai-strategy">
-                <span className="flex items-center gap-2">
-                  See How It Works
-                  <ArrowRight className="w-5 h-5" />
-                </span>
-              </Link>
-            </Button>
-            
-            <Button asChild variant="outline" size="lg" className="border-gradient hover:scale-105 transition-all duration-300">
               <Link href="/product#waitlist">
                 <span className="flex items-center gap-2">
                   Join the Waitlist
@@ -97,19 +88,10 @@ export function Hero() {
                         : 'scale-100'
                   }`}
                 >
-                  {IconComponent ? (
+                  {IconComponent && (
                     <IconComponent className={`h-4 w-4 text-primary mr-2 transition-all duration-300 ${
                       isHovered ? 'glow-effect scale-125' : ''
                     }`} />
-                  ) : (
-                    <Badge 
-                      variant="outline" 
-                      className={`border-primary/30 text-primary mr-2 transition-all duration-300 ${
-                        isHovered ? 'glow-effect scale-110 ring-2 ring-primary/20' : ''
-                      }`}
-                    >
-                      {feature.badge}
-                    </Badge>
                   )}
                   {feature.text}
                 </div>

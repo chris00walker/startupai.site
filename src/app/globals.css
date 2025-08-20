@@ -4,6 +4,12 @@
 
 @layer base {
   :root {
+    /* ============================================ */
+    /* DESIGN SYSTEM TOKENS - Phase 1 Implementation */
+    /* ============================================ */
+    
+    /* ---------- Color System ---------- */
+    /* Semantic colors with HSL values for flexibility */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -20,9 +26,21 @@
     --accent-foreground: 222.2 84% 4.9%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
+    --success: 142 76% 36%;
+    --success-foreground: 210 40% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 222.2 84% 4.9%;
+    --info: 199 89% 48%;
+    --info-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+    
+    /* Layout-specific colors */
+    --container: 0 0% 100%;
+    --container-foreground: 222.2 84% 4.9%;
+    
+    /* Sidebar colors */
     --sidebar: 222.2 84% 4.9%;
     --sidebar-foreground: 210 40% 98%;
     --sidebar-primary: 210 40% 98%;
@@ -351,4 +369,534 @@
 @keyframes morph {
   0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
   50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+
+/* ===================================== */
+/* PHASE 2: COMPONENT STANDARDIZATION    */
+/* ===================================== */
+
+/* ----- Button System Overhaul ----- */
+
+/* Button Size Variants */
+.btn-sm {
+  @apply h-8 px-3 text-xs font-medium rounded-md;
+  min-width: 64px;
+}
+
+.btn-default {
+  @apply h-9 px-4 text-sm font-medium rounded-md;
+  min-width: 80px;
+}
+
+.btn-lg {
+  @apply h-10 px-8 text-base font-medium rounded-md;
+  min-width: 96px;
+}
+
+.btn-icon {
+  @apply h-9 w-9 p-0 flex items-center justify-center rounded-md;
+}
+
+.btn-icon-sm {
+  @apply h-8 w-8 p-0 flex items-center justify-center rounded-md;
+}
+
+.btn-icon-lg {
+  @apply h-10 w-10 p-0 flex items-center justify-center rounded-md;
+}
+
+/* Button Semantic Variants */
+.btn-primary {
+  @apply bg-primary text-primary-foreground shadow-sm hover:bg-primary/90;
+  @apply transition-all duration-200 ease-in-out;
+  @apply active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80;
+  @apply transition-all duration-200 ease-in-out;
+  @apply active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.btn-outline {
+  @apply border border-input bg-background hover:bg-accent hover:text-accent-foreground;
+  @apply transition-all duration-200 ease-in-out;
+  @apply active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.btn-ghost {
+  @apply hover:bg-accent hover:text-accent-foreground;
+  @apply transition-all duration-200 ease-in-out;
+  @apply active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.btn-link {
+  @apply text-primary underline-offset-4 hover:underline;
+  @apply transition-all duration-200 ease-in-out;
+  @apply disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.btn-destructive {
+  @apply bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90;
+  @apply transition-all duration-200 ease-in-out;
+  @apply active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.btn-success {
+  background: hsl(var(--success));
+  color: hsl(var(--success-foreground));
+  @apply shadow-sm hover:opacity-90;
+  @apply transition-all duration-200 ease-in-out;
+  @apply active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.btn-warning {
+  background: hsl(var(--warning));
+  color: hsl(var(--warning-foreground));
+  @apply shadow-sm hover:opacity-90;
+  @apply transition-all duration-200 ease-in-out;
+  @apply active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+}
+
+/* Composite Button Patterns */
+.btn-card {
+  @apply w-full h-9 px-4 text-sm font-medium rounded-md;
+  @apply transition-all duration-200 ease-in-out;
+}
+
+.btn-card-sm {
+  @apply w-full h-8 px-3 text-xs font-medium rounded-md;
+  @apply transition-all duration-200 ease-in-out;
+}
+
+/* Button Loading States */
+.btn-loading {
+  @apply relative pointer-events-none opacity-70;
+}
+
+.btn-loading::after {
+  content: '';
+  @apply absolute inset-0 flex items-center justify-center;
+  background: inherit;
+  border-radius: inherit;
+}
+
+.btn-loading::before {
+  content: '';
+  @apply absolute w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Button Disabled States */
+.btn-disabled {
+  @apply opacity-50 cursor-not-allowed pointer-events-none;
+}
+
+/* Button Group */
+.btn-group {
+  @apply inline-flex -space-x-px;
+}
+
+.btn-group > * {
+  @apply rounded-none first:rounded-l-md last:rounded-r-md;
+  @apply focus:z-10;
+}
+
+/* ----- Enhanced Card System ----- */
+
+/* Base Card Variants */
+.card-base {
+  @apply rounded-lg border bg-card text-card-foreground;
+  box-shadow: var(--shadow-sm);
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.card-elevated {
+  @apply rounded-lg bg-card text-card-foreground;
+  box-shadow: var(--shadow-md);
+  @apply transition-all duration-300 ease-in-out hover:shadow-lg;
+}
+
+.card-interactive {
+  @apply rounded-lg border bg-card text-card-foreground cursor-pointer;
+  box-shadow: var(--shadow-sm);
+  @apply transition-all duration-300 ease-in-out;
+  @apply hover:shadow-md hover:scale-[1.02] hover:border-primary/20;
+}
+
+.card-glass {
+  @apply rounded-lg border border-white/10;
+  @apply bg-white/5 backdrop-blur-md;
+  box-shadow: var(--shadow-md);
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* Card Size Variants */
+.card-sm {
+  padding: var(--padding-md);
+  gap: var(--gap-sm);
+}
+
+.card-md {
+  padding: var(--padding-lg);
+  gap: var(--gap-md);
+}
+
+.card-lg {
+  padding: var(--padding-xl);
+  gap: var(--gap-lg);
+}
+
+/* Card Content Sections */
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xs);
+  padding: var(--padding-lg);
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.card-title {
+  @apply text-lg font-semibold leading-none tracking-tight;
+}
+
+.card-description {
+  @apply text-sm text-muted-foreground;
+}
+
+.card-content {
+  padding: var(--padding-lg);
+  gap: var(--gap-md);
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  padding: var(--padding-lg);
+  padding-top: 0;
+  gap: var(--gap-md);
+}
+
+/* Specialized Card Types */
+.card-feature {
+  @apply relative overflow-hidden rounded-lg border bg-card;
+  padding: var(--padding-xl);
+  @apply transition-all duration-300 ease-in-out;
+  @apply hover:shadow-lg hover:scale-[1.01];
+}
+
+.card-feature::before {
+  content: '';
+  @apply absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 via-primary to-primary/50;
+}
+
+.card-metric {
+  @apply rounded-lg border bg-card p-6;
+  @apply flex flex-col gap-2;
+}
+
+.card-metric-value {
+  @apply text-2xl font-bold;
+}
+
+.card-metric-label {
+  @apply text-sm text-muted-foreground;
+}
+
+.card-metric-change {
+  @apply text-xs font-medium;
+}
+
+.card-testimonial {
+  @apply rounded-lg bg-card/50 backdrop-blur-sm border;
+  padding: var(--padding-xl);
+  @apply relative;
+}
+
+.card-testimonial::before {
+  content: '"';
+  @apply absolute text-6xl text-primary/10 font-serif;
+  top: var(--padding-md);
+  left: var(--padding-lg);
+}
+
+/* Card Grid System */
+.card-grid {
+  @apply grid gap-6;
+}
+
+.card-grid-2 {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.card-grid-3 {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.card-grid-4 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6;
+}
+
+/* Card Hover Effects */
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-hover-glow:hover {
+  box-shadow: 0 0 40px hsla(var(--primary), 0.15);
+}
+
+.card-hover-border:hover {
+  border-color: hsl(var(--primary));
+}
+
+/* ----- Layout Component System ----- */
+
+/* PageContainer Component */
+.page-container-full {
+  @apply w-full min-h-screen;
+  @apply bg-background text-foreground;
+  @apply relative overflow-x-hidden;
+}
+
+.page-container-centered {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply min-h-screen;
+  @apply bg-background text-foreground;
+}
+
+.page-container-narrow {
+  @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply min-h-screen;
+  @apply bg-background text-foreground;
+}
+
+.page-container-wide {
+  @apply max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply min-h-screen;
+  @apply bg-background text-foreground;
+}
+
+/* PageHeader Component Variants */
+.page-header-title-only {
+  @apply flex flex-col gap-2 pb-8;
+}
+
+.page-header-title-only h1 {
+  @apply text-3xl font-bold tracking-tight;
+}
+
+.page-header-title-only p {
+  @apply text-muted-foreground;
+}
+
+.page-header-title-with-actions {
+  @apply flex flex-col sm:flex-row sm:items-center sm:justify-between pb-8 gap-4;
+}
+
+.page-header-title-with-actions .page-header-text {
+  @apply flex flex-col gap-2;
+}
+
+.page-header-title-with-actions .page-header-actions {
+  @apply flex items-center gap-2;
+}
+
+.page-header-title-with-toolbar {
+  @apply flex flex-col gap-6 pb-8;
+}
+
+.page-header-title-with-toolbar .page-header-top {
+  @apply flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4;
+}
+
+.page-header-title-with-toolbar .page-header-toolbar {
+  @apply flex flex-wrap items-center gap-2;
+}
+
+/* BlockLayout Component */
+.block-layout {
+  @apply rounded-lg border bg-card;
+  padding: var(--padding-lg);
+  box-shadow: var(--shadow-sm);
+  @apply transition-all duration-200 ease-in-out;
+}
+
+.block-layout-sm {
+  @apply rounded-lg border bg-card;
+  padding: var(--padding-md);
+  box-shadow: var(--shadow-xs);
+  @apply transition-all duration-200 ease-in-out;
+}
+
+.block-layout-lg {
+  @apply rounded-lg border bg-card;
+  padding: var(--padding-xl);
+  box-shadow: var(--shadow-md);
+  @apply transition-all duration-200 ease-in-out;
+}
+
+.block-layout-transparent {
+  @apply rounded-lg;
+  padding: var(--padding-lg);
+  @apply transition-all duration-200 ease-in-out;
+}
+
+.block-layout-bordered {
+  @apply rounded-lg border-2 border-dashed border-muted;
+  padding: var(--padding-lg);
+  @apply transition-all duration-200 ease-in-out;
+}
+
+/* Section Layout Utilities */
+.section-container {
+  @apply py-16 px-4 sm:px-6 lg:px-8;
+}
+
+.section-container-sm {
+  @apply py-8 px-4 sm:px-6 lg:px-8;
+}
+
+.section-container-lg {
+  @apply py-24 px-4 sm:px-6 lg:px-8;
+}
+
+.section-inner {
+  @apply max-w-7xl mx-auto;
+}
+
+.section-inner-narrow {
+  @apply max-w-4xl mx-auto;
+}
+
+.section-inner-wide {
+  @apply max-w-screen-2xl mx-auto;
+}
+
+/* Grid Layout Systems */
+.layout-grid {
+  @apply grid gap-6;
+}
+
+.layout-grid-responsive {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.layout-grid-sidebar {
+  @apply grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-6;
+}
+
+.layout-grid-sidebar-right {
+  @apply grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6;
+}
+
+.layout-grid-dashboard {
+  @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6;
+}
+
+/* Flex Layout Systems */
+.layout-flex {
+  @apply flex flex-wrap gap-4;
+}
+
+.layout-flex-center {
+  @apply flex items-center justify-center gap-4;
+}
+
+.layout-flex-between {
+  @apply flex items-center justify-between gap-4;
+}
+
+.layout-flex-stack {
+  @apply flex flex-col gap-4;
+}
+
+.layout-flex-stack-sm {
+  @apply flex flex-col gap-2;
+}
+
+.layout-flex-stack-lg {
+  @apply flex flex-col gap-6;
+}
+
+/* Content Layout Patterns */
+.content-prose {
+  @apply max-w-none;
+  line-height: 1.75;
+}
+
+.content-prose h1 {
+  @apply text-3xl font-bold mt-8 mb-4 scroll-mt-20;
+}
+
+.content-prose h2 {
+  @apply text-2xl font-bold mt-6 mb-3 scroll-mt-20;
+}
+
+.content-prose h3 {
+  @apply text-xl font-bold mt-4 mb-2 scroll-mt-20;
+}
+
+.content-prose p {
+  @apply text-muted-foreground leading-7 mb-4;
+}
+
+.content-prose a {
+  @apply text-primary no-underline hover:underline;
+}
+
+.content-prose code {
+  @apply text-sm bg-muted px-1 py-0.5 rounded;
+}
+
+.content-prose ul,
+.content-prose ol {
+  @apply my-4 ml-6;
+}
+
+.content-prose li {
+  @apply mb-2;
+}
+
+.content-prose blockquote {
+  @apply border-l-4 border-muted pl-4 italic my-4;
+}
+
+.content-centered {
+  @apply flex flex-col items-center text-center gap-4;
+}
+
+.content-split {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-8 items-center;
+}
+
+.content-feature {
+  @apply flex flex-col gap-6;
+}
+
+.content-feature-icon {
+  @apply w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center;
+}
+
+.content-feature-text {
+  @apply flex flex-col gap-2;
+}
+
+/* Spacing Utilities */
+.space-section {
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.space-block {
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.space-element {
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
 }

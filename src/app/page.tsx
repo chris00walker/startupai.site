@@ -4,6 +4,8 @@ import { Hero } from '@/components/sections/Hero';
 import { ServiceCard } from '@/components/sections/ServiceCard';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { PageContainer } from '@/components/ui/layout/page-container';
+import { PageHeader, PageTitle, PageDescription } from '@/components/ui/layout/page-header';
 
 export const metadata: Metadata = {
   title: 'Chris Walker | AI-Powered Forward Deployed Engineer',
@@ -64,10 +66,16 @@ export default function HomePage() {
       <Hero />
 
       {/* Services Preview */}
-      <section className="bg-gray-50 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-gray-50">
+        <PageContainer variant="wide" padding="lg">
+          <PageHeader variant="centered" className="mb-12">
+            <PageTitle>Services</PageTitle>
+            <PageDescription>
+              Transform your startup with our comprehensive service offerings
+            </PageDescription>
+          </PageHeader>
           
-          <div className="grid-professional-1-4 container-professional-xl">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {services.map((service, index) => (
               <ServiceCard
                 key={index}
@@ -79,20 +87,19 @@ export default function HomePage() {
               />
             ))}
           </div>
-
-        </div>
+        </PageContainer>
       </section>
 
       <Separator />
 
       {/* CTA Section */}
-      <section className="bg-primary py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-primary">
+        <PageContainer variant="wide" padding="lg">
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to Transform Your Startup
             </h2>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Let's discuss how CWC can help you achieve your startup's goals.
             </p>
             <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100">
@@ -101,7 +108,7 @@ export default function HomePage() {
               </Link>
             </Button>
           </div>
-        </div>
+        </PageContainer>
       </section>
     </div>
   );

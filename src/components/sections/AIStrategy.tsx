@@ -44,12 +44,9 @@ export function AIStrategySection() {
                 From canvas to execution: generate strategy canvases, design experiments, and turn
                 learning into a concrete plan. Built for founders, indie hackers, and consultants.
               </p>
-              <div className="mt-6 flex gap-3">
+              <div className="mt-6">
                 <Button asChild size="lg">
-                  <Link href="/product#waitlist">Join the Waitlist</Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/contact">Talk to Chris</Link>
+                  <Link href="#waitlist">Join the Waitlist</Link>
                 </Button>
               </div>
             </div>

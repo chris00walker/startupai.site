@@ -6,6 +6,16 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { AIStrategySection } from '@/components/sections/AIStrategy';
+import { PageContainer } from '@/components/ui/layout/page-container';
+import { PageHeader, PageTitle, PageDescription } from '@/components/ui/layout/page-header';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
 import { 
   Brain, 
   Code, 
@@ -59,191 +69,154 @@ export default function ProductPage() {
   ];
 
   const stats = [
-    { label: "AI Solutions Deployed", value: "25+", icon: Brain },
-    { label: "Startup Success Rate", value: "92%", icon: CheckCircle },
-    { label: "Avg. Time to Market", value: "60%", icon: TrendingUp },
-    { label: "Multi-Agent Systems", value: "15+", icon: Zap }
+    { label: "Clear Strategy Delivery", value: "Minutes", icon: Brain },
+    { label: "Setup Time Reduction", value: ">50%", icon: Zap },
+    { label: "Specific Output Quality", value: "8/10", icon: Target },
+    { label: "Evidence-Based Planning", value: "Validated", icon: CheckCircle }
   ];
 
 
   return (
-    <div className="min-h-screen business-gradient">
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 border border-primary/20 rounded-lg floating-element opacity-30 pointer-events-none"></div>
-      <div className="absolute top-40 right-20 w-16 h-16 border border-secondary/20 rounded-full floating-element opacity-20 pointer-events-none" style={{animationDelay: '1s'}}></div>
-      <div className="absolute bottom-40 left-20 w-12 h-12 border border-accent/20 rounded-lg floating-element opacity-25 pointer-events-none" style={{animationDelay: '2s'}}></div>
+    <div className="min-h-screen">
+      {/* Breadcrumb Navigation */}
+      <PageContainer variant="wide" padding="none" className="pt-6">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">Home</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Product</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </PageContainer>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-6 py-20">
-        <div className="text-center space-y-6 max-w-4xl mx-auto">
-          <h1 className="business-title text-4xl md:text-6xl mb-6">
-            Innovative AI-driven Solutions for{" "}
-            <span className="text-gradient">Digital Business</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            From Ai-powered strategy development to digital platform optimization, 
-            discover the cutting-edge multi-agent Ai workflows we've built to drive your startup' success.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <Button size="lg" className="w-full sm:w-auto glow-effect hover:scale-105 transition-all duration-300" asChild>
-              <Link href="/contact">
-                <Brain className="h-4 w-4 mr-2" />
-                Discuss Your Project
-              </Link>
-            </Button>
-            <Button variant="outline" size="lg" className="w-full sm:w-auto hover:scale-105 transition-all duration-300" asChild>
-              <Link href="/process">
-                View My Process
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </Link>
-            </Button>
-          </div>
-        </div>
+      <section className="bg-gradient-to-b from-background to-gray-50">
+        <PageContainer variant="wide" padding="lg">
+          <PageHeader variant="centered" className="mb-8">
+            <PageTitle className="text-4xl md:text-6xl">
+              Innovative AI-driven Solutions for{" "}
+              <span className="text-gradient">Digital Business</span>
+            </PageTitle>
+            <PageDescription className="text-xl max-w-2xl mx-auto">
+              From Ai-powered strategy development to digital platform optimization, 
+              discover the cutting-edge multi-agent Ai workflows we've built to drive your startup' success.
+            </PageDescription>
+          </PageHeader>
+        </PageContainer>
       </section>
 
       {/* Stats Section */}
-      <section className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {stats.map((stat, index) => {
-            const IconComponent = stat.icon;
-            return (
-              <Card key={index} className="business-card text-center hover:scale-105 transition-all duration-300">
-                <CardContent className="pt-6">
-                  <div className="flex justify-center mb-2">
-                    <div className="p-2 rounded-lg bg-primary/10 glow-effect">
-                      <IconComponent className="h-6 w-6 text-primary" />
+      <section className="bg-gray-50">
+        <PageContainer variant="wide" padding="lg">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {stats.map((stat, index) => {
+              const IconComponent = stat.icon;
+              return (
+                <Card key={index} className="text-center hover:scale-105 transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex justify-center mb-2">
+                      <div className="p-2 rounded-lg bg-primary/10">
+                        <IconComponent className="h-6 w-6 text-primary" />
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-2xl font-bold text-gradient">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
+                    <div className="text-2xl font-bold text-gradient">{stat.value}</div>
+                    <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </PageContainer>
       </section>
 
       {/* AI Strategy Assistant Section */}
       <AIStrategySection />
 
-      {/* Featured Products Section */}
-      <section className="container mx-auto px-6 py-16">
-        <div className="text-center mb-12">
-          <h2 className="business-title text-3xl md:text-4xl mb-4">Featured Products & Solutions</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Innovative products that combine cutting-edge technology with proven business methodologies 
-            to deliver exceptional results for clients.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-2 gap-8">
-          {features.map((feature, index) => {
-            const IconComponent = feature.icon;
-            return (
-              <Card key={index} className="business-card h-full hover:scale-105 transition-all duration-500 group cursor-pointer">
-                <CardHeader>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="p-3 rounded-lg bg-primary/10 glow-effect group-hover:bg-primary/20 transition-colors">
-                      <IconComponent className="h-6 w-6 text-primary" />
-                    </div>
-                    <Badge variant="outline" className="text-xs glow-effect">
-                      {feature.badge}
-                    </Badge>
-                  </div>
-                  <CardTitle className="text-xl business-title">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-1 flex flex-col justify-between">
-                  <CardDescription className="text-base leading-relaxed mb-4">
-                    {feature.description}
-                  </CardDescription>
-                  <Button variant="outline" className="btn-card group-hover:bg-primary group-hover:text-white transition-all duration-300" asChild>
-                    <Link href={feature.href}>
-                      {feature.cta}
-                      <ArrowRight className="h-4 w-4 ml-2" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-      </section>
 
-
-      {/* Client Testimonials */}
-      <section className="container mx-auto px-6 py-16">
-        <div className="text-center mb-12">
-          <h2 className="business-title text-3xl md:text-4xl mb-4">What Clients Say</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Real results from startups and businesses that have transformed their operations with our AI solutions.
-          </p>
-        </div>
+      {/* Real User Pain Points */}
+      <section className="bg-gray-50">
+        <PageContainer variant="wide" padding="lg">
+          <PageHeader variant="centered" className="mb-12">
+            <PageTitle>What Founders Are Saying</PageTitle>
+            <PageDescription className="max-w-2xl mx-auto">
+              Real pain points and struggles from entrepreneurs seeking better strategy tools.
+            </PageDescription>
+          </PageHeader>
         <div className="grid md:grid-cols-3 gap-6">
-          <Card className="business-card">
+          <Card>
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                  <Users className="h-5 w-5 text-primary" />
+                  <Brain className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-semibold">Sarah Chen</p>
-                  <p className="text-sm text-muted-foreground">CEO, TechStart</p>
+                  <p className="font-semibold">Startup Founder</p>
+                  <p className="text-sm text-muted-foreground">Reddit Community</p>
                 </div>
               </div>
               <p className="text-muted-foreground italic">
-                "The AI workflow automation reduced our strategy development time by 70%. 
-                What used to take weeks now happens in days."
+                "I'm overwhelmed with startup ideas and unsure how to validate them. 
+                I need guided idea validation."
               </p>
             </CardContent>
           </Card>
-          <Card className="business-card">
+          <Card>
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                  <Users className="h-5 w-5 text-primary" />
+                  <Target className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-semibold">Marcus Rodriguez</p>
-                  <p className="text-sm text-muted-foreground">Founder, DataFlow</p>
+                  <p className="font-semibold">AI Tool User</p>
+                  <p className="text-sm text-muted-foreground">Product Review</p>
                 </div>
               </div>
               <p className="text-muted-foreground italic">
-                "The Strategyzer AI Platform helped us validate our business model 
-                and secure Series A funding within 6 months."
+                "ChatGPT business plans are too generic - you could swap 'pet portraiture' 
+                with half a million other products and it would still sound good."
               </p>
             </CardContent>
           </Card>
-          <Card className="business-card">
+          <Card>
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                  <Users className="h-5 w-5 text-primary" />
+                  <Zap className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-semibold">Emily Watson</p>
-                  <p className="text-sm text-muted-foreground">CTO, GrowthLab</p>
+                  <p className="font-semibold">Entrepreneur</p>
+                  <p className="text-sm text-muted-foreground">Market Research</p>
                 </div>
               </div>
               <p className="text-muted-foreground italic">
-                "Multi-agent AI systems transformed our customer analytics. 
-                We now predict market trends with 85% accuracy."
+                "Market research and experimentation is time-consuming and difficult 
+                to do alone. I struggle without guidance."
               </p>
             </CardContent>
           </Card>
         </div>
+        </PageContainer>
       </section>
 
       {/* Strategyzer AI Spotlight with Lead Capture */}
-      <section className="container mx-auto px-6 py-16">
-        <Card className="business-card bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20 overflow-hidden relative">
-          <div className="absolute top-4 right-4 w-32 h-32 border border-primary/10 rounded-full floating-element opacity-20"></div>
+      <section className="bg-background">
+        <PageContainer variant="wide" padding="lg">
+          <Card className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20 overflow-hidden relative">
+          <div className="absolute top-4 right-4 w-32 h-32 border border-primary/10 rounded-full opacity-20"></div>
           <CardContent className="py-12 relative z-10">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <Badge className="mb-4 glow-effect">
+                <Badge className="mb-4">
                   <Brain className="h-3 w-3 mr-1" />
                   Featured Product
                 </Badge>
-                <h3 className="business-title text-2xl md:text-3xl mb-4">Strategyzer AI Platform</h3>
+                <h3 className="text-2xl md:text-3xl font-bold mb-4">Strategyzer AI Platform</h3>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   A revolutionary multi-agent AI system that generates professional business canvases, 
                   validates strategic ideas, and accelerates consulting workflows. Built with cutting-edge 
@@ -254,21 +227,15 @@ export default function ProductPage() {
                     <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
                       <Target className="h-4 w-4 text-primary" />
                     </div>
-                    <p className="text-base font-bold text-white">Free Demo Access</p>
+                    <p className="text-base font-bold text-foreground">Free Demo Access</p>
                   </div>
-                  <p className="text-sm text-gray-200 leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Get instant access to our live AI demo and see how multi-agent systems 
                     can transform your business strategy development.
                   </p>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button className="glow-effect hover:scale-105 transition-all duration-300" asChild>
-                    <a href="http://127.0.0.1:45687/dashboard/?demo=true" target="_blank" rel="noopener noreferrer">
-                      <Brain className="h-4 w-4 mr-2" />
-                      Try Free Demo
-                    </a>
-                  </Button>
-                  <Button variant="outline" className="hover:scale-105 transition-all duration-300" asChild>
+                <div className="flex justify-center">
+                  <Button className="hover:scale-105 transition-all duration-300" asChild>
                     <Link href="#waitlist">
                       <Target className="h-4 w-4 mr-2" />
                       Join the Waitlist
@@ -279,7 +246,7 @@ export default function ProductPage() {
               <div className="relative">
                 <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg border border-primary/20 flex items-center justify-center">
                   <div className="text-center">
-                    <Brain className="h-16 w-16 text-primary mx-auto mb-4 glow-effect" />
+                    <Brain className="h-16 w-16 text-primary mx-auto mb-4" />
                     <p className="text-sm text-muted-foreground">Multi-Agent AI Collaboration</p>
                   </div>
                 </div>
@@ -287,36 +254,30 @@ export default function ProductPage() {
             </div>
           </CardContent>
         </Card>
+        </PageContainer>
       </section>
 
       {/* CTA Section - Consolidated with Clear Hierarchy */}
-      <section className="container mx-auto px-6 py-20">
-        <Card className="business-card bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20">
-          <CardContent className="text-center py-12">
-            <h2 className="business-title text-3xl md:text-4xl mb-4">Transform Your Startup with AI</h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Join 25+ successful startups that have accelerated their growth with our 
-              multi-agent AI solutions. Start with a free consultation.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="glow-effect hover:scale-105 transition-all duration-300" asChild>
-                <Link href="/contact">
-                  <Brain className="h-4 w-4 mr-2" />
-                  Get Free Consultation
-                </Link>
-              </Button>
-              <Button variant="outline" size="lg" className="hover:scale-105 transition-all duration-300" asChild>
-                <a href="http://127.0.0.1:45687/dashboard/?demo=true" target="_blank" rel="noopener noreferrer">
-                  <Target className="h-4 w-4 mr-2" />
-                  Try AI Demo First
-                </a>
-              </Button>
-            </div>
-            <p className="text-sm text-muted-foreground mt-4">
-              ✓ No commitment required • ✓ 30-minute strategy session • ✓ Custom AI roadmap
-            </p>
-          </CardContent>
-        </Card>
+      <section className="bg-primary/5">
+        <PageContainer variant="wide" padding="lg">
+          <Card className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20">
+            <CardContent className="text-center py-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Transform Your Startup with AI</h2>
+              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Join successful startups that have accelerated their growth with our 
+                multi-agent AI solutions. Start with a free consultation.
+              </p>
+              <div className="flex justify-center">
+                <Button size="lg" className="hover:scale-105 transition-all duration-300" asChild>
+                  <Link href="#waitlist">
+                    <Target className="h-4 w-4 mr-2" />
+                    Join the Waitlist
+                  </Link>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </PageContainer>
       </section>
     </div>
   );

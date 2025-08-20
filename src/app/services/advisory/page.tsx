@@ -12,6 +12,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
+import { PageContainer } from '@/components/ui/layout/page-container';
+import { PageHeader, PageTitle, PageDescription } from '@/components/ui/layout/page-header';
 import Link from 'next/link';
 import { 
   Brain, 
@@ -35,14 +37,9 @@ export default function AdvisoryPage() {
   const [hoveredCard, setHoveredCard] = React.useState<number | null>(null);
 
   return (
-    <div className="min-h-screen business-gradient tech-grid">
-      {/* Floating geometric elements */}
-      <div className="absolute top-40 right-20 w-10 h-10 border border-primary/20 rounded-lg floating-element opacity-20"></div>
-      <div className="absolute top-64 left-20 w-16 h-16 bg-primary/5 rounded-full floating-element" style={{animationDelay: '1.8s'}}></div>
-      <div className="absolute bottom-52 left-2/3 w-8 h-8 border border-primary/15 rotate-45 floating-element" style={{animationDelay: '3.2s'}}></div>
-      
+    <div className="min-h-screen">
       {/* Breadcrumb Navigation */}
-      <div className="container mx-auto px-4 pt-6 relative z-10">
+      <PageContainer variant="wide" padding="none" className="pt-6">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -52,72 +49,96 @@ export default function AdvisoryPage() {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href="/services">Services</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
               <BreadcrumbPage>Advisory</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-      </div>
+      </PageContainer>
       
-      <section className="section-padding relative z-10">
-        <div className="container">
-          <div className="max-w-5xl mx-auto">
-            {/* Hero Section */}
-            <section className="business-gradient text-foreground py-16 md:py-24 relative overflow-hidden">
-              {/* Sophisticated background graphics */}
-              <div className="absolute inset-0 bg-[url('/graphics/data-flow.svg')] bg-cover bg-center opacity-20"></div>
-              <div className="absolute left-0 top-1/4 w-[400px] h-[400px] bg-gradient-to-r from-primary/10 to-transparent rounded-full blur-3xl"></div>
-              <div className="text-center mb-12">
-                <Badge className="mb-4" variant="secondary">
-                  <Sparkles className="w-3 h-3 mr-1" />
-                  AI Strategy Sprint
-                </Badge>
-                <h1 className="business-title text-4xl md:text-5xl mb-6">
-                  AI-Powered Advisory Services
-                </h1>
-                <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-                  Transform your startup with evidence-based AI strategy sprints. Get from idea to validated 
-                  business model in days, not months—with 82.6% demand score validation.
-                </p>
-              </div>
-            </section>
+      {/* Hero Section */}
+      <section className="business-gradient relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="gradient-blob absolute top-20 left-10 w-64 h-64 opacity-30"></div>
+          <div className="gradient-blob absolute bottom-20 right-10 w-48 h-48 opacity-20" style={{animationDelay: '2s'}}></div>
+        </div>
+        <PageContainer variant="wide" padding="lg" className="relative z-10">
+          <div className="text-center max-w-5xl mx-auto">
+            <Badge className="mb-4 glow-effect" variant="secondary">
+              <Sparkles className="w-3 h-3 mr-1" />
+              AI Strategy Sprint
+            </Badge>
+            <PageHeader variant="centered">
+              <PageTitle className="business-title text-4xl md:text-6xl mb-6">
+                AI-Powered Advisory Services
+              </PageTitle>
+              <PageDescription className="business-subtitle text-xl max-w-3xl mx-auto">
+                Transform your startup with evidence-based AI strategy sprints. Get from idea to validated business model in days, not months—with comprehensive market validation and technical architecture.
+              </PageDescription>
+            </PageHeader>
+          </div>
+        </PageContainer>
+      </section>
 
-            {/* Value Comparison Card */}
-            <Card className="mb-8">
+      {/* Main Content */}
+      <section className="bg-gray-50">
+        <PageContainer variant="narrow" padding="lg">
+
+          {/* Value Comparison Card */}
+          <Card className="mb-8">
               <CardHeader>
                 <CardTitle>The AI Strategy Sprint Advantage</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div className="space-y-4">
-                    <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-900/50">
-                      <p className="text-sm text-muted-foreground mb-1">Freelance BMC</p>
-                      <p className="text-2xl font-bold text-orange-600">$300-1,000</p>
-                      <p className="text-xs text-muted-foreground">No validation included</p>
+                  <div className="space-y-4 mb-6">
+                    <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-900/50 flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-muted-foreground">Traditional Strategy Sprint</p>
+                        <p className="text-xs text-muted-foreground">4-6 weeks delivery</p>
+                      </div>
+                      <p className="text-2xl font-bold text-orange-600">$4,500-7,500</p>
                     </div>
-                    <div className="p-4 rounded-lg bg-primary/10 border-2 border-primary">
-                      <p className="text-sm font-medium mb-1">AI Strategy Sprint</p>
+                    <div className="p-4 rounded-lg bg-primary/10 border-2 border-primary flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium">AI Strategy Sprint</p>
+                        <p className="text-xs font-medium">1 week, evidence-backed</p>
+                      </div>
                       <p className="text-2xl font-bold text-primary">$1,500</p>
-                      <p className="text-xs font-medium">1 week, evidence-backed</p>
                     </div>
                   </div>
-                  <div className="p-4 rounded-lg bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800">
-                    <p className="text-sm font-medium flex items-center gap-2">
-                      <Lightbulb className="w-4 h-4 text-green-600" />
-                      Why we're 80% cheaper: Multi-agent AI orchestration automates research & validation
-                    </p>
+                  <div className="space-y-3">
+                    <div className="p-4 rounded-lg bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800">
+                      <p className="text-sm font-medium flex items-center gap-2">
+                        <Lightbulb className="w-4 h-4 text-green-600" />
+                        Why we're 80% cheaper: Multi-agent AI orchestration automates research & validation
+                      </p>
+                    </div>
+                    <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800">
+                      <p className="text-sm font-medium flex items-center gap-2">
+                        <Shield className="w-4 h-4 text-blue-600" />
+                        Evidence-based outputs: Every recommendation backed by real market data & sources
+                      </p>
+                    </div>
+                    <div className="p-4 rounded-lg bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800">
+                      <p className="text-sm font-medium flex items-center gap-2">
+                        <Code className="w-4 h-4 text-purple-600" />
+                        Production-ready architecture: Domain models & APIs generated alongside strategy
+                      </p>
+                    </div>
+                    <div className="p-4 rounded-lg bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800">
+                      <p className="text-sm font-medium flex items-center gap-2">
+                        <Target className="w-4 h-4 text-orange-600" />
+                        Validated demand scoring: 82.6% accuracy using weighted criteria & real user feedback
+                      </p>
+                    </div>
                   </div>
                 </div>
               </CardContent>
-            </Card>
+          </Card>
 
-            {/* How It Works */}
-            <Card 
+          {/* How It Works */}
+          <Card 
               onMouseEnter={() => setHoveredCard(2)}
               onMouseLeave={() => setHoveredCard(null)}
               className={`business-card mb-8 glow-effect transition-all duration-500 ${
@@ -169,14 +190,14 @@ export default function AdvisoryPage() {
                   </div>
                 </div>
               </CardContent>
-            </Card>
+          </Card>
 
-            {/* Trust Signals */}
-            <div className="grid md:grid-cols-3 gap-4 mb-8">
+          {/* Capability Highlights */}
+          <div className="grid md:grid-cols-3 gap-4 mb-8">
               {[
-                { icon: Users, value: "5,000+", label: "Entrepreneurs Served", index: 3 },
-                { icon: Target, value: "82.6%", label: "Demand Score", index: 4 },
-                { icon: Clock, value: "7 Days", label: "Average Delivery", index: 5 }
+                { icon: Brain, value: "AI-Powered", label: "Strategy Generation", index: 3 },
+                { icon: Code, value: "DDD Ready", label: "Technical Architecture", index: 4 },
+                { icon: Target, value: "Evidence-Based", label: "Market Validation", index: 5 }
               ].map((stat) => {
                 const IconComponent = stat.icon;
                 const isHovered = hoveredCard === stat.index;
@@ -203,12 +224,12 @@ export default function AdvisoryPage() {
                   </Card>
                 );
               })}
-            </div>
+          </div>
 
-            {/* CTA Section */}
-            <div className="text-center">
+          {/* CTA Section */}
+          <div className="text-center">
               <div className="mb-4">
-                <p className="text-sm text-muted-foreground mb-2">Limited spots available for Q1 2024</p>
+                <p className="text-sm text-muted-foreground mb-2">Limited spots available for Q4 2025</p>
                 <p className="text-lg font-semibold">Transform your idea into a validated strategy in 1 week</p>
               </div>
               <Button asChild size="lg" className="glow-effect hover:scale-105 transition-all duration-300">
@@ -223,9 +244,8 @@ export default function AdvisoryPage() {
                 <Shield className="w-3 h-3 inline mr-1" />
                 100% Private • Evidence-Based • Production-Ready
               </p>
-            </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
     </div>
   );

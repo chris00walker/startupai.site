@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { PageContainer } from '@/components/ui/layout/page-container';
+import { PageHeader, PageTitle, PageDescription } from '@/components/ui/layout/page-header';
 import { 
   ArrowRight,
   TrendingUp,
@@ -121,24 +123,25 @@ export default function CaseStudiesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="container mx-auto px-6 py-20">
-        <div className="text-center space-y-6 max-w-4xl mx-auto">
-          <Badge variant="secondary" className="mb-4">
-            <ShieldCheck className="mr-1 h-3 w-3" />
-            Evidence-Based Results
-          </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold">
-            Real Founders. Real Results.
-            <br />
-            <span className="text-gradient">100% Traceable to Data</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            See how our AI FDE-in-a-box transforms startup ideas into validated business models 
-            and production-ready architectures—all backed by evidence you can trace.
-          </p>
-        </div>
+      <section className="bg-gradient-to-b from-background to-gray-50 py-16">
+        <PageContainer variant="wide" padding="lg">
+          <PageHeader variant="centered" className="mb-12">
+            <Badge variant="secondary" className="mb-4">
+              <CheckCircle className="mr-1 h-3 w-3" />
+              Evidence-Based Results
+            </Badge>
+            <PageTitle className="text-4xl md:text-5xl">
+              Real Results from Real Founders
+            </PageTitle>
+            <PageDescription className="text-xl max-w-3xl mx-auto">
+              See how our AI FDE-in-a-box transforms ideas into validated business models 
+              and production architectures. Every case study includes evidence chains, 
+              demand scores, and measurable outcomes.
+            </PageDescription>
+          </PageHeader>
+        </PageContainer>
       </section>
 
       {/* Metrics Grid */}
@@ -168,157 +171,106 @@ export default function CaseStudiesPage() {
         </div>
       </section>
 
-      {/* Case Studies */}
-      <section className="container mx-auto px-6 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Success Stories</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Every strategy we generate is backed by real market data and evidence. 
-            Here's how founders and agencies are using AI FDE to win.
-          </p>
-        </div>
-
-        <div className="space-y-8 max-w-5xl mx-auto">
-          {caseStudies.map((study, index) => (
-            <Card key={index} className="overflow-hidden hover:shadow-lg transition-all duration-300">
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between mb-2">
-                  <div className="flex items-center gap-3">
-                    <Badge variant="outline">{study.category}</Badge>
-                    <Badge variant="secondary">
-                      <TrendingUp className="mr-1 h-3 w-3" />
-                      {study.badge}
-                    </Badge>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm text-muted-foreground">Completed in</p>
-                    <p className="font-bold text-primary">{study.timeline}</p>
-                  </div>
-                </div>
-                <CardTitle className="text-2xl">{study.title}</CardTitle>
-                <CardDescription className="text-base mt-2">
-                  {study.description}
-                </CardDescription>
-              </CardHeader>
-              
-              <CardContent className="space-y-6">
-                {/* Challenge */}
-                <div>
-                  <h4 className="font-semibold mb-2 flex items-center gap-2">
-                    <Target className="h-4 w-4 text-primary" />
-                    Challenge
-                  </h4>
-                  <p className="text-muted-foreground">{study.challenge}</p>
-                </div>
-
-                {/* Solution */}
-                <div>
-                  <h4 className="font-semibold mb-2 flex items-center gap-2">
-                    <Zap className="h-4 w-4 text-primary" />
-                    Solution
-                  </h4>
-                  <p className="text-muted-foreground">{study.solution}</p>
-                </div>
-
-                {/* Results */}
-                <div>
-                  <h4 className="font-semibold mb-3 flex items-center gap-2">
-                    <BarChart3 className="h-4 w-4 text-primary" />
-                    Results
-                  </h4>
-                  <ul className="space-y-2">
-                    {study.results.map((result, resultIndex) => (
-                      <li key={resultIndex} className="flex items-start gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-500 mt-1 flex-shrink-0" />
-                        <span className="text-sm">{result}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Metrics Bar */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t">
-                  {Object.entries(study.metrics).map(([key, value]) => (
-                    <div key={key} className="text-center">
-                      <p className="text-sm text-muted-foreground capitalize">
-                        {key.replace(/([A-Z])/g, ' $1').trim()}
-                      </p>
-                      <p className="font-bold text-primary">{value}</p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Evidence Section */}
-      <section className="container mx-auto px-6 py-16">
-        <Card className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20">
-          <CardContent className="p-12">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Every Decision Backed by Evidence
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Unlike generic AI tools or templates, every strategy canvas we generate is 
-                backed by real market data you can verify. No hallucinations. No guesswork. 
-                Just evidence-based strategy.
+      {/* Case Studies Grid */}
+      <section className="py-16">
+        <PageContainer variant="wide" padding="lg">
+          <div className="space-y-12">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Success Stories</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Every strategy we generate is backed by real market data and evidence. 
+                Here's how founders and agencies are using AI FDE to win.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8 mt-12">
-              <div className="text-center">
-                <div className="flex justify-center mb-4">
-                  <div className="p-4 rounded-full bg-primary/20">
-                    <ShieldCheck className="h-8 w-8 text-primary" />
-                  </div>
-                </div>
-                <h3 className="font-bold mb-2">100% Traceable</h3>
-                <p className="text-sm text-muted-foreground">
-                  Every insight links back to its source data. No black box AI.
-                </p>
-              </div>
+            <div className="space-y-8 max-w-5xl mx-auto">
+              {caseStudies.map((study, index) => (
+                <Card key={index} className="overflow-hidden hover:shadow-lg transition-all duration-300">
+                  <CardHeader className="pb-4">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex items-center gap-3">
+                        <Badge variant="outline">{study.category}</Badge>
+                        <Badge variant="secondary">
+                          <TrendingUp className="mr-1 h-3 w-3" />
+                          {study.badge}
+                        </Badge>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm text-muted-foreground">Completed in</p>
+                        <p className="font-bold text-primary">{study.timeline}</p>
+                      </div>
+                    </div>
+                    <CardTitle className="text-2xl">{study.title}</CardTitle>
+                    <CardDescription className="text-base mt-2">
+                      {study.description}
+                    </CardDescription>
+                  </CardHeader>
+                  
+                  <CardContent className="space-y-6">
+                    {/* Challenge */}
+                    <div>
+                      <h4 className="font-semibold mb-2 flex items-center gap-2">
+                        <Target className="h-4 w-4 text-primary" />
+                        Challenge
+                      </h4>
+                      <p className="text-muted-foreground">{study.challenge}</p>
+                    </div>
 
-              <div className="text-center">
-                <div className="flex justify-center mb-4">
-                  <div className="p-4 rounded-full bg-primary/20">
-                    <Brain className="h-8 w-8 text-primary" />
-                  </div>
-                </div>
-                <h3 className="font-bold mb-2">40+ Data Points</h3>
-                <p className="text-sm text-muted-foreground">
-                  Each project analyzes competitors, markets, and trends comprehensively.
-                </p>
-              </div>
+                    {/* Solution */}
+                    <div>
+                      <h4 className="font-semibold mb-2 flex items-center gap-2">
+                        <Zap className="h-4 w-4 text-primary" />
+                        Solution
+                      </h4>
+                      <p className="text-muted-foreground">{study.solution}</p>
+                    </div>
 
-              <div className="text-center">
-                <div className="flex justify-center mb-4">
-                  <div className="p-4 rounded-full bg-primary/20">
-                    <Users className="h-8 w-8 text-primary" />
-                  </div>
-                </div>
-                <h3 className="font-bold mb-2">Founder-Validated</h3>
-                <p className="text-sm text-muted-foreground">
-                  Built on feedback from 100+ founders and operators.
-                </p>
-              </div>
+                    {/* Results */}
+                    <div>
+                      <h4 className="font-semibold mb-3 flex items-center gap-2">
+                        <BarChart3 className="h-4 w-4 text-primary" />
+                        Results
+                      </h4>
+                      <ul className="space-y-2">
+                        {study.results.map((result, resultIndex) => (
+                          <li key={resultIndex} className="flex items-start gap-2">
+                            <CheckCircle className="h-4 w-4 text-green-500 mt-1 flex-shrink-0" />
+                            <span className="text-sm">{result}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Metrics Bar */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t">
+                      {Object.entries(study.metrics).map(([key, value]) => (
+                        <div key={key} className="text-center">
+                          <p className="text-sm text-muted-foreground capitalize">
+                            {key.replace(/([A-Z])/g, ' $1').trim()}
+                          </p>
+                          <p className="font-bold text-primary">{value}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </PageContainer>
       </section>
 
       {/* CTA Section */}
-      <section className="container mx-auto px-6 py-20">
-        <div className="text-center space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Ready to Build Your Evidence-Based Strategy?
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Join innovative founders and agencies using AI FDE to validate ideas 
-            and build production-ready architectures in days, not months.
-          </p>
+      <section className="py-16 bg-primary text-primary-foreground">
+        <PageContainer variant="wide" padding="lg">
+          <PageHeader variant="centered" className="mb-8">
+            <PageTitle className="text-primary-foreground">
+              Ready to Transform Your Idea?
+            </PageTitle>
+            <PageDescription className="text-primary-foreground opacity-90">
+              Join forward-thinking founders who validate first, build second
+            </PageDescription>
+          </PageHeader>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Button size="lg" className="hover:scale-105 transition-all duration-300" asChild>
               <Link href="/product#waitlist">
@@ -333,7 +285,7 @@ export default function CaseStudiesPage() {
               </Link>
             </Button>
           </div>
-        </div>
+        </PageContainer>
       </section>
     </div>
   );
