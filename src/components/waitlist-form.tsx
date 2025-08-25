@@ -4,6 +4,7 @@ import * as React from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm as useFormspree } from "@formspree/react";
 
 import {
   Form,
@@ -23,6 +24,9 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 export function WaitlistForm({ className }: { className?: string }) {
+  const [formspreeState, handleFormspreeSubmit] = useFormspree("mpwjagrn");
+  const isProduction = process.env.NODE_ENV === 'production';
+  
   const [status, setStatus] = React.useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
@@ -33,29 +37,41 @@ export function WaitlistForm({ className }: { className?: string }) {
     defaultValues: { email: "" },
   });
 
-  async function onSubmit(values: FormValues) {
-    setStatus("submitting");
-    setMessage(null);
-    try {
-      // Use API route in development, Formspree in production
-      const isProduction = process.env.NODE_ENV === 'production';
-      const endpoint = isProduction 
-        ? "https://formspree.io/f/mpwjagrn" 
-        : "/api/waitlist";
-      
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-      
-      if (!res.ok) throw new Error("Request failed");
+  // Handle Formspree success state
+  React.useEffect(() => {
+    if (isProduction && formspreeState.succeeded) {
       setStatus("success");
       setMessage("Thanks! We'll be in touch shortly.");
       form.reset();
-    } catch (err) {
-      setStatus("error");
-      setMessage("Something went wrong. Please try again.");
+    }
+  }, [formspreeState.succeeded, isProduction, form]);
+
+  async function onSubmit(values: FormValues) {
+    setStatus("submitting");
+    setMessage(null);
+    
+    if (isProduction) {
+      // Use Formspree hook in production
+      const formData = new FormData();
+      formData.append('email', values.email);
+      handleFormspreeSubmit(formData);
+    } else {
+      // Use API route in development
+      try {
+        const res = await fetch("/api/waitlist", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        });
+        
+        if (!res.ok) throw new Error("Request failed");
+        setStatus("success");
+        setMessage("Thanks! We'll be in touch shortly.");
+        form.reset();
+      } catch (err) {
+        setStatus("error");
+        setMessage("Something went wrong. Please try again.");
+      }
     }
   }
 
@@ -76,8 +92,12 @@ export function WaitlistForm({ className }: { className?: string }) {
               </FormItem>
             )}
           />
-          <Button type="submit" disabled={status === "submitting"} className="sm:self-end">
-            {status === "submitting" ? "Joining…" : "Join Waitlist"}
+          <Button 
+            type="submit" 
+            disabled={status === "submitting" || (isProduction && formspreeState.submitting)} 
+            className="sm:self-end"
+          >
+            {(status === "submitting" || (isProduction && formspreeState.submitting)) ? "Joining…" : "Join Waitlist"}
           </Button>
         </div>
         {message && (
