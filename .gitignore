@@ -35,3 +35,6 @@ next-env.d.ts
 # Custom files to ignore
 /research.md
 /migration-task.md
+
+# Proprietary documentation
+/docs/
