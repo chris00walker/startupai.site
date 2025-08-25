@@ -37,14 +37,21 @@ export function WaitlistForm({ className }: { className?: string }) {
     setStatus("submitting");
     setMessage(null);
     try {
-      const res = await fetch("/api/waitlist", {
+      // Use API route in development, Formspree in production
+      const isProduction = process.env.NODE_ENV === 'production';
+      const endpoint = isProduction 
+        ? "https://formspree.io/f/mpwjagrn" 
+        : "/api/waitlist";
+      
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
+      
       if (!res.ok) throw new Error("Request failed");
       setStatus("success");
-      setMessage("Thanks! We’ll be in touch shortly.");
+      setMessage("Thanks! We'll be in touch shortly.");
       form.reset();
     } catch (err) {
       setStatus("error");
