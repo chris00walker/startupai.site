@@ -51,7 +51,7 @@ export function Hero() {
           
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
             Transform your startup idea into a validated business model and technical architecture 
-            in just one week. Get evidence-based validation and production-ready plans without 
+            in just one week. Get evidence-based validation and production-ready MVP plans without 
             the guesswork.
           </p>
           
