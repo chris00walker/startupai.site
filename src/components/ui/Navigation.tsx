@@ -21,7 +21,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
+import { Menu, Brain } from 'lucide-react';
 
 const navigation = [
   { name: 'Process', href: '/process' },
@@ -53,11 +53,12 @@ export function Navigation() {
           <div className="flex items-center">
             <Link
               href="/"
-              className="text-xl font-bold text-white hover:text-primary transition-all duration-300 flex items-center group"
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
-              <span className="bg-primary text-primary-foreground w-12 h-8 rounded-md flex items-center justify-center font-bold text-sm group-hover:scale-110 transition-all duration-300">
-                CWC
-              </span>
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <Brain className="h-4 w-4" />
+              </div>
+              <span className="text-xl font-bold text-white">StartupAI</span>
             </Link>
           </div>
 
