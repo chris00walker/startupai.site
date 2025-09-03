@@ -19,7 +19,7 @@ export default function SignupPage() {
                 Transform Your Business
               </h2>
               <p className="text-muted-foreground text-lg">
-                Join hundreds of successful entrepreneurs who have accelerated their growth with expert guidance.
+                Join other innovative entrepreneurs who have accelerated their growth with expert agentic guidance.
               </p>
             </div>
             <div className="grid gap-4 text-left">

@@ -36,7 +36,7 @@ export default function ProductPage() {
   const features = [
     {
       icon: Target,
-      title: "Strategyzer AI Platform",
+      title: "StartupAI Platform",
       description: "Multi-agent AI system for generating professional business canvases and strategic frameworks.",
       badge: "AI Innovation",
       href: "/demo",
@@ -216,11 +216,11 @@ export default function ProductPage() {
                   <Brain className="h-3 w-3 mr-1" />
                   Featured Product
                 </Badge>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">Strategyzer AI Platform</h3>
+                <h3 className="text-2xl md:text-3xl font-bold mb-4">StartupAI Platform</h3>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   A revolutionary multi-agent AI system that generates professional business canvases, 
                   validates strategic ideas, and accelerates consulting workflows. Built with cutting-edge 
-                  AI technology and proven Strategyzer methodology.
+                  AI technology and proven startup framework methodologies.
                 </p>
                 <div className="bg-primary/10 p-6 rounded-lg mb-6 border border-primary/30 backdrop-blur-sm">
                   <div className="flex items-center gap-2 mb-3">

@@ -45,16 +45,13 @@ export default function PricingPage() {
       badgeVariant: "default" as const,
       icon: Target,
       savings: "Save $2,250 vs traditional consulting",
-      timeValue: "20+ hours of founder time saved",
+      timeValue: "100% traceable to sources (citations + audit log)",
       features: [
-        "Business Model Canvas with evidence chain",
-        "Value Proposition Canvas with market data",
-        "Competitive analysis of 40+ competitors",
-        "Domain-Driven Design architecture",
-        "Bounded contexts & entity models",
-        "API contracts & data flows",
-        "Testing Business Ideas roadmap",
-        "100% traceable to data sources"
+        "Fit Report with Evidence Stamp + citations",
+        "Value Proposition & Business Model with assumption→evidence chain",
+        "Competitor analysis & MVP architecture",
+        "API contracts & data flows; Testing Business Ideas roadmap",
+        "Option to convert to Platform (credit $199 to first month)"
       ],
       cta: "Start Sprint",
       highlighted: true
@@ -62,22 +59,20 @@ export default function PricingPage() {
     {
       name: "Founder Platform",
       price: "$199",
-      period: "month",
-      description: "Your AI strategy consultant for continuous iteration and validation",
+      period: "seat / month",
+      description: "Your AI strategist for continuous iteration and validation",
       badge: "Best Value",
       badgeVariant: "secondary" as const,
       icon: Zap,
       savings: "Replaces $150+/mo in separate tools",
-      timeValue: "Always-available AI strategists",
+      timeValue: "Hard-gated: no pass to Feasibility/Viability without evidence",
       features: [
-        "Unlimited Strategy Canvases",
-        "Real-time market validation",
-        "Code scaffolding from strategy",
-        "Multi-project workspace",
-        "Private-by-design architecture",
-        "GitHub integration",
-        "Export to Strategyzer formats",
-        "Weekly office hours"
+        "Includes: 100 Assumptions/mo + 50 Experiment Design credits/mo",
+        "Premium routing: escalates only when needed (confidence-gated)",
+        "Fit Dashboard metrics",
+        "Notion/Miro export; GitHub integration",
+        "Private-by-design; citations & confidence chips",
+        "Overages: +100 assumptions $10 · +1 experiment credit $0.50",
       ],
       cta: "Start Subscription",
       highlighted: false
@@ -85,22 +80,21 @@ export default function PricingPage() {
     {
       name: "Agency Co-Pilot",
       price: "$499",
-      period: "month",
+      period: "seat / month (pooled usage)",
       description: "Embedded AI strategy consultant for agencies serving multiple clients",
       badge: "Enterprise",
-      badgeVariant: "outline" as const,
+      badgeVariant: "default" as const,
       icon: Rocket,
       savings: "Fraction of hiring junior developer ($8K+/mo)",
-      timeValue: "Prevents costly architecture refactors",
+      timeValue: "White-label & client workspace management",
       features: [
         "Everything in Founder Platform",
-        "White-label deployment",
-        "Client workspace management",
-        "Custom AI training on your IP",
-        "Advanced DDD modeling tools",
-        "Private cloud or on-premise",
-        "API access for automation",
-        "Dedicated success manager"
+        "Pooled usage: 200 Experiment Design credits / seat / mo",
+        "Client workspace management & white-label",
+        "Custom AI training on your IP; advanced DDD modeling tools",
+        "Private cloud or on-prem; API for automation; audit export",
+        "Dedicated success manager",
+        "Overages: +1 experiment credit $0.30 (team-pooled)",
       ],
       cta: "Go Pro",
       highlighted: false
@@ -117,16 +111,16 @@ export default function PricingPage() {
     },
     {
       service: "DIY Tool Stack",
-      price: "$150+/month",
-      timeline: "20-40 hours",
-      quality: "Time-intensive",
+      price: "$300+/month",
+      timeline: "80+ hours/month",
+      quality: "Siloed evidence",
       icon: Crown
     },
     {
       service: "Our AI Platform",
       price: "$1,500 one-time",
       timeline: "1 week",
-      quality: "Consistent & Fast",
+      quality: "Traceable evidence",
       icon: Sparkles
     }
   ];
@@ -350,7 +344,7 @@ export default function PricingPage() {
             <CardContent className="pt-6">
               <h3 className="font-semibold mb-2">Do you offer payment plans?</h3>
               <p className="text-muted-foreground">
-                Yes, we offer flexible payment plans for projects over $5,000. Typically, we structure 
+                Yes, we offer flexible payment plans for projects over $50,000. Typically, we structure 
                 payments as 50% upfront and 50% upon completion, with milestone-based payments for larger projects.
               </p>
             </CardContent>

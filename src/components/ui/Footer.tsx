@@ -44,7 +44,7 @@ export function Footer() {
         <Separator className="mt-12" />
         <div className="pt-8">
           <p className="text-base text-gray-300 text-center">
-            &copy; {new Date().getFullYear()} Chris Walker Consulting. All rights reserved.
+            &copy; {new Date().getFullYear()} StartupAI. All rights reserved.
           </p>
         </div>
       </div>

@@ -100,7 +100,7 @@ export default function HomePage() {
               Ready to Transform Your Startup
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Let's discuss how CWC can help you achieve your startup's goals.
+              Let's discuss how StartupAI can help you achieve your startup's goals.
             </p>
             <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100">
               <Link href="/product#waitlist">
