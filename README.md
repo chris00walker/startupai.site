@@ -1,8 +1,8 @@
-# Chris Walker Consulting
+# StartupAI
 
 **Transforming startup chaos into strategic clarity through AI-powered business intelligence.**
 
-Chris Walker Consulting addresses a critical gap in the startup ecosystem: the overwhelming struggle founders face when trying to transform raw business ideas into credible, actionable strategies. Research shows that 83% of entrepreneurs feel "lost in a sea of information" when validating ideas, juggling fragmented tools, expensive consultants, and generic AI outputs that lack business context.
+StartupAI addresses a critical gap in the startup ecosystem: the overwhelming struggle founders face when trying to transform raw business ideas into credible, actionable strategies. Research shows that 83% of entrepreneurs feel "lost in a sea of information" when validating ideas, juggling fragmented tools, expensive consultants, and generic AI outputs that lack business context.
 
 This platform represents the evolution from traditional consulting to an AI-native approach, where founders can rapidly generate Business Model Canvases, validate assumptions with evidence-based insights, and translate strategy into technical architecture - all while maintaining data privacy and actionable guidance.
 
@@ -17,10 +17,7 @@ An integrated AI co-pilot that delivers speed (instant canvases), guidance (buil
 
 ## Live Demo
 
-The website is deployed on GitHub Pages and accessible at:
-
-- **Production**: <https://chriswalker.consulting>
-- **GitHub Pages**: <https://chris00walker.github.io/chriswalker.consulting>
+- COMING SOON! 
 
 ## Features
 
@@ -43,92 +40,4 @@ The website is deployed on GitHub Pages and accessible at:
 - **Deployment**: GitHub Pages with static export
 - **Form Handling**: Formspree integration for production
 
-## Prerequisites
 
-- Node.js 18+
-- npm or yarn package manager
-
-## Local Development
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/chris00walker/chriswalker.consulting.git
-   cd chriswalker.consulting
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-
-   ```bash
-   npm run dev
-   ```
-
-4. Open your browser and navigate to:
-
-   ```text
-   http://localhost:3000
-   ```
-
-## Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript type checking
-- `npm run format` - Format code with Prettier
-
-## Project Structure
-
-```text
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   ├── ui/             # ShadCN/UI components
-│   ├── sections/       # Page sections
-│   └── demo/           # Demo components
-├── assets/             # Static assets
-└── js/                 # JavaScript utilities
-```
-
-## Deployment
-
-The website is automatically deployed to GitHub Pages via GitHub Actions:
-
-1. Push changes to the `main` branch
-2. GitHub Actions builds the static site
-3. Deploys to GitHub Pages automatically
-4. Available at <https://chriswalker.consulting>
-
-## Design System
-
-The project includes a comprehensive design system with:
-
-- **Design Tokens**: Consistent colors, typography, spacing
-- **Component Library**: Professional UI components
-- **Layout System**: Responsive grid and container patterns
-- **Animation System**: Smooth transitions and micro-interactions
-
-## Form Integration
-
-- **Development**: Uses local API routes for testing
-- **Production**: Integrates with Formspree for form submissions
-- **Environment Detection**: Automatically switches based on NODE_ENV
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a pull request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
