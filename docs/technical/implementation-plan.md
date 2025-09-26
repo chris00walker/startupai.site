@@ -443,7 +443,7 @@ test('user can create complete project', async ({ page }) => {
 ```yaml
 # netlify.toml
 [build]
-  command = "npm run build"
+  command = "pnpm run build"
   functions = "netlify/functions"
   publish = "out"
 
@@ -481,9 +481,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - run: npm ci
-      - run: npm run test
-      - run: npm run build
+          cache: 'pnpm'
+      - run: corepack enable pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm run build
       - uses: netlify/actions/cli@master
         with:
           args: deploy --prod

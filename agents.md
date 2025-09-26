@@ -43,13 +43,13 @@ Based on comprehensive market research (see `/docs/business/` directory), Startu
 Before modifying or running the application, execute the following commands:
 
 ```text
-| Task                     | Command                      |
-| ------------------------ | ---------------------------- |
-| Install dependencies     | `pnpm install` (or `npm ci`) |
-| Start development server | `pnpm dev`                   |
-| Run unit tests           | `pnpm test`                  |
-| Run linter               | `pnpm lint`                  |
-| Build for production     | `pnpm build`                 |
+| Task                     | Command          |
+| ------------------------ | ---------------- |
+| Install dependencies     | `pnpm install`   |
+| Start development server | `pnpm dev`       |
+| Run unit tests           | `pnpm test`      |
+| Run linter               | `pnpm lint`      |
+| Build for production     | `pnpm build`     |
 ```text
 
 Agents should run these commands to verify that the project builds and tests pass both before and after making changes.

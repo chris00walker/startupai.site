@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Professional consulting website for Chris Walker - eCommerce Strategy & Development",
   "private": true,
+  "packageManager": "pnpm@9.12.1",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

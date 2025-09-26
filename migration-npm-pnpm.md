@@ -50,7 +50,22 @@ Repositories in scope:
 - Document pnpm prerequisites (`node >= 18`, `corepack enable pnpm`).
 - Mention pnpm workspace usage if implemented.
 
-{{ ... }}
+## 6. Phase 5 – Validation & Verification
+
+- **Status Tracker**
+  - Create a simple checklist (in this file or project issue) that records completion dates for each validation activity.
+  - Capture command output snippets or CI screenshots so the team can audit the migration later.
+- **Local Validation Runbook**
+  - From a clean clone, execute `pnpm install` to verify dependency resolution.
+  - Run local quality gates in sequence: `pnpm lint`, `pnpm test`, `pnpm build`.
+  - For workspaces, document `pnpm --filter <package> <script>` equivalents alongside the root commands.
+- **Environment Parity**
+  - Confirm VS Code tasks, Husky hooks, or other local tooling call pnpm rather than npm.
+  - Ensure `.npmrc` inheritance or legacy npm-specific configs are removed or adapted.
+- **CI / Deployment Dry-Run**
+  - Trigger workflow runs (GitHub Actions, Vercel, Netlify, etc.) and verify they succeed using pnpm.
+  - Record the run IDs and note any caching adjustments that were required.
+
 
 - **Fresh Install**
   - Remove existing `node_modules` directories and run `pnpm install` to ensure dependencies resolve.

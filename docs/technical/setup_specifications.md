@@ -153,7 +153,7 @@ Deploy CrewAI backend via Netlify Functions + Supabase database + Vercel AI SDK.
 
    - Install Vercel AI SDK:
      ```bash
-     npm install ai @ai-sdk/openai @ai-sdk/anthropic
+     pnpm add ai @ai-sdk/openai @ai-sdk/anthropic
      ```
    - Configure multiple AI providers:
      - OpenAI GPT-4
@@ -170,7 +170,7 @@ Deploy CrewAI backend via Netlify Functions + Supabase database + Vercel AI SDK.
 
      ```toml
      [build]
-       command = "npm run build"
+       command = "pnpm run build"
        functions = "netlify/functions"
        publish = "out"
 
@@ -257,8 +257,8 @@ Client-facing orchestration + dashboards.
          runs-on: ubuntu-latest
          steps:
            - uses: actions/checkout@v3
-           - run: npm install
-           - run: npm run build
+           - run: pnpm install
+           - run: pnpm run build
            - run: netlify deploy --prod
      ```
 

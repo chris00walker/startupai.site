@@ -50,10 +50,10 @@ The website is deployed and accessible at:
 - **Build Tool**: Turbopack for fast development
 
 
-<<<<<<< HEAD
-=======
+## Prerequisites
+
 - Node.js 18+
-- npm or yarn package manager
+- pnpm (install via `corepack enable pnpm`)
 
 ## Local Development
 
@@ -67,13 +67,13 @@ The website is deployed and accessible at:
 2. Install dependencies:
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. Start the development server:
 
    ```bash
-   npm run dev
+   pnpm dev
    ```
 
 4. Open your browser and navigate to:
@@ -84,13 +84,13 @@ The website is deployed and accessible at:
 
 ## Available Scripts
 
-- `npm run dev` - Start development server (http://localhost:3000)
-- `npm run build` - Build for production with static export
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript type checking
-- `npm run format` - Format code with Prettier
-- `npm run format:check` - Check code formatting
+- `pnpm dev` - Start development server (http://localhost:3000)
+- `pnpm build` - Build for production with static export
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+- `pnpm type-check` - Run TypeScript type checking
+- `pnpm format` - Format code with Prettier
+- `pnpm format:check` - Check code formatting
 
 ## Project Structure
 
