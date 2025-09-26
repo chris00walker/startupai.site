@@ -121,7 +121,7 @@ CREATE POLICY "Users can update own profile" ON user_profiles
 
 **Technology Stack:**
 ```typescript
-// Next.js 14 with App Router
+// Next.js 15 with App Router
 // Tailwind CSS for styling
 // Framer Motion for animations
 // React Hook Form for forms

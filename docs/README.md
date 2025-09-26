@@ -106,14 +106,14 @@ StartupAI uses a **marketing-to-product architecture** with clear separation of 
 ## 🚀 Two-Site Technology Stack
 
 ### 🎯 startupai.site (Marketing)
-- **Frontend:** Next.js 14 with TypeScript
+- **Frontend:** Next.js 15 with TypeScript
 - **Styling:** Tailwind CSS + Framer Motion
 - **Authentication:** Supabase Auth (shared)
 - **Payments:** Crypto wallet integration
 - **Deployment:** Vercel
 
 ### ⚡ app.startupai.site (Product)
-- **Frontend:** Next.js 14 with TypeScript
+- **Frontend:** Next.js 15 with TypeScript
 - **Backend:** Netlify Functions (Python)
 - **AI Orchestration:** CrewAI multi-agent system
 - **Database:** Supabase PostgreSQL
