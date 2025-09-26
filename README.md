@@ -52,7 +52,7 @@ The website is deployed and accessible at:
 
 ## Prerequisites
 
-- Node.js 18+
+- Node.js 22.18.0 (run `nvm use` to load the version specified in `.nvmrc`)
 - pnpm (install via `corepack enable pnpm`)
 
 ## Local Development
@@ -64,9 +64,10 @@ The website is deployed and accessible at:
    cd chriswalker.consulting
    ```
 
-2. Install dependencies:
+2. Align Node.js version and install dependencies:
 
    ```bash
+   nvm use
    pnpm install
    ```
 
