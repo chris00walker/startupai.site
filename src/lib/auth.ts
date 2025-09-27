@@ -53,7 +53,14 @@ export async function authenticateUser(credentials: LoginCredentials): Promise<A
 export function getPlatformUrl(user: User): string {
   // For now, all users go to the same platform
   // In the future, this could route to different dashboards based on user role
-  return 'http://localhost:3001'
+  
+  // Check if we're in development mode
+  if (process.env.NODE_ENV === 'development') {
+    return 'http://localhost:3001'
+  }
+  
+  // Production URL for the deployed app platform
+  return 'https://app-startupai-site.netlify.app'
 }
 
 // Store authentication token (in production, use secure storage)
