@@ -10,5 +10,11 @@
     "javascript": "javascript",
     "css": "css"
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "json.schemas": [
+    {
+      "fileMatch": ["package.json"],
+      "url": "https://json.schemastore.org/package.json"
+    }
+  ]
 }
