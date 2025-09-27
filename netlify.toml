@@ -1,0 +1,108 @@
+[build]
+  command = "pnpm build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "18"
+  PNPM_VERSION = "9.12.1"
+
+# Enable pnpm
+[build.processing]
+  skip_processing = false
+
+# Handle SPA routing for static export
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Redirect old HTML files to new routes (matching next.config.js)
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/about.html"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/services.html"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/portfolio.html"
+  to = "/portfolio"
+  status = 301
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+
+[[redirects]]
+  from = "/blog.html"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/process.html"
+  to = "/process"
+  status = 301
+
+[[redirects]]
+  from = "/preview.html"
+  to = "/preview"
+  status = 301
+
+[[redirects]]
+  from = "/services/discovery.html"
+  to = "/services/discovery"
+  status = 301
+
+[[redirects]]
+  from = "/services/validation.html"
+  to = "/services/validation"
+  status = 301
+
+[[redirects]]
+  from = "/services/scaling.html"
+  to = "/services/scaling"
+  status = 301
+
+[[redirects]]
+  from = "/services/advisory.html"
+  to = "/services/advisory"
+  status = 301
+
+[[redirects]]
+  from = "/services/optimization.html"
+  to = "/services/optimization"
+  status = 301
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
