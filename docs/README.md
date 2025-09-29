@@ -59,9 +59,10 @@ StartupAI uses a **marketing-to-product architecture** with clear separation of 
 
 | Document | Purpose | Cross-References | Status |
 |----------|---------|------------------|---------|
-| [user-experience.md](design/user-experience.md) | **🎨 Cross-Site User Journey & UX** | → [User Stories](product/user-stories.md), [MVP Spec](product/mvp-specification.md) | ✅ Complete |
-| [ui-specifications.md](design/ui-specifications.md) | UI components and design system | → [UX Design](design/user-experience.md) | ✅ Complete |
-| [design-system.md](design/design-system.md) | Shared design system across sites | → [UI Specs](design/ui-specifications.md) | ✅ Complete |
+| [user-experience.md](design/user-experience.md) | **🎨 Cross-Site User Journey & UX** | → [User Stories](product/user-stories.md), [MVP Spec](product/mvp-specification.md), [Accessibility Standards](design/accessibility-standards.md) | ✅ Complete |
+| [ui-specifications.md](design/ui-specifications.md) | UI components and design system | → [UX Design](design/user-experience.md), [Accessibility Standards](design/accessibility-standards.md) | ✅ Complete |
+| [design-system.md](design/design-system.md) | Shared design system across sites | → [UI Specs](design/ui-specifications.md), [Accessibility Standards](design/accessibility-standards.md) | ✅ Complete |
+| [accessibility-standards.md](design/accessibility-standards.md) | **♿ WCAG 2.0/2.1/2.2 AA Compliance & AI Accessibility** | → [UX Design](design/user-experience.md), [Design System](design/design-system.md), [Architecture](technical/high_level_architectural_spec.md) | ✅ Complete |
 
 ---
 
