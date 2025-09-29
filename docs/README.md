@@ -108,23 +108,32 @@ StartupAI uses a **marketing-to-product architecture** with clear separation of 
 ### 🎯 startupai.site (Marketing)
 - **Frontend:** Next.js 15 with TypeScript
 - **Styling:** Tailwind CSS + Framer Motion
+- **Database:** Supabase PostgreSQL with pgvector
+- **ORM:** Drizzle ORM for type-safe operations
 - **Authentication:** Supabase Auth (shared)
 - **Payments:** Crypto wallet integration
-- **Deployment:** Vercel
+- **Package Manager:** pnpm (✅ migrated)
+- **Deployment:** Netlify (✅ live)
 
 ### ⚡ app.startupai.site (Product)
 - **Frontend:** Next.js 15 with TypeScript
 - **Backend:** Netlify Functions (Python)
 - **AI Orchestration:** CrewAI multi-agent system
-- **Database:** Supabase PostgreSQL
-- **Storage:** Supabase Storage
-- **Deployment:** Vercel
+- **Database:** Supabase PostgreSQL with pgvector
+- **ORM:** Drizzle ORM for type-safe operations
+- **Storage:** Supabase Storage with RLS policies
+- **Vector Search:** pgvector with OpenAI embeddings
+- **Package Manager:** pnpm (✅ migrated)
+- **Deployment:** Netlify (✅ live)
 
 ### 🔗 Shared Services
 - **Authentication:** Supabase Auth with JWT tokens
-- **Database:** Supabase PostgreSQL
+- **Database:** Supabase PostgreSQL with pgvector extension
+- **Storage:** Supabase Storage with CDN distribution
+- **Vector Search:** Semantic search with HNSW indexes
 - **AI Models:** Vercel AI SDK (multi-provider)
 - **Analytics:** Cross-site tracking system
+- **CLI Tools:** Supabase CLI for migrations (✅ installed)
 
 ### AI Integration
 - **CrewAI:** Multi-agent orchestration
@@ -139,13 +148,21 @@ StartupAI uses a **marketing-to-product architecture** with clear separation of 
 ### ✅ Completed
 - [x] Market research and business case validation
 - [x] Complete product requirements documentation
-- [x] Technical architecture specification
+- [x] Technical architecture specification with Supabase configuration
+- [x] Database schema design with pgvector integration
+- [x] Supabase CLI installation and configuration
 - [x] MVP scope definition and user stories
 - [x] Implementation roadmap and timeline
 - [x] UX/UI design specifications
+- [x] Package manager migration to pnpm
+- [x] Netlify deployment with GitHub integration
 
 ### 🔄 In Progress
-- [ ] Supabase project setup and schema creation
+- [ ] Supabase project creation and extension enablement
+- [ ] Drizzle ORM schema implementation
+- [ ] Vector search functions deployment
+- [ ] Storage bucket configuration
+- [ ] Authentication provider setup
 - [ ] Next.js application foundation
 - [ ] CrewAI agent development
 - [ ] Core user flow implementation

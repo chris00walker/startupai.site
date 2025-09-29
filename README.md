@@ -21,9 +21,13 @@ This website serves as the marketing and authentication gateway for the StartupA
 
 The website is deployed and accessible at:
 
-- **Production**: <https://chriswalker.consulting>
-- **GitHub Pages**: <https://chris00walker.github.io/chriswalker.consulting>
+- **Production**: <https://startupai-site.netlify.app>
+- **Staging**: <https://startupai-site.netlify.app>
 - **Local Development**: http://localhost:3000
+
+**Two-Site Architecture:**
+- **Marketing Site**: <https://startupai-site.netlify.app> (this repository)
+- **Product Platform**: <https://app-startupai-site.netlify.app> (app.startupai.site repository)
 
 ## Features
 
@@ -43,25 +47,31 @@ The website is deployed and accessible at:
 - **Runtime**: React 19.1.1
 - **Styling**: Tailwind CSS with custom design tokens
 - **Components**: ShadCN/UI component library (30+ components)
+- **Database**: Supabase PostgreSQL with pgvector for semantic search
+- **ORM**: Drizzle ORM for type-safe database operations
+- **Storage**: Supabase Storage with CDN distribution
+- **Authentication**: Supabase Auth with JWT token handoff
+- **Vector Search**: pgvector with HNSW indexes for semantic search
 - **Forms**: React Hook Form with Zod validation
-- **Authentication**: Custom auth service with token management
-- **Deployment**: Vercel/GitHub Pages with static export
-- **Form Handling**: Formspree integration for production
+- **Package Manager**: pnpm (✅ migrated from npm)
+- **Deployment**: Netlify with GitHub integration (✅ live)
+- **CLI Tools**: Supabase CLI for migrations and local development
 - **Build Tool**: Turbopack for fast development
 
 
 ## Prerequisites
 
 - Node.js 22.18.0 (run `nvm use` to load the version specified in `.nvmrc`)
-- pnpm (install via `corepack enable pnpm`)
+- pnpm (install via `corepack enable pnpm`) - ✅ Migrated from npm
+- Supabase CLI (install via `pnpm add -D supabase`) - ✅ Installed
 
 ## Local Development
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/chris00walker/chriswalker.consulting.git
-   cd chriswalker.consulting
+   git clone https://github.com/chris00walker/startupai.site.git
+   cd startupai.site
    ```
 
 2. Align Node.js version and install dependencies:
@@ -112,29 +122,36 @@ src/
 
 ## Authentication Integration
 
-This website integrates with the CWC Agentic Platform for user authentication:
+This website integrates with the StartupAI Product Platform for user authentication:
 
-- **Login Flow**: Users authenticate and are redirected to http://localhost:3001
-- **Token Management**: JWT tokens stored in localStorage
-- **Loading States**: Enhanced UX with spinners and error handling
-- **Development Mode**: Accepts any credentials for testing purposes
+- **Supabase Auth**: Shared authentication system across both sites
+- **JWT Token Handoff**: Cryptographically signed tokens for secure transitions
+- **OAuth Support**: Google, GitHub, Azure, and email authentication
+- **Magic Links**: Passwordless authentication option
+- **Cross-Site Sessions**: Persistent authentication with automatic refresh
+- **Development Mode**: Simplified for testing (temporary configuration)
 
-### Integration with CWC Agentic Platform
+### Integration with app.startupai.site Platform
 
-1. User visits marketing site (port 3000)
-2. User clicks login and enters credentials
-3. Authentication service processes login
-4. User is redirected to main platform (port 3001)
-5. Session token is maintained across platforms
+1. User visits marketing site (startupai-site.netlify.app)
+2. User completes signup/payment process
+3. Supabase Auth generates secure JWT token
+4. User is redirected to product platform (app-startupai-site.netlify.app)
+5. Token is validated and user session is created
+6. User begins onboarding in product platform
 
 ## Deployment
 
-The website is automatically deployed to GitHub Pages via GitHub Actions:
+The website is automatically deployed to Netlify via GitHub integration:
 
 1. Push changes to the `main` branch
-2. GitHub Actions builds the static site
-3. Deploys to GitHub Pages automatically
-4. Available at <https://chriswalker.consulting>
+2. GitHub triggers Netlify build process
+3. Netlify builds and deploys automatically
+4. Available at <https://startupai-site.netlify.app>
+
+**Deployment Status:** ✅ Live with full CI/CD pipeline
+**Build Command:** `pnpm build`
+**Package Manager:** pnpm (migrated from npm)
 
 ## Design System
 

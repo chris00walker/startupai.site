@@ -28,8 +28,14 @@ Based on comprehensive market research (see `/docs/business/` directory), Startu
 
 - **Framework**: Next.js 14+ with App Router
 - **Styling**: Tailwind CSS with shadcn/ui components
-- **Authentication**: Currently simplified for testing (see MEMORY about login form modifications)
-- **Deployment**: Configured for web deployment via Windsurf
+- **Database**: Supabase PostgreSQL with pgvector extension
+- **ORM**: Drizzle ORM for type-safe database operations
+- **Authentication**: Supabase Auth with cross-site JWT handoff
+- **Storage**: Supabase Storage with RLS policies
+- **Vector Search**: pgvector with HNSW indexes for semantic search
+- **Package Manager**: pnpm (✅ migrated from npm)
+- **Deployment**: Netlify with GitHub auto-deployment (✅ live)
+- **CLI Tools**: Supabase CLI for migrations and local development
 - **Content**: Markdown-based documentation in `/docs/business/`
 
 ## Target Users
@@ -124,12 +130,18 @@ Create new files in the appropriate folder following existing patterns. Avoid re
 - Use the established 1-6 document sequence for content flow
 
 ### Authentication Considerations
-- **Current State**: Login form simplified for testing (temporary)
-- **Production Requirements**: Implement proper validation, error handling, session management
-- **Integration**: Seamless handoff to CWC Agentic Platform (localhost:3001)
+- **Current State**: Supabase Auth configured for cross-site integration
+- **Production Requirements**: OAuth providers (Google, GitHub, Azure), magic links, MFA support
+- **Database Integration**: User profiles, sessions, and handoff tracking in Supabase
+- **Integration**: Seamless JWT token handoff to app.startupai.site platform
+- **Security**: Row Level Security (RLS) policies and encrypted token validation
 
 ## Environment Variables
 - Use environment variables for all configuration (see `.env.example` if available)
+- **Required Variables**: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, DATABASE_URL
+- **Database**: DATABASE_URL with Supavisor pooling for serverless compatibility
+- **Authentication**: JWT_SECRET for cross-site token signing
+- **AI Integration**: OPENAI_API_KEY for embeddings generation
 - Never hardcode API endpoints, secrets, or platform URLs
 - Document new environment variables in project documentation
 
@@ -143,9 +155,11 @@ Create new files in the appropriate folder following existing patterns. Avoid re
 - Test both happy paths and error states for forms and user interactions
 
 ### Authentication Flow Testing
-- **Current State**: Mock authentication since login is simplified for testing
-- **Future State**: Test full authentication flow, validation, and redirect to localhost:3001
-- Mock external authentication providers and session management
+- **Current State**: Supabase Auth integration with cross-site token handoff
+- **Production State**: Test OAuth flows, magic links, and JWT token validation
+- **Cross-Site Testing**: Verify secure handoff to app-startupai-site.netlify.app
+- **Database Testing**: Test user profile creation, session management, and RLS policies
+- Mock external authentication providers for development environment
 
 ### Content Integration Testing
 - Test markdown content rendering from `/docs/business/` directory
@@ -211,9 +225,11 @@ pnpm dev           # Verify development server starts correctly
 - Document any new environment variables or configuration requirements
 
 ### Authentication Considerations
-- **If modifying login/auth**: Note temporary testing state in PR description
-- **If production auth changes**: Update MEMORY about login form modifications
-- **Integration testing**: Verify redirect to CWC platform (localhost:3001) works
+- **If modifying login/auth**: Test Supabase Auth integration and JWT token generation
+- **If database changes**: Update Drizzle ORM schemas and run migrations
+- **If vector search changes**: Test pgvector functions and embedding generation
+- **Integration testing**: Verify secure handoff to app-startupai-site.netlify.app works
+- **Database testing**: Verify RLS policies and cross-site data access
 
 ### Content and Marketing Changes
 - **Evidence-based claims**: Cite sources from `/docs/business/` research
@@ -317,8 +333,11 @@ This project is built on extensive market research validating the "AI co-founder
 
 ## Integration Points
 
-- **CWC Agentic Platform**: Main application at localhost:3001
-- **Authentication Flow**: Currently simplified for testing (temporary)
+- **app.startupai.site Platform**: Main application at https://app-startupai-site.netlify.app
+- **Supabase Database**: Shared PostgreSQL with pgvector for semantic search
+- **Supabase Storage**: File uploads, reports, and asset management
+- **Authentication Flow**: JWT token handoff with Supabase Auth
+- **Vector Search**: Semantic search across evidence and business content
 - **Documentation Portal**: Business research serves as both content and validation
 
 ## Content Strategy

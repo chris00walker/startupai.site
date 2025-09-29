@@ -34,10 +34,24 @@ This document provides a detailed technical roadmap for implementing the Startup
 
 **Tasks:**
 - [ ] Create Supabase project with shared database
-- [ ] Configure authentication providers (Google, GitHub, Email)
+- [ ] Install and configure Supabase CLI (✅ Completed)
+- [ ] Enable required database extensions (pgvector, uuid-ossp)
+- [ ] Configure authentication providers (Google, GitHub, Azure, Email)
+- [ ] Set up magic link authentication for passwordless login
+- [ ] Configure connection pooling (Supavisor in transaction mode)
 - [ ] Set up Row Level Security (RLS) policies
 - [ ] Create user management tables and functions
 - [ ] Implement JWT token signing and validation
+- [ ] Configure Drizzle ORM for type-safe database operations
+
+**Database Extensions:**
+```sql
+-- Enable required extensions
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS "vector" WITH SCHEMA extensions;
+CREATE EXTENSION IF NOT EXISTS "pg_net";
+CREATE EXTENSION IF NOT EXISTS "hstore";
+```
 
 **Database Schema:**
 ```sql
@@ -76,26 +90,180 @@ CREATE TABLE site_handoffs (
   error_message TEXT,
   created_at TIMESTAMP DEFAULT NOW()
 );
+
+-- Projects and evidence storage
+CREATE TABLE projects (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES auth.users(id),
+  name TEXT NOT NULL,
+  description TEXT,
+  status TEXT DEFAULT 'active',
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE evidence (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  project_id UUID REFERENCES projects(id) ON DELETE CASCADE,
+  content TEXT NOT NULL,
+  embedding VECTOR(1536), -- OpenAI text-embedding-3-small
+  source_type TEXT,
+  source_url TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- AI-generated reports and insights
+CREATE TABLE reports (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  project_id UUID REFERENCES projects(id) ON DELETE CASCADE,
+  report_type TEXT NOT NULL,
+  title TEXT NOT NULL,
+  content JSONB NOT NULL,
+  status TEXT DEFAULT 'draft',
+  generated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Vector search indexes
+CREATE INDEX ON evidence USING hnsw (embedding vector_cosine_ops);
 ```
 
 **Security Configuration:**
 ```sql
--- RLS Policies
+-- Enable RLS on all tables
 ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE user_sessions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE site_handoffs ENABLE ROW LEVEL SECURITY;
+ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
+ALTER TABLE evidence ENABLE ROW LEVEL SECURITY;
+ALTER TABLE reports ENABLE ROW LEVEL SECURITY;
 
--- Users can only access their own data
+-- User profile policies
 CREATE POLICY "Users can view own profile" ON user_profiles
   FOR SELECT USING (auth.uid() = id);
 
 CREATE POLICY "Users can update own profile" ON user_profiles
   FOR UPDATE USING (auth.uid() = id);
+
+-- Project policies
+CREATE POLICY "Users can view own projects" ON projects
+  FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can create projects" ON projects
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can update own projects" ON projects
+  FOR UPDATE USING (auth.uid() = user_id);
+
+-- Evidence policies
+CREATE POLICY "Users can view project evidence" ON evidence
+  FOR SELECT USING (
+    EXISTS (
+      SELECT 1 FROM projects 
+      WHERE projects.id = evidence.project_id 
+      AND projects.user_id = auth.uid()
+    )
+  );
+
+CREATE POLICY "Users can insert project evidence" ON evidence
+  FOR INSERT WITH CHECK (
+    EXISTS (
+      SELECT 1 FROM projects 
+      WHERE projects.id = evidence.project_id 
+      AND projects.user_id = auth.uid()
+    )
+  );
+
+-- Report policies
+CREATE POLICY "Users can view project reports" ON reports
+  FOR SELECT USING (
+    EXISTS (
+      SELECT 1 FROM projects 
+      WHERE projects.id = reports.project_id 
+      AND projects.user_id = auth.uid()
+    )
+  );
+```
+
+**Drizzle ORM Configuration:**
+```typescript
+// drizzle.config.ts
+import { defineConfig } from 'drizzle-kit';
+
+export default defineConfig({
+  schema: './src/lib/database/schema.ts',
+  out: './drizzle',
+  dialect: 'postgresql',
+  dbCredentials: {
+    url: process.env.DATABASE_URL!,
+  },
+});
+```
+
+```typescript
+// src/lib/database/client.ts
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
+
+const connectionString = process.env.DATABASE_URL!;
+
+// Disable prefetch for transaction pool mode
+export const client = postgres(connectionString, { prepare: false });
+export const db = drizzle(client);
+```
+
+**Vector Search Functions:**
+```sql
+-- Semantic search for evidence
+CREATE OR REPLACE FUNCTION match_evidence (
+  query_embedding VECTOR(1536),
+  project_filter UUID,
+  match_threshold FLOAT DEFAULT 0.78,
+  match_count INT DEFAULT 10
+)
+RETURNS SETOF evidence
+LANGUAGE sql
+AS $$
+  SELECT *
+  FROM evidence
+  WHERE project_id = project_filter
+    AND embedding <=> query_embedding < 1 - match_threshold
+  ORDER BY embedding <=> query_embedding ASC
+  LIMIT least(match_count, 50);
+$$;
+```
+
+**Storage Configuration:**
+```sql
+-- Create storage buckets
+INSERT INTO storage.buckets (id, name, public)
+VALUES 
+  ('user-uploads', 'user-uploads', false),
+  ('generated-reports', 'generated-reports', false),
+  ('project-assets', 'project-assets', false),
+  ('public-assets', 'public-assets', true);
+
+-- Storage policies
+CREATE POLICY "Users can upload to own folder" ON storage.objects
+  FOR INSERT WITH CHECK (
+    auth.uid()::text = (storage.foldername(name))[1]
+  );
+
+CREATE POLICY "Users can view own files" ON storage.objects
+  FOR SELECT USING (
+    auth.uid()::text = (storage.foldername(name))[1]
+  );
+
+CREATE POLICY "Public assets are viewable" ON storage.objects
+  FOR SELECT USING (bucket_id = 'public-assets');
 ```
 
 **Deliverables:**
 - Supabase project configured and deployed
+- Database extensions enabled (pgvector, uuid-ossp)
 - Authentication flows tested on both domains
+- Drizzle ORM configured with type-safe schemas
+- Vector search functions implemented
+- Storage buckets and policies configured
 - JWT token generation and validation functions
 - Security audit completed
 
@@ -126,6 +294,8 @@ CREATE POLICY "Users can update own profile" ON user_profiles
 // Framer Motion for animations
 // React Hook Form for forms
 // Supabase client for auth
+// Drizzle ORM for database operations
+// pnpm for package management (✅ Migrated)
 ```
 
 **Critical Features:**
@@ -452,25 +622,31 @@ const performanceMonitor = {
 ### 7.1 Infrastructure Setup
 
 **Site Deployments:**
-- **startupai.site:** Vercel deployment with custom domain
-- **app.startupai.site:** Vercel deployment with custom domain
-- **Shared Services:** Supabase (database, auth, storage)
+- **startupai.site:** Netlify deployment (✅ Live at https://startupai-site.netlify.app)
+- **app.startupai.site:** Netlify deployment (✅ Live at https://app-startupai-site.netlify.app)
+- **Shared Services:** Supabase (database, auth, storage, vector search)
 - **AI Services:** Netlify Functions for CrewAI workflows
+- **Package Management:** pnpm across all repositories (✅ Migrated)
 
 **Environment Configuration:**
 ```bash
 # Marketing Site (.env.local)
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+DATABASE_URL=postgresql://postgres:[password]@db.[project].supabase.co:6543/postgres?workaround=supabase-pooler.vercel
 JWT_SECRET=your-jwt-secret
-PRODUCT_PLATFORM_URL=https://platform.startupai.site
+PRODUCT_PLATFORM_URL=https://app-startupai-site.netlify.app
 
 # Product Platform (.env.local)
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+DATABASE_URL=postgresql://postgres:[password]@db.[project].supabase.co:6543/postgres?workaround=supabase-pooler.vercel
 JWT_SECRET=your-jwt-secret
-MARKETING_SITE_URL=https://startupai.site
+MARKETING_SITE_URL=https://startupai-site.netlify.app
 CREWAI_API_URL=https://your-netlify-functions.netlify.app
+OPENAI_API_KEY=your-openai-key
 ```
 
 ### 7.2 Testing Strategy
@@ -541,10 +717,13 @@ describe('Cross-Site User Journey', () => {
 ## 10. Next Steps
 
 ### Immediate Actions (Week 1)
-1. Set up Supabase project and configure authentication
-2. Create development environments for both sites
-3. Implement basic JWT token generation and validation
-4. Set up cross-site analytics tracking
+1. ✅ Install Supabase CLI and configure development environment
+2. Set up Supabase project and configure authentication
+3. Enable database extensions (pgvector, uuid-ossp)
+4. Configure Drizzle ORM with type-safe schemas
+5. Implement basic JWT token generation and validation
+6. Set up vector search functions and storage buckets
+7. Set up cross-site analytics tracking
 
 ### Short-term Goals (Month 1)
 1. Complete Phase 1-3 implementation

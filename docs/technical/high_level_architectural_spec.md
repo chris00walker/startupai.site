@@ -45,6 +45,7 @@ The platform supports three service tiers:
 - Next.js frontend with conversion-optimized UI
 - Crypto wallet integration (MetaMask, WalletConnect)
 - Supabase authentication (shared service)
+- Drizzle ORM for type-safe database operations
 - Payment processing APIs
 - Analytics and tracking systems
 
@@ -62,7 +63,9 @@ The platform supports three service tiers:
 **Technical Stack:**
 - Next.js frontend optimized for productivity
 - CrewAI backend for AI workflow orchestration
-- Supabase database for user data and evidence
+- Supabase database with pgvector for semantic search
+- Drizzle ORM for type-safe database operations
+- Supabase Storage for file uploads and document management
 - Vercel AI SDK for hot-swappable models
 - Advanced analytics and user behavior tracking
 
@@ -168,13 +171,17 @@ app.startupai.site:
 - **Shared Supabase Auth** – unified identity across both platforms
 - **JWT Token Handoff** – cryptographically signed tokens for secure transitions
 - **Session Management** – persistent authentication with automatic refresh
-- **OAuth Integration** – Google, GitHub, and social login support
+- **OAuth Integration** – Google, GitHub, Azure, and social login support
+- **Magic Link Authentication** – passwordless email-based login
+- **Multi-Factor Authentication** – optional TOTP and SMS verification
 
 ### 6.2 Data Protection
 - **HTTPS Everywhere** – all traffic encrypted in transit
 - **Row Level Security** – Supabase RLS policies for data isolation
 - **Token Expiration** – short-lived handoff tokens (5-minute expiry)
 - **API Rate Limiting** – protection against abuse and attacks
+- **Database Encryption** – at-rest encryption for sensitive data
+- **Audit Logging** – comprehensive activity tracking
 
 ### 6.3 Payment Security
 - **Crypto Wallet Integration** – no private key storage
@@ -195,6 +202,8 @@ app.startupai.site:
 ### 7.2 Backend Scaling
 - **Stateless Functions** – Netlify Functions auto-scale with demand
 - **Database Scaling** – Supabase automatic scaling and connection pooling
+- **Vector Search Optimization** – pgvector HNSW indexes for semantic search
+- **Storage Scaling** – Supabase Storage with CDN distribution
 - **AI Model Scaling** – Vercel AI SDK hot-swappable model endpoints
 - **Queue Management** – background job processing for AI workflows
 
@@ -219,7 +228,121 @@ Each client engagement produces a package:
 
 ---
 
+## 9. Database Architecture
+
+### 9.1 Supabase Configuration
+- **Project Setup** – shared Supabase project for both sites
+- **Connection Pooling** – Supavisor in transaction mode for serverless
+- **Database Extensions** – pgvector for embeddings, uuid-ossp for UUIDs
+- **Migration Management** – CLI-based schema versioning
+
+### 9.2 Schema Design
+```sql
+-- Core user management
+CREATE TABLE user_profiles (
+  id UUID REFERENCES auth.users(id) PRIMARY KEY,
+  email TEXT NOT NULL,
+  full_name TEXT,
+  company TEXT,
+  subscription_tier TEXT DEFAULT 'free',
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Evidence and insights storage
+CREATE TABLE projects (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES auth.users(id),
+  name TEXT NOT NULL,
+  description TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE evidence (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  project_id UUID REFERENCES projects(id),
+  content TEXT NOT NULL,
+  embedding VECTOR(1536), -- OpenAI embeddings
+  source_type TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- AI-generated reports and insights
+CREATE TABLE reports (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  project_id UUID REFERENCES projects(id),
+  report_type TEXT NOT NULL,
+  content JSONB NOT NULL,
+  generated_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+### 9.3 Row Level Security
+```sql
+-- Enable RLS on all tables
+ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
+ALTER TABLE evidence ENABLE ROW LEVEL SECURITY;
+ALTER TABLE reports ENABLE ROW LEVEL SECURITY;
+
+-- Users can only access their own data
+CREATE POLICY "Users can view own profile" ON user_profiles
+  FOR SELECT USING (auth.uid() = id);
+
+CREATE POLICY "Users can view own projects" ON projects
+  FOR SELECT USING (auth.uid() = user_id);
+```
+
+### 9.4 Vector Search Functions
+```sql
+-- Semantic search for evidence
+CREATE OR REPLACE FUNCTION match_evidence (
+  query_embedding VECTOR(1536),
+  project_filter UUID,
+  match_threshold FLOAT,
+  match_count INT
+)
+RETURNS SETOF evidence
+LANGUAGE sql
+AS $$
+  SELECT *
+  FROM evidence
+  WHERE project_id = project_filter
+    AND embedding <=> query_embedding < 1 - match_threshold
+  ORDER BY embedding <=> query_embedding ASC
+  LIMIT least(match_count, 50);
+$$;
+```
+
+---
+
+## 10. Storage Architecture
+
+### 10.1 Supabase Storage Configuration
+- **Bucket Organization** – separate buckets for user uploads, reports, assets
+- **Access Control** – RLS policies for secure file access
+- **CDN Integration** – global edge caching for static assets
+- **File Processing** – automatic image optimization and resizing
+
+### 10.2 Storage Buckets
+```sql
+-- Create storage buckets
+INSERT INTO storage.buckets (id, name, public)
+VALUES 
+  ('user-uploads', 'user-uploads', false),
+  ('generated-reports', 'generated-reports', false),
+  ('public-assets', 'public-assets', true);
+
+-- Storage policies
+CREATE POLICY "Users can upload own files" ON storage.objects
+  FOR INSERT WITH CHECK (auth.uid()::text = (storage.foldername(name))[1]);
+
+CREATE POLICY "Users can view own files" ON storage.objects
+  FOR SELECT USING (auth.uid()::text = (storage.foldername(name))[1]);
+```
+
+---
+
 ## ✅ Next Step
 
-This high-level specification ensures the system is connected end-to-end.  
+This high-level specification ensures the system is connected end-to-end with comprehensive Supabase configuration.  
 Next, we will create **Prompt Specifications** for each subsystem, starting with **CrewAI agents + tasks**.  
