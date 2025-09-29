@@ -16,6 +16,7 @@ This document provides a detailed technical roadmap for implementing the Startup
 - **System Architecture:** [High-Level Architecture Specification](high_level_architectural_spec.md)
 - **User Requirements:** [User Stories](../product/user-stories.md)
 - **UX Design:** [User Experience Design](../design/user-experience.md)
+- **Accessibility Standards:** [WCAG 2.0/2.1/2.2 Compliance](../design/accessibility-standards.md)
 
 ### Key Implementation Phases
 1. **Phase 1:** Shared Authentication Infrastructure (Week 1-2)

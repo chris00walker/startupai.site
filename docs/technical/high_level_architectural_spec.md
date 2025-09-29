@@ -14,7 +14,8 @@ This document specifies the **high-level architecture** of the StartupAI two-sit
 - **Business Context:** [MVP Specification](../product/mvp-specification.md)
 - **Implementation Roadmap:** [Two-Site Implementation Plan](two-site-implementation-plan.md)
 - **User Requirements:** [User Stories](../product/user-stories.md)
-- **UX Design:** [User Experience Design](../design/user-experience.md)  
+- **UX Design:** [User Experience Design](../design/user-experience.md)
+- **Accessibility Standards:** [WCAG 2.0/2.1/2.2 Compliance](../design/accessibility-standards.md)  
 
 ---
 
