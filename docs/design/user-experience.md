@@ -365,43 +365,164 @@ interface GateStatusProps {
 
 ## Accessibility Standards
 
-### WCAG 2.1 AA Compliance
-- **Color Contrast:** 4.5:1 minimum for normal text
-- **Keyboard Navigation:** All functionality accessible via keyboard
-- **Screen Readers:** Proper ARIA labels and semantic HTML
-- **Focus Management:** Clear focus indicators and logical tab order
+**📋 Comprehensive Documentation:** [Accessibility Standards & Guidelines](accessibility-standards.md)
 
-### Implementation
+StartupAI follows **WCAG 2.0, 2.1, and 2.2 AA compliance** with special attention to AI accessibility integration.
+
+### WCAG 2.0/2.1/2.2 AA Compliance
+
+#### Core Requirements
+- **Color Contrast:** 4.5:1 minimum for normal text, 3:1 for large text and UI components
+- **Keyboard Navigation:** All functionality accessible via keyboard, including AI interactions
+- **Screen Readers:** Proper ARIA labels, semantic HTML, and AI content announcements
+- **Focus Management:** Clear focus indicators (minimum 2px outline) and logical tab order
+- **Responsive Design:** Content reflows to 320px width without horizontal scrolling
+- **Text Spacing:** Interface adapts to increased line height (1.5x) and paragraph spacing (2x)
+
+#### WCAG 2.1 Enhancements
+- **Orientation Support:** AI dashboards work in both portrait and landscape
+- **Input Purpose:** Form fields have programmatically determinable purpose
+- **Motion Alternatives:** AI gesture controls have keyboard/pointer alternatives
+- **Status Messages:** AI processing states announced to assistive technologies
+
+#### WCAG 2.2 Latest Standards
+- **Focus Visibility:** Enhanced focus indicators (minimum 24×24px targets)
+- **Consistent Help:** AI assistance features in consistent locations
+- **Accessible Authentication:** AI-powered auth provides cognitive alternatives
+- **Redundant Entry:** AI remembers user inputs to reduce re-entry
+
+### AI-Specific Accessibility
+
+#### CrewAI Integration
+- **Agent Communication:** AI responses include reading level analysis and structure
+- **Processing Transparency:** Clear progress indicators with pause/cancel options
+- **Multi-Modal Output:** Text descriptions for all AI-generated visualizations
+- **Error Recovery:** Plain language error messages with actionable suggestions
+
+#### OpenAI & Vercel AI SDK
+- **Accessible Prompting:** AI generates content at 8th-grade reading level
+- **Stream Announcements:** Real-time AI responses announced to screen readers
+- **Model Switching:** Consistent accessibility across all AI models
+- **Bias Mitigation:** AI outputs reviewed for inclusive language and examples
+
+### Implementation Examples
+
+#### Accessible AI Form
 ```typescript
-// Example accessible component
-export function HypothesisTable({ hypotheses }: Props) {
+export function AccessibleAIForm() {
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [progress, setProgress] = useState(0);
+  
   return (
-    <table role="table" aria-label="Project hypotheses">
-      <thead>
-        <tr>
-          <th scope="col">Hypothesis</th>
-          <th scope="col">Risk Level</th>
-          <th scope="col">Evidence Count</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {hypotheses.map(hypothesis => (
-          <tr key={hypothesis.id}>
-            <td>{hypothesis.statement}</td>
-            <td>
-              <Badge 
-                variant={hypothesis.riskLevel}
-                aria-label={`Risk level: ${hypothesis.riskLevel}`}
-              >
-                {hypothesis.riskLevel}
-              </Badge>
-            </td>
-            {/* ... */}
+    <form role="form" aria-labelledby="ai-form-title">
+      <h2 id="ai-form-title">Business Hypothesis Analysis</h2>
+      
+      <div className="form-group">
+        <label htmlFor="hypothesis" className="required">
+          Hypothesis Statement
+          <span className="sr-only">(required)</span>
+        </label>
+        <textarea
+          id="hypothesis"
+          aria-describedby="hypothesis-help hypothesis-error"
+          aria-required="true"
+          className="min-h-24 resize-y"
+        />
+        <div id="hypothesis-help" className="help-text">
+          Describe what you believe to be true about your customers or market
+        </div>
+      </div>
+      
+      <button 
+        type="submit" 
+        disabled={isProcessing}
+        aria-describedby="ai-status"
+      >
+        {isProcessing ? 'Analyzing...' : 'Generate AI Insights'}
+      </button>
+      
+      {isProcessing && (
+        <div 
+          id="ai-status" 
+          role="status" 
+          aria-live="polite"
+          className="mt-4"
+        >
+          <div 
+            role="progressbar"
+            aria-valuenow={progress}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="AI analysis progress"
+          >
+            AI processing: {progress}% complete
+          </div>
+        </div>
+      )}
+    </form>
+  );
+}
+```
+
+#### Accessible Data Visualization
+```typescript
+export function AccessibleHypothesisTable({ hypotheses }: Props) {
+  return (
+    <div className="overflow-x-auto">
+      <table role="table" aria-label="Project hypotheses analysis">
+        <caption className="sr-only">
+          Table showing {hypotheses.length} hypotheses with risk levels and evidence counts
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col" className="text-left">Hypothesis</th>
+            <th scope="col" className="text-center">Risk Level</th>
+            <th scope="col" className="text-center">Evidence Count</th>
+            <th scope="col" className="text-center">
+              <span className="sr-only">Actions</span>
+              <span aria-hidden="true">Actions</span>
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {hypotheses.map((hypothesis, index) => (
+            <tr key={hypothesis.id}>
+              <td>
+                <div className="font-medium">{hypothesis.statement}</div>
+                {hypothesis.aiGenerated && (
+                  <span className="text-sm text-gray-500" role="note">
+                    <span className="sr-only">AI Generated: </span>
+                    Generated by AI analysis
+                  </span>
+                )}
+              </td>
+              <td className="text-center">
+                <Badge 
+                  variant={hypothesis.riskLevel}
+                  aria-label={`Risk level: ${hypothesis.riskLevel}`}
+                  className="min-w-16 justify-center"
+                >
+                  {hypothesis.riskLevel}
+                </Badge>
+              </td>
+              <td className="text-center">
+                <span aria-label={`${hypothesis.evidenceCount} pieces of evidence`}>
+                  {hypothesis.evidenceCount}
+                </span>
+              </td>
+              <td className="text-center">
+                <button
+                  aria-label={`Edit hypothesis: ${hypothesis.statement.substring(0, 50)}...`}
+                  className="btn-sm btn-outline"
+                >
+                  Edit
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 ```

@@ -4,11 +4,18 @@
 **Version:** MVP 1.0  
 **Date:** September 2025  
 
+**📋 Related Documentation:**
+- **Accessibility Standards:** [WCAG 2.0/2.1/2.2 Compliance](accessibility-standards.md)
+- **User Experience:** [Cross-Site UX Design](user-experience.md)
+- **Design System:** [Component Implementation](design-system.md)
+
 ---
 
 ## Design System Overview
 
 StartupAI's design system emphasizes **trust, clarity, and evidence-based decision making**. The visual language should feel professional yet approachable, with clear information hierarchy and intuitive interactions.
+
+**Accessibility First:** All UI components follow [WCAG 2.0/2.1/2.2 AA standards](accessibility-standards.md) with special attention to AI accessibility integration.
 
 ---
 

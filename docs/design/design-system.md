@@ -397,16 +397,229 @@ All service pages should follow the same pattern:
   - Card hover effects
   - Link underline on hover
 
-- [ ] **Accessibility**
+- [ ] **Accessibility (WCAG 2.0/2.1/2.2 AA)**
   - Proper heading hierarchy (h1 > h2 > h3)
   - ARIA labels on interactive elements
-  - Focus indicators on all clickable elements
+  - Focus indicators on all clickable elements (minimum 2px outline)
   - Semantic HTML structure
+  - Color contrast ratios: 4.5:1 normal text, 3:1 large text/UI components
+  - Keyboard navigation for all interactive elements
+  - Screen reader announcements for dynamic content
+  - Alternative text for images and AI-generated visualizations
+  - Form labels and error messages clearly associated
+  - Skip links for main content navigation
+  - Consistent help placement and accessible authentication
+  - Target size minimum 24×24px for touch interfaces
 
 - [ ] **Performance**
   - Lazy loading for below-fold content
   - Optimized images with proper sizing
   - Component code splitting where appropriate
+
+---
+
+## Phase 4.5: Accessibility Integration (Week 4.5)
+
+### 4.5.1 Accessibility-First Component Development
+
+#### Accessible Design Tokens
+- [ ] **Focus Indicators**
+  - Minimum 2px outline with 4.5:1 contrast ratio
+  - Consistent focus ring across all interactive elements
+  - Visible focus states for keyboard navigation
+  - Custom focus styles for complex components
+
+- [ ] **Color Accessibility**
+  - WCAG AA contrast ratios: 4.5:1 normal text, 3:1 large text
+  - Color-blind friendly palette with sufficient differentiation
+  - Semantic colors that work without color alone
+  - High contrast mode compatibility
+
+- [ ] **Typography Accessibility**
+  - Minimum 16px base font size for body text
+  - Line height 1.5x for improved readability
+  - Letter spacing adjustments for dyslexia-friendly text
+  - Font weight hierarchy that works with screen readers
+
+#### Component Accessibility Standards
+
+**Button Components**
+```typescript
+// Accessible button implementation
+export const AccessibleButton = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ children, variant, size, loading, disabled, ...props }, ref) => {
+    return (
+      <button
+        ref={ref}
+        disabled={disabled || loading}
+        aria-disabled={disabled || loading}
+        aria-describedby={loading ? 'loading-status' : undefined}
+        className={cn(
+          'min-h-[44px] min-w-[44px]', // WCAG 2.2 target size
+          'focus-visible:outline-2 focus-visible:outline-offset-2',
+          'focus-visible:outline-blue-600',
+          buttonVariants({ variant, size })
+        )}
+        {...props}
+      >
+        {loading && (
+          <span id="loading-status" className="sr-only">
+            Loading, please wait
+          </span>
+        )}
+        {children}
+      </button>
+    );
+  }
+);
+```
+
+**Form Components**
+```typescript
+// Accessible form field with proper labeling
+export function AccessibleFormField({ 
+  label, 
+  error, 
+  help, 
+  required, 
+  children 
+}: FormFieldProps) {
+  const fieldId = useId();
+  const helpId = help ? `${fieldId}-help` : undefined;
+  const errorId = error ? `${fieldId}-error` : undefined;
+  
+  return (
+    <div className="form-field">
+      <label htmlFor={fieldId} className={cn('form-label', required && 'required')}>
+        {label}
+        {required && <span className="sr-only">(required)</span>}
+      </label>
+      
+      {React.cloneElement(children, {
+        id: fieldId,
+        'aria-describedby': cn(helpId, errorId),
+        'aria-required': required,
+        'aria-invalid': !!error,
+      })}
+      
+      {help && (
+        <div id={helpId} className="form-help">
+          {help}
+        </div>
+      )}
+      
+      {error && (
+        <div id={errorId} role="alert" className="form-error">
+          {error}
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+### 4.5.2 AI-Specific Accessibility Components
+
+#### AI Processing States
+- [ ] **Loading Indicators**
+  - Progress bars with aria-valuenow, aria-valuemin, aria-valuemax
+  - Status announcements via aria-live regions
+  - Pause/cancel options for long-running processes
+  - Time estimates and completion notifications
+
+- [ ] **AI Content Presentation**
+  - Clear indication of AI-generated content
+  - Alternative formats for complex AI outputs
+  - Reading level indicators and simplification options
+  - Structured markup for AI-generated lists and tables
+
+#### AI Interaction Patterns
+```typescript
+// Accessible AI chat interface
+export function AccessibleAIChat() {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [isTyping, setIsTyping] = useState(false);
+  
+  return (
+    <div role="log" aria-label="AI conversation" className="ai-chat">
+      <div className="messages" aria-live="polite">
+        {messages.map((message, index) => (
+          <div
+            key={message.id}
+            role={message.role === 'assistant' ? 'status' : 'text'}
+            className={cn('message', message.role)}
+            aria-label={`${message.role === 'assistant' ? 'AI' : 'You'}: ${message.content}`}
+          >
+            <div className="message-content">
+              {message.content}
+            </div>
+            {message.role === 'assistant' && (
+              <div className="ai-attribution" role="note">
+                <span className="sr-only">AI Generated Response</span>
+                Generated by AI
+              </div>
+            )}
+          </div>
+        ))}
+        
+        {isTyping && (
+          <div role="status" aria-live="polite" className="typing-indicator">
+            <span className="sr-only">AI is typing a response</span>
+            AI is thinking...
+          </div>
+        )}
+      </div>
+      
+      <form onSubmit={handleSubmit} className="chat-input">
+        <label htmlFor="message-input" className="sr-only">
+          Type your message to AI
+        </label>
+        <input
+          id="message-input"
+          type="text"
+          placeholder="Ask AI about your business strategy..."
+          aria-describedby="input-help"
+        />
+        <div id="input-help" className="sr-only">
+          Press Enter to send your message to the AI assistant
+        </div>
+        <button type="submit" aria-label="Send message to AI">
+          Send
+        </button>
+      </form>
+    </div>
+  );
+}
+```
+
+### 4.5.3 Cross-Site Accessibility Consistency
+
+#### Marketing Site (startupai.site)
+- [ ] **Landing Page Accessibility**
+  - Skip links to main content and pricing
+  - Proper heading hierarchy for SEO and screen readers
+  - Alternative text for hero images and graphics
+  - Accessible form validation for signup/login
+  - Keyboard navigation for pricing tables
+
+- [ ] **Conversion Flow Accessibility**
+  - Clear progress indicators for multi-step signup
+  - Error handling with specific, actionable messages
+  - Accessible payment form with proper labeling
+  - Success confirmations announced to screen readers
+
+#### Product Site (app.startupai.site)
+- [ ] **Dashboard Accessibility**
+  - Landmark regions (main, navigation, complementary)
+  - Data table accessibility with proper headers
+  - Chart alternatives with data tables
+  - Keyboard shortcuts with help documentation
+
+- [ ] **AI Workflow Accessibility**
+  - Step-by-step process with clear navigation
+  - AI processing states with progress indicators
+  - Alternative formats for AI-generated reports
+  - Accessible file upload with drag-and-drop alternatives
 
 ---
 
