@@ -15,7 +15,9 @@ This document specifies the **high-level architecture** of the StartupAI two-sit
 - **Implementation Roadmap:** [Two-Site Implementation Plan](two-site-implementation-plan.md)
 - **User Requirements:** [User Stories](../product/user-stories.md)
 - **UX Design:** [User Experience Design](../design/user-experience.md)
-- **Accessibility Standards:** [WCAG 2.0/2.1/2.2 Compliance](../design/accessibility-standards.md)  
+- **Accessibility Standards:** [WCAG 2.0/2.1/2.2 Compliance](../design/accessibility-standards.md)
+- **🤖 CrewAI Backend:** [Complete Implementation Guide](../../../app.startupai.site/backend/CREW_AI.md)
+- **Backend README:** [Quick Start Guide](../../../app.startupai.site/backend/README.md)  
 
 ---
 
@@ -43,12 +45,42 @@ The platform supports three service tiers:
 - Conversion tracking and analytics
 
 **Technical Stack:**
-- Next.js frontend with conversion-optimized UI
-- Crypto wallet integration (MetaMask, WalletConnect)
-- Supabase authentication (shared service)
+
+**Frontend Framework & UI:**
+- Next.js 15 with TypeScript
+- React 19.1 with Server Components
+- Turbopack for fast development builds
+- Tailwind CSS 3.4 for styling
+- Framer Motion for animations
+- shadcn/ui component library (Radix UI primitives)
+- Lucide React for icons
+
+**Forms & Validation:**
+- React Hook Form 7.62 for form management
+- Zod 4.0 for schema validation
+- Formspree for contact forms
+
+**Database & ORM:**
+- Supabase PostgreSQL (shared service)
 - Drizzle ORM for type-safe database operations
+- Supabase Auth for authentication (JWT tokens)
+
+**Payments & Crypto:**
+- Crypto wallet integration (MetaMask, WalletConnect)
+- Bitcoin, Ethereum, USDC support
 - Payment processing APIs
-- Analytics and tracking systems
+
+**Development Tools:**
+- pnpm 9.12 for package management
+- TypeScript 5.8 for type safety
+- ESLint + Prettier for code quality
+- Supabase CLI 2.47 for database management
+
+**Deployment & Infrastructure:**
+- Netlify (live at https://startupai-site.netlify.app)
+- GitHub auto-deployment on push
+- Node.js >=18.0.0
+- Analytics and conversion tracking
 
 ### 3.2 Product Platform: app.startupai.site ("The Product")
 **Purpose:** Deliver core value and create customer advocates
@@ -62,25 +94,88 @@ The platform supports three service tiers:
 - Customer satisfaction and retention optimization
 
 **Technical Stack:**
-- Next.js frontend optimized for productivity
-- CrewAI backend for AI workflow orchestration
-- Supabase database with pgvector for semantic search
-- Drizzle ORM for type-safe database operations
-- Supabase Storage for file uploads and document management
-- Vercel AI SDK for hot-swappable models
-- Advanced analytics and user behavior tracking
+
+**Frontend Framework & UI:**
+- Next.js 15 with TypeScript
+- React 19.1 with Server Components
+- Turbopack for fast development builds
+- Tailwind CSS 3.4 for styling
+- shadcn/ui component library (Radix UI primitives)
+- Lucide React for icons
+- WCAG 2.0/2.1/2.2 AA accessibility compliance
+
+**Backend & AI Orchestration:**
+- Python 3.10+ runtime
+- CrewAI 0.80+ for multi-agent workflows ([Implementation →](../../../app.startupai.site/backend/CREW_AI.md))
+- FastAPI 0.100+ for API endpoints
+- Uvicorn for ASGI server
+- Pydantic 2.0+ for data validation
+- Netlify Functions for serverless deployment
+
+**AI & LLM Integration:**
+- Vercel AI SDK for hot-swappable model support
+- OpenAI GPT-4 (primary reasoning model)
+- Anthropic Claude 3 (analytical tasks)
+- Google Gemini Pro (creative ideation)
+- Multi-provider fallback strategy
+
+**Database & Vector Search:**
+- Supabase PostgreSQL with extensions:
+  - pgvector for vector embeddings
+  - uuid-ossp for UUID generation
+  - pg_net for HTTP requests
+  - hstore for key-value storage
+- Drizzle ORM for type-safe operations
+- Supavisor connection pooling (transaction mode)
+- HNSW indexes for semantic search
+- OpenAI embeddings (1536 dimensions)
+
+**Storage & File Management:**
+- Supabase Storage with RLS policies
+- CDN integration for global distribution
+- Automatic image optimization
+- Buckets: user-uploads, generated-reports, project-assets, public-assets
+
+**Authentication & Security:**
+- Supabase Auth (shared service)
+- OAuth providers: Google, GitHub, Azure, Email
+- Magic link authentication
+- Multi-factor authentication (TOTP, SMS)
+- JWT token-based session management
+- Row-Level Security (RLS) policies
+
+**Development Tools:**
+- pnpm 9.12 for package management
+- TypeScript 5.8 for type safety
+- ESLint + Prettier for code quality
+- Supabase CLI 2.47 for migrations
+- Jest + Testing Library for unit tests
+- Playwright for E2E testing
+- axe-core for accessibility testing
+
+**Deployment & Infrastructure:**
+- Netlify (live at https://app-startupai-site.netlify.app)
+- GitHub auto-deployment on push
+- Node.js >=18.0.0
+- Python runtime for serverless functions
+- Environment-based configuration
+- Advanced analytics and behavior tracking
 
 ### 3.3 CrewAI Backend (Python, Netlify Functions)
 
-- Executes the **6-agent Crew**:
-  1. Onboarding Agent  
-  2. Customer Researcher  
-  3. Competitor Analyst  
-  4. Value Designer  
-  5. Validation Agent  
-  6. QA Agent  
-- Hot-swappable via Vercel AI SDK; called by QA Agent during CrewAI runs.  
-- Supports multiple providers (OpenAI, Anthropic, Google, etc.) with seamless switching.  
+**📖 Complete Implementation:** [CREW_AI.md](../../../app.startupai.site/backend/CREW_AI.md)
+
+- Executes the **6-agent Crew** (YAML-configured, sequential process v1.0):
+  1. **Onboarding Agent** → Entrepreneur Brief (JSON + Markdown)
+  2. **Customer Researcher** → Customer Profile (Jobs, Pains, Gains)
+  3. **Competitor Analyst** → Positioning Map + Profiles
+  4. **Value Designer** → Value Proposition Canvas + Statement
+  5. **Validation Agent** → Validation Roadmap (Weak/Medium/Strong tests)
+  6. **QA Agent** → Quality Audit + Final Deliverables
+- **Framework Alignment:** Osterwalder's Value Proposition Design, Business Model Generation, Testing Business Ideas
+- **LLM Support:** OpenAI GPT-4, Anthropic Claude, Google Gemini (hot-swappable via Vercel AI SDK)
+- **Deployment:** Netlify Functions with Python runtime
+- **Status:** ✅ Specification complete, ready for Phase 1-5 implementation  
 
 ---
 
@@ -343,7 +438,20 @@ CREATE POLICY "Users can view own files" ON storage.objects
 
 ---
 
-## ✅ Next Step
+## ✅ Implementation Status
 
-This high-level specification ensures the system is connected end-to-end with comprehensive Supabase configuration.  
-Next, we will create **Prompt Specifications** for each subsystem, starting with **CrewAI agents + tasks**.  
+This high-level specification ensures the system is connected end-to-end with comprehensive Supabase configuration.
+
+**CrewAI Backend:** ✅ Complete specification and implementation guide  
+→ **See:** [CREW_AI.md](../../../app.startupai.site/backend/CREW_AI.md) for:
+- Complete YAML configuration (agents.yaml, tasks.yaml)
+- Full Python implementation (crew.py, main.py)
+- Step-by-step implementation checklist (5 phases)
+- Verification commands and testing guide
+
+**Next Steps:**
+1. Execute CrewAI implementation per [Phase 1-5 checklist](../../../app.startupai.site/backend/CREW_AI.md#-implementation-checklist)
+2. Configure Supabase project and enable extensions
+3. Implement Drizzle ORM schema
+4. Deploy vector search functions
+5. Integrate CrewAI backend with frontend  

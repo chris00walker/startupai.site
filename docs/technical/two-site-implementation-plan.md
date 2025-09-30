@@ -17,6 +17,7 @@ This document provides a detailed technical roadmap for implementing the Startup
 - **User Requirements:** [User Stories](../product/user-stories.md)
 - **UX Design:** [User Experience Design](../design/user-experience.md)
 - **Accessibility Standards:** [WCAG 2.0/2.1/2.2 Compliance](../design/accessibility-standards.md)
+- **🤖 CrewAI Backend Implementation:** [Complete Guide](../../../app.startupai.site/backend/CREW_AI.md)
 
 ### Key Implementation Phases
 1. **Phase 1:** Shared Authentication Infrastructure (Week 1-2)
@@ -419,21 +420,26 @@ export async function POST(request: Request) {
 - [ ] Professional report generation
 
 **CrewAI Integration:**
+
+**📖 Complete Implementation Guide:** [CREW_AI.md](../../../app.startupai.site/backend/CREW_AI.md)
+
 ```typescript
-// AI workflow orchestration
+// AI workflow orchestration (frontend integration)
 interface CrewAIConfig {
   agents: [
-    'onboarding-agent',
-    'research-agent', 
-    'validation-agent',
-    'report-agent',
-    'qa-agent'
+    'onboarding-agent',      // → Entrepreneur Brief
+    'customer-researcher',   // → Customer Profile
+    'competitor-analyst',    // → Positioning Map
+    'value-designer',        // → Value Proposition Canvas
+    'validation-agent',      // → Validation Roadmap
+    'qa-agent'              // → Quality Audit
   ];
   models: {
     primary: 'gpt-4',
     fallback: 'claude-3',
     creative: 'gemini-pro'
   };
+  process: 'sequential';  // v1.0 (concurrent planned for v1.1)
 }
 
 // Vercel AI SDK integration for hot-swappable models

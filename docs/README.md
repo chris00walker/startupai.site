@@ -1,7 +1,7 @@
 # 📚 StartupAI Platform Documentation
 
 **Single Source of Truth for StartupAI Two-Site Architecture**  
-**Last Updated:** September 25, 2025  
+**Last Updated:** September 30, 2025  
 
 ---
 
@@ -50,9 +50,10 @@ StartupAI uses a **marketing-to-product architecture** with clear separation of 
 
 | Document | Purpose | Cross-References | Status |
 |----------|---------|------------------|---------|
-| [high_level_architectural_spec.md](technical/high_level_architectural_spec.md) | **🏗️ Two-Site System Architecture** | → [Implementation Plan](technical/two-site-implementation-plan.md), [MVP Spec](product/mvp-specification.md) | ✅ Complete |
-| [two-site-implementation-plan.md](technical/two-site-implementation-plan.md) | **📋 12-Week Development Roadmap** | → [Architecture](technical/high_level_architectural_spec.md), [User Stories](product/user-stories.md) | ✅ Complete |
+| [high_level_architectural_spec.md](technical/high_level_architectural_spec.md) | **🏗️ Two-Site System Architecture** | → [Implementation Plan](technical/two-site-implementation-plan.md), [MVP Spec](product/mvp-specification.md), [CrewAI Backend](../../app.startupai.site/backend/CREW_AI.md) | ✅ Complete |
+| [two-site-implementation-plan.md](technical/two-site-implementation-plan.md) | **📋 12-Week Development Roadmap** | → [Architecture](technical/high_level_architectural_spec.md), [User Stories](product/user-stories.md), [CrewAI Backend](../../app.startupai.site/backend/CREW_AI.md) | ✅ Complete |
 | [setup_specifications.md](technical/setup_specifications.md) | Development environment setup | → [Implementation Plan](technical/two-site-implementation-plan.md) | ✅ Complete |
+| **[CrewAI Backend](../../app.startupai.site/backend/CREW_AI.md)** | **🤖 6-Agent AI Implementation** | → [Architecture](technical/high_level_architectural_spec.md), [README](../../app.startupai.site/backend/README.md) | ✅ Complete |
 
 ### 🎨 Design Specifications
 **Cross-site user experience and interface design**
@@ -119,7 +120,7 @@ StartupAI uses a **marketing-to-product architecture** with clear separation of 
 ### ⚡ app.startupai.site (Product)
 - **Frontend:** Next.js 15 with TypeScript
 - **Backend:** Netlify Functions (Python)
-- **AI Orchestration:** CrewAI multi-agent system
+- **AI Orchestration:** CrewAI 6-agent system ([Implementation →](../../app.startupai.site/backend/CREW_AI.md))
 - **Database:** Supabase PostgreSQL with pgvector
 - **ORM:** Drizzle ORM for type-safe operations
 - **Storage:** Supabase Storage with RLS policies
@@ -137,7 +138,13 @@ StartupAI uses a **marketing-to-product architecture** with clear separation of 
 - **CLI Tools:** Supabase CLI for migrations (✅ installed)
 
 ### AI Integration
-- **CrewAI:** Multi-agent orchestration
+- **CrewAI:** 6-agent YAML-based orchestration ([Implementation →](../../app.startupai.site/backend/CREW_AI.md))
+  - Onboarding Agent → Entrepreneur Brief
+  - Customer Researcher → Customer Profile
+  - Competitor Analyst → Positioning Map
+  - Value Designer → Value Proposition Canvas
+  - Validation Agent → Validation Roadmap
+  - QA Agent → Quality Audit
 - **OpenAI GPT-4:** Primary reasoning model
 - **Anthropic Claude:** Analytical tasks
 - **Google Gemini:** Creative ideation
@@ -165,7 +172,8 @@ StartupAI uses a **marketing-to-product architecture** with clear separation of 
 - [ ] Storage bucket configuration
 - [ ] Authentication provider setup
 - [ ] Next.js application foundation
-- [ ] CrewAI agent development
+- [x] CrewAI agent specification complete ([CREW_AI.md →](../../app.startupai.site/backend/CREW_AI.md))
+- [ ] CrewAI agent implementation (Phase 1-5 checklist)
 - [ ] Core user flow implementation
 
 ### 📅 Upcoming
@@ -195,10 +203,15 @@ StartupAI uses a **marketing-to-product architecture** with clear separation of 
 
 ## 🔗 Related Resources
 
+### Project Documentation
+- **CrewAI Backend:** [Complete Implementation Guide](../../app.startupai.site/backend/CREW_AI.md)
+- **Backend README:** [Quick Start](../../app.startupai.site/backend/README.md)
+
 ### External Links
 - **Supabase Dashboard:** [Project Management](https://supabase.com)
 - **Netlify Dashboard:** [Deployment Status](https://netlify.com)
 - **GitHub Repository:** [Source Code](https://github.com/chriswalker/startupai.site)
+- **CrewAI Official Docs:** [docs.crewai.com](https://docs.crewai.com)
 
 ### Development Tools
 - **Design System:** Tailwind CSS with custom components
