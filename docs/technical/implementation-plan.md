@@ -3,6 +3,7 @@
 **Product:** Evidence-Led Strategy Platform  
 **Stack:** Netlify + Supabase + Vercel AI SDK  
 **Date:** September 2025  
+**Last Updated:** October 1, 2025  
 
 ---
 
@@ -17,10 +18,12 @@
 - Secure authentication handoff between sites
 
 #### Week 1: Dual-Site Setup
-- [x] Supabase project creation and configuration (shared between sites)
-- [x] startupai.site Next.js setup (marketing/conversion focus)
-- [x] app.startupai.site Next.js setup (product functionality)
-- [x] Netlify deployment pipeline configuration
+- [x] Supabase project creation and configuration (shared between sites) ✅ **Complete Oct 1, 2025** - Project: StartupAI (`eqxropalhxjeyvfcoyxg`)
+- [x] startupai.site Next.js setup (marketing/conversion focus) ✅ **Complete**
+- [x] app.startupai.site Next.js setup (product functionality) ✅ **Complete**
+- [x] Netlify deployment pipeline configuration ✅ **Complete**
+
+**📋 Supabase Details:** [Setup Documentation](../../../app.startupai.site/docs/engineering/30-data/supabase-setup.md)
 - [ ] Shared Supabase authentication system
 - [ ] Secure token-based handoff mechanism
 - [ ] Database schema creation and migrations

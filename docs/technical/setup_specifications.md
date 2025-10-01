@@ -55,32 +55,30 @@ Enable development & testing of CrewAI workflows before deployment to Netlify wi
    ├── requirements.txt
    └── package.json
 
-5. **Configure Supabase Project**
+5. **Configure Supabase Project** ✅ **Complete**
 
-   - Create a Supabase project at https://supabase.com
-   - Get your project credentials:
-     - Project URL
-     - Anon Public Key
-     - Service Role Key
-   - Set environment variables:
+   - ✅ Supabase project created: **StartupAI** (`eqxropalhxjeyvfcoyxg`)
+   - ✅ Project credentials configured in environment files
+   - ✅ Environment variables set:
+     - Project URL: `https://eqxropalhxjeyvfcoyxg.supabase.co`
+     - Anon Key: configured in `.env.local`
+     - Service Role Key: configured in `backend/.env`
 
-     ```bash
-     export SUPABASE_URL="https://your-project.supabase.co"
-     export SUPABASE_ANON_KEY="your-anon-key"
-     export SUPABASE_SERVICE_KEY="your-service-key"
-     ```
+   **📋 Setup Details:** [Supabase Configuration](../../../app.startupai.site/docs/engineering/30-data/supabase-setup.md)
 
 6. **Test Local Development**
 
    - Start Supabase locally:
      ```bash
-     npx supabase start
+     pnpm exec supabase start
      ```
    - Test Netlify Functions locally:
      ```bash
      netlify dev
      ```
    - Create a test YAML with 1 agent + 1 task and test via local endpoint.
+
+   **Note:** Use `pnpm` commands (npm to pnpm migration complete)
 
 ---
 
@@ -92,13 +90,15 @@ Deploy CrewAI backend via Netlify Functions + Supabase database + Vercel AI SDK.
 
 ### Production Deployment Checklist
 
-1. **Supabase Project Setup**
+1. **Supabase Project Setup** ✅ **Complete**
 
-   - Create production Supabase project
-   - Configure database schema:
-     - Tables: `clients`, `runs`, `deliverables`, `feedback`
+   - ✅ Production Supabase project: **StartupAI** (`eqxropalhxjeyvfcoyxg`)
+   - ⚠️ Database schema configuration pending:
+     - Tables: `user_profiles`, `projects`, `evidence`, `reports`
      - Row Level Security (RLS) policies
      - Real-time subscriptions for progress tracking
+   
+   **Next:** Implement Drizzle ORM schema (Task 2)
 
 2. **Supabase Database Schema**
 
