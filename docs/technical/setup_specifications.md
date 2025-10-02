@@ -61,10 +61,18 @@ Enable development & testing of CrewAI workflows before deployment to Netlify wi
    - ✅ Project credentials configured in environment files
    - ✅ Environment variables set:
      - Project URL: `https://eqxropalhxjeyvfcoyxg.supabase.co`
-     - Anon Key: configured in `.env.local`
+     - Anon Key: configured in `.env.local` (dev) and `.env.production` (prod)
      - Service Role Key: configured in `backend/.env`
+   - ✅ OAuth Configuration:
+     - GitHub OAuth enabled in Supabase dashboard
+     - Site URL: `https://app-startupai-site.netlify.app`
+     - Redirect URLs configured for localhost and production
 
    **📋 Setup Details:** [Supabase Configuration](../../../app.startupai.site/docs/engineering/30-data/supabase-setup.md)
+   
+   **⚠️ OAuth Setup Requirements:**
+   OAuth requires configuration in **both** code (`.env.production`) AND Supabase dashboard settings.
+   Missing either will cause redirects to fail (e.g., redirecting to localhost in production).
 
 6. **Test Local Development**
 
@@ -191,11 +199,23 @@ Deploy CrewAI backend via Netlify Functions + Supabase database + Vercel AI SDK.
 
 7. **Environment Variables**
 
+   **Marketing Site (startupai.site):**
+   - `.env.local` (development, gitignored):
+     - `NEXT_PUBLIC_SUPABASE_URL`
+     - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+     - `NEXT_PUBLIC_APP_URL=http://localhost:3000`
+   - `.env.production` (production, committed):
+     - `NEXT_PUBLIC_SUPABASE_URL`
+     - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+     - `NEXT_PUBLIC_APP_URL=https://app-startupai-site.netlify.app`
+   - `netlify.toml` (build environment, committed):
+     - All `NEXT_PUBLIC_*` variables duplicated for build-time access
+
+   **Backend/API:**
    - `OPENAI_API_KEY`
    - `ANTHROPIC_API_KEY`
    - `SUPABASE_URL`
-   - `SUPABASE_ANON_KEY`
-   - `SUPABASE_SERVICE_KEY`
+   - `SUPABASE_SERVICE_KEY` (admin access)
    - `VERCEL_AI_SDK_API_KEY`
 
 ---

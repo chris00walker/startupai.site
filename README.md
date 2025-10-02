@@ -129,7 +129,26 @@ This website integrates with the StartupAI Product Platform for user authenticat
 - **OAuth Support**: Google, GitHub, Azure, and email authentication
 - **Magic Links**: Passwordless authentication option
 - **Cross-Site Sessions**: Persistent authentication with automatic refresh
-- **Development Mode**: Simplified for testing (temporary configuration)
+
+### OAuth Configuration (Critical)
+
+OAuth requires configuration in **TWO** locations:
+
+**1. Code Configuration:**
+- **File:** `.env.production` (committed to repository)
+- **Variables:**
+  - `NEXT_PUBLIC_SUPABASE_URL`
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  - `NEXT_PUBLIC_APP_URL` (must be production URL)
+
+**2. Supabase Dashboard Configuration:**
+- **Site URL:** Must be set to `https://app-startupai-site.netlify.app`
+- **Redirect URLs:** Must include:
+  - `http://localhost:3000/**` (development)
+  - `https://app-startupai-site.netlify.app/**` (production)
+  - `https://startupai-site.netlify.app/**` (marketing)
+
+⚠️ **Important:** If OAuth redirects to `localhost:3000` in production, check Supabase dashboard settings
 
 ### Integration with app.startupai.site Platform
 
