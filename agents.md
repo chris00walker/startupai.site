@@ -130,15 +130,24 @@ Create new files in the appropriate folder following existing patterns. Avoid re
 - Use the established 1-6 document sequence for content flow
 
 ### Authentication Considerations
-- **Current State**: Supabase Auth configured for cross-site integration
+- **Current State**: Supabase Auth configured for cross-site integration with GitHub OAuth ✅
 - **Production Requirements**: OAuth providers (Google, GitHub, Azure), magic links, MFA support
 - **Database Integration**: User profiles, sessions, and handoff tracking in Supabase
 - **Integration**: Seamless JWT token handoff to app.startupai.site platform
 - **Security**: Row Level Security (RLS) policies and encrypted token validation
 
+**⚠️ OAuth Configuration Requires TWO Steps:**
+1. **Code**: Environment variables in `.env.production` with production URLs
+2. **Supabase Dashboard**: Site URL and Redirect URLs must match production domains
+
+Missing either causes OAuth to redirect to localhost in production.
+
 ## Environment Variables
-- Use environment variables for all configuration (see `.env.example` if available)
-- **Required Variables**: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, DATABASE_URL
+- Use environment variables for all configuration
+- **Required Variables**:
+  - `.env.local` (development, gitignored): NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, NEXT_PUBLIC_APP_URL=http://localhost:3000
+  - `.env.production` (production, committed): Same variables with NEXT_PUBLIC_APP_URL=https://app-startupai-site.netlify.app
+  - `netlify.toml`: Build environment variables duplicated for build-time access
 - **Database**: DATABASE_URL with Supavisor pooling for serverless compatibility
 - **Authentication**: JWT_SECRET for cross-site token signing
 - **AI Integration**: OPENAI_API_KEY for embeddings generation
