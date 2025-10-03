@@ -1,6 +1,7 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useMemo, useState, useTransition } from "react"
+import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -14,20 +15,26 @@ export function LoginForm({
   const [isLoading, setIsLoading] = useState(false)
   const [isOAuthLoading, setIsOAuthLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [formError, setFormError] = useState<string | null>(null)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [pending, startTransition] = useTransition()
   const supabase = useMemo(() => createClient(), [])
+  const router = useRouter()
 
   const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"
 
-  const redirectToPlatform = () => {
-    window.location.href = `${appUrl}`
-  }
-
   const handleEmailLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setIsLoading(true)
     setError(null)
+    setFormError(null)
+
+    if (!email.trim() || !password.trim()) {
+      setFormError("Enter both email and password to continue.")
+      return
+    }
+
+    setIsLoading(true)
 
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
@@ -47,10 +54,19 @@ export function LoginForm({
         return
       }
 
-      redirectToPlatform()
+      const params = new URLSearchParams({
+        access_token: data.session.access_token,
+        refresh_token: data.session.refresh_token,
+        next: "/dashboard",
+      })
+
+      startTransition(() => {
+        router.push(`${appUrl}/auth/callback?${params.toString()}`)
+      })
     } catch (err) {
       console.error(err)
       setError("Authentication failed. Please try again.")
+    } finally {
       setIsLoading(false)
     }
   }
@@ -117,12 +133,17 @@ export function LoginForm({
             disabled={isLoading || isOAuthLoading}
           />
         </div>
+        {formError && (
+          <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-md p-3">
+            {formError}
+          </div>
+        )}
         {error && (
           <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-md p-3">
             {error}
           </div>
         )}
-        <Button type="submit" className="w-full" disabled={isLoading || isOAuthLoading}>
+        <Button type="submit" className="w-full" disabled={isLoading || isOAuthLoading || pending}>
           {isLoading ? (
             <>
               <svg className="animate-spin -ml-1 mr-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
