@@ -4,8 +4,8 @@
 **System:** StartupAI Evidence-Led Strategy Platform  
 **Author:** AI Assistant  
 **Created:** September 2025  
-**Last Updated:** October 4, 2025, 17:00  
-**Status:** Phase 1 Complete (95%) | Phase 2 In Progress (40%) | Phase 3 Pending Backend  
+**Last Updated:** October 4, 2025, 18:00  
+**Status:** Phase 1 Complete (99%) | Phase 2 In Progress (40%) | Phase 3 Pending Backend | AI Strategy Finalized  
 
 ---
 
@@ -153,18 +153,44 @@ The platform supports three service tiers:
 - ✅ Complete validation UI (hypothesis, evidence, experiments)
 - ✅ Database integration complete: `useProjects` hook queries Supabase directly (Oct 4, 2025)
 - ✅ Mock data removed: Legacy `@/db/queries.ts` superseded by real queries in `@/db/queries/*.ts`
-- ⚠️ Router consolidation decision pending: App Router (4 pages: auth) + Pages Router (16 pages: main app)
+- ✅ **Router architecture VALIDATED (Oct 4, 2025):** Hybrid approach officially recommended by Vercel
+  - App Router: 4 auth pages + AI API routes (future)
+  - Pages Router: 16 main app pages
+  - Decision: KEEP HYBRID (documented in router-consolidation-analysis.md)
 
 ### 2.5 Backend & AI (❌ 0% Complete - CRITICAL BLOCKER)
 
-#### CrewAI Backend
-- ✅ Complete specification (CREW_AI.md)
-- ✅ Dependencies documented (requirements.txt)
-- ✅ Virtual environment configured
+#### AI Framework Strategy (✅ FINALIZED Oct 4, 2025)
+
+**Decision:** Hybrid approach using BOTH CrewAI + Vercel AI SDK
+
+**Architecture Validated by Vercel:**
+- ✅ App Router for AI API routes (streaming support)
+- ✅ Pages Router for main application UI (stability)
+- ✅ Hybrid approach officially recommended by Vercel docs
+
+**CrewAI (Complex Workflows)**
+- Purpose: Multi-agent orchestration for report generation
+- Deployment: Netlify Functions (Python)
+- Status: Specification complete, 0% implemented
+- Priority: CRITICAL - Phase 3 blocker
+
+**Vercel AI SDK (Simple Interactions)**
+- Purpose: Lightweight AI features in UI
+- Integration: React hooks + streaming
+- Status: Not started (Phase 4)
+- Priority: Medium - after CrewAI working
+
+#### CrewAI Backend Status
+- ✅ Complete specification (`app.startupai.site/backend/CREW_AI.md`)
+- ✅ Latest installation docs reviewed (Oct 4, 2025)
+- ✅ CrewAI v0.80+ verified as current version
+- ✅ Dependencies: Python >=3.10 <3.14, pip/uv package manager
 - ❌ Implementation code not started (0%)
-- ❌ No `agents.yaml` or `tasks.yaml`
-- ❌ No `crew.py` or `main.py`
+- ❌ No `config/agents.yaml` or `config/tasks.yaml`
+- ❌ No `src/startupai/crew.py` or `main.py`
 - ❌ Not deployed to Netlify Functions
+- ❌ No Vercel AI SDK integration yet
 
 **Impact:** Blocks all AI features, report generation, and core value delivery
 
@@ -227,11 +253,22 @@ The platform supports three service tiers:
 - **Drizzle Kit 0.31.5** for migrations
 - **@supabase/supabase-js 2.58.0** client
 
-#### Backend (Planned)
+#### Backend (In Progress)
+
+**CrewAI Multi-Agent System:**
 - **CrewAI 0.80+** multi-agent framework (NOT IMPLEMENTED)
-- **Python 3.10+** runtime
-- **FastAPI** for API endpoints
-- **Netlify Functions** for serverless deployment
+- **Python >=3.10 <3.14** runtime (VERIFIED)
+- **LangChain** for LLM integration (CrewAI dependency)
+- **Netlify Functions** for serverless Python deployment
+- **Installation:** `pip install crewai` or `pip install 'crewai[tools]'`
+
+**Vercel AI SDK (Planned Phase 4):**
+- **ai** - Core AI SDK package
+- **@ai-sdk/react** - React hooks (useChat, useCompletion)
+- **@ai-sdk/openai** - OpenAI provider
+- **@ai-sdk/anthropic** - Claude provider
+- **zod** - Schema validation for tools
+- **Installation:** `pnpm add ai @ai-sdk/react @ai-sdk/openai zod`
 
 #### Testing
 - **Jest 30.0.5** for unit/integration tests
@@ -298,7 +335,46 @@ The platform supports three service tiers:
 - **Dimensions:** 1536 (OpenAI text-embedding-ada-002)
 - **Status:** ❌ Not yet implemented
 
-### 3.4 CrewAI Architecture (Planned)
+### 3.4 AI Architecture (Hybrid Strategy - Oct 4, 2025)
+
+#### Framework Roles
+
+**CrewAI - Complex Multi-Agent Workflows**
+- **Purpose:** Orchestrate 6-agent pipeline for strategic reports
+- **Use Cases:** Full business analysis, comprehensive reports, complex research
+- **Deployment:** Netlify Functions (Python backend)
+- **Models:** Hot-swappable via LangChain (OpenAI, Claude, Gemini)
+- **Status:** 0% implemented (CRITICAL BLOCKER)
+
+**Vercel AI SDK - Lightweight UI Interactions**
+- **Purpose:** Simple AI features directly in frontend
+- **Use Cases:** Canvas suggestions, copy optimization, chat helpers
+- **Deployment:** App Router API routes (Next.js)
+- **Models:** Provider-agnostic (openai(), anthropic(), google())
+- **Status:** Not started (Phase 4, after CrewAI working)
+
+#### Integration Pattern
+
+```typescript
+// Vercel AI SDK wraps CrewAI results for streaming
+app/api/ai/generate-report/route.ts
+├─→ Calls CrewAI backend (Netlify Function)
+├─→ CrewAI runs 6-agent workflow
+├─→ Returns structured JSON
+└─→ Vercel AI SDK streams formatted output to UI
+```
+
+#### Model Selection Strategy
+
+| Feature | Primary Model | Fallback | Cost | Use Case |
+|---------|--------------|----------|------|----------|
+| Research Agent | GPT-4 | Claude 3.5 Sonnet | $$$ | Deep analysis |
+| Strategy Agent | GPT-4 Turbo | Claude 3.5 Sonnet | $$ | Fast reasoning |
+| Validation Agent | Claude 3.5 Sonnet | GPT-4 | $$ | Analytical tasks |
+| Canvas Helper (UI) | GPT-4 Turbo | GPT-3.5 Turbo | $ | Quick suggestions |
+| Copy Optimizer (UI) | GPT-3.5 Turbo | Claude Haiku | $ | Simple edits |
+
+### 3.5 CrewAI Architecture (Detailed)
 
 #### 6-Agent Pipeline
 
@@ -406,23 +482,430 @@ The platform supports three service tiers:
 
 ### Phase 4: AI Integration (❌ 0% Complete - CRITICAL)
 
-**Timeline:** Weeks 9-12  
-**Goal:** CrewAI backend implementation
+**Timeline:** Weeks 9-12 (START IMMEDIATELY)  
+**Goal:** CrewAI backend implementation + AI SDK integration
 
 **Status:** **BLOCKS ALL CORE VALUE DELIVERY**
 
-#### Required Steps
-1. [ ] Configure multi-agent YAML (agents.yaml, tasks.yaml)
-2. [ ] Implement crew.py orchestration module
-3. [ ] Create FastAPI entrypoint (main.py)
-4. [ ] Deploy to Netlify Functions
-5. [ ] Integrate with Supabase auth
-6. [ ] Hook frontend canvas/report UI to backend endpoints
-7. [ ] Implement error handling and retry logic
-8. [ ] Add rate limiting and freemium controls
-
-**Estimated Time:** 15-20 hours  
+**Estimated Time:** 20-25 hours total (CrewAI 15-20h + AI SDK 5h)  
 **Priority:** CRITICAL - Phase 3 cannot complete without this
+
+---
+
+#### Part A: CrewAI Backend (15-20 hours) 🚨 START HERE
+
+**Prerequisites:**
+- ✅ Python >=3.10 <3.14 installed
+- ✅ OpenAI API key (or other LLM provider)
+- ✅ Supabase project configured
+- ✅ GitHub repo: chris00walker/app.startupai.site
+
+**Step 1: Environment Setup (30 minutes)**
+
+```bash
+# Navigate to backend directory
+cd /home/chris/app.startupai.site/backend
+
+# Create virtual environment (Python 3.10-3.13)
+python3 -m venv crewai-env
+source crewai-env/bin/activate  # On Windows: crewai-env\Scripts\activate
+
+# Install CrewAI with tools
+pip install 'crewai[tools]'
+
+# Verify installation
+pip list | grep crewai
+
+# Create .env file
+cp .env.example .env
+# Edit .env and add:
+# OPENAI_API_KEY=sk-...
+# SUPABASE_URL=https://eqxropalhxjeyvfcoyxg.supabase.co
+# SUPABASE_SERVICE_ROLE_KEY=eyJ...
+```
+
+**Step 2: Project Structure Creation (20 minutes)**
+
+```bash
+# Create directory structure
+mkdir -p config
+mkdir -p src/startupai
+touch src/startupai/__init__.py
+
+# Create configuration files
+touch config/agents.yaml
+touch config/tasks.yaml
+
+# Create source files
+touch src/startupai/crew.py
+touch src/startupai/main.py
+touch src/startupai/tools.py
+
+# Create Netlify Function
+touch netlify_function.py
+```
+
+**Project Structure:**
+```
+backend/
+├── config/
+│   ├── agents.yaml           # Agent definitions (6 agents)
+│   └── tasks.yaml            # Task definitions (6 tasks)
+├── src/
+│   └── startupai/
+│       ├── __init__.py       # Package init
+│       ├── crew.py           # Crew orchestration
+│       ├── main.py           # CLI entry point
+│       └── tools.py          # Custom tools (Supabase, web search)
+├── netlify_function.py       # Netlify Function wrapper
+├── requirements.txt          # Dependencies
+├── .env                      # Environment variables
+└── README.md                 # Documentation
+```
+
+**Step 3: Configure Agents (2-3 hours)**
+
+Create `config/agents.yaml` based on `CREW_AI.md` specification:
+
+```yaml
+# 6 agents with roles, goals, backstories
+# See: app.startupai.site/backend/CREW_AI.md lines 77-230
+onboarding_agent:
+  role: "Entrepreneur Onboarding Consultant"
+  goal: "Guide founders through structured conversation to collect all inputs"
+  backstory: "Patient consultant who asks the right questions..."
+  
+customer_researcher:
+  role: "Customer Insight Researcher"
+  goal: "Identify detailed customer Jobs, Pains, and Gains"
+  backstory: "Market researcher skilled at extracting insights..."
+
+# ... (4 more agents: competitor_analyst, value_designer, 
+#      validation_strategist, quality_auditor)
+```
+
+**Step 4: Configure Tasks (2-3 hours)**
+
+Create `config/tasks.yaml`:
+
+```yaml
+# 6 sequential tasks matching agents
+# See: CREW_AI.md lines 232-410
+gather_entrepreneur_context:
+  description: "Conduct structured interview with founder..."
+  expected_output: "Entrepreneur Brief (JSON + Markdown)"
+  agent: onboarding_agent
+  
+research_customer_profile:
+  description: "Analyze customer Jobs, Pains, and Gains..."
+  expected_output: "Customer Profile Document"
+  agent: customer_researcher
+
+# ... (4 more tasks)
+```
+
+**Step 5: Implement Crew Orchestration (3-4 hours)**
+
+Create `src/startupai/crew.py`:
+
+```python
+from crewai import Agent, Task, Crew, Process
+from langchain_openai import ChatOpenAI
+import yaml
+
+class StartupAICrew:
+    def __init__(self, project_data: dict):
+        self.project_data = project_data
+        self.llm = ChatOpenAI(model="gpt-4-turbo", temperature=0.7)
+        
+    def load_config(self, filename: str) -> dict:
+        with open(f"config/{filename}", 'r') as f:
+            return yaml.safe_load(f)
+    
+    def create_agents(self) -> list[Agent]:
+        agents_config = self.load_config("agents.yaml")
+        agents = []
+        
+        for agent_name, config in agents_config.items():
+            agent = Agent(
+                role=config['role'],
+                goal=config['goal'],
+                backstory=config['backstory'],
+                llm=self.llm,
+                verbose=True
+            )
+            agents.append(agent)
+        
+        return agents
+    
+    def create_tasks(self, agents: list[Agent]) -> list[Task]:
+        tasks_config = self.load_config("tasks.yaml")
+        # Map tasks to agents and create Task objects
+        # See CREW_AI.md for full implementation
+        pass
+    
+    def kickoff(self) -> dict:
+        agents = self.create_agents()
+        tasks = self.create_tasks(agents)
+        
+        crew = Crew(
+            agents=agents,
+            tasks=tasks,
+            process=Process.sequential,
+            verbose=True
+        )
+        
+        result = crew.kickoff()
+        return result
+```
+
+**Step 6: Create CLI Entry Point (1 hour)**
+
+Create `src/startupai/main.py`:
+
+```python
+import sys
+import json
+from crew import StartupAICrew
+
+def main():
+    # Read project data from stdin or args
+    project_data = json.loads(sys.stdin.read())
+    
+    # Initialize and run crew
+    crew = StartupAICrew(project_data)
+    result = crew.kickoff()
+    
+    # Output results
+    print(json.dumps(result, indent=2))
+
+if __name__ == "__main__":
+    main()
+```
+
+**Step 7: Create Netlify Function (2-3 hours)**
+
+Create `netlify_function.py`:
+
+```python
+import json
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+
+from startupai.crew import StartupAICrew
+
+def handler(event, context):
+    try:
+        # Parse request body
+        body = json.loads(event['body'])
+        project_data = body.get('project_data', {})
+        
+        # Verify authentication (Supabase JWT)
+        auth_header = event['headers'].get('authorization', '')
+        # TODO: Validate JWT token
+        
+        # Run CrewAI workflow
+        crew = StartupAICrew(project_data)
+        result = crew.kickoff()
+        
+        return {
+            'statusCode': 200,
+            'headers': {'Content-Type': 'application/json'},
+            'body': json.dumps({
+                'success': True,
+                'result': result
+            })
+        }
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'body': json.dumps({'error': str(e)})
+        }
+```
+
+**Step 8: Configure Netlify Deployment (1 hour)**
+
+Create `netlify.toml` in backend directory:
+
+```toml
+[build]
+  functions = "."
+  
+[functions]
+  python_version = "3.10"
+  
+[[redirects]]
+  from = "/.netlify/functions/crew-analyze"
+  to = "/.netlify/functions/netlify_function"
+  status = 200
+```
+
+**Step 9: Test Locally (2-3 hours)**
+
+```bash
+# Test crew execution
+cd src/startupai
+python main.py < ../../test_input.json
+
+# Test Netlify Function locally
+netlify dev
+
+# Send test request
+curl -X POST http://localhost:8888/.netlify/functions/crew-analyze \
+  -H "Content-Type: application/json" \
+  -d '{"project_data": {"name": "Test Project"}}'
+```
+
+**Step 10: Deploy to Netlify (1 hour)**
+
+```bash
+# Commit and push
+git add backend/
+git commit -m "feat: implement CrewAI backend with 6-agent workflow"
+git push origin main
+
+# Verify deployment in Netlify dashboard
+# Check function logs for errors
+```
+
+---
+
+#### Part B: Vercel AI SDK Integration (5 hours) - PHASE 4.5
+
+**Prerequisites:**
+- ✅ CrewAI backend deployed and working
+- ✅ App Router structure in place
+
+**Step 1: Install Dependencies (15 minutes)**
+
+```bash
+cd /home/chris/app.startupai.site/frontend
+pnpm add ai @ai-sdk/react @ai-sdk/openai @ai-sdk/anthropic zod
+```
+
+**Step 2: Create AI API Routes (2 hours)**
+
+```bash
+mkdir -p src/app/api/ai
+touch src/app/api/ai/canvas-helper/route.ts
+touch src/app/api/ai/evidence-analyzer/route.ts
+```
+
+Create `src/app/api/ai/canvas-helper/route.ts`:
+
+```typescript
+import { openai } from '@ai-sdk/openai';
+import { streamText, tool } from 'ai';
+import { z } from 'zod';
+
+export const maxDuration = 30;
+
+export async function POST(req: Request) {
+  const { messages, canvasType } = await req.json();
+  
+  const result = streamText({
+    model: openai('gpt-4-turbo'),
+    messages,
+    system: `You are a business strategy expert helping with ${canvasType}...`,
+    tools: {
+      suggestValueProp: tool({
+        description: 'Suggest value propositions based on customer insights',
+        inputSchema: z.object({
+          customerJobs: z.array(z.string()),
+          pains: z.array(z.string()),
+        }),
+        execute: async ({ customerJobs, pains }) => {
+          // AI-powered suggestion logic
+          return { suggestions: ['...'] };
+        },
+      }),
+    },
+  });
+  
+  return result.toUIMessageStreamResponse();
+}
+```
+
+**Step 3: Integrate in Frontend (2 hours)**
+
+Update existing canvas pages to use AI SDK:
+
+```typescript
+// pages/canvas/vpc.tsx
+import { useChat } from '@ai-sdk/react';
+
+export default function ValuePropositionCanvas() {
+  const { messages, sendMessage, isLoading } = useChat({
+    api: '/api/ai/canvas-helper',
+    body: { canvasType: 'value-proposition' }
+  });
+  
+  // Add "AI Suggest" button to canvas
+  // Stream AI suggestions in real-time
+}
+```
+
+**Step 4: Connect CrewAI + AI SDK (1 hour)**
+
+Create wrapper API that calls CrewAI then streams with AI SDK:
+
+```typescript
+// app/api/ai/generate-report/route.ts
+import { streamText } from 'ai';
+import { openai } from '@ai-sdk/openai';
+
+export async function POST(req: Request) {
+  const { projectId } = await req.json();
+  
+  // 1. Call CrewAI backend
+  const crewResponse = await fetch(
+    'https://app-startupai-site.netlify.app/.netlify/functions/crew-analyze',
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ project_id: projectId })
+    }
+  );
+  
+  const crewResult = await crewResponse.json();
+  
+  // 2. Stream formatted output with AI SDK
+  const result = streamText({
+    model: openai('gpt-4'),
+    system: 'Format this business analysis report...',
+    prompt: JSON.stringify(crewResult)
+  });
+  
+  return result.toUIMessageStreamResponse();
+}
+```
+
+---
+
+#### Validation Checklist
+
+**CrewAI Backend:**
+- [ ] All 6 agents configured in YAML
+- [ ] All 6 tasks defined with dependencies
+- [ ] Crew orchestration working locally
+- [ ] Netlify Function deployed successfully
+- [ ] Authentication integrated (Supabase JWT)
+- [ ] Error handling implemented
+- [ ] Logs visible in Netlify dashboard
+
+**Vercel AI SDK:**
+- [ ] Dependencies installed
+- [ ] At least 1 AI API route working
+- [ ] Streaming responses in UI
+- [ ] Integration with CrewAI tested
+- [ ] Model hot-swapping verified
+
+**Integration:**
+- [ ] Frontend can call CrewAI via Netlify Function
+- [ ] AI SDK wraps CrewAI results for streaming
+- [ ] End-to-end workflow tested
+- [ ] Error handling covers both systems
 
 ### Phase 5: Polish & Testing (⚠️ Planning)
 
@@ -516,25 +999,51 @@ The platform supports three service tiers:
 
 ## 8. Next Actions
 
-### Immediate (This Week)
-1. ✅ Consolidate documentation (COMPLETE Oct 4, 2025)
-2. 🔄 Enable Supabase extensions (manual dashboard action)
-3. 🔄 Apply storage buckets migration
-4. 🚨 **START CrewAI backend implementation** (CRITICAL)
+### Immediate (START NOW - Priority Order)
+
+**Priority 1: CrewAI Backend (15-20 hours) 🚨 CRITICAL**
+1. ✅ Review Phase 4 implementation steps above
+2. [ ] Set up Python environment and install CrewAI
+3. [ ] Create project structure (config/, src/startupai/)
+4. [ ] Configure agents.yaml (6 agents from CREW_AI.md)
+5. [ ] Configure tasks.yaml (6 tasks from CREW_AI.md)
+6. [ ] Implement crew.py orchestration
+7. [ ] Create Netlify Function wrapper
+8. [ ] Test locally with sample data
+9. [ ] Deploy to Netlify Functions
+10. [ ] Verify end-to-end workflow
+
+**Reference:** See Phase 4 Part A above for detailed step-by-step instructions
+
+**Priority 2: Frontend Integration (2-3 hours)**
+1. [ ] Connect dashboard to CrewAI backend
+2. [ ] Add "Generate Report" button to project pages
+3. [ ] Show loading states during AI processing
+4. [ ] Display CrewAI results in UI
+5. [ ] Handle errors gracefully
+
+**Priority 3: Vercel AI SDK Setup (5 hours) - AFTER CrewAI WORKS**
+1. [ ] Install AI SDK dependencies (pnpm add ai @ai-sdk/react @ai-sdk/openai)
+2. [ ] Create first AI API route (canvas-helper)
+3. [ ] Integrate useChat hook in one canvas
+4. [ ] Test streaming in UI
+5. [ ] Add AI SDK wrapper for CrewAI results
 
 ### Short-term (Next 2 Weeks)
-1. Complete CrewAI Phase 1-3 (agents, tasks, orchestration)
-2. Deploy backend to Netlify Functions
-3. Replace mock data with database mutations
-4. Implement cross-site JWT handoff
-5. Fix marketing login form authentication
+1. Complete all Phase 4 validation checklist items
+2. Add error handling and retry logic
+3. Implement rate limiting for AI calls
+4. Add usage tracking for freemium tiers
+5. Create user documentation for AI features
+6. End-to-end QA testing
 
 ### Medium-term (Next Month)
-1. Complete CrewAI Phase 4-5 (testing, optimization)
-2. Full UI/DB integration
-3. Vector search implementation
-4. End-to-end testing suite
-5. Beta launch preparation
+1. Optimize CrewAI agent prompts based on results
+2. Add model hot-swapping (OpenAI ↔ Claude ↔ Gemini)
+3. Implement cost optimization strategies
+4. Add more AI SDK features (evidence analysis, hypothesis suggestions)
+5. Performance optimization and caching
+6. Beta launch preparation
 
 ---
 
@@ -547,8 +1056,11 @@ The platform supports three service tiers:
 - **Last Review:** October 4, 2025
 
 ### Change Log
-- **Oct 4, 2025:** Major consolidation - created single source of truth, archived 3 redundant docs
-- **Oct 4, 2025:** Added testing infrastructure, secrets management, build verification status
+- **Oct 4, 2025 18:00:** **AI STRATEGY FINALIZED** - Added comprehensive CrewAI + Vercel AI SDK implementation plan with step-by-step instructions (Phase 4)
+- **Oct 4, 2025 17:00:** Major consolidation - created single source of truth, archived 3 redundant docs
+- **Oct 4, 2025 16:00:** Added testing infrastructure, secrets management, build verification status
+- **Oct 4, 2025 15:00:** Verified database 100% complete, extensions enabled, vector search deployed
+- **Oct 4, 2025 14:00:** Validated hybrid router architecture with Vercel documentation
 - **Oct 2, 2025:** Updated database integration status, trial guardrails
 - **Oct 1, 2025:** Supabase project creation, initial schema deployment
 - **Sept 26, 2025:** pnpm migration completed
