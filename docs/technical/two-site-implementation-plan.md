@@ -147,12 +147,13 @@ The platform supports three service tiers:
 - ❌ Crypto payment integration deferred
 
 #### Product Site (app.startupai.site)
-- ✅ 20 pages (16 Pages Router + 4 App Router)
+- ✅ 20 pages (16 Pages Router + 4 App Router) - Oct 4, 2025
 - ✅ 50+ UI components
 - ✅ 9 canvas tools (160KB code)
 - ✅ Complete validation UI (hypothesis, evidence, experiments)
-- ⚠️ Most components use mock data (need DB integration)
-- ⚠️ Router consolidation recommended (App vs Pages Router)
+- ✅ Database integration complete: `useProjects` hook queries Supabase directly (Oct 4, 2025)
+- ✅ Mock data removed: Legacy `@/db/queries.ts` superseded by real queries in `@/db/queries/*.ts`
+- ⚠️ Router consolidation decision pending: App Router (4 pages: auth) + Pages Router (16 pages: main app)
 
 ### 2.5 Backend & AI (❌ 0% Complete - CRITICAL BLOCKER)
 
