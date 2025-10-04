@@ -761,63 +761,56 @@ if __name__ == "__main__":
     main()
 ```
 
-**Step 7: Create Netlify Function (2-3 hours)**
+**Steps 7-8: Netlify Function Deployment ✅ COMPLETE (October 4, 2025)**
 
-Create `netlify_function.py`:
+Created Netlify serverless function following Netlify best practices.
 
-```python
-import json
-import sys
-import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+**Implementation Details:**
+- ✅ Function created at `/netlify/functions/crew-analyze.py`
+- ✅ Requirements file with all dependencies
+- ✅ Updated `netlify.toml` with function configuration
+- ✅ Friendly API endpoint: `/api/analyze`
+- ✅ Authentication check (JWT validation TODO)
+- ✅ Error handling and validation
+- ✅ Local testing capability
 
-from startupai.crew import StartupAICrew
+**Key Differences from Original Plan:**
+1. **Location**: `netlify/functions/` at root (not `backend/`)
+2. **No CORS headers**: Netlify handles this automatically
+3. **Python 3.10**: Automatic detection by Netlify
+4. **Redirect**: `/api/analyze` → `/.netlify/functions/crew-analyze`
+5. **Dependencies**: Separate `requirements.txt` in functions directory
 
-def handler(event, context):
-    try:
-        # Parse request body
-        body = json.loads(event['body'])
-        project_data = body.get('project_data', {})
-        
-        # Verify authentication (Supabase JWT)
-        auth_header = event['headers'].get('authorization', '')
-        # TODO: Validate JWT token
-        
-        # Run CrewAI workflow
-        crew = StartupAICrew(project_data)
-        result = crew.kickoff()
-        
-        return {
-            'statusCode': 200,
-            'headers': {'Content-Type': 'application/json'},
-            'body': json.dumps({
-                'success': True,
-                'result': result
-            })
-        }
-    except Exception as e:
-        return {
-            'statusCode': 500,
-            'body': json.dumps({'error': str(e)})
-        }
+**Created Files:**
+- `netlify/functions/crew-analyze.py` - Main function handler
+- `netlify/functions/requirements.txt` - Python dependencies
+- `netlify/functions/README.md` - Documentation
+
+**Updated Files:**
+- `netlify.toml` - Added functions config and API redirect
+
+**API Endpoint:**
+```
+POST https://app-startupai-site.netlify.app/api/analyze
+
+Headers:
+  Authorization: Bearer <supabase-jwt>
+  Content-Type: application/json
+
+Body:
+{
+  "strategic_question": "Your question here",
+  "project_id": "uuid",
+  "project_context": "Optional context",
+  "priority_level": "medium"
+}
 ```
 
-**Step 8: Configure Netlify Deployment (1 hour)**
-
-Create `netlify.toml` in backend directory:
-
-```toml
-[build]
-  functions = "."
-  
-[functions]
-  python_version = "3.10"
-  
-[[redirects]]
-  from = "/.netlify/functions/crew-analyze"
-  to = "/.netlify/functions/netlify_function"
-  status = 200
-```
+**Next Steps:**
+- TODO: Implement JWT token validation
+- TODO: Test with real deployment
+- TODO: Add rate limiting
+- TODO: Consider background function for long analyses (15 min timeout)
 
 **Step 9: Test Locally (2-3 hours)**
 
