@@ -96,20 +96,20 @@ The platform supports three service tiers:
 - ✅ TypeScript compilation clean
 - ✅ No build errors or warnings
 
-### 2.2 Database (✅ 90% Complete)
+### 2.2 Database (✅ 100% Complete)
 
 #### Supabase Project
 - ✅ Project created: StartupAI (`eqxropalhxjeyvfcoyxg`)
 - ✅ Region: East US (North Virginia)
 - ✅ Connection pooling: Supavisor configured
-- ⚠️ Extensions pending: pgvector, pg_net, hstore (uuid-ossp active)
+- ✅ Extensions enabled: uuid-ossp v1.1, pgvector v0.8.0, pg_net v0.19.5, hstore v1.8
 
 #### Schema & Migrations
-- ✅ 7 Drizzle migrations deployed
+- ✅ 6 Drizzle migrations deployed (00001-00006)
 - ✅ Core tables: user_profiles, projects, evidence, reports
 - ✅ Row Level Security (RLS) active on all tables
 - ✅ Type-safe query layer complete (Drizzle ORM)
-- ❌ Storage buckets pending (`00003_storage_buckets.sql`)
+- ✅ Storage buckets created: user-uploads, generated-reports, project-assets, public-assets
 
 #### Database Queries
 - ✅ Read-side queries complete (`db/queries/*.ts`)
@@ -324,7 +324,7 @@ The platform supports three service tiers:
 
 ## 4. Implementation Phases
 
-### Phase 1: Foundation (✅ 95% Complete)
+### Phase 1: Foundation (✅ 98% Complete)
 
 **Timeline:** Weeks 1-4  
 **Goal:** Core infrastructure and secure handoff
@@ -343,8 +343,8 @@ The platform supports three service tiers:
 - [x] Build verification (both sites)
 
 #### Pending (Week 3-4)
-- [ ] Enable database extensions (pgvector, pg_net, hstore)
-- [ ] Apply storage buckets migration (`00003_storage_buckets.sql`)
+- [x] Enable database extensions (pgvector, pg_net, hstore) ✅ **Complete (Oct 4, 2025)**
+- [x] Apply storage buckets migration (`00003_storage_buckets.sql`) ✅ **Complete (Oct 3, 2025)**
 - [ ] Implement JWT token generation for cross-site handoff
 - [ ] Implement JWT validation endpoint `/api/auth/handoff`
 - [ ] End-to-end QA of cross-site authentication flow
