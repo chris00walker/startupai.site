@@ -96,7 +96,7 @@ The platform supports three service tiers:
 - ✅ TypeScript compilation clean
 - ✅ No build errors or warnings
 
-### 2.2 Database (✅ 100% Complete)
+### 2.2 Database (✅ 100% Complete - Oct 4, 2025)
 
 #### Supabase Project
 - ✅ Project created: StartupAI (`eqxropalhxjeyvfcoyxg`)
@@ -105,17 +105,18 @@ The platform supports three service tiers:
 - ✅ Extensions enabled: uuid-ossp v1.1, pgvector v0.8.0, pg_net v0.19.5, hstore v1.8
 
 #### Schema & Migrations
-- ✅ 6 Drizzle migrations deployed (00001-00006)
+- ✅ 8 Drizzle migrations deployed (00001-00008)
 - ✅ Core tables: user_profiles, projects, evidence, reports
 - ✅ Row Level Security (RLS) active on all tables
 - ✅ Type-safe query layer complete (Drizzle ORM)
 - ✅ Storage buckets created: user-uploads, generated-reports, project-assets, public-assets
+- ✅ Vector search: HNSW index on evidence.embedding + match_evidence() function
 
 #### Database Queries
 - ✅ Read-side queries complete (`db/queries/*.ts`)
+- ✅ Write-side mutations complete (`createProject`, `updateProject`, `deleteProject`, etc.)
 - ✅ `useProjects` hook working (dashboard connected)
-- ⚠️ Write-side mutations pending (CRUD operations)
-- ❌ Vector search functions not yet created
+- ✅ Vector search function created: `match_evidence()` with HNSW index (Oct 4, 2025)
 
 ### 2.3 Authentication (✅ 90% Complete)
 
