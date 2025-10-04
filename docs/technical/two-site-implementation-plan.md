@@ -812,21 +812,57 @@ Body:
 - TODO: Add rate limiting
 - TODO: Consider background function for long analyses (15 min timeout)
 
-**Step 9: Test Locally (2-3 hours)**
+**Step 9: Test Locally ✅ COMPLETE (October 4, 2025)**
+
+Based on official CrewAI examples (verified via GitHub MCP):
 
 ```bash
-# Test crew execution
-cd src/startupai
-python main.py < ../../test_input.json
+# Test CrewAI crew directly (standard pattern from crewAIInc/crewAI-examples)
+cd /home/chris/app.startupai.site/backend
+source crewai-env/bin/activate
 
-# Test Netlify Function locally
+# Run main.py with standard input
+python src/startupai/main.py \
+  --question "What are key AI trends?" \
+  --project-id "test-uuid-123" \
+  --context "Test analysis" \
+  --verbose
+
+# Or test interactively in Python
+python -c "
+from src.startupai import StartupAICrew
+
+crew = StartupAICrew()
+result = crew.kickoff({
+    'strategic_question': 'Test question',
+    'project_id': 'test-123',
+    'project_context': 'Test'
+})
+print(result)
+"
+
+# Test Netlify Function locally (Python function testing)
+python netlify/functions/crew-analyze.py
+
+# Test with Netlify Dev (full serverless simulation)
 netlify dev
 
-# Send test request
-curl -X POST http://localhost:8888/.netlify/functions/crew-analyze \
+# Then in another terminal:
+curl -X POST http://localhost:8888/api/analyze \
+  -H "Authorization: Bearer test-token" \
   -H "Content-Type: application/json" \
-  -d '{"project_data": {"name": "Test Project"}}'
+  -d '{
+    "strategic_question": "Test question",
+    "project_id": "test-uuid-123",
+    "project_context": "Local test"
+  }'
 ```
+
+**Official CrewAI Testing Pattern** (from crewAIInc/crewAI-examples):
+- Main entry point: `if __name__ == "__main__":`
+- Direct execution: `python main.py` with interactive input or args
+- Crew kickoff: `result = crew.kickoff()` returns results directly
+- No JSON piping required - crew handles structured inputs internally
 
 **Step 10: Deploy to Netlify (1 hour)**
 
