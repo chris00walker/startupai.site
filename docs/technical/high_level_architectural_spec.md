@@ -3,7 +3,7 @@
 **System:** StartupAI – Value Proposition Design & Validation Platform  
 **Author:** CrewAI Assistant  
 **Date:** August 2025  
-**Last Updated:** October 1, 2025  
+**Last Updated:** October 4, 2025  
 
 ---
 
@@ -19,6 +19,7 @@ This document specifies the **high-level architecture** of the StartupAI two-sit
 - **Accessibility Standards:** [WCAG 2.0/2.1/2.2 Compliance](../design/accessibility-standards.md)
 - **🤖 CrewAI Backend:** [Complete Implementation Guide](../../../app.startupai.site/backend/CREW_AI.md)
 - **Backend README:** [Quick Start Guide](../../../app.startupai.site/backend/README.md)  
+- **Operations Status:** [Role-Aware Routing & Env Checklist](../../../app.startupai.site/docs/operations/implementation-status.md)
 
 ---
 
@@ -88,6 +89,7 @@ The platform supports three service tiers:
 
 **Core Responsibilities:**
 - **Secure token validation and user session creation**
+- **Role-aware navigation surfaces (Founder vs Consultant vs Trial) across sidebar, dashboard layout, and landing handoff**
 - Evidence-led strategy platform functionality
 - Hypothesis management and validation workflows
 - AI-powered insights and report generation
@@ -144,6 +146,7 @@ The platform supports three service tiers:
 - Multi-factor authentication (TOTP, SMS)
 - JWT token-based session management
 - Row-Level Security (RLS) policies
+- Role metadata synchronized across `user_profiles` and `auth.app_metadata`
 
 **Development Tools:**
 - pnpm 9.12 for package management

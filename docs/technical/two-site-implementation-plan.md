@@ -3,10 +3,18 @@
 **System:** StartupAI Cross-Site Architecture  
 **Author:** AI Assistant  
 **Date:** September 2025  
-**Last Updated:** October 2, 2025  
-**Status:** Phase 1 Complete (OAuth Working) | Phase 2 In Progress  
+**Last Updated:** October 4, 2025  
+**Status:** Phase 1 Complete (OAuth + Role Routing) | Phase 2 In Progress  
 
 ---
+
+## Related Documentation & Runbooks
+
+- `app.startupai.site/docs/operations/implementation-status.md` — weekly audit of delivery progress and open issues.
+- `app.startupai.site/docs/operations/database-seeding.md` — operative Supabase seeding instructions and troubleshooting.
+- `app.startupai.site/docs/operations/routing-consolidation-plan.md` — decision log for the dual-router clean-up options.
+- `app.startupai.site/docs/engineering/30-data/supabase-setup.md` — system-level Supabase configuration steps.
+- `app.startupai.site/docs/operations/implementation-status.md` — latest role-aware redirect or environment updates.
 
 ## 1. Implementation Overview
 
@@ -35,6 +43,8 @@ This document provides a detailed technical roadmap for implementing the Startup
 
 **Objective:** Establish shared authentication system for both sites
 
+**Operational Runbooks:** Day-to-day instructions for provisioning, seeding, and verifying Supabase now live in `app.startupai.site/docs/operations/database-seeding.md` and `app.startupai.site/docs/engineering/30-data/supabase-setup.md`. This section keeps the architectural intent only.
+
 **Tasks:**
 - [x] Create Supabase project with shared database ✅ **Complete (Oct 1, 2025)** - Project: StartupAI (`eqxropalhxjeyvfcoyxg`)
 - [x] Install and configure Supabase CLI ✅ **Complete**
@@ -48,232 +58,10 @@ This document provides a detailed technical roadmap for implementing the Startup
 - [ ] Implement JWT token signing and validation
 - [ ] Configure Drizzle ORM for type-safe database operations
 
-**📋 Detailed Setup Guide:** [Supabase Setup & Configuration](../../../app.startupai.site/docs/engineering/30-data/supabase-setup.md)
-
-**Database Extensions:**
-```sql
--- Enable required extensions
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-CREATE EXTENSION IF NOT EXISTS "vector" WITH SCHEMA extensions;
-CREATE EXTENSION IF NOT EXISTS "pg_net";
-CREATE EXTENSION IF NOT EXISTS "hstore";
-```
-
-**Database Schema:**
-```sql
--- Enhanced user profiles for cross-site usage
-CREATE TABLE user_profiles (
-  id UUID REFERENCES auth.users(id) PRIMARY KEY,
-  email TEXT NOT NULL,
-  full_name TEXT,
-  company TEXT,
-  role TEXT,
-  subscription_status TEXT DEFAULT 'trial',
-  subscription_tier TEXT DEFAULT 'free',
-  trial_expires_at TIMESTAMP,
-  created_at TIMESTAMP DEFAULT NOW(),
-  updated_at TIMESTAMP DEFAULT NOW()
-);
-
--- Cross-site session tracking
-CREATE TABLE user_sessions (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID REFERENCES auth.users(id),
-  site TEXT NOT NULL, -- 'marketing' or 'product'
-  session_token TEXT NOT NULL,
-  expires_at TIMESTAMP NOT NULL,
-  created_at TIMESTAMP DEFAULT NOW()
-);
-
--- Handoff tracking for analytics
-CREATE TABLE site_handoffs (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID REFERENCES auth.users(id),
-  source_site TEXT NOT NULL,
-  target_site TEXT NOT NULL,
-  handoff_token TEXT NOT NULL,
-  success BOOLEAN DEFAULT FALSE,
-  error_message TEXT,
-  created_at TIMESTAMP DEFAULT NOW()
-);
-
--- Projects and evidence storage
-CREATE TABLE projects (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID REFERENCES auth.users(id),
-  name TEXT NOT NULL,
-  description TEXT,
-  status TEXT DEFAULT 'active',
-  created_at TIMESTAMP DEFAULT NOW(),
-  updated_at TIMESTAMP DEFAULT NOW()
-);
-
-CREATE TABLE evidence (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  project_id UUID REFERENCES projects(id) ON DELETE CASCADE,
-  content TEXT NOT NULL,
-  embedding VECTOR(1536), -- OpenAI text-embedding-3-small
-  source_type TEXT,
-  source_url TEXT,
-  created_at TIMESTAMP DEFAULT NOW()
-);
-
--- AI-generated reports and insights
-CREATE TABLE reports (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  project_id UUID REFERENCES projects(id) ON DELETE CASCADE,
-  report_type TEXT NOT NULL,
-  title TEXT NOT NULL,
-  content JSONB NOT NULL,
-  status TEXT DEFAULT 'draft',
-  generated_at TIMESTAMP DEFAULT NOW()
-);
-
--- Vector search indexes
-CREATE INDEX ON evidence USING hnsw (embedding vector_cosine_ops);
-```
-
-**Security Configuration:**
-```sql
--- Enable RLS on all tables
-ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY;
-ALTER TABLE user_sessions ENABLE ROW LEVEL SECURITY;
-ALTER TABLE site_handoffs ENABLE ROW LEVEL SECURITY;
-ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
-ALTER TABLE evidence ENABLE ROW LEVEL SECURITY;
-ALTER TABLE reports ENABLE ROW LEVEL SECURITY;
-
--- User profile policies
-CREATE POLICY "Users can view own profile" ON user_profiles
-  FOR SELECT USING (auth.uid() = id);
-
-CREATE POLICY "Users can update own profile" ON user_profiles
-  FOR UPDATE USING (auth.uid() = id);
-
--- Project policies
-CREATE POLICY "Users can view own projects" ON projects
-  FOR SELECT USING (auth.uid() = user_id);
-
-CREATE POLICY "Users can create projects" ON projects
-  FOR INSERT WITH CHECK (auth.uid() = user_id);
-
-CREATE POLICY "Users can update own projects" ON projects
-  FOR UPDATE USING (auth.uid() = user_id);
-
--- Evidence policies
-CREATE POLICY "Users can view project evidence" ON evidence
-  FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM projects 
-      WHERE projects.id = evidence.project_id 
-      AND projects.user_id = auth.uid()
-    )
-  );
-
-CREATE POLICY "Users can insert project evidence" ON evidence
-  FOR INSERT WITH CHECK (
-    EXISTS (
-      SELECT 1 FROM projects 
-      WHERE projects.id = evidence.project_id 
-      AND projects.user_id = auth.uid()
-    )
-  );
-
--- Report policies
-CREATE POLICY "Users can view project reports" ON reports
-  FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM projects 
-      WHERE projects.id = reports.project_id 
-      AND projects.user_id = auth.uid()
-    )
-  );
-```
-
-**Drizzle ORM Configuration:**
-```typescript
-// drizzle.config.ts
-import { defineConfig } from 'drizzle-kit';
-
-export default defineConfig({
-  schema: './src/lib/database/schema.ts',
-  out: './drizzle',
-  dialect: 'postgresql',
-  dbCredentials: {
-    url: process.env.DATABASE_URL!,
-  },
-});
-```
-
-```typescript
-// src/lib/database/client.ts
-import { drizzle } from 'drizzle-orm/postgres-js';
-import postgres from 'postgres';
-
-const connectionString = process.env.DATABASE_URL!;
-
-// Disable prefetch for transaction pool mode
-export const client = postgres(connectionString, { prepare: false });
-export const db = drizzle(client);
-```
-
-**Vector Search Functions:**
-```sql
--- Semantic search for evidence
-CREATE OR REPLACE FUNCTION match_evidence (
-  query_embedding VECTOR(1536),
-  project_filter UUID,
-  match_threshold FLOAT DEFAULT 0.78,
-  match_count INT DEFAULT 10
-)
-RETURNS SETOF evidence
-LANGUAGE sql
-AS $$
-  SELECT *
-  FROM evidence
-  WHERE project_id = project_filter
-    AND embedding <=> query_embedding < 1 - match_threshold
-  ORDER BY embedding <=> query_embedding ASC
-  LIMIT least(match_count, 50);
-$$;
-```
-
-**Storage Configuration:**
-```sql
--- Create storage buckets
-INSERT INTO storage.buckets (id, name, public)
-VALUES 
-  ('user-uploads', 'user-uploads', false),
-  ('generated-reports', 'generated-reports', false),
-  ('project-assets', 'project-assets', false),
-  ('public-assets', 'public-assets', true);
-
--- Storage policies
-CREATE POLICY "Users can upload to own folder" ON storage.objects
-  FOR INSERT WITH CHECK (
-    auth.uid()::text = (storage.foldername(name))[1]
-  );
-
-CREATE POLICY "Users can view own files" ON storage.objects
-  FOR SELECT USING (
-    auth.uid()::text = (storage.foldername(name))[1]
-  );
-
-CREATE POLICY "Public assets are viewable" ON storage.objects
-  FOR SELECT USING (bucket_id = 'public-assets');
-```
-
-**Deliverables:**
-- [x] Supabase project configured and deployed ✅ (StartupAI - `eqxropalhxjeyvfcoyxg`)
-- [ ] Database extensions enabled (vector, uuid-ossp, pg_net, hstore) ⚠️ Pending
-- [ ] Authentication flows tested on both domains
-- [ ] Drizzle ORM configured with type-safe schemas
-
-**Status:** 40% complete (Project setup done, schema implementation pending)
-- Vector search functions implemented
-- Storage buckets and policies configured
-- JWT token generation and validation functions
-- Security audit completed
+**Implementation Notes:**
+- Authoritative SQL now ships via `app.startupai.site/supabase/migrations/` (versioned migrations). Consult those files instead of inline snippets.
+- Storage and RLS policies are tracked in migrations and summarized in the weekly audit (`docs/operations/implementation-status.md`).
+- Drizzle configuration lives alongside the codebase (`frontend/src/db/schema/*`).
 
 **📋 Cross-References:**
 - **Business Context:** [MVP Spec - Cross-Site Integration Requirements](../product/mvp-specification.md#03-cross-site-integration-requirements)

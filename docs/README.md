@@ -1,7 +1,7 @@
 # 📚 StartupAI Platform Documentation
 
 **Single Source of Truth for StartupAI Two-Site Architecture**  
-**Last Updated:** October 1, 2025  
+**Last Updated:** October 4, 2025  
 
 ---
 
@@ -16,9 +16,10 @@ StartupAI uses a **marketing-to-product architecture** with clear separation of 
 
 **New to the project?** Start here:
 1. [MVP Specification](product/mvp-specification.md) - Two-site architecture and features
-2. [High-Level Architecture](technical/high_level_architectural_spec.md) - System design
-3. [Implementation Plan](technical/two-site-implementation-plan.md) - 12-week roadmap
+2. [High-Level Architecture](technical/high_level_architectural_spec.md) - System design with role-aware routing overview (Updated Oct 2025)
+3. [Implementation Plan](technical/two-site-implementation-plan.md) - 12-week roadmap with current progress markers
 4. [User Stories](product/user-stories.md) - Cross-site user requirements
+5. [Supabase Environment Checklist](../app.startupai.site/docs/operations/implementation-status.md#environment-readiness) - Required keys for both deployments
 
 ---
 
