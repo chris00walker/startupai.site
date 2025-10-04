@@ -516,12 +516,19 @@ pip install 'crewai[tools]'
 # Verify installation
 pip list | grep crewai
 
-# Create .env file
-cp .env.example .env
-# Edit .env and add:
-# OPENAI_API_KEY=sk-...
-# SUPABASE_URL=https://eqxropalhxjeyvfcoyxg.supabase.co
-# SUPABASE_SERVICE_ROLE_KEY=eyJ...
+# Configure environment variables (uses centralized secrets)
+# Secrets are automatically loaded from ~/.secrets/startupai via direnv
+# Verify the following variables are set in ~/.secrets/startupai/backend.env:
+# - OPENAI_API_KEY=sk-...
+# - SUPABASE_URL=https://eqxropalhxjeyvfcoyxg.supabase.co
+# - SUPABASE_SERVICE_ROLE_KEY=eyJ...
+
+# Check if direnv is working
+direnv status
+
+# Verify environment variables are loaded
+echo $OPENAI_API_KEY  # Should show sk-... (masked)
+echo $SUPABASE_URL    # Should show Supabase URL
 ```
 
 **Step 2: Project Structure Creation (20 minutes)**
@@ -559,8 +566,12 @@ backend/
 │       └── tools.py          # Custom tools (Supabase, web search)
 ├── netlify_function.py       # Netlify Function wrapper
 ├── requirements.txt          # Dependencies
-├── .env                      # Environment variables
+├── .envrc                    # direnv config (loads from ~/.secrets/startupai)
+├── .env.example              # Environment variable template
 └── README.md                 # Documentation
+
+Note: Environment variables are centrally managed in ~/.secrets/startupai/
+      and auto-loaded via direnv. No local .env files needed.
 ```
 
 **Step 3: Configure Agents (2-3 hours)**
