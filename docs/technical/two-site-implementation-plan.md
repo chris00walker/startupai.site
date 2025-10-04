@@ -487,12 +487,16 @@ app/api/ai/generate-report/route.ts
 
 **Status:** **BLOCKS ALL CORE VALUE DELIVERY**
 
-**Estimated Time:** 20-25 hours total (CrewAI 15-20h + AI SDK 5h)  
-**Priority:** CRITICAL - Phase 3 cannot complete without this
+**Estimated Time:** 17-20 hours total (CrewAI 12-15h + AI SDK 5h)  
+**Priority:** CRITICAL - Phase 3 cannot complete without this  
+**Note:** Infrastructure scaffolding already complete (venv, requirements, Netlify wrapper)
 
 ---
 
-#### Part A: CrewAI Backend (15-20 hours) 🚨 START HERE
+#### Part A: CrewAI Backend (12-15 hours) 🚨 START HERE
+
+**Time Savings:** Infrastructure already in place (venv, requirements.txt, Netlify wrapper)
+reduces implementation time from 15-20 hours to 12-15 hours.
 
 **Prerequisites:**
 - ✅ Python >=3.10 <3.14 installed
@@ -500,21 +504,21 @@ app/api/ai/generate-report/route.ts
 - ✅ Supabase project configured
 - ✅ GitHub repo: chris00walker/app.startupai.site
 
-**Step 1: Environment Setup (30 minutes)**
+**Step 1: Environment Setup (10 minutes)**
 
 ```bash
 # Navigate to backend directory
 cd /home/chris/app.startupai.site/backend
 
-# Create virtual environment (Python 3.10-3.13)
-python3 -m venv crewai-env
+# Activate existing virtual environment (already created)
 source crewai-env/bin/activate  # On Windows: crewai-env\Scripts\activate
 
-# Install CrewAI with tools
-pip install 'crewai[tools]'
+# Install CrewAI dependencies from requirements.txt
+pip install -r requirements.txt
 
 # Verify installation
 pip list | grep crewai
+# Should show: crewai>=0.80.0 and related packages
 
 # Configure environment variables (uses centralized secrets)
 # Secrets are automatically loaded from ~/.secrets/startupai via direnv
@@ -531,48 +535,77 @@ echo $OPENAI_API_KEY  # Should show sk-... (masked)
 echo $SUPABASE_URL    # Should show Supabase URL
 ```
 
-**Step 2: Project Structure Creation (20 minutes)**
+**Step 2: Verify Existing Project Structure (5 minutes)**
+
+The backend directory already has significant scaffolding in place:
 
 ```bash
-# Create directory structure
+# Navigate to backend and verify structure
+cd /home/chris/app.startupai.site/backend
+ls -la
+
+# You should see:
+# ✅ crewai-env/          - Virtual environment (already created)
+# ✅ netlify/functions/   - Netlify Function wrapper (already exists)
+# ✅ requirements.txt     - Dependencies defined (crewai[tools]>=0.80.0)
+# ✅ .env.example         - Environment template
+# ✅ README.md            - Backend documentation
+# ✅ CREW_AI.md           - Complete implementation guide
+```
+
+**What You Need to Create:**
+
+```bash
+# Only create the missing implementation files
 mkdir -p config
 mkdir -p src/startupai
-touch src/startupai/__init__.py
 
-# Create configuration files
+# Create configuration files (YAML)
 touch config/agents.yaml
 touch config/tasks.yaml
 
-# Create source files
+# Create source files (Python)
+touch src/startupai/__init__.py
 touch src/startupai/crew.py
 touch src/startupai/main.py
 touch src/startupai/tools.py
 
-# Create Netlify Function
-touch netlify_function.py
+# Create direnv config (if not already present)
+touch .envrc
 ```
 
-**Project Structure:**
+**Current Project Structure:**
 ```
 backend/
-├── config/
-│   ├── agents.yaml           # Agent definitions (6 agents)
-│   └── tasks.yaml            # Task definitions (6 tasks)
-├── src/
-│   └── startupai/
-│       ├── __init__.py       # Package init
-│       ├── crew.py           # Crew orchestration
-│       ├── main.py           # CLI entry point
-│       └── tools.py          # Custom tools (Supabase, web search)
-├── netlify_function.py       # Netlify Function wrapper
-├── requirements.txt          # Dependencies
-├── .envrc                    # direnv config (loads from ~/.secrets/startupai)
-├── .env.example              # Environment variable template
-└── README.md                 # Documentation
+├── config/                   # TO CREATE
+│   ├── agents.yaml          # TO CREATE - Agent definitions (6 agents)
+│   └── tasks.yaml           # TO CREATE - Task definitions (6 tasks)
+├── src/                      # TO CREATE
+│   └── startupai/           # TO CREATE
+│       ├── __init__.py      # TO CREATE - Package init
+│       ├── crew.py          # TO CREATE - Crew orchestration
+│       ├── main.py          # TO CREATE - CLI entry point
+│       └── tools.py         # TO CREATE - Custom tools (Supabase, web search)
+├── netlify/                  # ✅ EXISTS
+│   └── functions/
+│       └── crewai-analyze.py  # ✅ EXISTS - Netlify Function wrapper
+├── crewai-env/              # ✅ EXISTS - Virtual environment
+├── requirements.txt         # ✅ EXISTS - Dependencies ready
+├── .env                     # ⚠️ EXISTS (will migrate to centralized)
+├── .env.example             # ✅ EXISTS - Environment template
+├── .envrc                   # TO CREATE - direnv config
+├── CREW_AI.md               # ✅ EXISTS - Implementation guide
+└── README.md                # ✅ EXISTS - Backend documentation
 
-Note: Environment variables are centrally managed in ~/.secrets/startupai/
-      and auto-loaded via direnv. No local .env files needed.
+Status:
+✅ Infrastructure: Ready (venv, dependencies, Netlify wrapper)
+❌ Implementation: Not started (config YAML, Python source files)
+⚠️  Secrets: Needs migration from .env to ~/.secrets/startupai/
 ```
+
+**Note on Secrets Migration:**
+The backend currently has a `.env` file. You should migrate these secrets to
+`~/.secrets/startupai/backend.env` and use direnv for auto-loading.
 
 **Step 3: Configure Agents (2-3 hours)**
 
