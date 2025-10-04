@@ -1,566 +1,561 @@
-# 🔧 Two-Site Implementation Plan
+# 🔧 StartupAI Implementation Guide
+## Two-Site Architecture - Master Reference
 
-**System:** StartupAI Cross-Site Architecture  
+**System:** StartupAI Evidence-Led Strategy Platform  
 **Author:** AI Assistant  
-**Date:** September 2025  
-**Last Updated:** October 4, 2025  
-**Status:** Phase 1 (Shared Auth Foundations) Substantially Complete | Phase 2 (Marketing Optimization) In Progress  
+**Created:** September 2025  
+**Last Updated:** October 4, 2025, 17:00  
+**Status:** Phase 1 Complete (95%) | Phase 2 In Progress (40%) | Phase 3 Pending Backend  
 
 ---
 
-## Related Documentation & Runbooks
+## 📋 Document Purpose
 
-- `app.startupai.site/docs/operations/implementation-status.md` — weekly audit of delivery progress and open issues.
-- `app.startupai.site/docs/operations/database-seeding.md` — operative Supabase seeding instructions and troubleshooting.
-- `app.startupai.site/docs/operations/routing-consolidation-plan.md` — decision log for the dual-router clean-up options.
-- `app.startupai.site/docs/engineering/30-data/supabase-setup.md` — system-level Supabase configuration steps.
-- `app.startupai.site/docs/operations/implementation-status.md` — latest role-aware redirect or environment updates.
+**This is the SINGLE SOURCE OF TRUTH for StartupAI development.**
 
-## 1. Implementation Overview
+All implementation details, architecture decisions, status tracking, and next steps are documented here. No other technical documents should duplicate this content.
 
-This document provides a detailed technical roadmap for implementing the StartupAI two-site architecture, where **startupai.site** (marketing) converts prospects to customers and **app.startupai.site** (product) delivers core value and creates advocates.
-
-**📋 Related Documentation:**
-- **Business Requirements:** [MVP Specification](../product/mvp-specification.md)
-- **System Architecture:** [High-Level Architecture Specification](high_level_architectural_spec.md)
-- **User Requirements:** [User Stories](../product/user-stories.md)
-- **UX Design:** [User Experience Design](../design/user-experience.md)
-- **Accessibility Standards:** [WCAG 2.0/2.1/2.2 Compliance](../design/accessibility-standards.md)
-- **🤖 CrewAI Backend Implementation:** [Complete Guide](../../../app.startupai.site/backend/CREW_AI.md)
-
-### Key Implementation Phases
-1. **Phase 1:** Shared Authentication Infrastructure (Week 1-2)
-2. **Phase 2:** Marketing Site Optimization (Week 3-4)
-3. **Phase 3:** Product Platform Core Features (Week 5-8)
-4. **Phase 4:** Cross-Site Integration & Handoff (Week 9-10)
-5. **Phase 5:** Analytics & Optimization (Week 11-12)
+### Related Operational Documents
+- `app.startupai.site/docs/operations/implementation-status.md` — Weekly progress audit
+- `app.startupai.site/docs/engineering/50-testing/README.md` — Testing infrastructure
+- `app.startupai.site/docs/engineering/30-data/supabase-setup.md` — Database setup
+- `app.startupai.site/docs/operations/database-seeding.md` — Database seeding guide
+- `app.startupai.site/backend/CREW_AI.md` — CrewAI implementation spec
 
 ---
 
-## 2. Phase 1: Shared Authentication Infrastructure
+## 1. System Overview
 
-### 2.1 Supabase Setup & Configuration
+### 1.1 Architecture Philosophy
 
-**Objective:** Establish shared authentication system for both sites
+StartupAI uses a **two-site architecture** with clear separation of concerns:
 
-**Operational Runbooks:** Day-to-day instructions for provisioning, seeding, and verifying Supabase now live in `app.startupai.site/docs/operations/database-seeding.md` and `app.startupai.site/docs/engineering/30-data/supabase-setup.md`. This section keeps the architectural intent only.
+**startupai.site (The Promise)**
+- Purpose: Convert prospects to customers
+- Focus: Marketing, pricing, signup, payment processing
+- Success Metric: Conversion rate optimization
+- Status: ✅ 95% Complete
 
-**Tasks:**
-- [x] Create Supabase project with shared database ✅ **Complete (Oct 1, 2025)** - Project: StartupAI (`eqxropalhxjeyvfcoyxg`)
-- [x] Install and configure Supabase CLI ✅ **Complete**
-- [x] Environment configuration ✅ **Complete** - backend/.env, frontend/.env.local
-- [ ] Enable required database extensions (vector, uuid-ossp, pg_net, hstore) ⚠️ **Pending manual enable**
-- [ ] Configure authentication providers (Google, GitHub, Azure, Email)
-- [ ] Set up magic link authentication for passwordless login
-- [ ] Configure connection pooling (Supavisor in transaction mode)
-- [ ] Set up Row Level Security (RLS) policies
-- [ ] Create user management tables and functions
-- [ ] Implement JWT token signing and validation
-- [ ] Configure Drizzle ORM for type-safe database operations
+**app.startupai.site (The Product)**
+- Purpose: Satisfy customers and create advocates
+- Focus: Core platform functionality, value delivery
+- Success Metric: User satisfaction, retention, advocacy
+- Status: ⚠️ 50-55% Complete (UI strong, backend missing)
 
-**Implementation Notes:**
-- Authoritative SQL now ships via `app.startupai.site/supabase/migrations/` (versioned migrations). Consult those files instead of inline snippets.
-- Storage and RLS policies are tracked in migrations and summarized in the weekly audit (`docs/operations/implementation-status.md`).
-- Drizzle configuration lives alongside the codebase (`frontend/src/db/schema/*`).
+**Key Benefits:**
+- Each site excels at one thing
+- Marketing optimized for conversion
+- Product optimized for user experience
+- Clean separation prevents feature creep
+- Independent optimization and scaling
 
-**📋 Cross-References:**
-- **Business Context:** [MVP Spec - Cross-Site Integration Requirements](../product/mvp-specification.md#03-cross-site-integration-requirements)
-- **Architecture Details:** [High-Level Architecture - Security Architecture](high_level_architectural_spec.md#6-security-architecture)
-- **User Stories:** [Epic 0: Cross-Site Authentication](../product/user-stories.md#epic-0-cross-site-authentication--handoff)
+### 1.2 Service Tiers
+
+The platform supports three service tiers:
+
+1. **Strategy Sprint** — One-time run of 6-agent CrewAI workflow
+2. **Founder Platform** — Subscription with multiple runs and historical tracking
+3. **Agency Co-Pilot** — Multi-tenant white-label for agencies serving multiple clients
 
 ---
 
-## 3. Phase 2: Marketing Site Optimization (startupai.site)
+## 2. Current Implementation Status
 
-### 3.1 Conversion-Focused Frontend
+### 2.1 Infrastructure (✅ 95% Complete)
 
-**Objective:** Build high-converting marketing site with seamless handoff capability
+#### Deployment
+- ✅ Both sites live on Netlify with GitHub auto-deployment
+- ✅ startupai-site: https://startupai-site.netlify.app
+- ✅ app-startupai-site: https://app-startupai-site.netlify.app
+- ✅ CI/CD pipeline working (tested Oct 4, 2025)
 
-**Current Status (Oct 4, 2025):**
-- ✅ 19 marketing pages deployed with ShadCN component library
-- ✅ Supabase email/password + GitHub OAuth live in `LoginForm` and `SignupForm`
-- ⚠️ JWT-based handoff still needs end-to-end QA and validation
-- ❌ Crypto payment integration deferred until after core AI backend delivery
+#### Package Management
+- ✅ Migrated from npm to pnpm (Sept 26, 2025)
+- ✅ Package manager pinned: pnpm@9.12.1
+- ✅ Workspace configuration for app.startupai.site
+- ✅ All scripts updated (dev, build, test)
 
-**Key Components (Updated Backlog):**
+#### Secrets Management (✅ Complete Oct 4, 2025)
+- ✅ Centralized secrets: `~/.secrets/startupai`
+- ✅ direnv auto-loading via `.envrc` files
+- ✅ 50+ environment variables configured
+- ✅ `.env.example` templates in both repos
+- ✅ Git security verified (no secrets committed)
+- ✅ Secure permissions (700/600) applied
+
+#### Testing Infrastructure (✅ Complete Oct 4, 2025)
+- ✅ Jest: 162 tests passing across 12 suites
+- ✅ Playwright: 45 E2E tests (15 scenarios × 3 browsers)
+- ✅ `playwright.config.ts` configured
+- ✅ Test separation: `*.test.*` (Jest) vs `*.spec.ts` (Playwright)
+- ✅ Documentation: `docs/engineering/50-testing/README.md`
+
+#### Build Verification (✅ Complete Oct 4, 2025)
+- ✅ Marketing site: All 21 routes building successfully
+- ✅ Product site: All pages and API routes building
+- ✅ TypeScript compilation clean
+- ✅ No build errors or warnings
+
+### 2.2 Database (✅ 90% Complete)
+
+#### Supabase Project
+- ✅ Project created: StartupAI (`eqxropalhxjeyvfcoyxg`)
+- ✅ Region: East US (North Virginia)
+- ✅ Connection pooling: Supavisor configured
+- ⚠️ Extensions pending: pgvector, pg_net, hstore (uuid-ossp active)
+
+#### Schema & Migrations
+- ✅ 7 Drizzle migrations deployed
+- ✅ Core tables: user_profiles, projects, evidence, reports
+- ✅ Row Level Security (RLS) active on all tables
+- ✅ Type-safe query layer complete (Drizzle ORM)
+- ❌ Storage buckets pending (`00003_storage_buckets.sql`)
+
+#### Database Queries
+- ✅ Read-side queries complete (`db/queries/*.ts`)
+- ✅ `useProjects` hook working (dashboard connected)
+- ⚠️ Write-side mutations pending (CRUD operations)
+- ❌ Vector search functions not yet created
+
+### 2.3 Authentication (✅ 90% Complete)
+
+#### Marketing Site (startupai.site)
+- ✅ Supabase Auth client configured
+- ✅ Email/password authentication working
+- ✅ GitHub OAuth working
+- ⚠️ Login form temporarily bypassed for testing (Memory `e1108b2c`)
+- ❌ JWT token generation for handoff not implemented
+
+#### Product Site (app.startupai.site)
+- ✅ OAuth callback route (`/auth/callback`) working
+- ✅ GitHub OAuth operational
+- ✅ Role-aware routing (founder vs consultant)
+- ⚠️ JWT handoff endpoint not implemented
+- ❌ Cross-site session bridging pending
+
+### 2.4 Frontend UI (✅ 65% Complete)
+
+#### Marketing Site (startupai.site)
+- ✅ 19 pages deployed and functional
+- ✅ 60+ ShadCN UI components
+- ✅ Responsive design complete
+- ✅ Forms with validation (React Hook Form + Zod)
+- ❌ A/B testing framework not started
+- ❌ Conversion analytics not implemented
+- ❌ Crypto payment integration deferred
+
+#### Product Site (app.startupai.site)
+- ✅ 20 pages (16 Pages Router + 4 App Router)
+- ✅ 50+ UI components
+- ✅ 9 canvas tools (160KB code)
+- ✅ Complete validation UI (hypothesis, evidence, experiments)
+- ⚠️ Most components use mock data (need DB integration)
+- ⚠️ Router consolidation recommended (App vs Pages Router)
+
+### 2.5 Backend & AI (❌ 0% Complete - CRITICAL BLOCKER)
+
+#### CrewAI Backend
+- ✅ Complete specification (CREW_AI.md)
+- ✅ Dependencies documented (requirements.txt)
+- ✅ Virtual environment configured
+- ❌ Implementation code not started (0%)
+- ❌ No `agents.yaml` or `tasks.yaml`
+- ❌ No `crew.py` or `main.py`
+- ❌ Not deployed to Netlify Functions
+
+**Impact:** Blocks all AI features, report generation, and core value delivery
+
+---
+
+## 3. Technical Architecture
+
+### 3.1 Marketing Site Stack (startupai.site)
+
+#### Frontend Framework
+- **Next.js 15.5.3** with App Router
+- **React 19.1.1** with Server Components
+- **TypeScript 5.8.3** for type safety
+- **Turbopack** for fast development builds
+
+#### Styling & UI
+- **Tailwind CSS 3.4.17** for styling
+- **shadcn/ui** component library (Radix UI primitives)
+- **Lucide React** for icons
+- **Framer Motion** for animations
+
+#### Forms & Validation
+- **React Hook Form 7.62** for form management
+- **Zod 4.0** for schema validation
+- **Formspree** for contact forms
+
+#### Database & Auth
+- **Supabase PostgreSQL** (shared service)
+- **Drizzle ORM** for type-safe operations
+- **Supabase Auth** for JWT tokens
+- **@supabase/ssr 0.7.0** for server-side auth
+
+#### Development Tools
+- **pnpm 9.12.1** package manager
+- **ESLint + Prettier** for code quality
+- **Supabase CLI 2.47.2** for DB management
+
+#### Deployment
+- **Netlify** (https://startupai-site.netlify.app)
+- **GitHub** auto-deployment on push
+- **Node.js >=18.0.0** runtime
+
+### 3.2 Product Site Stack (app.startupai.site)
+
+#### Frontend Framework
+- **Next.js 15.5.4** (hybrid App + Pages Router)
+- **React 19.1.1** with hooks and context
+- **TypeScript 5.8.3** with strict mode
+- **@tanstack/react-query 5.83.0** for data fetching
+
+#### UI Components
+- **shadcn/ui** with Radix UI primitives
+- **Tailwind CSS 3.4.17** for styling
+- **Lucide React 0.534.0** for icons
+- **date-fns 4.1.0** for date handling
+
+#### Database & ORM
+- **Supabase PostgreSQL** with connection pooling
+- **Drizzle ORM** for type-safe queries
+- **Drizzle Kit 0.31.5** for migrations
+- **@supabase/supabase-js 2.58.0** client
+
+#### Backend (Planned)
+- **CrewAI 0.80+** multi-agent framework (NOT IMPLEMENTED)
+- **Python 3.10+** runtime
+- **FastAPI** for API endpoints
+- **Netlify Functions** for serverless deployment
+
+#### Testing
+- **Jest 30.0.5** for unit/integration tests
+- **Playwright 1.54.1** for E2E tests
+- **Testing Library** for React components
+- **MSW 2.0.0** for API mocking
+
+#### Deployment
+- **Netlify** (https://app-startupai-site.netlify.app)
+- **Build:** `cd frontend && pnpm build`
+- **Publish:** `frontend/out/`
+
+### 3.3 Database Architecture
+
+#### Core Tables
+
+**user_profiles**
+- `id` (uuid, PK)
+- `email` (text, unique)
+- `full_name` (text)
+- `role` (enum: founder, consultant, trial)
+- `plan_status` (enum: trial, active, cancelled)
+- `subscription_status` (jsonb)
+- RLS: Users can only access their own profile
+
+**projects**
+- `id` (uuid, PK)
+- `user_id` (uuid, FK → user_profiles)
+- `name` (text)
+- `description` (text)
+- `stage` (enum: idea, validation, scaling)
+- `portfolio_metrics` (jsonb)
+- `created_at`, `updated_at` (timestamp)
+- RLS: Users can only access their own projects
+
+**evidence**
+- `id` (uuid, PK)
+- `project_id` (uuid, FK → projects)
+- `title` (text)
+- `summary` (text)
+- `full_text` (text)
+- `fit_type` (enum: Desirability, Feasibility, Viability)
+- `strength` (enum: strong, medium, weak)
+- `embedding` (vector(1536)) for semantic search
+- RLS: Access via project ownership
+
+**reports**
+- `id` (uuid, PK)
+- `project_id` (uuid, FK → projects)
+- `report_type` (text)
+- `content` (jsonb)
+- `generated_at` (timestamp)
+- RLS: Access via project ownership
+
+#### Extensions (Pending Manual Enable)
+- **pgvector** - Vector similarity search
+- **uuid-ossp** - UUID generation (✅ ENABLED)
+- **pg_net** - HTTP requests from database
+- **hstore** - Key-value storage
+
+#### Vector Search
+- **Function:** `match_evidence(query_embedding, match_threshold, match_count)`
+- **Index:** HNSW on `evidence.embedding`
+- **Dimensions:** 1536 (OpenAI text-embedding-ada-002)
+- **Status:** ❌ Not yet implemented
+
+### 3.4 CrewAI Architecture (Planned)
+
+#### 6-Agent Pipeline
+
+1. **Research Agent** - Market analysis and competitor research
+2. **Strategy Agent** - Value proposition and positioning
+3. **Validation Agent** - Hypothesis and evidence evaluation
+4. **Experiment Agent** - Test design and success metrics
+5. **Canvas Agent** - Business model canvas generation
+6. **Report Agent** - Comprehensive report compilation
+
+#### Agent Communication
+- **Tools:** Web search, database queries, document analysis
+- **Memory:** Shared context across agents
+- **Orchestration:** Sequential task execution
+- **Output:** Structured JSON for UI consumption
+
+#### Integration Points
+- **Input:** User project data, canvas inputs, evidence
+- **Processing:** CrewAI agent workflow
+- **Output:** Generated reports, recommendations, canvas updates
+- **Storage:** Supabase (reports table, JSONB content)
+
+**Status:** Specification complete, implementation 0%
+
+---
+
+## 4. Implementation Phases
+
+### Phase 1: Foundation (✅ 95% Complete)
+
+**Timeline:** Weeks 1-4  
+**Goal:** Core infrastructure and secure handoff
+
+#### Completed (Week 1-2)
+- [x] Supabase project creation (`eqxropalhxjeyvfcoyxg`)
+- [x] Dual-site Netlify deployment
+- [x] pnpm migration complete
+- [x] GitHub CI/CD pipeline
+- [x] Basic authentication (email/password + GitHub)
+- [x] Database schema and migrations (7 deployed)
+- [x] Row Level Security policies
+- [x] Type-safe query layer (Drizzle ORM)
+- [x] Secrets management (direnv + ~/.secrets/startupai)
+- [x] Testing infrastructure (Jest + Playwright)
+- [x] Build verification (both sites)
+
+#### Pending (Week 3-4)
+- [ ] Enable database extensions (pgvector, pg_net, hstore)
+- [ ] Apply storage buckets migration (`00003_storage_buckets.sql`)
+- [ ] Implement JWT token generation for cross-site handoff
+- [ ] Implement JWT validation endpoint `/api/auth/handoff`
+- [ ] End-to-end QA of cross-site authentication flow
+- [ ] Fix marketing login form (remove testing bypass)
+
+### Phase 2: Marketing Site Optimization (⚠️ 40% Complete)
+
+**Timeline:** Weeks 3-6  
+**Goal:** High-converting marketing site with seamless handoff
+
+#### Completed
+- [x] 19 marketing pages deployed
+- [x] 60+ ShadCN UI components
+- [x] Responsive design
+- [x] Forms with validation
+- [x] Basic authentication flows
+
+#### In Progress
 - [ ] Landing page A/B testing framework
 - [ ] Conversion analytics + funnel instrumentation
-- [ ] Cryptocurrency payment integration (MetaMask, WalletConnect)
-- [ ] Social proof and testimonials CMS
 - [ ] JWT token generation + telemetry for handoff
+- [ ] Social proof and testimonials CMS
 
-**Technology Stack:**
-```typescript
-// Next.js 15 with App Router
-// Tailwind CSS for styling
-// Framer Motion for animations
-// React Hook Form for forms
-// Supabase client for auth
-// Drizzle ORM for database operations
-// pnpm for package management (✅ Migrated)
-```
+#### Deferred
+- [ ] Cryptocurrency payment integration (MetaMask, WalletConnect)
+- [ ] Bitcoin, Ethereum, USDC support
 
-**Critical Features:**
-```typescript
-// Crypto payment integration
-interface PaymentConfig {
-  supportedCurrencies: ['BTC', 'ETH', 'USDC'];
-  walletProviders: ['MetaMask', 'WalletConnect'];
-  paymentProcessor: 'custom'; // or third-party service
-}
+### Phase 3: Product Platform Core (⚠️ 30% Complete)
 
-// Token generation for handoff
-async function generateHandoffToken(userId: string): Promise<string> {
-  const payload = {
-    userId,
-    subscriptionStatus: await getUserSubscription(userId),
-    permissions: await getUserPermissions(userId),
-    exp: Math.floor(Date.now() / 1000) + (5 * 60), // 5 minutes
-    iat: Math.floor(Date.now() / 1000),
-    iss: 'startupai.site',
-    aud: 'app.startupai.site'
-  };
-  
-  return jwt.sign(payload, process.env.JWT_SECRET);
-}
-```
+**Timeline:** Weeks 5-8  
+**Goal:** Complete MVP user flows
 
-**Performance Requirements:**
-- Landing page load time: <2 seconds
-- Signup completion: <90 seconds
-- Payment processing: <10 minutes
-- Token generation: <1 second
+#### Completed
+- [x] 20 pages UI (16 Pages + 4 App Router)
+- [x] 50+ UI components
+- [x] 9 canvas tools (160KB code)
+- [x] Complete validation UI (hypothesis, evidence, experiments)
+- [x] Dashboard connected to Supabase (`useProjects`)
+- [x] OAuth callback and role-aware routing
 
-### 3.2 Analytics & Conversion Tracking
+#### Blocked by Backend (CrewAI)
+- [ ] Project creation with persistence
+- [ ] Hypothesis management CRUD
+- [ ] Evidence collection and storage
+- [ ] Experiment planning and tracking
+- [ ] AI-powered report generation
+- [ ] Canvas auto-completion with AI
+- [ ] Gate progression logic
 
-**Implementation:**
-```typescript
-// Cross-site analytics setup
-interface AnalyticsEvent {
-  event: string;
-  userId?: string;
-  sessionId: string;
-  site: 'marketing' | 'product';
-  properties: Record<string, any>;
-  timestamp: Date;
-}
+#### Blocked by Database
+- [ ] Replace mock data with Drizzle mutations
+- [ ] File upload and storage integration
+- [ ] Vector search implementation
+- [ ] Real-time collaboration features
 
-// Track conversion funnel
-const trackConversionEvent = (event: string, properties: any) => {
-  analytics.track({
-    event,
-    userId: user?.id,
-    sessionId: getSessionId(),
-    site: 'marketing',
-    properties,
-    timestamp: new Date()
-  });
-};
-```
+### Phase 4: AI Integration (❌ 0% Complete - CRITICAL)
+
+**Timeline:** Weeks 9-12  
+**Goal:** CrewAI backend implementation
+
+**Status:** **BLOCKS ALL CORE VALUE DELIVERY**
+
+#### Required Steps
+1. [ ] Configure multi-agent YAML (agents.yaml, tasks.yaml)
+2. [ ] Implement crew.py orchestration module
+3. [ ] Create FastAPI entrypoint (main.py)
+4. [ ] Deploy to Netlify Functions
+5. [ ] Integrate with Supabase auth
+6. [ ] Hook frontend canvas/report UI to backend endpoints
+7. [ ] Implement error handling and retry logic
+8. [ ] Add rate limiting and freemium controls
+
+**Estimated Time:** 15-20 hours  
+**Priority:** CRITICAL - Phase 3 cannot complete without this
+
+### Phase 5: Polish & Testing (⚠️ Planning)
+
+**Timeline:** Weeks 13-16  
+**Goal:** Production-ready MVP
+
+#### Planned
+- [ ] Comprehensive end-to-end testing
+- [ ] Performance optimization
+- [ ] Security audit
+- [ ] Accessibility compliance verification
+- [ ] User acceptance testing (UAT)
+- [ ] Documentation completion
+- [ ] Beta launch preparation
 
 ---
 
-## 4. Phase 3: Product Platform Core Features (app.startupai.site)
+## 5. Critical Blockers
 
-### 4.1 Authentication Receiver & User Onboarding
+### 🚨 Priority 1: CrewAI Backend (Blocks Phase 3-5)
 
-**Objective:** Seamlessly receive users from marketing site and deliver immediate value
+**Issue:** 0% implementation despite complete specification  
+**Impact:** No AI features, no core value delivery, no MVP completion  
+**Estimate:** 15-20 hours  
+**Action:** Follow `app.startupai.site/backend/CREW_AI.md` Phase 1-5
 
-**Current Status:**
-- ✅ Supabase OAuth callback (`/auth/callback`) operational with GitHub + email/password tokens
-- ✅ Portfolio dashboard consumes Supabase data via `useProjects`
-- ⚠️ JWT handoff endpoint not implemented (awaiting CrewAI/backend sprint)
-- ⚠️ Onboarding wizard and project creation rely on mock data
+### ⚠️ Priority 2: Database Integration (Blocks Phase 3)
 
-**Key Components (Next Steps):**
-- [ ] Implement `/api/auth/handoff` endpoint with JWT validation + Supabase session bridging
-- [ ] Persist onboarding state using Drizzle mutations
-- [ ] Replace mock data in onboarding wizard with Supabase-backed flows
+**Issue:** Most UI components use mock data  
+**Impact:** No data persistence, no real user functionality  
+**Estimate:** 10-15 hours  
+**Action:** Replace mock imports with Drizzle mutations
 
-**Token Validation Implementation:**
-```typescript
-// API route: /api/auth/handoff
-export async function POST(request: Request) {
-  try {
-    const { token } = await request.json();
-    
-    // Validate JWT token
-    const payload = jwt.verify(token, process.env.JWT_SECRET) as HandoffPayload;
-    
-    // Verify token audience and issuer
-    if (payload.aud !== 'app.startupai.site' || payload.iss !== 'startupai.site') {
-      throw new Error('Invalid token audience or issuer');
-    }
-    
-    // Create or update user session
-    const session = await createUserSession(payload.userId, payload);
-    
-    // Track successful handoff
-    await trackHandoffSuccess(payload.userId, token);
-    
-    return NextResponse.json({ 
-      success: true, 
-      sessionId: session.id,
-      redirectTo: '/onboarding'
-    });
-    
-  } catch (error) {
-    await trackHandoffError(error, token);
-    return NextResponse.json({ 
-      success: false, 
-      error: 'Authentication failed' 
-    }, { status: 401 });
-  }
-}
-```
+### ⚠️ Priority 3: Storage & Extensions (Blocks File Upload)
 
-### 4.2 Evidence-Led Validation Workspace
+**Issue:** Extensions disabled, storage migration not applied  
+**Impact:** No file uploads, no vector search, no attachments  
+**Estimate:** 2-4 hours  
+**Action:** Enable extensions in dashboard, apply migration 00003
 
-**Current Status:**
-- ✅ UI shells for hypothesis, evidence, experiments, and dashboards delivered
-- ⚠️ Supabase read hooks available; write mutations pending
-- ❌ AI insights, gate progression, and reporting blocked on CrewAI + storage
+### ⚠️ Priority 4: Cross-Site Handoff (Blocks Marketing → Product)
 
-**Near-Term Tasks:**
-- [ ] Wire Hypothesis/Evidence/Experiment components to Supabase mutations
-- [ ] Introduce optimistic updates + validation feedback
-- [ ] Prepare data contracts for CrewAI report generation
-
-**CrewAI Integration:**
-
-**📖 Complete Implementation Guide:** [CREW_AI.md](../../../app.startupai.site/backend/CREW_AI.md)
-
-```typescript
-// AI workflow orchestration (frontend integration)
-interface CrewAIConfig {
-  agents: [
-    'onboarding-agent',      // → Entrepreneur Brief
-    'customer-researcher',   // → Customer Profile
-    'competitor-analyst',    // → Positioning Map
-    'value-designer',        // → Value Proposition Canvas
-    'validation-agent',      // → Validation Roadmap
-    'qa-agent'              // → Quality Audit
-  ];
-  models: {
-    primary: 'gpt-4',
-    fallback: 'claude-3',
-    creative: 'gemini-pro'
-  };
-  process: 'sequential';  // v1.0 (concurrent planned for v1.1)
-}
-
-// Vercel AI SDK integration for hot-swappable models
-const aiService = new AIService({
-  providers: ['openai', 'anthropic', 'google'],
-  fallbackStrategy: 'round-robin',
-  responseTimeout: 30000
-});
-```
+**Issue:** JWT handoff not implemented  
+**Impact:** Users can't seamlessly transition from marketing to product  
+**Estimate:** 4-6 hours  
+**Action:** Implement `/api/auth/handoff` and token generation
 
 ---
 
-## 5. Phase 4: Cross-Site Integration & Handoff
+## 6. Success Metrics
 
-### 5.1 Seamless User Transition
-
-**Implementation Steps:**
-1. **Marketing Site Handoff Trigger:**
-   ```typescript
-   // After successful payment/signup
-   const handleSuccessfulConversion = async (userId: string) => {
-     // Generate secure handoff token
-     const token = await generateHandoffToken(userId);
-     
-     // Preload product platform assets
-     await preloadPlatformAssets();
-     
-     // Redirect with token
-     window.location.href = `${PRODUCT_PLATFORM_URL}/auth/handoff?token=${token}`;
-   };
-   ```
-
-2. **Product Platform Token Reception:**
-   ```typescript
-   // /auth/handoff page component
-   export default function HandoffPage() {
-     const [status, setStatus] = useState('validating');
-     
-     useEffect(() => {
-       const validateAndRedirect = async () => {
-         try {
-           const token = new URLSearchParams(window.location.search).get('token');
-           const result = await fetch('/api/auth/handoff', {
-             method: 'POST',
-             body: JSON.stringify({ token })
-           });
-           
-           if (result.ok) {
-             setStatus('success');
-             router.push('/onboarding');
-           } else {
-             setStatus('error');
-           }
-         } catch (error) {
-           setStatus('error');
-         }
-       };
-       
-       validateAndRedirect();
-     }, []);
-     
-     return <HandoffStatusComponent status={status} />;
-   }
-   ```
-
-### 5.2 Error Handling & Recovery
-
-**Robust Error Handling:**
-```typescript
-// Comprehensive error recovery
-const handleHandoffError = (error: HandoffError) => {
-  switch (error.type) {
-    case 'TOKEN_EXPIRED':
-      return {
-        message: 'Your session has expired. Redirecting you back to sign in.',
-        action: 'redirect',
-        url: `${MARKETING_SITE_URL}/login?reason=expired`
-      };
-      
-    case 'TOKEN_INVALID':
-      logSecurityIncident(error);
-      return {
-        message: 'Authentication failed. Please try signing in again.',
-        action: 'redirect',
-        url: `${MARKETING_SITE_URL}/login?reason=invalid`
-      };
-      
-    case 'USER_NOT_FOUND':
-      return {
-        message: 'Setting up your account...',
-        action: 'create_user',
-        data: error.tokenPayload
-      };
-      
-    default:
-      return {
-        message: 'Something went wrong. Our team has been notified.',
-        action: 'show_support',
-        supportEmail: 'support@startupai.site'
-      };
-  }
-};
-```
-
----
-
-## 6. Phase 5: Analytics & Optimization
-
-### 6.1 Cross-Site Analytics Implementation
-
-**Unified Analytics Pipeline:**
-```typescript
-// Shared analytics service
-class CrossSiteAnalytics {
-  private analytics: Analytics;
-  
-  constructor() {
-    this.analytics = new Analytics({
-      writeKey: process.env.SEGMENT_WRITE_KEY,
-      plugins: [
-        new CrossSiteTrackingPlugin(),
-        new ConversionAttributionPlugin()
-      ]
-    });
-  }
-  
-  trackUserJourney(event: AnalyticsEvent) {
-    // Add cross-site context
-    const enrichedEvent = {
-      ...event,
-      context: {
-        site: getCurrentSite(),
-        userAgent: navigator.userAgent,
-        referrer: document.referrer,
-        sessionId: getSessionId(),
-        userId: getCurrentUserId()
-      }
-    };
-    
-    this.analytics.track(enrichedEvent);
-  }
-  
-  trackConversion(conversionData: ConversionEvent) {
-    // Attribution across sites
-    this.analytics.track('Conversion', {
-      ...conversionData,
-      attribution: {
-        firstTouch: getFirstTouchAttribution(),
-        lastTouch: getLastTouchAttribution(),
-        journey: getUserJourneySteps()
-      }
-    });
-  }
-}
-```
-
-### 6.2 Performance Monitoring
-
-**Real-Time Performance Tracking:**
-```typescript
-// Performance monitoring setup
-const performanceMonitor = {
-  // Marketing site metrics
-  trackLandingPageLoad: () => {
-    const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-    analytics.track('Landing Page Load', { loadTime });
-  },
-  
-  // Handoff performance
-  trackHandoffDuration: (startTime: number) => {
-    const duration = Date.now() - startTime;
-    analytics.track('Handoff Duration', { duration });
-  },
-  
-  // Product platform metrics
-  trackTimeToFirstValue: (userId: string, startTime: number) => {
-    const timeToValue = Date.now() - startTime;
-    analytics.track('Time to First Value', { userId, timeToValue });
-  }
-};
-```
-
----
-
-## 7. Deployment Strategy
-
-### 7.1 Infrastructure Setup
-
-**Site Deployments:**
-- **startupai.site:** Netlify deployment (✅ Live at https://startupai-site.netlify.app)
-- **app.startupai.site:** Netlify deployment (✅ Live at https://app-startupai-site.netlify.app)
-- **Shared Services:** Supabase (database, auth, storage, vector search)
-- **AI Services:** Netlify Functions for CrewAI workflows
-- **Package Management:** pnpm across all repositories (✅ Migrated)
-
-**Environment Configuration:**
-```bash
-# Marketing Site (.env.local)
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-DATABASE_URL=postgresql://postgres:[password]@db.[project].supabase.co:6543/postgres?workaround=supabase-pooler.vercel
-JWT_SECRET=your-jwt-secret
-PRODUCT_PLATFORM_URL=https://app-startupai-site.netlify.app
-
-# Product Platform (.env.local)
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-DATABASE_URL=postgresql://postgres:[password]@db.[project].supabase.co:6543/postgres?workaround=supabase-pooler.vercel
-JWT_SECRET=your-jwt-secret
-MARKETING_SITE_URL=https://startupai-site.netlify.app
-CREWAI_API_URL=https://your-netlify-functions.netlify.app
-OPENAI_API_KEY=your-openai-key
-```
-
-### 7.2 Testing Strategy
-
-**Cross-Site Testing:**
-```typescript
-// E2E testing with Playwright
-describe('Cross-Site User Journey', () => {
-  test('complete signup to platform flow', async ({ page }) => {
-    // Start on marketing site
-    await page.goto('https://startupai.site');
-    
-    // Complete signup
-    await page.click('[data-testid="signup-button"]');
-    await page.fill('[data-testid="email-input"]', 'test@example.com');
-    await page.click('[data-testid="submit-signup"]');
-    
-    // Verify handoff to product platform
-    await expect(page).toHaveURL(/platform\.startupai\.site/);
-    await expect(page.locator('[data-testid="welcome-message"]')).toBeVisible();
-    
-    // Verify user session is active
-    const userProfile = await page.locator('[data-testid="user-profile"]');
-    await expect(userProfile).toContainText('test@example.com');
-  });
-});
-```
-
----
-
-## 8. Success Metrics & KPIs
-
-### 8.1 Technical Metrics
+### Technical Metrics
 - **Handoff Success Rate:** >99.5%
 - **Token Validation Time:** <2 seconds
 - **Cross-Site Load Time:** <3 seconds total
-- **Error Recovery Rate:** >95%
+- **Test Coverage:** >90%
+- **Build Success Rate:** 100% (✅ Currently achieved)
 
-### 8.2 Business Metrics
-- **Conversion Rate:** Marketing site to platform >15%
+### Business Metrics
+- **Conversion Rate:** Marketing → Product >15%
 - **Time to First Value:** <10 minutes
 - **User Retention:** >70% at 30 days
-- **Support Ticket Reduction:** >50% through better UX
+- **Net Promoter Score:** >50
 
-### 8.3 User Experience Metrics
+### User Experience Metrics
 - **Handoff Satisfaction:** >4.5/5
 - **Onboarding Completion:** >90%
 - **Feature Adoption:** >80% for core features
-- **Net Promoter Score:** >50
 
 ---
 
-## 9. Risk Mitigation
+## 7. Risk Mitigation
 
-### 9.1 Technical Risks
-- **Token Security:** Regular security audits, short expiration times
-- **Site Availability:** Multi-region deployment, CDN distribution
-- **Data Consistency:** Real-time sync monitoring, conflict resolution
-- **Performance Degradation:** Load testing, performance budgets
+### Technical Risks
+- **Token Security:** Regular audits, short expiration (current: no JWT implementation)
+- **Site Availability:** Multi-region deployment, CDN (✅ Netlify CDN active)
+- **Data Consistency:** Real-time sync monitoring (pending backend)
+- **Performance:** Load testing, performance budgets (✅ Build verification in place)
 
-### 9.2 Business Risks
-- **Conversion Drop:** A/B testing, gradual rollout
-- **User Confusion:** Clear messaging, comprehensive testing
-- **Support Overhead:** Self-service options, detailed error messages
+### Business Risks
+- **Conversion Drop:** A/B testing framework (pending)
+- **User Confusion:** Clear messaging, comprehensive testing (✅ E2E tests ready)
+- **Support Overhead:** Self-service options, error messages (pending backend)
+
+### Development Risks
+- **Backend Delay:** CrewAI implementation critical path (CURRENT BLOCKER)
+- **Technical Debt:** Router consolidation recommended (low priority)
+- **Documentation Drift:** **SOLVED** - Single source of truth established (Oct 4, 2025)
 
 ---
 
-## 10. Next Steps
+## 8. Next Actions
 
-### Immediate Actions (Week 1)
-1. ✅ Install Supabase CLI and configure development environment **Complete**
-2. ✅ Set up Supabase project (StartupAI - `eqxropalhxjeyvfcoyxg`) **Complete**
-3. ⚠️ Enable database extensions (vector, uuid-ossp, pg_net, hstore) **Manual step required**
-4. 🔄 Configure Drizzle ORM with type-safe schemas **Next task**
-5. Implement basic JWT token generation and validation
+### Immediate (This Week)
+1. ✅ Consolidate documentation (COMPLETE Oct 4, 2025)
+2. 🔄 Enable Supabase extensions (manual dashboard action)
+3. 🔄 Apply storage buckets migration
+4. 🚨 **START CrewAI backend implementation** (CRITICAL)
 
-**Current Progress:** Tasks 1-2 complete, Task 3 pending manual Dashboard action
-6. Set up vector search functions and storage buckets
-7. Set up cross-site analytics tracking
+### Short-term (Next 2 Weeks)
+1. Complete CrewAI Phase 1-3 (agents, tasks, orchestration)
+2. Deploy backend to Netlify Functions
+3. Replace mock data with database mutations
+4. Implement cross-site JWT handoff
+5. Fix marketing login form authentication
 
-### Short-term Goals (Month 1)
-1. Complete Phase 1-3 implementation
-2. Conduct security audit of handoff mechanism
-3. Implement comprehensive error handling
-4. Begin user testing with beta group
+### Medium-term (Next Month)
+1. Complete CrewAI Phase 4-5 (testing, optimization)
+2. Full UI/DB integration
+3. Vector search implementation
+4. End-to-end testing suite
+5. Beta launch preparation
 
-### 5.1 Vercel AI SDK + CrewAI Integration
+---
 
-**Objective:** Deliver AI-assisted validation via multi-agent CrewAI pipeline
+## 9. Documentation Maintenance
 
-**Current Status (Oct 4, 2025):**
-- ✅ CREW_AI.md specification and phased rollout documented
-- ✅ Backend virtual environment + requirements captured
-- ❌ YAML configs, orchestration modules, and Netlify deployment not started
+### This Document
+- **Update Frequency:** After every major milestone
+- **Owner:** Development team
+- **Review Cycle:** Weekly during active development
+- **Last Review:** October 4, 2025
 
-**Implementation Steps:**
-- Configure multi-agent YAML (6-agent pipeline)
-- Implement `crew.py` orchestration module + FastAPI entrypoint
-- Deploy Netlify Python function and integrate with Supabase auth
-- Integrate Vercel AI SDK for multi-provider LLM fallback
-- Hook frontend canvas/report UI to backend endpoints
+### Change Log
+- **Oct 4, 2025:** Major consolidation - created single source of truth, archived 3 redundant docs
+- **Oct 4, 2025:** Added testing infrastructure, secrets management, build verification status
+- **Oct 2, 2025:** Updated database integration status, trial guardrails
+- **Oct 1, 2025:** Supabase project creation, initial schema deployment
+- **Sept 26, 2025:** pnpm migration completed
 
-This implementation plan provides a comprehensive roadmap for building the StartupAI two-site architecture, with CrewAI delivery and data persistence called out as the remaining critical path items.
+### Related Documents
+- Operational guides: `app.startupai.site/docs/operations/`
+- Engineering specs: `app.startupai.site/docs/engineering/`
+- Backend spec: `app.startupai.site/backend/CREW_AI.md`
+
+---
+
+**END OF MASTER IMPLEMENTATION GUIDE**
+
+*This is the definitive reference for StartupAI development. All other technical documents have been archived or deleted. For operational procedures, see cross-referenced documents above.*

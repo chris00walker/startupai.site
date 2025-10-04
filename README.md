@@ -213,9 +213,8 @@ The project includes a comprehensive design system with:
 3. Test cross-site handoff to product platform
 
 **Related Documentation:**
-- [Comprehensive Codebase Audit](docs/CODEBASE_AUDIT_2025-10-04.md)
-- [High-Level Architecture](docs/technical/high_level_architectural_spec.md)
-- [Two-Site Implementation Plan](docs/technical/two-site-implementation-plan.md)
+- [Master Implementation Guide](docs/technical/two-site-implementation-plan.md) - Single source of truth for all technical details
+- [Weekly Implementation Status](../app.startupai.site/docs/operations/implementation-status.md) - Current progress tracking
 
 ## License
 

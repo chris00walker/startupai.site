@@ -3,11 +3,13 @@
 **Last Updated:** October 4, 2025 (Comprehensive Audit Complete)  
 **Status:** All documentation current and aligned with codebase
 
-## 📋 Latest Updates
+## 📋 Latest Updates (October 4, 2025)
 
-- **[Codebase Audit (Oct 4, 2025)](CODEBASE_AUDIT_2025-10-04.md)** - Comprehensive audit of both repositories
-- **[Audit Summary](../app.startupai.site/docs/AUDIT_SUMMARY.md)** - Documentation update summary
-- **Overall Status:** Infrastructure 80%, UI 60-70%, Backend 0% (CrewAI not implemented)
+- **Documentation Consolidation Complete** - Single source of truth established
+- **Testing Infrastructure** - Jest (162 tests) + Playwright (45 tests) configured
+- **Secrets Management** - Centralized with direnv auto-loading
+- **Build Verification** - Both sites building successfully
+- **Overall Status:** Infrastructure 95%, UI 65%, Backend 0% (CrewAI blocks Phase 3)
 
 ## 🏗️ Architecture Overview
 
@@ -52,17 +54,17 @@ This documentation is organized into four main categories:
 |----------|---------|------------------|---------|
 | [PRD.md](product/PRD.md) | Master Product Requirements | → [MVP Spec](product/mvp-specification.md) | ✅ Complete |
 | [mvp-specification.md](product/mvp-specification.md) | **🏗️ Two-Site Architecture & Features** | → [Implementation Plan](technical/two-site-implementation-plan.md), [User Stories](product/user-stories.md) | ✅ Complete |
-| [user-stories.md](product/user-stories.md) | Cross-site authentication & user flows | → [UX Design](design/user-experience.md), [Architecture](technical/high_level_architectural_spec.md) | ✅ Complete |
+| [user-stories.md](product/user-stories.md) | Cross-site authentication & user flows | → [UX Design](design/user-experience.md), [Master Guide](technical/two-site-implementation-plan.md) | ✅ Complete |
 
 ### 🛠️ Technical Documentation
-**Two-site architecture, setup, and implementation**
+**Single source of truth for all technical details**
 
-| Document | Purpose | Cross-References | Status |
-|----------|---------|------------------|---------|
-| [high_level_architectural_spec.md](technical/high_level_architectural_spec.md) | **🏗️ Two-Site System Architecture** | → [Implementation Plan](technical/two-site-implementation-plan.md), [MVP Spec](product/mvp-specification.md), [CrewAI Backend](../../app.startupai.site/backend/CREW_AI.md) | ✅ Complete |
-| [two-site-implementation-plan.md](technical/two-site-implementation-plan.md) | **📋 12-Week Development Roadmap** | → [Architecture](technical/high_level_architectural_spec.md), [User Stories](product/user-stories.md), [CrewAI Backend](../../app.startupai.site/backend/CREW_AI.md) | ✅ Complete |
-| [setup_specifications.md](technical/setup_specifications.md) | Development environment setup | → [Implementation Plan](technical/two-site-implementation-plan.md) | ✅ Complete |
-| **[CrewAI Backend](../../app.startupai.site/backend/CREW_AI.md)** | **🤖 6-Agent AI Implementation** | → [Architecture](technical/high_level_architectural_spec.md), [README](../../app.startupai.site/backend/README.md) | ✅ Complete |
+| Document | Purpose | Status |
+|----------|---------|--------|
+| **[two-site-implementation-plan.md](technical/two-site-implementation-plan.md)** | **📋 MASTER IMPLEMENTATION GUIDE** - Architecture, roadmap, status tracking, and all technical details | ✅ Complete |
+| **[CrewAI Backend](../../app.startupai.site/backend/CREW_AI.md)** | **🤖 6-Agent AI Implementation Spec** | ✅ Spec Complete |
+
+**Note:** Old documents (high_level_architectural_spec.md, implementation-plan.md, setup_specifications.md) archived to `.archive/2025-10-04/` after consolidation.
 
 ### 🎨 Design Specifications
 **Cross-site user experience and interface design**
@@ -72,7 +74,7 @@ This documentation is organized into four main categories:
 | [user-experience.md](design/user-experience.md) | **🎨 Cross-Site User Journey & UX** | → [User Stories](product/user-stories.md), [MVP Spec](product/mvp-specification.md), [Accessibility Standards](design/accessibility-standards.md) | ✅ Complete |
 | [ui-specifications.md](design/ui-specifications.md) | UI components and design system | → [UX Design](design/user-experience.md), [Accessibility Standards](design/accessibility-standards.md) | ✅ Complete |
 | [design-system.md](design/design-system.md) | Shared design system across sites | → [UI Specs](design/ui-specifications.md), [Accessibility Standards](design/accessibility-standards.md) | ✅ Complete |
-| [accessibility-standards.md](design/accessibility-standards.md) | **♿ WCAG 2.0/2.1/2.2 AA Compliance & AI Accessibility** | → [UX Design](design/user-experience.md), [Design System](design/design-system.md), [Architecture](technical/high_level_architectural_spec.md) | ✅ Complete |
+| [accessibility-standards.md](design/accessibility-standards.md) | **♿ WCAG 2.0/2.1/2.2 AA Compliance & AI Accessibility** | → [UX Design](design/user-experience.md), [Design System](design/design-system.md), [Master Guide](technical/two-site-implementation-plan.md) | ✅ Complete |
 
 ---
 
@@ -86,21 +88,19 @@ This documentation is organized into four main categories:
 3. [User Stories](product/user-stories.md) → [UX Design](design/user-experience.md)
 
 **Phase 2: Architecture & Design**
-1. [MVP Specification](product/mvp-specification.md) → [High-Level Architecture](technical/high_level_architectural_spec.md)
-2. [High-Level Architecture](technical/high_level_architectural_spec.md) → [Implementation Plan](technical/two-site-implementation-plan.md)
-3. [UX Design](design/user-experience.md) → [UI Specifications](design/ui-specifications.md)
+1. [MVP Specification](product/mvp-specification.md) → [Master Implementation Guide](technical/two-site-implementation-plan.md)
+2. [UX Design](design/user-experience.md) → [UI Specifications](design/ui-specifications.md)
 
 **Phase 3: Implementation**
-1. [Implementation Plan](technical/two-site-implementation-plan.md) → [Setup Specifications](technical/setup_specifications.md)
-2. [User Stories](product/user-stories.md) → [Implementation Plan](technical/two-site-implementation-plan.md)
+1. [Master Implementation Guide](technical/two-site-implementation-plan.md) - Single source for architecture, roadmap, and status
+2. [User Stories](product/user-stories.md) → [Implementation Guide](technical/two-site-implementation-plan.md)
 
 ### 🎯 By Feature Area
 
 **Cross-Site Authentication**
 - [MVP Spec - Cross-Site Integration](product/mvp-specification.md#03-cross-site-integration-requirements)
 - [User Stories - Epic 0](product/user-stories.md#epic-0-cross-site-authentication--handoff)
-- [Architecture - Security](technical/high_level_architectural_spec.md#6-security-architecture)
-- [Implementation - Phase 1](technical/two-site-implementation-plan.md#2-phase-1-shared-authentication-infrastructure)
+- [Master Guide - Phase 1](technical/two-site-implementation-plan.md#4-implementation-phases)
 
 **User Experience**
 - [UX Design - Cross-Site Journey](design/user-experience.md#cross-site-user-journey-map)
@@ -108,9 +108,7 @@ This documentation is organized into four main categories:
 - [MVP Spec - Marketing & Product Sites](product/mvp-specification.md#0-two-site-architecture-marketing--product-flow)
 
 **Technical Implementation**
-- [Architecture Overview](technical/high_level_architectural_spec.md)
-- [12-Week Roadmap](technical/two-site-implementation-plan.md)
-- [Development Setup](technical/setup_specifications.md)
+- [Master Implementation Guide](technical/two-site-implementation-plan.md) - Architecture, roadmap, status, and setup in one document
 
 ---
 
