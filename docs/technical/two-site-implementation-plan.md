@@ -4,7 +4,7 @@
 **Author:** AI Assistant  
 **Date:** September 2025  
 **Last Updated:** October 4, 2025  
-**Status:** Phase 1 Complete (OAuth + Role Routing) | Phase 2 In Progress  
+**Status:** Phase 1 (Shared Auth Foundations) Substantially Complete | Phase 2 (Marketing Optimization) In Progress  
 
 ---
 
@@ -76,12 +76,18 @@ This document provides a detailed technical roadmap for implementing the Startup
 
 **Objective:** Build high-converting marketing site with seamless handoff capability
 
-**Key Components:**
-- [ ] Landing page with A/B testing capability
-- [ ] Streamlined signup flow (email + basic info only)
-- [ ] Cryptocurrency payment integration
-- [ ] Social proof and testimonials system
-- [ ] JWT token generation for handoff
+**Current Status (Oct 4, 2025):**
+- ✅ 19 marketing pages deployed with ShadCN component library
+- ✅ Supabase email/password + GitHub OAuth live in `LoginForm` and `SignupForm`
+- ⚠️ JWT-based handoff still needs end-to-end QA and validation
+- ❌ Crypto payment integration deferred until after core AI backend delivery
+
+**Key Components (Updated Backlog):**
+- [ ] Landing page A/B testing framework
+- [ ] Conversion analytics + funnel instrumentation
+- [ ] Cryptocurrency payment integration (MetaMask, WalletConnect)
+- [ ] Social proof and testimonials CMS
+- [ ] JWT token generation + telemetry for handoff
 
 **Technology Stack:**
 ```typescript
@@ -160,12 +166,16 @@ const trackConversionEvent = (event: string, properties: any) => {
 
 **Objective:** Seamlessly receive users from marketing site and deliver immediate value
 
-**Key Components:**
-- [ ] JWT token validation endpoint
-- [ ] User session creation and management
-- [ ] Guided onboarding flow
-- [ ] Project creation wizard
-- [ ] First-time user experience optimization
+**Current Status:**
+- ✅ Supabase OAuth callback (`/auth/callback`) operational with GitHub + email/password tokens
+- ✅ Portfolio dashboard consumes Supabase data via `useProjects`
+- ⚠️ JWT handoff endpoint not implemented (awaiting CrewAI/backend sprint)
+- ⚠️ Onboarding wizard and project creation rely on mock data
+
+**Key Components (Next Steps):**
+- [ ] Implement `/api/auth/handoff` endpoint with JWT validation + Supabase session bridging
+- [ ] Persist onboarding state using Drizzle mutations
+- [ ] Replace mock data in onboarding wizard with Supabase-backed flows
 
 **Token Validation Implementation:**
 ```typescript
@@ -204,14 +214,17 @@ export async function POST(request: Request) {
 }
 ```
 
-### 4.2 Core Platform Features
+### 4.2 Evidence-Led Validation Workspace
 
-**Evidence-Led Strategy Tools:**
-- [ ] Hypothesis management system
-- [ ] Evidence collection and analysis
-- [ ] AI-powered insights generation
-- [ ] Gate progression tracking
-- [ ] Professional report generation
+**Current Status:**
+- ✅ UI shells for hypothesis, evidence, experiments, and dashboards delivered
+- ⚠️ Supabase read hooks available; write mutations pending
+- ❌ AI insights, gate progression, and reporting blocked on CrewAI + storage
+
+**Near-Term Tasks:**
+- [ ] Wire Hypothesis/Evidence/Experiment components to Supabase mutations
+- [ ] Introduce optimistic updates + validation feedback
+- [ ] Prepare data contracts for CrewAI report generation
 
 **CrewAI Integration:**
 
@@ -534,12 +547,20 @@ describe('Cross-Site User Journey', () => {
 3. Implement comprehensive error handling
 4. Begin user testing with beta group
 
-### Long-term Vision (Quarter 1)
-1. Achieve target conversion and retention metrics
-2. Optimize based on user feedback and analytics
-3. Scale infrastructure for increased traffic
-4. Plan additional features and integrations
+### 5.1 Vercel AI SDK + CrewAI Integration
 
----
+**Objective:** Deliver AI-assisted validation via multi-agent CrewAI pipeline
 
-This implementation plan provides a comprehensive roadmap for building the StartupAI two-site architecture, ensuring seamless user experience while maintaining security, performance, and scalability.
+**Current Status (Oct 4, 2025):**
+- ✅ CREW_AI.md specification and phased rollout documented
+- ✅ Backend virtual environment + requirements captured
+- ❌ YAML configs, orchestration modules, and Netlify deployment not started
+
+**Implementation Steps:**
+- Configure multi-agent YAML (6-agent pipeline)
+- Implement `crew.py` orchestration module + FastAPI entrypoint
+- Deploy Netlify Python function and integrate with Supabase auth
+- Integrate Vercel AI SDK for multi-provider LLM fallback
+- Hook frontend canvas/report UI to backend endpoints
+
+This implementation plan provides a comprehensive roadmap for building the StartupAI two-site architecture, with CrewAI delivery and data persistence called out as the remaining critical path items.

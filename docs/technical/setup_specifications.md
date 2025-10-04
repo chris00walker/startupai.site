@@ -11,51 +11,42 @@
 
 ### Local Development Purpose  
 
-Enable development & testing of CrewAI workflows before deployment to Netlify with Supabase backend.
+Enable development & QA of the marketing site (`startupai.site`) with live Supabase authentication flows and pending cross-site handoff work.
 
-### Local Development Checklist
+### Local Development Checklist (Oct 4, 2025)
 
-1. **Install Python & Virtual Environment**
-   - Install Python 3.10+  
-   - Install `pyenv` or use system Python  
-   - Create virtual environment:
+1. **Install Node & Package Manager**
+   - Node.js 18 LTS (>= v18.18)
+   - pnpm 9.12.1 (project pins package manager)
 
-     ```bash
-     python -m venv venv
-     source venv/bin/activate
-     ```
-
-2. **Install Core Packages**
+2. **Install Dependencies**
 
    ```bash
-   pip install crewai fastapi uvicorn pydantic supabase python-dotenv ai vercel-ai-sdk
-
-
-
-3. **Install Dev Tools**
-
-   ```bash
-   pip install black isort mypy pytest
+   pnpm install
    ```
 
-4. **Set Up Project Structure**
+3. **Environment Variables**
+   - Copy `.env.example` → `.env.local` and populate with Supabase project credentials (anon key, project URL)
+   - Set `NEXT_PUBLIC_APP_URL` to deployed product site (e.g. `https://app-startupai-site.netlify.app`)
 
-   startupai-site/
-   ├── netlify/
-   │   └── functions/       # Netlify Functions for CrewAI backend
-   ├── src/
-   │   ├── crew/            # CrewAI YAML + Python orchestration
-   │   ├── components/      # Next.js components
-   │   └── lib/             # Utilities and Supabase client
-   ├── supabase/
-   │   ├── migrations/      # Database migrations
-   │   └── functions/       # Supabase Edge Functions
-   ├── tests/
-   ├── netlify.toml
-   ├── requirements.txt
-   └── package.json
+4. **Run the Marketing Site Locally**
 
-5. **Configure Supabase Project** ✅ **Complete**
+   ```bash
+   pnpm dev
+   ```
+
+   - Visit http://localhost:3000
+   - Validate email/password and GitHub OAuth login/signup flows
+   - Cross-site redirect will target `NEXT_PUBLIC_APP_URL`; backend handoff endpoint is still pending
+
+5. **Lint & Type-Check (optional but recommended)**
+
+   ```bash
+   pnpm lint
+   pnpm typecheck
+   ```
+
+6. **Configure Supabase Project** ✅ **Complete**
 
    - ✅ Supabase project created: **StartupAI** (`eqxropalhxjeyvfcoyxg`)
    - ✅ Project credentials configured in environment files
@@ -65,28 +56,17 @@ Enable development & testing of CrewAI workflows before deployment to Netlify wi
      - Service Role Key: configured in `backend/.env`
    - ✅ OAuth Configuration:
      - GitHub OAuth enabled in Supabase dashboard
-     - Site URL: `https://app-startupai-site.netlify.app`
      - Redirect URLs configured for localhost and production
 
    **📋 Setup Details:** [Supabase Configuration](../../../app.startupai.site/docs/engineering/30-data/supabase-setup.md)
    
    **⚠️ OAuth Setup Requirements:**
-   OAuth requires configuration in **both** code (`.env.production`) AND Supabase dashboard settings.
-   Missing either will cause redirects to fail (e.g., redirecting to localhost in production).
+   OAuth requires configuration in **both** code (`.env.local` / `.env.production`) AND Supabase dashboard settings. GitHub is enabled today; Google/Azure providers remain TODO.
 
-6. **Test Local Development**
-
-   - Start Supabase locally:
-     ```bash
-     pnpm exec supabase start
-     ```
-   - Test Netlify Functions locally:
-     ```bash
-     netlify dev
-     ```
-   - Create a test YAML with 1 agent + 1 task and test via local endpoint.
-
-   **Note:** Use `pnpm` commands (npm to pnpm migration complete)
+   **⚠️ Pending Supabase Tasks:**
+   - Enable extensions: pgvector, pg_net, hstore (uuid-ossp already on)
+   - Apply migration `00003_storage_buckets.sql` once extensions enabled (needed for evidence uploads)
+   - End-to-end QA of JWT token handoff after backend endpoint is implemented
 
 ---
 
@@ -94,127 +74,56 @@ Enable development & testing of CrewAI workflows before deployment to Netlify wi
 
 ### Production Purpose
 
-Deploy CrewAI backend via Netlify Functions + Supabase database + Vercel AI SDK.
+Deploy the marketing site via Netlify, leveraging shared Supabase auth with the product application.
 
 ### Production Deployment Checklist
 
 1. **Supabase Project Setup** ✅ **Complete**
 
    - ✅ Production Supabase project: **StartupAI** (`eqxropalhxjeyvfcoyxg`)
-   - ⚠️ Database schema configuration pending:
-     - Tables: `user_profiles`, `projects`, `evidence`, `reports`
-     - Row Level Security (RLS) policies
-     - Real-time subscriptions for progress tracking
-   
-   **Next:** Implement Drizzle ORM schema (Task 2)
+   - ⚠️ Database extensions (pgvector, pg_net, hstore) still require manual enable via dashboard
+   - ⚠️ Storage migration `00003_storage_buckets.sql` not yet applied (blocks evidence uploads)
 
-2. **Supabase Database Schema**
+2. **Netlify Site Configuration**
 
-   ```sql
-   -- Create tables
-   CREATE TABLE clients (
-     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-     email TEXT UNIQUE NOT NULL,
-     tier TEXT NOT NULL,
-     created_at TIMESTAMP DEFAULT NOW()
-   );
-   
-   CREATE TABLE runs (
-     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-     client_id UUID REFERENCES clients(id),
-     status TEXT DEFAULT 'pending',
-     entrepreneur_brief JSONB,
-     created_at TIMESTAMP DEFAULT NOW()
-   );
+   ```toml
+   # netlify.toml
+   [build]
+     command = "pnpm build"
+     publish = "out"
+
+   [[redirects]]
+     from = "/api/*"
+     to = "https://app-startupai-site.netlify.app/api/:splat"
+     status = 200
    ```
 
-3. **Supabase Storage**
+   - Production builds run `pnpm build` (Next.js static export)
+   - Preview deployments enabled for pull requests
 
-   - Create storage bucket: `deliverables`
-   - Configure folder structure:
+3. **Environment Variables (Netlify Dashboard)**
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `NEXT_PUBLIC_APP_URL`
+   - GitHub OAuth keys handled in Supabase dashboard (no secrets stored in repo)
 
-     ```text
-     deliverables/
-     ├── briefs/
-     ├── profiles/
-     ├── maps/
-     ├── canvases/
-     ├── roadmaps/
-     └── qa/
-     ```
-   - Set up RLS policies for secure file access
+4. **Post-Deploy QA Checklist**
+- **Authentication:** Verify email/password and GitHub sign-in/sign-up flows in production
+- **Handoff:** Confirm redirect to `app-startupai.site` works (expect 401 until handoff endpoint exists)
+- **Analytics:** Ensure analytics scripts load without blocking (conversion tracking to be implemented).
+- **Regression:** Run smoke test of top-level pages (`/`, `/product`, `/process`, `/pricing`, `/login`, `/signup`)
 
-4. **Supabase Analytics**
+---
 
-   - Enable Supabase Analytics
-   - Create materialized views for reporting:
-     ```sql
-     CREATE MATERIALIZED VIEW vw_client_engagements AS
-     SELECT c.*, r.*, d.*, f.*
-     FROM clients c
-     JOIN runs r ON c.id = r.client_id
-     LEFT JOIN deliverables d ON r.id = d.run_id
-     LEFT JOIN feedback f ON r.id = f.run_id;
-     ```
+## 3. CrewAI Backend (Context)
 
-5. **Vercel AI SDK Setup**
-
-   - Install Vercel AI SDK:
-     ```bash
-     pnpm add ai @ai-sdk/openai @ai-sdk/anthropic
-     ```
-   - Configure multiple AI providers:
-     - OpenAI GPT-4
-     - Anthropic Claude
-     - Google Gemini
-   - Implement hot-swappable models for:
-     - `satisfaction-predictor`
-     - `validation-recommender` 
-     - `copy-optimizer`
-
-6. **Netlify Functions Deployment**
-
-   - Create `netlify.toml` configuration:
-
-     ```toml
-     [build]
-       command = "pnpm run build"
-       functions = "netlify/functions"
-       publish = "out"
-
-     [functions]
-       python_runtime = "3.9"
-
-     [[redirects]]
-       from = "/api/*"
-       to = "/.netlify/functions/:splat"
-       status = 200
-     ```
-
-   - Deploy to Netlify:
-
-     ```bash
-     netlify deploy --prod
-     ```
-
-7. **Environment Variables**
-
-   **Marketing Site (startupai.site):**
-   - `.env.local` (development, gitignored):
-     - `NEXT_PUBLIC_SUPABASE_URL`
-     - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-     - `NEXT_PUBLIC_APP_URL=http://localhost:3000`
-   - `.env.production` (production, committed):
-     - `NEXT_PUBLIC_SUPABASE_URL`
-     - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-     - `NEXT_PUBLIC_APP_URL=https://app-startupai-site.netlify.app`
-   - `netlify.toml` (build environment, committed):
+CrewAI backend development lives in `app.startupai.site/backend/`. The marketing site only captures leads and hands off authenticated users; it does **not** run CrewAI locally. Refer to `app.startupai.site/backend/README.md` and `CREW_AI.md` for implementation details.
+omitted):
      - All `NEXT_PUBLIC_*` variables duplicated for build-time access
 
    **Backend/API:**
    - `OPENAI_API_KEY`
    - `ANTHROPIC_API_KEY`
-   - `SUPABASE_URL`
    - `SUPABASE_SERVICE_KEY` (admin access)
    - `VERCEL_AI_SDK_API_KEY`
 

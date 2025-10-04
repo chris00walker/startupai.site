@@ -3,7 +3,7 @@
 **Product:** Evidence-Led Strategy Platform  
 **Stack:** Netlify + Supabase + Vercel AI SDK  
 **Date:** September 2025  
-**Last Updated:** October 1, 2025  
+**Last Updated:** October 4, 2025 (post-audit refresh)  
 
 ---
 
@@ -11,6 +11,13 @@
 
 ### Phase 1: Foundation (Weeks 1-4)
 **Goal:** Core infrastructure and secure handoff between marketing site and product application
+
+**Status Snapshot (Oct 4, 2025):**
+- ✅ Dual-site deployment live on Netlify with pnpm-based pipelines
+- ✅ Supabase project, schema, RLS, and read-side Drizzle queries in place
+- ✅ Marketing login/signup using Supabase email/password + GitHub OAuth
+- ⚠️ Secure token handoff + cross-site QA still pending
+- ❌ CrewAI backend not yet implemented (blocks AI workflows)
 
 **Architecture Note:** 
 - **startupai.site** = Marketing, conversion, payments (The Promise)
@@ -23,69 +30,52 @@
 - [x] app.startupai.site Next.js setup (product functionality) ✅ **Complete**
 - [x] Netlify deployment pipeline configuration ✅ **Complete**
 
-**📋 Supabase Details:** [Setup Documentation](../../../app.startupai.site/docs/engineering/30-data/supabase-setup.md)
-- [ ] Shared Supabase authentication system
-- [ ] Secure token-based handoff mechanism
-- [ ] Database schema creation and migrations
-- [ ] Row Level Security (RLS) policies
+**📋 Supabase Deliverables (Oct 4, 2025):** [Setup Documentation](../../../app.startupai.site/docs/engineering/30-data/supabase-setup.md)
+- ✅ Shared Supabase authentication (email/password + GitHub) across both codebases
+- ⚠️ Secure token-based handoff mechanism awaiting end-to-end validation and regression testing
+- ✅ Database schema creation and migrations (7 Drizzle migrations deployed)
+- ✅ Row Level Security (RLS) policies active on core tables
+- ⚠️ Database extensions (pgvector, pg_net, hstore) pending manual enable; uuid-ossp active
+- ❌ Storage buckets migration (`00003_storage_buckets.sql`) not yet applied
 
 #### Week 2: Core Data Models
-- [ ] Projects table and CRUD operations
-- [ ] Hypotheses management system
-- [ ] Evidence collection framework
-- [ ] User management and permissions
-- [ ] Basic API endpoints (Netlify Functions)
+- [x] Projects table and read-side queries (`useProjects`) ✅
+- [x] Hypotheses/evidence/experiments schema deployed ✅ (Supabase migrations 00001-00005)
+- ⚠️ Evidence + experiments CRUD endpoints still use mock data (replace with Drizzle mutations)
+- ✅ User profiles and role metadata stored in Supabase
+- ❌ Netlify Functions APIs (CrewAI, CRUD mutations) not implemented (pending backend work)
 
 #### Week 3: Frontend Foundation
-- [ ] Dashboard layout and navigation
-- [ ] Project creation flow
-- [ ] Hypothesis management interface
-- [ ] Evidence input forms
-- [ ] Basic responsive design
+- [x] Dashboard layout, navigation, and metrics ✅
+- ⚠️ Project creation flow wired to mock data (needs mutation hookup)
+- ⚠️ Hypothesis/Evidence/Experiment interfaces built but rely on mock fixtures
+- ✅ Responsive design + ShadCN component system delivered
 
 #### Week 4: AI Integration & Freemium Setup
-- [ ] Vercel AI SDK integration
-- [ ] CrewAI agent framework setup
-- [ ] Basic prompt engineering
-- [ ] AI response handling and error management
-- [ ] Rate limiting and usage tracking
-- [ ] Freemium tier limitations implementation
-- [ ] Usage tracking and enforcement
+- ❌ Vercel AI SDK integration (pending backend completion)
+- ❌ CrewAI agent framework setup (spec ready, code missing)
+- ❌ Prompt/response handling, rate limiting, freemium instrumentation – all pending backend implementation
 
 ### Phase 2: Core Features (Weeks 5-8)
-**Goal:** Complete MVP user flows
+**Goal:** Complete MVP user flows once backend + data integration unblockers resolved
 
 #### Week 5: Hypothesis & Evidence System
-- [ ] Advanced hypothesis categorization
-- [ ] Evidence-hypothesis linking system
-- [ ] Confidence scoring algorithm
-- [ ] Risk assessment calculations
-- [ ] Evidence timeline and audit trail
+- ⚠️ Advanced hypothesis categorization & linking UI ready; persistence/backend logic pending
+- ❌ Confidence scoring, risk budgets, and timelines remain on roadmap
 
 #### Week 6: Experiment Planning
-- [ ] Experiment designer interface
-- [ ] Template system for common experiments
-- [ ] Outcome tracking and analysis
-- [ ] Statistical significance calculations
-- [ ] Experiment-hypothesis mapping
+- ⚠️ Experiment UI shell exists; requires Supabase mutations + analytics
+- ❌ Outcome analytics & statistical tooling not started
 
 #### Week 7: Gate Management System
-- [ ] Three-gate implementation (D/F/V)
-- [ ] Evidence threshold logic
-- [ ] Gate progression controls
-- [ ] Override system with audit trail
-- [ ] Progress visualization
+- ⚠️ UI scaffolding in place (stage indicators, dashboards)
+- ❌ Gate logic, overrides, and historical persistence outstanding
 
 #### Week 8: Crypto Payment Integration
-- [ ] Web3 wallet connection (MetaMask, WalletConnect)
-- [ ] Multi-currency payment processing (BTC, ETH, USDC)
-- [ ] Payment verification and confirmation system
-- [ ] Subscription management for crypto payments
-- [ ] Transaction history and receipt generation
-- [ ] Automatic tier upgrade after payment confirmation
+- 🛈 Deferred — crypto payments remain planned but not in current sprint scope; update roadmap post-backend delivery
 
 ### Phase 3: Polish & Testing (Weeks 9-12)
-**Goal:** Production-ready MVP
+**Goal:** Production-ready MVP (dependent on completion of backend + storage tasks)
 
 #### Week 9: Report Generation
 - [ ] Professional report templates
@@ -95,11 +85,7 @@
 - [ ] Sharing and collaboration features
 
 #### Week 10: Performance & Security
-- [ ] Performance optimization
-- [ ] Security audit and hardening
-- [ ] Data backup and recovery
-- [ ] Monitoring and alerting
-- [ ] Error handling and logging
+- ⚠️ Monitoring/error handling partially covered by Supabase + Netlify defaults; dedicated instrumentation pending
 
 #### Week 11: User Experience
 - [ ] UI/UX refinement
@@ -109,11 +95,8 @@
 - [ ] Help documentation
 
 #### Week 12: Testing & Launch Prep
-- [ ] Comprehensive testing suite
-- [ ] Beta user testing
-- [ ] Bug fixes and optimizations
-- [ ] Analytics implementation
-- [ ] Launch preparation
+- ⚠️ Jest + Playwright suites configured; require new CI run post-feature integration
+- ❌ Beta testing, analytics instrumentation, launch checklists queued after backend delivery
 
 ---
 
