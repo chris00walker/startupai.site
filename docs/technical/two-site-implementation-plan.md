@@ -96,6 +96,19 @@ The platform supports three service tiers:
 - ✅ TypeScript compilation clean
 - ✅ No build errors or warnings
 
+#### Analytics (✅ Complete Oct 5, 2025)
+- ✅ PostHog installed on both sites (posthog-js@1.270.1)
+- ✅ Instrumentation-client.ts configured for both sites
+- ✅ Environment variables secured in `~/.secrets/startupai` (direnv auto-load)
+- ✅ Build verification passed on both sites
+- ✅ Cross-site tracking enabled for unified user journey
+- ✅ Type-safe analytics helpers: `src/lib/analytics.ts` (both sites)
+- ✅ Security fix applied: API key removed from documentation (Oct 5, 2025)
+- ✅ Documentation: `docs/technical/posthog-installation.md`
+- ✅ Security docs: `SECURITY_POSTHOG_FIX.md`, `POSTHOG_SECURITY_RESOLVED.md`
+- ⏳ Event tracking implementation pending (custom events)
+- ⏳ Netlify environment variables need to be set
+
 ### 2.2 Database (✅ 100% Complete - Oct 4, 2025)
 
 #### Supabase Project
@@ -430,7 +443,7 @@ app/api/ai/generate-report/route.ts
 - [ ] End-to-end QA of cross-site authentication flow (manual testing recommended)
 - [ ] Consider dedicated JWT handoff endpoint (optional - current approach working)
 
-### Phase 2: Marketing Site Optimization (⚠️ 40% Complete)
+### Phase 2: Marketing Site Optimization (⚠️ 50% Complete)
 
 **Timeline:** Weeks 3-6  
 **Goal:** High-converting marketing site with seamless handoff
@@ -441,10 +454,11 @@ app/api/ai/generate-report/route.ts
 - [x] Responsive design
 - [x] Forms with validation
 - [x] Basic authentication flows
+- [x] PostHog analytics installed on both sites (Oct 5, 2025)
 
 #### In Progress
 - [ ] Landing page A/B testing framework
-- [ ] Conversion analytics + funnel instrumentation
+- [ ] Conversion analytics + funnel instrumentation (PostHog installed, needs event tracking)
 - [ ] JWT token generation + telemetry for handoff
 - [ ] Social proof and testimonials CMS
 
