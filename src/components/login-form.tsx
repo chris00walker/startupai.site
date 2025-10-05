@@ -22,7 +22,10 @@ export function LoginForm({
   const supabase = useMemo(() => createClient(), [])
   const router = useRouter()
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3001"
+  
+  // Debug: Log the redirect URL
+  console.log("App URL for redirect:", appUrl)
 
   const handleEmailLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
