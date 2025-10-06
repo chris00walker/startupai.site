@@ -476,276 +476,264 @@ app/api/ai/generate-report/route.ts
 
 ---
 
-## 4. Implementation Phases
+## 4. Implementation Phases & Current Status
 
-### Phase 1: Foundation (✅ 99% Complete)
+### Phase 1: Foundation ✅ **99% COMPLETE**
 
-**Timeline:** Weeks 1-4  
-**Goal:** Core infrastructure and secure handoff
+**Status:** Infrastructure complete, only E2E QA remaining  
+**Completion Date:** October 5, 2025
 
-#### Completed (Week 1-2)
-- [x] Supabase project creation (`eqxropalhxjeyvfcoyxg`)
-- [x] Dual-site Netlify deployment
-- [x] pnpm migration complete
-- [x] GitHub CI/CD pipeline
-- [x] Basic authentication (email/password + GitHub)
-- [x] Database schema and migrations (7 deployed)
-- [x] Row Level Security policies
-- [x] Type-safe query layer (Drizzle ORM)
-- [x] Secrets management (direnv + ~/.secrets/startupai)
-- [x] Testing infrastructure (Jest + Playwright)
-- [x] Build verification (both sites)
+#### ✅ Completed Infrastructure
+- ✅ Supabase project: `eqxropalhxjeyvfcoyxg` (East US)
+- ✅ Dual-site Netlify deployment with GitHub CI/CD
+- ✅ pnpm migration complete (Sept 26, 2025)
+- ✅ Database: 8 migrations deployed (Oct 4, 2025)
+  - Initial schema, projects, validation tables, trial counters
+  - Storage buckets with RLS policies (Oct 3, 2025)
+  - Vector search function: `match_evidence()` (Oct 4, 2025)
+- ✅ Extensions: pgvector v0.8.0, uuid-ossp v1.1, pg_net v0.19.5, hstore v1.8
+- ✅ Authentication: Email/password + GitHub OAuth working
+- ✅ Token handoff: access_token + refresh_token via URL params (Oct 4, 2025)
+- ✅ Role-based routing: founder/consultant/trial (Oct 4, 2025)
+- ✅ Trial guardrails: /api/trial/allow endpoint (Oct 4, 2025)
+- ✅ Type-safe queries: Drizzle ORM with read/write operations
+- ✅ Testing: 162 Jest tests + 45 Playwright E2E tests
+- ✅ Secrets: Centralized in ~/.secrets/startupai with direnv
+- ✅ Deployment: Environment variables configured (Oct 5, 2025)
+- ✅ Analytics: PostHog on both sites (Oct 5, 2025)
 
-#### Pending (Week 3-4)
-- [x] Enable database extensions (pgvector, pg_net, hstore) ✅ **Complete (Oct 4, 2025)**
-- [x] Apply storage buckets migration (`00003_storage_buckets.sql`) ✅ **Complete (Oct 3, 2025)**
-- [x] Fix marketing login form (remove testing bypass) ✅ **Complete (Oct 4, 2025)**
-- [x] Implement token-based handoff (access_token + refresh_token) ✅ **Complete (Oct 4, 2025)**
-- [x] OAuth callback session establishment ✅ **Complete (Oct 4, 2025)**
-- [ ] End-to-end QA of cross-site authentication flow (manual testing recommended)
-- [ ] Consider dedicated JWT handoff endpoint (optional - current approach working)
+#### 📋 Remaining Tasks (1% - 2 hours)
+- [ ] **End-to-end QA:** Manual testing of complete auth flow (1 hour)
+- [ ] **Optional:** Dedicated JWT handoff endpoint (1 hour, low priority)
 
-### Phase 2: Marketing Site Optimization (⚠️ 50% Complete)
+### Phase 2: Marketing Site Optimization ⚠️ **70% COMPLETE**
 
-**Timeline:** Weeks 3-6  
-**Goal:** High-converting marketing site with seamless handoff
+**Status:** Core features done, optimization features pending  
+**Estimated Completion:** 2-3 weeks (14 hours remaining)
 
-#### Completed
-- [x] 19 marketing pages deployed
-- [x] 60+ ShadCN UI components
-- [x] Responsive design
-- [x] Forms with validation
-- [x] Basic authentication flows
-- [x] PostHog analytics installed on both sites (Oct 5, 2025)
+#### ✅ Completed (Oct 5, 2025)
+- ✅ 19 marketing pages deployed and functional
+- ✅ 60+ ShadCN UI components with "new-york" variant
+- ✅ Responsive design (mobile-first)
+- ✅ Forms with validation (React Hook Form + Zod)
+- ✅ Authentication: Login working, signup needs integration
+- ✅ PostHog analytics deployed to production
+- ✅ Cross-site tracking enabled
+- ✅ Type-safe analytics helpers
+- ✅ Security: API keys secured in environment variables
 
-#### In Progress
-- [ ] Landing page A/B testing framework
-- [ ] Conversion analytics + funnel instrumentation (PostHog installed, needs event tracking)
-- [ ] JWT token generation + telemetry for handoff
-- [ ] Social proof and testimonials CMS
+#### 📋 Remaining Tasks (30% - 14 hours)
+- [ ] **Signup Integration:** Connect to Supabase user creation (4 hours) - HIGH PRIORITY
+- [ ] **Custom Events:** PostHog event tracking implementation (2 hours)
+- [ ] **A/B Testing:** Landing page testing framework (8 hours)
+- [ ] **Social Proof:** Testimonials and case studies CMS (optional)
 
-#### Deferred
+#### 🔄 Deferred to Future Phases
 - [ ] Cryptocurrency payment integration (MetaMask, WalletConnect)
-- [ ] Bitcoin, Ethereum, USDC support
+- [ ] Multi-currency support (BTC, ETH, USDC)
 
-### Phase 3: Product Platform Core (⚠️ 30% Complete)
+### Phase 3: Product Platform Core ✅ **70% COMPLETE**
 
-**Timeline:** Weeks 5-8  
-**Goal:** Complete MVP user flows
+**Status:** UI and database complete, CrewAI integration in progress  
+**Estimated Completion:** 2-3 weeks (19 hours remaining)
 
-#### Completed
-- [x] 20 pages UI (16 Pages + 4 App Router)
-- [x] 50+ UI components
-- [x] 9 canvas tools (160KB code)
-- [x] Complete validation UI (hypothesis, evidence, experiments)
-- [x] Dashboard connected to Supabase (`useProjects`)
-- [x] OAuth callback and role-aware routing
+#### ✅ Completed (Oct 3-6, 2025)
+- ✅ 20 pages deployed (16 Pages Router + 4 App Router)
+- ✅ 50+ UI components with database integration
+- ✅ 9 canvas tools (160KB code)
+- ✅ Complete validation UI (hypothesis, evidence, experiments)
+- ✅ Dashboard connected to Supabase via `useProjects` hook
+- ✅ OAuth callback with role-aware routing (founder/consultant/trial)
+- ✅ **Database Integration Complete (Oct 3-4):**
+  - Mock data removed from production code paths
+  - All components use real Supabase queries
+  - Read/write operations working
+  - Storage buckets created with RLS policies
+  - Vector search function deployed: `match_evidence()`
+- ✅ **Trial Guardrails (Oct 4):**
+  - `trial_usage_counters` table
+  - `/api/trial/allow` endpoint
+  - Server-side enforcement (3 projects, 10 workflows, 5 reports/month)
+- ✅ **Gate Scoring Integration (Oct 4):**
+  - Consultant gate enhancements
+  - Gate progression UI complete
+- ✅ **Architecture Decision:** Hybrid router (App + Pages) validated by Vercel
 
-#### Blocked by Backend (CrewAI)
-- [ ] Project creation with persistence
-- [ ] Hypothesis management CRUD
-- [ ] Evidence collection and storage
-- [ ] Experiment planning and tracking
-- [ ] AI-powered report generation
-- [ ] Canvas auto-completion with AI
-- [ ] Gate progression logic
+#### 📋 Remaining Tasks (30% - 19 hours)
+**Blocked by CrewAI Backend (15% complete):**
+- [ ] **Complete CrewAI Backend:** Steps 3-10 (10-13 hours) - CRITICAL
+- [ ] **Frontend Integration:** Connect ProjectCreationWizard to /api/analyze (4 hours)
+- [ ] **Real-time Progress:** AI workflow progress tracking (3 hours)
+- [ ] **End-to-end Testing:** Complete workflow validation (2 hours)
 
-#### Blocked by Database
-- [ ] Replace mock data with Drizzle mutations
-- [ ] File upload and storage integration
-- [ ] Vector search implementation
-- [ ] Real-time collaboration features
+### Phase 4: AI Integration ⚠️ **15% COMPLETE - IN PROGRESS**
 
-### Phase 4: AI Integration (⏳ 15% Complete - IN PROGRESS)
-
-**Timeline:** Weeks 9-12 (STARTED October 4, 2025)  
-**Goal:** CrewAI backend implementation + AI SDK integration
-
-**Status:** Steps 1-2 Complete, Step 3+ In Progress
-
-**Estimated Time:** 17-20 hours total (CrewAI 12-15h + AI SDK 5h)  
-**Time Spent:** 30 minutes (Steps 1-2)  
-**Priority:** CRITICAL - Phase 3 cannot complete without this  
-**Note:** Infrastructure scaffolding already complete (venv, requirements, Netlify wrapper)
+**Status:** CrewAI infrastructure complete, tools implementation needed  
+**Started:** October 4, 2025  
+**Estimated Completion:** 1-2 weeks (10-13 hours remaining)  
+**Priority:** 🚨 CRITICAL - Blocks Phase 3 completion
 
 ---
 
-#### Part A: CrewAI Backend (12-15 hours) 🚨 START HERE
+## 🎯 Current Focus: Complete CrewAI Backend
 
-**Time Savings:** Infrastructure already in place (venv, requirements.txt, Netlify wrapper)
-reduces implementation time from 15-20 hours to 12-15 hours.
+### ✅ Completed (Oct 4, 2025 - 30 minutes)
 
-**Prerequisites:**
-- ✅ Python >=3.10 <3.14 installed (3.10.12 confirmed)
-- ✅ OpenAI API key configured in ~/.secrets/startupai
-- ✅ Supabase project configured
-- ✅ GitHub repo: chris00walker/app.startupai.site
-
-**Step 1: Environment Setup ✅ COMPLETE (October 4, 2025)**
-
-```bash
-# Navigate to backend directory
-cd /home/chris/app.startupai.site/backend
-
-# Activate existing virtual environment (already created)
-source crewai-env/bin/activate  # On Windows: crewai-env\Scripts\activate
-
-# Install CrewAI dependencies from requirements.txt
-pip install -r requirements.txt
-
-# Verify installation
-pip list | grep crewai
-# Should show: crewai>=0.80.0 and related packages
-
-# Configure environment variables (uses centralized secrets)
-# Secrets are automatically loaded from ~/.secrets/startupai via direnv
-# Verify the following variables are set in ~/.secrets/startupai/backend.env:
-# - OPENAI_API_KEY=sk-...
-# - SUPABASE_URL=https://eqxropalhxjeyvfcoyxg.supabase.co
-# - SUPABASE_SERVICE_ROLE_KEY=eyJ...
-
-# Check if direnv is working
-direnv status
-
-# Verify environment variables are loaded
-echo $OPENAI_API_KEY  # Should show sk-... (masked)
-echo $SUPABASE_URL    # Should show Supabase URL
-
-# Verify setup (script created for ongoing verification)
-python verify_setup.py  # Should show all systems ready
-```
-
-**Results:**
-- ✅ CrewAI 0.201.1 installed (exceeds minimum 0.80.0)
-- ✅ All dependencies installed (OpenAI SDK, Anthropic, Google AI, etc.)
+**Step 1-2: Infrastructure & Core Setup**
+- ✅ CrewAI 0.201.1 installed and verified
+- ✅ Virtual environment: `backend/crewai-env/`
+- ✅ Agent configs: `backend/config/agents.yaml` (6 agents, 100 lines)
+- ✅ Task configs: `backend/config/tasks.yaml` (6 tasks, 120 lines)
+- ✅ Source code: `backend/src/startupai/` (832 lines total)
+  - `__init__.py` - Package exports (24 lines)
+  - `crew.py` - Crew orchestration (268 lines)
+  - `main.py` - CLI entry point (246 lines)
+  - `tools.py` - Custom tools (294 lines)
+- ✅ Environment checker: `backend/verify_setup.py`
 - ✅ OpenAI API key configured and tested
 - ✅ Supabase credentials configured
-- ✅ direnv working correctly
-- ✅ Virtual environment functional
+- ✅ direnv auto-loading working
 
-**Step 2: Project Structure Creation ✅ COMPLETE (October 4, 2025)**
+**Step 7-8: Netlify Functions**
+- ✅ Function: `netlify/functions/crew-analyze.py`
+- ✅ Background function: `netlify/functions/crew-analyze-background.py`
+- ✅ Dependencies: `netlify/functions/requirements.txt`
+- ✅ API redirects in `netlify.toml`:
+  - `/api/analyze` → `/.netlify/functions/crew-analyze`
+  - `/api/analyze-background` → `/.netlify/functions/crew-analyze-background`
+- ✅ JWT authentication implemented
+- ✅ Rate limiting (100 req/min per user)
+- ✅ Error handling and logging
+- ✅ Documentation: `netlify/functions/README.md`
 
-The backend directory already has significant scaffolding in place:
-
-```bash
-# Navigate to backend and verify structure
-cd /home/chris/app.startupai.site/backend
-ls -la
-
-# You should see:
-# ✅ crewai-env/          - Virtual environment (already created)
-# ✅ netlify/functions/   - Netlify Function wrapper (already exists)
-# ✅ requirements.txt     - Dependencies defined (crewai[tools]>=0.80.0)
-# ✅ .env.example         - Environment template
-# ✅ README.md            - Backend documentation
-# ✅ CREW_AI.md           - Complete implementation guide
-```
-
-**What You Need to Create:**
-
-```bash
-# Only create the missing implementation files
-mkdir -p config
-mkdir -p src/startupai
-
-# Create configuration files (YAML)
-touch config/agents.yaml
-touch config/tasks.yaml
-
-# Create source files (Python)
-touch src/startupai/__init__.py
-touch src/startupai/crew.py
-touch src/startupai/main.py
-touch src/startupai/tools.py
-
-# Create direnv config (if not already present)
-touch .envrc
-```
-
-**Current Project Structure:**
-```
-backend/
-├── config/                   # ✅ CREATED
-│   ├── agents.yaml          # ✅ CREATED - 6 agents defined (100 lines)
-│   └── tasks.yaml           # ✅ CREATED - 6 tasks defined (120 lines)
-├── src/                      # ✅ CREATED
-│   └── startupai/           # ✅ CREATED
-│       ├── __init__.py      # ✅ CREATED - Package exports (24 lines)
-│       ├── crew.py          # ✅ CREATED - Crew orchestration (268 lines)
-│       ├── main.py          # ✅ CREATED - CLI entry point (246 lines)
-│       └── tools.py         # ✅ CREATED - 4 custom tools (294 lines)
-├── netlify/                  # ✅ EXISTS
-│   └── functions/
-│       └── crewai-analyze.py  # ✅ EXISTS - Netlify Function wrapper
-├── crewai-env/              # ✅ EXISTS - Virtual environment
-├── requirements.txt         # ✅ EXISTS - Dependencies installed
-├── .env                     # ✅ EXISTS - Placeholders commented out
-├── .env.example             # ✅ EXISTS - Environment template
-├── .envrc                   # ✅ CREATED - direnv config
-├── verify_setup.py          # ✅ CREATED - Environment verification
-├── CREW_AI.md               # ✅ EXISTS - Implementation guide
-└── README.md                # ✅ EXISTS - Backend documentation
-
-Status:
-✅ Infrastructure: Complete (venv, dependencies, Netlify wrapper)
-✅ Implementation: Core structure complete (config, src, tools)
-✅ Secrets: Centralized in ~/.secrets/startupai (loaded via direnv)
-⚠️  Tools: Web search and report generation are placeholders (need implementation)
-```
-
-**Results:**
-- ✅ 6 agents configured in YAML (research, analysis, validation, synthesis, reporting, orchestration)
-- ✅ 6 tasks configured in YAML with dependencies
-- ✅ 4 custom tools implemented (EvidenceStore, VectorSearch, WebSearch*, ReportGenerator*)
-- ✅ CLI interface with full argument parsing
-- ✅ Multi-provider LLM support (OpenAI, Anthropic, Google)
-- ✅ Import and initialization tested successfully
-- * = Placeholder implementation, needs completion
-
-**Note:** Multi-provider architecture documented in `/home/chris/app.startupai.site/docs/engineering/multi-provider-llm-setup.md`
-
-**Steps 3-6: Core Implementation ✅ COMPLETE (October 4, 2025)**
-
-Combined implementation completed in 20 minutes (estimated 8-10 hours).
-
-**What was created:**
-- ✅ `config/agents.yaml` - 6 specialized agents (research, analysis, validation, synthesis, reporting, orchestration)
-- ✅ `config/tasks.yaml` - 6 tasks with dependencies
-- ✅ `src/startupai/crew.py` - Crew orchestration (268 lines)
-- ✅ `src/startupai/main.py` - CLI interface (246 lines)
-- ✅ `src/startupai/tools.py` - 4 custom tools (294 lines)
-- ✅ `src/startupai/__init__.py` - Package exports
-
-**Note:** Modern evidence-led strategy agents implemented instead of original entrepreneur onboarding design.
+**Multi-Provider LLM Documentation:**
+- ✅ `docs/engineering/multi-provider-llm-setup.md`
+- ✅ Model selection strategies
+- ✅ Cost optimization patterns
+- ✅ Fallback configurations
 
 ---
 
-**Step 3: Test & Complete Tools (3-5 hours) ⏳ NEXT**
+### 📋 Remaining Work (Steps 3-6, 9-10) - 10-13 hours
 
-Now we need to test the implementation and complete placeholder tools.
+**🚨 IMMEDIATE PRIORITY (10-13 hours):**
 
-**Part A: Basic Testing (30 minutes)**
+**Step 3: Implement Evidence Store Tool (3-4 hours)**
+- [ ] Replace placeholder in `backend/src/startupai/tools.py`
+- [ ] Add Supabase client initialization
+- [ ] Implement vector search using `match_evidence()` function
+- [ ] Add evidence storage with embeddings
+- [ ] Test database connectivity and queries
+- [ ] **Reference:** See `docs/integrations/crewai/CREWAI_STATUS_REPORT.md`
 
-Test crew initialization and configuration loading:
+**Step 4: Implement WebSearch Tool (2-3 hours)**
+- [ ] Replace placeholder in `backend/src/startupai/tools.py`
+- [ ] Integrate search API (SerpAPI, Brave, or similar)
+- [ ] Add result parsing and formatting
+- [ ] Implement rate limiting and caching
+- [ ] Test search functionality
 
-```bash
-cd /home/chris/app.startupai.site/backend
-source crewai-env/bin/activate
+**Step 5: Implement ReportGenerator Tool (2-3 hours)**
+- [ ] Replace placeholder in `backend/src/startupai/tools.py`
+- [ ] Add report template system
+- [ ] Implement markdown/PDF generation
+- [ ] Store reports in Supabase storage
+- [ ] Add report retrieval functionality
 
-# Test 1: Import and initialization
-python -c "from src.startupai import StartupAICrew; crew = StartupAICrew(); print('✅ Crew initialized')"
+**Step 6: Test Local Execution (1 hour)**
+- [ ] Run `python backend/src/startupai/main.py` with test data
+- [ ] Verify all 6 agents execute successfully
+- [ ] Check database writes and vector search
+- [ ] Validate report generation
 
-# Test 2: Verify agent creation
-python -c "from src.startupai import StartupAICrew; crew = StartupAICrew(); agent = crew.research_agent(); print(f'✅ Agent created: {agent.role}')"
+**Step 9: Frontend Integration (4 hours)**
+- [ ] Update `ProjectCreationWizard.tsx` to call `/api/analyze`
+- [ ] Add loading states and progress indicators
+- [ ] Implement error handling
+- [ ] Test end-to-end workflow
+- [ ] **Reference:** `docs/operations/DASHBOARD_INTEGRATION_PRIORITIES.md`
 
-# Test 3: Verify task creation  
-python -c "from src.startupai import StartupAICrew; crew = StartupAICrew(); task = crew.evidence_collection_task(); print(f'✅ Task created')"
+**Step 10: Production Deployment (1 hour)**
+- [ ] Configure Netlify environment variables:
+  - `OPENAI_API_KEY`
+  - `ANTHROPIC_API_KEY` (optional)
+  - `SUPABASE_SERVICE_ROLE_KEY`
+  - `DATABASE_URL`
+- [ ] Deploy to Netlify
+- [ ] Test production endpoints
+- [ ] Monitor logs and performance
+---
 
-# Test 4: CLI help
-python src/startupai/main.py --help
-```
+### 📊 Part B: Vercel AI SDK Integration (5 hours) - DEFERRED
 
-**Test Results:** ✅ ALL TESTS PASSING
+**Status:** Not started - will begin after CrewAI backend complete  
+**Priority:** Medium - Nice to have for Phase 4
+
+**Planned Features:**
+- [ ] Lightweight AI chat interface
+- [ ] Streaming responses with React hooks
+- [ ] Model hot-swapping (OpenAI ↔ Anthropic)
+- [ ] Cost optimization with tiered models
+- [ ] Integration with App Router API routes
+
+**Reference Documentation:**
+- `docs/technical/AI_SDK_App_Router.md`
+- `docs/technical/AI_SDK_Pages_Router.md`
+
+---
+
+## 📈 Phase Summary & Next Actions
+
+### ✅ What's Complete
+- **Phase 1:** 99% - Infrastructure, database, auth, deployment
+- **Phase 2:** 70% - Marketing site core features
+- **Phase 3:** 70% - Product platform UI and database
+- **Phase 4:** 15% - CrewAI infrastructure and Netlify functions
+
+### 🎯 Immediate Priorities (Next 2-3 Weeks)
+
+**Week 1: Complete CrewAI Backend (10-13 hours)**
+1. Implement Evidence Store tool (3-4h)
+2. Implement WebSearch tool (2-3h)
+3. Implement ReportGenerator tool (2-3h)
+4. Test local execution (1h)
+5. Deploy to Netlify (1h)
+
+**Week 2: Frontend Integration (7 hours)**
+1. Connect ProjectCreationWizard to /api/analyze (4h)
+2. Add real-time progress tracking (3h)
+
+**Week 3: Testing & Polish (6 hours)**
+1. End-to-end workflow testing (2h)
+2. Marketing signup integration (4h)
+
+### 📋 Success Criteria
+- [ ] CrewAI backend generating reports end-to-end
+- [ ] Frontend calling /api/analyze successfully
+- [ ] Reports stored in Supabase
+- [ ] Trial guardrails enforcing limits
+- [ ] Marketing signup creating user accounts
+
+**Total Remaining:** ~33 hours to MVP completion
+
+---
+
+## 🔗 Related Documentation
+
+### Implementation Guides
+- [`app.startupai.site/backend/CREW_AI.md`](../../../app.startupai.site/backend/CREW_AI.md) - Complete CrewAI specification
+- [`app.startupai.site/docs/engineering/multi-provider-llm-setup.md`](../../../app.startupai.site/docs/engineering/multi-provider-llm-setup.md) - LLM configuration
+- [`app.startupai.site/netlify/functions/README.md`](../../../app.startupai.site/netlify/functions/README.md) - Netlify Functions API
+
+### Status Reports
+- [`app.startupai.site/docs/integrations/crewai/CREWAI_STATUS_REPORT.md`](../../../app.startupai.site/docs/integrations/crewai/CREWAI_STATUS_REPORT.md) - Current status (Oct 5)
+- [`app.startupai.site/docs/operations/DASHBOARD_INTEGRATION_PRIORITIES.md`](../../../app.startupai.site/docs/operations/DASHBOARD_INTEGRATION_PRIORITIES.md) - Integration priorities
+- [`app.startupai.site/docs/operations/implementation-status.md`](../../../app.startupai.site/docs/operations/implementation-status.md) - Weekly progress
+
+### Cross-References
+- See **Section 2.5** for detailed CrewAI backend status
+- See **Section 3.4** for AI architecture decisions
+- See **Phase 3** for frontend integration requirements
 - Test 1: Crew initialization ✅
 - Test 2: Agent creation (6 agents) ✅
 - Test 3: Task creation (6 tasks) ✅
