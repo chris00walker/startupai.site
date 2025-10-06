@@ -47,7 +47,93 @@ All implementation details, architecture decisions, status tracking, and next st
 
 ## 1. System Overview
 
-### 1.1 Architecture Philosophy
+### 1.1 Site Structure & Pages
+
+#### Marketing Site (startupai.site) - 19 Pages
+
+**App Router Pages:**
+```
+src/app/
+├── page.tsx                          # / - Landing page
+├── login/page.tsx                    # /login - User login
+├── signup/page.tsx                   # /signup - User registration
+├── pricing/page.tsx                  # /pricing - Pricing plans
+├── product/page.tsx                  # /product - Product overview
+├── process/page.tsx                  # /process - Our process
+├── ai-strategy/page.tsx              # /ai-strategy - AI strategy info
+├── blog/page.tsx                     # /blog - Blog listing
+├── case-studies/page.tsx             # /case-studies - Case studies
+├── contact/page.tsx                  # /contact - Contact form
+├── preview/page.tsx                  # /preview - Content preview
+├── services/
+│   ├── page.tsx                      # /services - Services overview
+│   ├── discovery/page.tsx            # /services/discovery
+│   ├── validation/page.tsx           # /services/validation
+│   ├── scaling/page.tsx              # /services/scaling
+│   ├── advisory/page.tsx             # /services/advisory
+│   └── optimization/page.tsx         # /services/optimization
+└── demo/
+    └── dashboard/page.tsx            # /demo/dashboard - Demo dashboard
+└── design-system-test/page.tsx       # /design-system-test - Component testing
+```
+
+**Status:** ✅ All 19 pages deployed and functional
+
+---
+
+#### Product Platform (app.startupai.site) - 20 Pages + 2 API Routes
+
+**App Router Pages (4 pages):**
+```
+frontend/src/app/
+├── login/page.tsx                    # /login - Product login
+├── test-auth/page.tsx                # /test-auth - Auth testing
+├── projects/new/page.tsx             # /projects/new - Create project
+├── project/
+│   ├── [id]/gate/page.tsx           # /project/[id]/gate - Project gate
+│   └── current/gate/page.tsx        # /project/current/gate - Current gate
+├── client/[id]/
+│   └── projects/new/page.tsx        # /client/[id]/projects/new - Client project
+└── auth/
+    └── auth-code-error/page.tsx     # /auth/auth-code-error - Auth error
+```
+
+**App Router API Routes (2 routes):**
+```
+frontend/src/app/api/
+├── projects/create/route.ts          # POST /api/projects/create
+└── trial/allow/route.ts              # POST /api/trial/allow
+```
+
+**Pages Router Pages (14 pages):**
+```
+frontend/src/pages/
+├── index.tsx                         # / - Home/redirect
+├── dashboard.tsx                     # /dashboard - Main dashboard
+├── founder-dashboard.tsx             # /founder-dashboard - Founder view
+├── analytics.tsx                     # /analytics - Analytics page
+├── workflows.tsx                     # /workflows - Workflows page
+├── settings.tsx                      # /settings - User settings
+├── export.tsx                        # /export - Export data
+├── canvas.tsx                        # /canvas - Canvas overview
+├── canvas/
+│   ├── vpc.tsx                       # /canvas/vpc - Value Prop Canvas
+│   ├── bmc.tsx                       # /canvas/bmc - Business Model Canvas
+│   └── tbi.tsx                       # /canvas/tbi - Test-Build-Iterate
+├── clients.tsx                       # /clients - Clients list
+├── clients/new.tsx                   # /clients/new - New client
+└── client/[id].tsx                   # /client/[id] - Client detail
+```
+
+**Status:** ✅ All 20 pages deployed (4 App Router + 16 Pages Router)
+
+**Architecture Decision:** Hybrid router approach validated by Vercel (Oct 4, 2025)
+- App Router: Auth flows + API routes
+- Pages Router: Main application UI
+
+---
+
+### 1.2 Architecture Philosophy
 
 StartupAI uses a **two-site architecture** with clear separation of concerns:
 
