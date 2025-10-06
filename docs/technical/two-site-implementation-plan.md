@@ -4,8 +4,10 @@
 **System:** StartupAI Evidence-Led Strategy Platform  
 **Author:** AI Assistant  
 **Created:** September 2025  
-**Last Updated:** October 6, 2025, 10:30  
-**Status:** Phase 1 Complete (99%) | Phase 2 In Progress (70%) | Phase 3 Backend Started (15%) | Phase 4 Ready  
+**Last Updated:** October 6, 2025, 11:00  
+**Status:** 🚨 **NOT LAUNCH READY** - Critical gaps between marketing promises and product delivery  
+**Launch Blockers:** Authentication broken | AI backend incomplete (15%) | No visible AI features  
+**Est. Time to Launch:** 20-25 hours focused work  
 
 ---
 
@@ -202,7 +204,114 @@ ReportCard component → ❌ No /report/[id] detail page
 
 ---
 
-### 1.2 Architecture Philosophy
+### 1.2 🚨 Launch Readiness Assessment (Oct 6, 2025)
+
+**User Testing Results:** Product tested on deployed sites - **CRITICAL ISSUES FOUND**
+
+#### **Launch Blockers (Must Fix Before Launch)**
+
+**🔴 BLOCKER 1: Authentication Broken**
+- ❌ GitHub OAuth not working
+- ❌ Role-based routing broken (founder lands in consultant dashboard)
+- ❌ Confusing double-login prompts after cross-site handoff
+- ❌ Test credentials not mapping to correct roles
+- **Impact:** Users cannot access correct features
+- **Time to Fix:** 4 hours
+
+**🔴 BLOCKER 2: No AI Functionality Visible**
+- ❌ Project creation has zero AI assistance
+- ❌ No AI-powered insights or recommendations
+- ❌ No automated report generation
+- ❌ No visible AI processing or guidance
+- **Impact:** Marketing promises "AI-powered strategy" but delivers empty manual forms
+- **Time to Fix:** 12-15 hours (complete CrewAI backend)
+
+**🔴 BLOCKER 3: Marketing vs Reality Gap**
+- ❌ **Marketing Says:** "AI-powered strategic analysis"
+- ❌ **Product Delivers:** Manual data entry with no AI
+- ❌ **User Expectation:** AI will guide and generate insights
+- ❌ **Actual Experience:** Confusing empty forms
+- **Impact:** Trust destroyed, immediate churn, negative reviews
+- **Time to Fix:** Integrate AI + add visibility (6 hours)
+
+#### **Business Impact If Launched As-Is**
+
+| Metric | Expected | Risk |
+|--------|----------|------|
+| **Sign-up Rate** | Normal | Good marketing will convert |
+| **Activation Rate** | <20% | No AI = not the product they wanted |
+| **7-Day Retention** | <10% | Nothing to come back for |
+| **Churn** | >90% | Misleading = instant churn |
+| **Word of Mouth** | Negative | Will hurt future launches |
+| **Revenue** | $0 | Can't charge for broken product |
+
+#### **Critical Path to Launch (20-25 hours)**
+
+**Phase 1: Fix Authentication (4 hours) - URGENT**
+1. Debug GitHub OAuth configuration (1h)
+2. Fix role-based routing logic (1h)
+3. Remove double-login prompts (1h)
+4. End-to-end auth testing (1h)
+
+**Phase 2: Complete AI Backend (12-15 hours) - CRITICAL**
+1. Implement Evidence Store tool (3-4h)
+2. Implement WebSearch tool (2-3h)
+3. Implement ReportGenerator tool (2-3h)
+4. Test local execution (1h)
+5. Deploy to Netlify (1h)
+6. Verify AI workflow end-to-end (2h)
+
+**Phase 3: Add AI Visibility (6 hours) - HIGH PRIORITY**
+1. Integrate ProjectCreationWizard → `/api/analyze` (3h)
+2. Add AI processing states and progress indicators (1h)
+3. Display AI-generated insights in UI (1h)
+4. Add onboarding showing AI features (1h)
+
+**Total: 22-25 hours to Minimum Launchable Product (MLP)**
+
+#### **Launch Readiness Checklist**
+
+**Must Have (Launch Blockers):**
+- [ ] GitHub OAuth working perfectly
+- [ ] Founder role → founder dashboard routing
+- [ ] Consultant role → consultant dashboard routing
+- [ ] Single login flow (no double prompts)
+- [ ] CrewAI backend generating reports end-to-end
+- [ ] Project creation triggers AI analysis
+- [ ] AI processing visible to users (progress indicators)
+- [ ] At least one AI-generated insight displayed
+- [ ] Users can view generated strategic reports
+
+**Should Have (Polish):**
+- [ ] AI onboarding tutorial
+- [ ] Sample AI insights on dashboard
+- [ ] Tooltips explaining AI features
+- [ ] Error recovery for AI failures
+- [ ] Progress tracking for long AI operations
+
+**Nice to Have (Post-Launch):**
+- [ ] Real-time AI progress updates
+- [ ] AI chat interface
+- [ ] Multiple report formats
+- [ ] AI-powered canvas auto-fill
+
+#### **Recommendation: DO NOT LAUNCH**
+
+**Why:** Marketing promises AI-powered insights but product delivers empty forms. This will:
+- Destroy user trust immediately
+- Generate negative reviews and word-of-mouth
+- Waste user acquisition spend
+- Damage brand for future launches
+
+**When to Launch:** After Critical Path complete (~20-25 hours)
+- Authentication works correctly
+- AI generates actual reports
+- Users see AI doing something valuable
+- Product matches marketing expectations
+
+---
+
+### 1.3 Architecture Philosophy
 
 StartupAI uses a **two-site architecture** with clear separation of concerns:
 
@@ -310,28 +419,80 @@ The platform supports three service tiers:
 - ✅ `useProjects` hook working (dashboard connected to real data) - Oct 3, 2025
 - ✅ Mock data removed from production code paths - Oct 4, 2025
 
-### 2.3 Authentication (✅ 95% Complete)
+### 2.3 Authentication (🚨 BROKEN - LAUNCH BLOCKER)
+
+**User Testing Results (Oct 6, 2025):** Authentication tested on production - **CRITICAL FAILURES**
 
 #### Marketing Site (startupai.site)
 - ✅ Supabase Auth client configured
-- ✅ Email/password authentication working
-- ✅ GitHub OAuth working
-- ✅ Login form properly implemented with validation and error handling (Oct 4, 2025)
-- ✅ Token-based handoff working: passes access_token + refresh_token to product site
-- ⚠️ No dedicated JWT handoff endpoint (uses direct token pass-through)
+- ⚠️ Email/password authentication functional but confusing UX
+- ❌ **BROKEN:** GitHub OAuth not working in production
+- ✅ Login form has validation (Oct 4, 2025)
+- ⚠️ Token-based handoff passes tokens but leads to confusing flow
+- ❌ **ISSUE:** Users see additional login prompts after cross-site handoff
 
 #### Product Site (app.startupai.site)
-- ✅ OAuth callback route (`/auth/callback`) working (Oct 4, 2025)
-- ✅ GitHub OAuth operational
-- ✅ Token handoff: accepts access_token + refresh_token via URL params
-- ✅ Session establishment: `setSession()` creates user session from tokens
-- ✅ Role-aware routing (founder vs consultant vs trial) - Oct 4, 2025
-- ✅ Profile-based redirect: automatically routes users based on role and plan status
+- ✅ OAuth callback route exists (`/auth/callback`)
+- ❌ **BROKEN:** GitHub OAuth not operational in production
+- ⚠️ Token handoff accepts tokens but routing broken
+- ⚠️ Session establishment works but role detection failing
+- ❌ **CRITICAL:** Role-aware routing broken (founder → consultant dashboard)
+- ❌ **CRITICAL:** Test credentials don't map to correct roles
 - ✅ Trial usage guardrails implemented (Oct 4, 2025):
   - `trial_usage_counters` table with RLS policies
   - `/api/trial/allow` endpoint for server-side enforcement
   - Limits: 3 projects/month, 10 workflows/month, 5 reports/month
   - 4 passing tests for trial guard service
+
+#### **Critical Authentication Issues Found**
+
+1. **GitHub OAuth Completely Broken**
+   - Users cannot authenticate with GitHub
+   - Likely OAuth callback URLs misconfigured for production
+   - Need to verify Supabase OAuth settings
+
+2. **Role Routing Broken**
+   - Founder test account lands in consultant dashboard
+   - Role detection logic not working correctly
+   - user_profiles table may not be populated correctly
+
+3. **Confusing Double Login**
+   - Users see login prompt after already logging in
+   - Cross-site handoff not seamless
+   - Additional authentication steps appearing unexpectedly
+
+4. **Test Credentials Issues**
+   - Founder email not assigned founder role
+   - Role assignment in database incorrect
+   - Need to verify user_profiles.role values
+
+#### **Required Fixes (4 hours - URGENT)**
+
+**Fix 1: GitHub OAuth (1 hour)**
+- Check Supabase OAuth configuration
+- Verify redirect URLs match production domains
+- Test OAuth flow end-to-end on deployed sites
+
+**Fix 2: Role-Based Routing (1 hour)**
+- Debug role detection in `frontend/src/pages/index.tsx`
+- Verify user_profiles.role values in database
+- Fix routing logic: founder → /founder-dashboard, consultant → /dashboard
+- Add logging to track role detection
+
+**Fix 3: Remove Double Login (1 hour)**
+- Fix auth state persistence after handoff
+- Remove unnecessary login redirects
+- Streamline session establishment
+- Test seamless cross-site flow
+
+**Fix 4: End-to-End Testing (1 hour)**
+- Test: marketing login → product dashboard (both email & GitHub)
+- Verify: founder → /founder-dashboard
+- Verify: consultant → /dashboard  
+- Verify: trial → /dashboard with limits
+- Document test credentials with expected roles
+
+**Status:** 🚨 BROKEN - LAUNCH BLOCKER - Cannot launch until authentication works correctly
 
 ### 2.4 Frontend UI (✅ 65% Complete)
 
@@ -356,7 +517,9 @@ The platform supports three service tiers:
   - Pages Router: 16 main app pages
   - Decision: KEEP HYBRID (documented in router-consolidation-analysis.md)
 
-### 2.5 Backend & AI (⚠️ 15% Complete - IN PROGRESS)
+### 2.5 Backend & AI (🚨 15% Complete - LAUNCH BLOCKER)
+
+**User Testing Results (Oct 6, 2025):** Product tested - **NO AI FUNCTIONALITY VISIBLE**
 
 #### AI Framework Strategy (✅ FINALIZED Oct 4, 2025)
 
@@ -423,6 +586,33 @@ The platform supports three service tiers:
 - ❌ End-to-end workflow testing
 
 **Status:** 15% complete (2 of 10 steps done) - Estimated 10-13 hours remaining
+
+#### **Critical AI Issues Found (Oct 6 Testing)**
+
+**Reality Check:** Marketing promises "AI-powered strategic analysis" but:
+- ❌ Project creation has ZERO AI involvement
+- ❌ No AI-powered insights or recommendations visible
+- ❌ No automated report generation
+- ❌ No AI guidance or assistance during any workflow
+- ❌ Users see only empty manual forms
+
+**Business Impact:**
+- Marketing says: "AI analyzes your strategy"
+- Product delivers: Empty text boxes
+- User expectation: AI will help me
+- Actual experience: I'm on my own
+- **Result:** Trust destroyed, immediate churn
+
+**What Users Expected vs Got:**
+
+| Marketing Promise | User Expectation | Actual Delivery |
+|-------------------|------------------|-----------------|
+| "AI-powered strategic analysis" | AI will analyze my inputs | Empty forms, no analysis |
+| "Evidence-led validation" | AI will validate my hypothesis | Manual data entry only |
+| "Expert AI insights" | AI will give me recommendations | No insights provided |
+| "Automated report generation" | AI will create reports | No reports generated |
+
+**Launch Impact:** This is a **complete deal-breaker**. Cannot launch with this gap.
 
 ---
 
@@ -837,39 +1027,78 @@ app/api/ai/generate-report/route.ts
 
 ---
 
-## 📈 Phase Summary & Next Actions
+## 📈 Phase Summary & Launch Readiness
+
+### 🚨 **CRITICAL: NOT READY FOR LAUNCH**
+
+**User Testing Completed (Oct 6, 2025):** Product tested on deployed sites
+- **Authentication:** ❌ BROKEN (GitHub OAuth failed, role routing broken)
+- **AI Features:** ❌ COMPLETELY MISSING (no AI visible anywhere)
+- **User Experience:** ❌ CONFUSING (double logins, wrong dashboards)
+- **Marketing Match:** ❌ FAILS (promises AI, delivers empty forms)
 
 ### ✅ What's Complete
-- **Phase 1:** 99% - Infrastructure, database, auth, deployment
-- **Phase 2:** 70% - Marketing site core features
+- **Phase 1:** 99% - Infrastructure, database, auth **configuration**, deployment
+- **Phase 2:** 70% - Marketing site core features  
 - **Phase 3:** 70% - Product platform UI and database
-- **Phase 4:** 15% - CrewAI infrastructure and Netlify functions
+- **Phase 4:** 15% - CrewAI infrastructure only (NO functionality)
 
-### 🎯 Immediate Priorities (Next 2-3 Weeks)
+### 🚨 What's BROKEN
+- **Authentication:** GitHub OAuth broken, role routing broken, confusing UX
+- **AI Backend:** Only 15% complete - no tools implemented, no reports generated
+- **User Experience:** Product doesn't match marketing promises at all
 
-**Week 1: Complete CrewAI Backend (10-13 hours)**
+### 🎯 Critical Path to Launch (20-25 hours)
+
+**🚨 URGENT: Fix Authentication First (4 hours)**
+1. Debug and fix GitHub OAuth (1h)
+2. Fix role-based routing (founder → founder dashboard) (1h)
+3. Remove confusing double-login prompts (1h)
+4. End-to-end auth testing (1h)
+**Why First:** Users can't even log in correctly. Must work before anything else matters.
+
+**🚨 CRITICAL: Complete AI Backend (12-15 hours)**
 1. Implement Evidence Store tool (3-4h)
 2. Implement WebSearch tool (2-3h)
 3. Implement ReportGenerator tool (2-3h)
 4. Test local execution (1h)
 5. Deploy to Netlify (1h)
+6. Verify end-to-end AI workflow (2h)
+**Why Critical:** This is THE product. Without AI, we're selling vaporware.
 
-**Week 2: Frontend Integration (7 hours)**
-1. Connect ProjectCreationWizard to /api/analyze (4h)
-2. Add real-time progress tracking (3h)
+**⚡ HIGH: Add AI Visibility (6 hours)**
+1. Integrate ProjectCreationWizard → `/api/analyze` (3h)
+2. Add AI processing states and progress indicators (1h)
+3. Display AI-generated insights in UI (1h)
+4. Add onboarding showing AI features (1h)
+**Why High:** Users need to SEE the AI working. Silent AI = no AI.
 
-**Week 3: Testing & Polish (6 hours)**
-1. End-to-end workflow testing (2h)
-2. Marketing signup integration (4h)
+**Total: 22-25 hours to Minimum Launchable Product**
 
-### 📋 Success Criteria
-- [ ] CrewAI backend generating reports end-to-end
-- [ ] Frontend calling /api/analyze successfully
-- [ ] Reports stored in Supabase
-- [ ] Trial guardrails enforcing limits
-- [ ] Marketing signup creating user accounts
+### 📋 Launch Readiness Criteria
 
-**Total Remaining:** ~33 hours to MVP completion
+**Must Fix Before Launch (Blockers):**
+- [ ] ✅ GitHub OAuth working perfectly
+- [ ] ✅ Founder role → /founder-dashboard routing
+- [ ] ✅ Consultant role → /dashboard routing  
+- [ ] ✅ Single seamless login flow (no double prompts)
+- [ ] ✅ CrewAI backend generating reports end-to-end
+- [ ] ✅ Project creation triggers AI analysis
+- [ ] ✅ AI processing visible (progress indicators)
+- [ ] ✅ At least one AI insight displayed to users
+- [ ] ✅ Users can view generated strategic reports
+
+**Should Have (Polish Before Launch):**
+- [ ] AI onboarding tutorial
+- [ ] Error recovery for AI failures
+- [ ] Sample AI insights on dashboard
+
+**Nice to Have (Post-Launch):**
+- [ ] Real-time AI progress updates
+- [ ] AI chat interface
+- [ ] Multiple report formats
+
+**Estimated Time:** 22-25 hours focused work to launch-ready state
 
 ---
 
