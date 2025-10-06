@@ -47,89 +47,158 @@ All implementation details, architecture decisions, status tracking, and next st
 
 ## 1. System Overview
 
-### 1.1 Site Structure & Pages
+### 1.1 Site Structure & Navigation Flow
 
-#### Marketing Site (startupai.site) - 19 Pages
+#### Marketing Site (startupai.site) - Navigation Map
 
-**App Router Pages:**
+**🏠 Entry Point: Landing Page (`/`)**
 ```
-src/app/
-├── page.tsx                          # / - Landing page
-├── login/page.tsx                    # /login - User login
-├── signup/page.tsx                   # /signup - User registration
-├── pricing/page.tsx                  # /pricing - Pricing plans
-├── product/page.tsx                  # /product - Product overview
-├── process/page.tsx                  # /process - Our process
-├── ai-strategy/page.tsx              # /ai-strategy - AI strategy info
-├── blog/page.tsx                     # /blog - Blog listing
-├── case-studies/page.tsx             # /case-studies - Case studies
-├── contact/page.tsx                  # /contact - Contact form
-├── preview/page.tsx                  # /preview - Content preview
-├── services/
-│   ├── page.tsx                      # /services - Services overview
-│   ├── discovery/page.tsx            # /services/discovery
-│   ├── validation/page.tsx           # /services/validation
-│   ├── scaling/page.tsx              # /services/scaling
-│   ├── advisory/page.tsx             # /services/advisory
-│   └── optimization/page.tsx         # /services/optimization
-└── demo/
-    └── dashboard/page.tsx            # /demo/dashboard - Demo dashboard
-└── design-system-test/page.tsx       # /design-system-test - Component testing
+/ (Landing)
+├─→ /product ..................... ✅ Product overview
+├─→ /services/advisory ........... ✅ Advisory services
+├─→ /process ..................... ✅ Our process
+├─→ /pricing ..................... ✅ Pricing plans
+│   └─→ /signup .................. ✅ User registration
+│       └─→ /login ............... ✅ User login
+│           └─→ app.startupai.site ... ✅ Cross-site handoff
+├─→ /services .................... ✅ Services overview
+│   ├─→ /services/discovery ...... ✅ Discovery service
+│   ├─→ /services/validation ..... ✅ Validation service
+│   ├─→ /services/scaling ........ ✅ Scaling service
+│   ├─→ /services/advisory ....... ✅ Advisory service
+│   └─→ /services/optimization ... ✅ Optimization service
+├─→ /ai-strategy ................. ✅ AI strategy info
+├─→ /blog ........................ ✅ Blog listing
+├─→ /case-studies ................ ✅ Case studies
+└─→ /contact ..................... ✅ Contact form
 ```
 
-**Status:** ✅ All 19 pages deployed and functional
+**🔧 Utility Pages (Not in main nav):**
+```
+/demo/dashboard .................. ✅ Demo dashboard
+/preview ......................... ✅ Content preview
+/design-system-test .............. ✅ Component testing
+```
+
+**📊 Navigation Status:**
+- ✅ **19/19 pages** deployed and functional
+- ✅ **All nav links** connected to existing pages
+- ✅ **Cross-site handoff** working (login → app.startupai.site)
+
+**⚠️ Identified Gaps:**
+- ❌ **Missing:** Individual blog post pages (`/blog/[slug]`)
+- ❌ **Missing:** Individual case study pages (`/case-studies/[slug]`)
+- ❌ **Orphaned:** `/demo/dashboard` (no navigation link)
+- ❌ **Orphaned:** `/preview` (no navigation link)
+- ❌ **Orphaned:** `/design-system-test` (developer only)
 
 ---
 
-#### Product Platform (app.startupai.site) - 20 Pages + 2 API Routes
+#### Product Platform (app.startupai.site) - Navigation Map
 
-**App Router Pages (4 pages):**
+**🏠 Entry Point: Role-Based Routing (`/`)**
 ```
-frontend/src/app/
-├── login/page.tsx                    # /login - Product login
-├── test-auth/page.tsx                # /test-auth - Auth testing
-├── projects/new/page.tsx             # /projects/new - Create project
-├── project/
-│   ├── [id]/gate/page.tsx           # /project/[id]/gate - Project gate
-│   └── current/gate/page.tsx        # /project/current/gate - Current gate
-├── client/[id]/
-│   └── projects/new/page.tsx        # /client/[id]/projects/new - Client project
-└── auth/
-    └── auth-code-error/page.tsx     # /auth/auth-code-error - Auth error
-```
-
-**App Router API Routes (2 routes):**
-```
-frontend/src/app/api/
-├── projects/create/route.ts          # POST /api/projects/create
-└── trial/allow/route.ts              # POST /api/trial/allow
-```
-
-**Pages Router Pages (14 pages):**
-```
-frontend/src/pages/
-├── index.tsx                         # / - Home/redirect
-├── dashboard.tsx                     # /dashboard - Main dashboard
-├── founder-dashboard.tsx             # /founder-dashboard - Founder view
-├── analytics.tsx                     # /analytics - Analytics page
-├── workflows.tsx                     # /workflows - Workflows page
-├── settings.tsx                      # /settings - User settings
-├── export.tsx                        # /export - Export data
-├── canvas.tsx                        # /canvas - Canvas overview
-├── canvas/
-│   ├── vpc.tsx                       # /canvas/vpc - Value Prop Canvas
-│   ├── bmc.tsx                       # /canvas/bmc - Business Model Canvas
-│   └── tbi.tsx                       # /canvas/tbi - Test-Build-Iterate
-├── clients.tsx                       # /clients - Clients list
-├── clients/new.tsx                   # /clients/new - New client
-└── client/[id].tsx                   # /client/[id] - Client detail
+/ (index.tsx - Role detection)
+├─→ [FOUNDER] → /founder-dashboard ........ ✅ Founder view
+│   ├─→ /dashboard ........................ ✅ Main dashboard
+│   ├─→ /projects/new ..................... ✅ Create project
+│   ├─→ /canvas ........................... ✅ Canvas overview
+│   │   ├─→ /canvas/vpc ................... ✅ Value Prop Canvas
+│   │   ├─→ /canvas/bmc ................... ✅ Business Model Canvas
+│   │   └─→ /canvas/tbi ................... ✅ Test-Build-Iterate
+│   ├─→ /workflows ........................ ✅ AI Workflows
+│   ├─→ /analytics ........................ ✅ Analytics
+│   ├─→ /settings ......................... ✅ User settings
+│   └─→ /export ........................... ✅ Export data
+│
+├─→ [CONSULTANT] → /dashboard ............. ✅ Consultant dashboard
+│   ├─→ /clients .......................... ✅ Client list
+│   │   ├─→ /clients/new .................. ✅ New client
+│   │   └─→ /client/[id] .................. ✅ Client detail
+│   │       └─→ /client/[id]/projects/new . ✅ New client project
+│   ├─→ /canvas ........................... ✅ Canvas gallery
+│   │   ├─→ /canvas/vpc ................... ✅ VPC tool
+│   │   ├─→ /canvas/bmc ................... ✅ BMC tool
+│   │   └─→ /canvas/tbi ................... ✅ TBI tool
+│   ├─→ /workflows ........................ ✅ AI Workflows
+│   ├─→ /analytics ........................ ✅ Analytics
+│   └─→ /settings ......................... ✅ Settings
+│
+└─→ [TRIAL/UNAUTHENTICATED] → /login ...... ✅ Product login
+    └─→ /auth/callback .................... ✅ OAuth callback
+        └─→ Role-based redirect ........... ✅ To dashboard
 ```
 
-**Status:** ✅ All 20 pages deployed (4 App Router + 16 Pages Router)
+**🔐 Authentication Flow:**
+```
+startupai.site/login
+└─→ Supabase Auth
+    └─→ app.startupai.site/auth/callback?access_token=...&refresh_token=...
+        └─→ setSession()
+            └─→ Check user role
+                ├─→ founder → /founder-dashboard
+                ├─→ consultant → /dashboard
+                └─→ trial → /dashboard (with limits)
+```
 
-**Architecture Decision:** Hybrid router approach validated by Vercel (Oct 4, 2025)
-- App Router: Auth flows + API routes
-- Pages Router: Main application UI
+**🚨 Gate System Flow:**
+```
+/project/[id]/gate ................... ✅ Project-specific gate
+/project/current/gate ................ ✅ Current project gate
+└─→ Gate scoring logic ............... ✅ Implemented (Oct 4)
+    └─→ Consultant enhancements ...... ✅ Complete (Oct 5)
+```
+
+**🔌 API Routes:**
+```
+POST /api/projects/create ............ ✅ Create project endpoint
+POST /api/trial/allow ................ ✅ Trial guardrails (Oct 4)
+POST /api/analyze .................... ⚠️ CrewAI backend (15% complete)
+POST /api/analyze-background ......... ⚠️ CrewAI background job
+```
+
+**📊 Navigation Status:**
+- ✅ **20/20 pages** deployed
+- ✅ **2/2 API routes** implemented
+- ✅ **Role-based routing** working
+- ⚠️ **2 API routes** pending (CrewAI)
+
+**⚠️ Identified Gaps:**
+- ❌ **Missing:** Project detail page (`/project/[id]`)
+- ❌ **Missing:** Hypothesis detail page (`/hypothesis/[id]`)
+- ❌ **Missing:** Evidence detail page (`/evidence/[id]`)
+- ❌ **Missing:** Experiment detail page (`/experiment/[id]`)
+- ❌ **Missing:** Report detail page (`/report/[id]`)
+- ❌ **Orphaned:** `/test-auth` (testing only, no nav link)
+- ⚠️ **Incomplete:** `/projects/new` (UI exists, CrewAI integration pending)
+- ⚠️ **Incomplete:** Canvas tools (UI complete, AI auto-fill pending)
+
+**🔗 Component → Page Gaps:**
+```
+EvidenceLedger component → ❌ No /evidence/[id] detail page
+HypothesisManager component → ❌ No /hypothesis/[id] detail page
+ExperimentCard component → ❌ No /experiment/[id] detail page
+ProjectCard component → ❌ No /project/[id] detail page (uses gate instead)
+ReportCard component → ❌ No /report/[id] detail page
+```
+
+---
+
+**🎯 Priority Gaps to Address:**
+
+**High Priority (Blocks User Flow):**
+1. ❌ `/project/[id]` - Project detail/overview page
+2. ❌ `/report/[id]` - View generated reports
+3. ⚠️ Complete CrewAI `/api/analyze` integration
+
+**Medium Priority (Enhances UX):**
+4. ❌ `/hypothesis/[id]` - Hypothesis detail/edit
+5. ❌ `/evidence/[id]` - Evidence detail/edit
+6. ❌ `/experiment/[id]` - Experiment detail/results
+
+**Low Priority (Content):**
+7. ❌ `/blog/[slug]` - Individual blog posts
+8. ❌ `/case-studies/[slug]` - Case study details
 
 ---
 
