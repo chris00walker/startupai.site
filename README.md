@@ -199,10 +199,53 @@ The project includes a comprehensive design system with:
 4. Push to the branch
 5. Create a pull request
 
+## Documentation
+
+### 📖 Master Reference
+
+**→ [Two-Site Implementation Plan](docs/technical/two-site-implementation-plan.md)**  
+The **SINGLE SOURCE OF TRUTH** for all StartupAI development. Contains architecture, status, and implementation details for both marketing and product platforms.
+
+### 📚 Documentation Categories
+
+#### Business & Product
+- [Product Requirements Document (PRD)](docs/product/PRD.md)
+- [MVP Specifications](docs/product/mvp-specification.md)
+- [User Stories](docs/product/user-stories.md)
+- [Business Case Overview](docs/business/7-overview.md)
+- [Market Research](docs/business/1-research.md)
+
+#### Design & UX
+- [Design System](docs/design/design-system.md)
+- [UI Specifications](docs/design/ui-specifications.md)
+- [Accessibility Standards](docs/design/accessibility-standards.md) (WCAG 2.1 AA)
+- [User Experience Patterns](docs/design/user-experience.md)
+
+#### Technical Guides
+- [Next.js Configuration](docs/technical/next.js.md)
+- [Netlify Deployment](docs/technical/netlify.md)
+- [PostHog Analytics](docs/technical/PostHog.md)
+- [AI SDK Integration](docs/technical/AI_SDK_Pages_Router.md)
+
+#### Engineering & Operations
+- [npm→pnpm Migration](docs/engineering/releases/migration-npm-pnpm.md) (Sept 26, 2025)
+- [Netlify Environment Setup](docs/engineering/deployment/NETLIFY_ENV_SETUP.md)
+- [PostHog Production Deployment](docs/integrations/posthog/POSTHOG_PRODUCTION_COMPLETE.md) (Oct 5, 2025)
+- [Git Workflow](docs/operations/git-workflow/GIT_COMMIT_SUMMARY.md)
+
+### 🔗 Product Platform Documentation
+
+For product-specific documentation (authentication, database, testing, CrewAI), see:
+- **[app.startupai.site README](../app.startupai.site/README.md)** - Product platform overview
+- **[Implementation Status](../app.startupai.site/docs/operations/implementation-status.md)** - Weekly progress tracking
+- **[CrewAI Backend](../app.startupai.site/backend/CREW_AI.md)** - AI agent implementation
+
+---
+
 ## Current Status
 
 **Overall Progress:** 95% Complete  
-**Last Audit:** October 4, 2025  
+**Last Updated:** October 6, 2025  
 **Critical Issues:**
 - ⚠️ Login form authentication disabled for testing (MUST FIX before production)
 - ⚠️ Signup form not integrated with Supabase
@@ -211,10 +254,6 @@ The project includes a comprehensive design system with:
 1. Re-enable authentication in login form (2 hours)
 2. Integrate signup with Supabase user creation (4 hours)
 3. Test cross-site handoff to product platform
-
-**Related Documentation:**
-- [Master Implementation Guide](docs/technical/two-site-implementation-plan.md) - Single source of truth for all technical details
-- [Weekly Implementation Status](../app.startupai.site/docs/operations/implementation-status.md) - Current progress tracking
 
 ## License
 

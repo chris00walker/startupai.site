@@ -4,7 +4,7 @@
 **System:** StartupAI Evidence-Led Strategy Platform  
 **Author:** AI Assistant  
 **Created:** September 2025  
-**Last Updated:** October 4, 2025, 18:00  
+**Last Updated:** October 6, 2025, 10:00  
 **Status:** Phase 1 Complete (99%) | Phase 2 In Progress (40%) | Phase 3 Pending Backend | AI Strategy Finalized  
 
 ---
@@ -15,12 +15,33 @@
 
 All implementation details, architecture decisions, status tracking, and next steps are documented here. No other technical documents should duplicate this content.
 
-### Related Operational Documents
-- `app.startupai.site/docs/operations/implementation-status.md` — Weekly progress audit
-- `app.startupai.site/docs/engineering/50-testing/README.md` — Testing infrastructure
-- `app.startupai.site/docs/engineering/30-data/supabase-setup.md` — Database setup
-- `app.startupai.site/docs/operations/database-seeding.md` — Database seeding guide
-- `app.startupai.site/backend/CREW_AI.md` — CrewAI implementation spec
+### 📚 Documentation Navigation
+
+**Complete Documentation Indexes:**
+- [`startupai.site/docs/DOCUMENTATION_INDEX.md`](../DOCUMENTATION_INDEX.md) — Marketing site documentation catalog
+- [`app.startupai.site/docs/DOCUMENTATION_INDEX.md`](../../../app.startupai.site/docs/DOCUMENTATION_INDEX.md) — Product platform documentation catalog
+
+### 🔗 Critical Reference Documents
+
+**Product & Business:**
+- [`docs/product/PRD.md`](../product/PRD.md) — Product Requirements Document
+- [`docs/product/mvp-specification.md`](../product/mvp-specification.md) — MVP feature specifications
+- [`docs/business/7-overview.md`](../business/7-overview.md) — Business case executive summary
+
+**Engineering & Architecture:**
+- [`app.startupai.site/docs/engineering/10-authentication/authentication-setup.md`](../../../app.startupai.site/docs/engineering/10-authentication/authentication-setup.md) — Authentication system
+- [`app.startupai.site/docs/engineering/30-data/supabase-setup.md`](../../../app.startupai.site/docs/engineering/30-data/supabase-setup.md) — Database setup
+- [`app.startupai.site/docs/engineering/50-testing/README.md`](../../../app.startupai.site/docs/engineering/50-testing/README.md) — Testing infrastructure
+- [`app.startupai.site/backend/CREW_AI.md`](../../../app.startupai.site/backend/CREW_AI.md) — CrewAI implementation spec
+
+**Operations & Status:**
+- [`app.startupai.site/docs/operations/implementation-status.md`](../../../app.startupai.site/docs/operations/implementation-status.md) — Weekly progress audit
+- [`app.startupai.site/docs/operations/DASHBOARD_INTEGRATION_PRIORITIES.md`](../../../app.startupai.site/docs/operations/DASHBOARD_INTEGRATION_PRIORITIES.md) — Integration priorities
+
+**Integrations & Completions:**
+- [`docs/integrations/posthog/POSTHOG_PRODUCTION_COMPLETE.md`](../integrations/posthog/POSTHOG_PRODUCTION_COMPLETE.md) — PostHog analytics (Oct 5, 2025)
+- [`app.startupai.site/docs/integrations/crewai/CREWAI_STATUS_REPORT.md`](../../../app.startupai.site/docs/integrations/crewai/CREWAI_STATUS_REPORT.md) — CrewAI status (Oct 5, 2025)
+- [`docs/engineering/releases/migration-npm-pnpm.md`](../engineering/releases/migration-npm-pnpm.md) — npm→pnpm migration (Sept 26, 2025)
 
 ---
 
