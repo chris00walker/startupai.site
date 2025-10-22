@@ -38,6 +38,7 @@ export default function PricingPage() {
   const pricingTiers = [
     {
       name: "Strategy Sprint",
+      plan: "strategy-sprint",
       price: "$1,500",
       period: "one-time",
       description: "Evidence-backed strategy canvases & DDD architecture in 1 week",
@@ -58,6 +59,7 @@ export default function PricingPage() {
     },
     {
       name: "Founder Platform",
+      plan: "founder-platform",
       price: "$199",
       period: "seat / month",
       description: "Your AI strategist for continuous iteration and validation",
@@ -79,6 +81,7 @@ export default function PricingPage() {
     },
     {
       name: "Agency Co-Pilot",
+      plan: "agency-co-pilot",
       price: "$499",
       period: "seat / month (pooled usage)",
       description: "Embedded AI strategy consultant for agencies serving multiple clients",
@@ -250,11 +253,17 @@ export default function PricingPage() {
                     }`} 
                     asChild
                   >
-                    <Link href="/product#waitlist">
+                    <Link href={`/signup?plan=${tier.plan}`}>
                       {tier.cta}
                       <ArrowRight className="h-4 w-4 ml-2" />
                     </Link>
                   </Button>
+                  <Link
+                    href="/product#waitlist"
+                    className="mt-3 text-sm font-medium text-primary hover:underline text-center"
+                  >
+                    Join the waitlist instead
+                  </Link>
                 </CardContent>
               </Card>
             );
