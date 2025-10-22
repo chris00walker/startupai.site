@@ -28,8 +28,8 @@ const navigation = [
   { name: 'Product', href: '/product' },
   { name: 'Advisory', href: '/services/advisory' },
   { name: 'Pricing', href: '/pricing' },
-  { name: 'Sign-up', href: 'https://app-startupai-site.netlify.app/login?signup=true' },
-  { name: 'Login', href: 'https://app-startupai-site.netlify.app/login' },
+  { name: 'Sign-up', href: '/signup' },
+  { name: 'Login', href: '/login' },
 ];
 
 export function Navigation() {
