@@ -1,16 +1,67 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Badge } from "@/components/ui/badge"
 import { createClient } from "@/lib/supabase/client"
+import { analytics } from "@/lib/analytics"
+
+type PlanOption = {
+  id: string
+  name: string
+  description: string
+  price: string
+  bestFor: string
+  badge?: string
+}
+
+type SignupFormProps = React.ComponentProps<"form"> & {
+  planOptions?: PlanOption[]
+  selectedPlan?: string
+  onPlanChange?: (plan: string) => void
+}
+
+export const DEFAULT_PLAN_OPTIONS: PlanOption[] = [
+  {
+    id: "founder-platform",
+    name: "Founder Platform",
+    description: "Continuous validation with AI strategist",
+    price: "$199/mo",
+    bestFor: "Founders scaling validated ideas"
+  },
+  {
+    id: "strategy-sprint",
+    name: "Strategy Sprint",
+    description: "One-week evidence-backed strategy",
+    price: "$1,500",
+    bestFor: "Teams needing rapid direction"
+  },
+  {
+    id: "agency-co-pilot",
+    name: "Agency Co-Pilot",
+    description: "White-label AI workflows for agencies",
+    price: "$499/mo",
+    bestFor: "Consultancies serving multiple clients"
+  },
+  {
+    id: "trial",
+    name: "Free Trial",
+    description: "Test the core evidence experience",
+    price: "$0",
+    bestFor: "Founders exploring fit"
+  }
+]
 
 export function SignupForm({
   className,
+  planOptions = DEFAULT_PLAN_OPTIONS,
+  selectedPlan,
+  onPlanChange,
   ...props
-}: React.ComponentProps<"form">) {
+}: SignupFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isOAuthLoading, setIsOAuthLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -21,8 +72,32 @@ export function SignupForm({
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const supabase = useMemo(() => createClient(), [])
+  const [localPlan, setLocalPlan] = useState(() => {
+    if (selectedPlan && planOptions.some((option) => option.id === selectedPlan)) {
+      return selectedPlan
+    }
+    return planOptions[0]?.id ?? "trial"
+  })
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"
+  useEffect(() => {
+    if (selectedPlan && planOptions.some((option) => option.id === selectedPlan)) {
+      setLocalPlan(selectedPlan)
+    }
+  }, [selectedPlan, planOptions])
+
+  const plan = selectedPlan ?? localPlan
+
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3001"
+
+  const handlePlanChange = (value: string) => {
+    if (!planOptions.some((option) => option.id === value)) {
+      return
+    }
+    if (!selectedPlan) {
+      setLocalPlan(value)
+    }
+    onPlanChange?.(value)
+  }
 
   const handleEmailSignup = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -37,15 +112,18 @@ export function SignupForm({
     setIsSubmitting(true)
 
     try {
-      const { error } = await supabase.auth.signUp({
+      analytics.signup.started(plan)
+
+      const { data: result, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
           data: {
             full_name: name,
             company,
+            plan_choice: plan,
           },
-          emailRedirectTo: `${appUrl}/auth/callback?next=/dashboard`,
+          emailRedirectTo: `${appUrl}/auth/callback?next=${encodeURIComponent(`/onboarding?plan=${plan}`)}`,
         },
       })
 
@@ -53,6 +131,10 @@ export function SignupForm({
         setError(error.message)
         setIsSubmitting(false)
         return
+      }
+
+      if (result.user?.id) {
+        analytics.signup.completed(result.user.id, plan)
       }
 
       setSuccess("Check your email to confirm your account. Once verified, you'll be redirected to your dashboard.")
@@ -69,9 +151,12 @@ export function SignupForm({
     setSuccess(null)
     setIsOAuthLoading(true)
 
+    analytics.signup.started(plan)
+
     // Redirect to app site for OAuth to maintain cookies on same domain
     // This prevents PKCE code verifier mismatch errors
-    window.location.href = `${appUrl}/login?provider=github&next=/dashboard`
+    const params = new URLSearchParams({ provider: "github", plan, next: "/onboarding" })
+    window.location.href = `${appUrl}/login?${params.toString()}`
   }
 
   return (
@@ -83,6 +168,40 @@ export function SignupForm({
         </p>
       </div>
       <div className="grid gap-6">
+        <fieldset className="grid gap-3">
+          <legend className="text-sm font-medium">Choose your plan</legend>
+          <div className="grid gap-3">
+            {planOptions.map((option) => (
+              <label
+                key={option.id}
+                htmlFor={`plan-${option.id}`}
+                className={cn(
+                  "flex cursor-pointer items-start gap-3 rounded-lg border p-4 transition focus-within:ring-2 focus-within:ring-primary",
+                  plan === option.id ? "border-primary bg-primary/5" : "border-border"
+                )}
+              >
+                <input
+                  type="radio"
+                  id={`plan-${option.id}`}
+                  name="plan"
+                  value={option.id}
+                  checked={plan === option.id}
+                  onChange={(event) => handlePlanChange(event.target.value)}
+                  className="mt-1 h-4 w-4 border border-primary text-primary focus-visible:outline-none"
+                />
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold">{option.name}</span>
+                    {option.badge && <Badge variant="secondary">{option.badge}</Badge>}
+                    <span className="text-sm text-muted-foreground">{option.price}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{option.description}</p>
+                  <p className="text-xs text-muted-foreground">Best for: {option.bestFor}</p>
+                </div>
+              </label>
+            ))}
+          </div>
+        </fieldset>
         <div className="grid gap-3">
           <Label htmlFor="name">Full Name</Label>
           <Input
@@ -150,7 +269,11 @@ export function SignupForm({
             {success}
           </div>
         )}
-        <Button type="submit" className="w-full" disabled={isSubmitting || isOAuthLoading}>
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={isSubmitting || isOAuthLoading}
+        >
           {isSubmitting ? "Creating account..." : "Create Account"}
         </Button>
         <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
