@@ -10,5 +10,10 @@ export function createClient() {
     throw new Error("Supabase environment variables are not set")
   }
 
-  return createBrowserClient(supabaseUrl, supabaseAnonKey)
+  return createBrowserClient(supabaseUrl, supabaseAnonKey, {
+    auth: {
+      flowType: 'pkce',
+      detectSessionInUrl: false, // We handle this manually in callback
+    },
+  })
 }
