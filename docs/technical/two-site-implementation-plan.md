@@ -472,13 +472,19 @@ The platform supports three service tiers:
 
 **BREAKTHROUGH:** GitHub OAuth now working in production with PKCE flow configuration
 
+**📋 Complete Authentication Documentation:**
+- [`authentication-setup.md`](../../../app.startupai.site/docs/engineering/10-authentication/authentication-setup.md) — **Main setup guide** with PKCE configuration details
+- [`oauth-setup-guide.md`](../../../app.startupai.site/docs/engineering/10-authentication/oauth-setup-guide.md) — **Provider setup** with PKCE requirements  
+- [`authentication-troubleshooting.md`](../../../app.startupai.site/docs/engineering/10-authentication/authentication-troubleshooting.md) — **Troubleshooting guide** updated with PKCE fix
+
 #### PKCE Flow Fix Implementation (Oct 22, 2025)
 
 **Problem Resolved:** OAuth was failing with "invalid request: both auth code and code verifier should be non-empty"
 
 **Root Cause:** Supabase client using PKCE flow by default but not properly configured
 
-**Solution Applied:**
+**Solution Applied:** (See [`authentication-setup.md#pkce-flow-configuration`](../../../app.startupai.site/docs/engineering/10-authentication/authentication-setup.md#pkce-flow-configuration) for complete details)
+
 ```typescript
 // Both sites now have matching PKCE configuration
 export function createClient() {
@@ -517,10 +523,11 @@ export function createClient() {
 
 **Status:** ✅ **AUTHENTICATION WORKING** - GitHub OAuth functional, PKCE flow configured
 
-**📋 Troubleshooting Documentation:**
-- [`authentication-troubleshooting.md`](../../../app.startupai.site/docs/engineering/10-authentication/authentication-troubleshooting.md) — Step-by-step fix guide for authentication issues
-- [`authentication-setup.md`](../../../app.startupai.site/docs/engineering/10-authentication/authentication-setup.md) — Main authentication setup guide
+**📋 Related Documentation:**
+- [`mvp-oauth-setup.md`](../../../app.startupai.site/docs/engineering/10-authentication/mvp-oauth-setup.md) — MVP OAuth implementation guide
 - [`ROLE_BASED_ROUTING_SETUP.md`](../../../app.startupai.site/docs/engineering/10-authentication/ROLE_BASED_ROUTING_SETUP.md) — Role-based routing configuration
+
+**📊 Implementation Status:** See complete authentication documentation links above for technical details, setup procedures, and troubleshooting guides.
 
 ### 2.4 Frontend UI (✅ 65% Complete)
 
