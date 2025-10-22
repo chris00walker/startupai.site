@@ -69,23 +69,9 @@ export function SignupForm({
     setSuccess(null)
     setIsOAuthLoading(true)
 
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: "github",
-        options: {
-          redirectTo: `${appUrl}/auth/callback?next=/dashboard`,
-        },
-      })
-
-      if (error) {
-        setError(error.message)
-        setIsOAuthLoading(false)
-      }
-    } catch (err) {
-      console.error(err)
-      setError("GitHub sign up failed. Please try again.")
-      setIsOAuthLoading(false)
-    }
+    // Redirect to app site for OAuth to maintain cookies on same domain
+    // This prevents PKCE code verifier mismatch errors
+    window.location.href = `${appUrl}/login?provider=github&next=/dashboard`
   }
 
   return (

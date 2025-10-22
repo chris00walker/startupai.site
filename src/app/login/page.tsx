@@ -1,12 +1,34 @@
-import { LoginForm } from "@/components/login-form"
+/**
+ * Login Page - Redirect to App Site
+ * 
+ * This page redirects users to the app site for login to ensure
+ * OAuth flows complete on the same domain (prevents PKCE errors).
+ */
+
+"use client"
+
+import { useEffect } from "react"
+import { Loader2 } from "lucide-react"
 
 export default function LoginPage() {
+  useEffect(() => {
+    // Redirect to app site login page
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://app-startupai-site.netlify.app"
+    window.location.href = `${appUrl}/login`
+  }, [])
+
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex flex-1 items-center justify-center">
-          <div className="w-full max-w-xs">
-            <LoginForm />
+          <div className="w-full max-w-xs text-center space-y-4">
+            <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary" />
+            <div>
+              <h2 className="text-xl font-semibold">Redirecting to login...</h2>
+              <p className="text-sm text-muted-foreground mt-2">
+                You'll be taken to our secure login page
+              </p>
+            </div>
           </div>
         </div>
       </div>

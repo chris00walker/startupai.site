@@ -1,12 +1,34 @@
-import { SignupForm } from "@/components/signup-form"
+/**
+ * Signup Page - Redirect to App Site
+ * 
+ * This page redirects users to the app site for signup to ensure
+ * OAuth flows complete on the same domain (prevents PKCE errors).
+ */
+
+"use client"
+
+import { useEffect } from "react"
+import { Loader2 } from "lucide-react"
 
 export default function SignupPage() {
+  useEffect(() => {
+    // Redirect to app site signup page
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://app-startupai-site.netlify.app"
+    window.location.href = `${appUrl}/login?signup=true`
+  }, [])
+
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex flex-1 items-center justify-center">
-          <div className="w-full max-w-xs">
-            <SignupForm />
+          <div className="w-full max-w-xs text-center space-y-4">
+            <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary" />
+            <div>
+              <h2 className="text-xl font-semibold">Redirecting to signup...</h2>
+              <p className="text-sm text-muted-foreground mt-2">
+                You'll be taken to our secure signup page
+              </p>
+            </div>
           </div>
         </div>
       </div>

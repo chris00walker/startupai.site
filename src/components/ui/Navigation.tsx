@@ -28,8 +28,8 @@ const navigation = [
   { name: 'Product', href: '/product' },
   { name: 'Advisory', href: '/services/advisory' },
   { name: 'Pricing', href: '/pricing' },
-  { name: 'Sign-up', href: '/signup' },
-  { name: 'Login', href: '/login' },
+  { name: 'Sign-up', href: 'https://app-startupai-site.netlify.app/login?signup=true' },
+  { name: 'Login', href: 'https://app-startupai-site.netlify.app/login' },
 ];
 
 export function Navigation() {
@@ -107,10 +107,10 @@ export function Navigation() {
           {/* Action Buttons */}
           <div className="hidden md:flex items-center gap-3 ml-6">
             <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white hover:bg-slate-800 text-sm" asChild>
-              <Link href="/signup">Sign-up</Link>
+              <a href="https://app-startupai-site.netlify.app/login?signup=true">Sign-up</a>
             </Button>
             <Button size="sm" className="bg-primary hover:bg-primary/90 text-white text-sm" asChild>
-              <Link href="/login">Login</Link>
+              <a href="https://app-startupai-site.netlify.app/login">Login</a>
             </Button>
           </div>
 
@@ -183,14 +183,14 @@ export function Navigation() {
                       onClick={handleMobileMenuClick}
                       asChild
                     >
-                      <Link href="/signup">Sign-up</Link>
+                      <a href="https://app-startupai-site.netlify.app/login?signup=true">Sign-up</a>
                     </Button>
                     <Button 
                       className="bg-primary hover:bg-primary/90 text-white"
                       onClick={handleMobileMenuClick}
                       asChild
                     >
-                      <Link href="/login">Login</Link>
+                      <a href="https://app-startupai-site.netlify.app/login">Login</a>
                     </Button>
                   </div>
                 </div>
