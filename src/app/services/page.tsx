@@ -361,9 +361,6 @@ export default function ServicesPage() {
                 <p className="text-muted-foreground mb-6">
                   Let's discuss how our services can help transform your business idea into reality.
                 </p>
-                <Button asChild size="lg">
-                  <Link href="/product#waitlist">Join the Waitlist</Link>
-                </Button>
               </CardContent>
             </Card>
           </div>

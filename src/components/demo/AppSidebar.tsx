@@ -169,12 +169,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       
       <SidebarFooter>
         <div className="p-2">
-          <Button variant="outline" className="btn-card-sm" asChild>
-            <Link href="/product#waitlist">
-              <Brain className="h-4 w-4 mr-2" />
-              Join the Waitlist
-            </Link>
-          </Button>
         </div>
       </SidebarFooter>
     </Sidebar>

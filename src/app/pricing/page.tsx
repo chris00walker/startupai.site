@@ -279,12 +279,6 @@ export default function PricingPage() {
                       <ArrowRight className="h-4 w-4 ml-2" />
                     </a>
                   </Button>
-                  <Link
-                    href="/product#waitlist"
-                    className="mt-3 text-sm font-medium text-primary hover:underline text-center"
-                  >
-                    Join the waitlist instead
-                  </Link>
                 </CardContent>
               </Card>
             );
@@ -402,14 +396,6 @@ export default function PricingPage() {
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               Limited spots available for our Q4 2025 pilot program. Secure your spot now!
             </p>
-            <div className="flex justify-center">
-              <Button size="lg" className="hover:scale-105 transition-all duration-300" asChild>
-                <Link href="/product#waitlist">
-                  <Target className="h-4 w-4 mr-2" />
-                  Join the Waitlist
-                </Link>
-              </Button>
-            </div>
           </CardContent>
         </Card>
         </PageContainer>

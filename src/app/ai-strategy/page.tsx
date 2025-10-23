@@ -84,12 +84,6 @@ export default function AIStrategyPage() {
             </PageDescription>
           </PageHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Button size="lg" asChild>
-              <Link href="/product#waitlist">
-                Join the Waitlist
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
             <Button size="lg" variant="outline" asChild>
               <Link href="#how-it-works">
                 See How It Works
@@ -421,12 +415,6 @@ export default function AIStrategyPage() {
             smarter.
           </p>
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Button size="lg" asChild>
-              <Link href="/product#waitlist">
-                Join the Waitlist
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
             <Button size="lg" variant="outline" asChild>
               <Link href="/contact">
                 Schedule a Demo

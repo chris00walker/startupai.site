@@ -232,14 +232,6 @@ export default function AdvisoryPage() {
                 <p className="text-sm text-muted-foreground mb-2">Limited spots available for Q4 2025</p>
                 <p className="text-lg font-semibold">Transform your idea into a validated strategy in 1 week</p>
               </div>
-              <Button asChild size="lg" className="glow-effect hover:scale-105 transition-all duration-300">
-                <Link href="/product#waitlist">
-                  <span className="flex items-center gap-2">
-                    <Rocket className="w-5 h-5" />
-                    Join the Waitlist
-                  </span>
-                </Link>
-              </Button>
               <p className="text-xs text-muted-foreground mt-3">
                 <Shield className="w-3 h-3 inline mr-1" />
                 100% Private • Evidence-Based • Production-Ready

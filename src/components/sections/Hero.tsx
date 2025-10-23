@@ -55,16 +55,6 @@ export function Hero() {
             the guesswork.
           </p>
           
-          <div className="flex justify-center">
-            <Button asChild size="lg" className="glow-effect hover:scale-105 transition-all duration-300">
-              <Link href="/product#waitlist">
-                <span className="flex items-center gap-2">
-                  Join the Waitlist
-                  <Sparkles className="w-4 h-4" />
-                </span>
-              </Link>
-            </Button>
-          </div>
           
           <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
             {[

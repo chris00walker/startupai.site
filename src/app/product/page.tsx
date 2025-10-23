@@ -234,14 +234,6 @@ export default function ProductPage() {
                     can transform your business strategy development.
                   </p>
                 </div>
-                <div className="flex justify-center">
-                  <Button className="hover:scale-105 transition-all duration-300" asChild>
-                    <Link href="#waitlist">
-                      <Target className="h-4 w-4 mr-2" />
-                      Join the Waitlist
-                    </Link>
-                  </Button>
-                </div>
               </div>
               <div className="relative">
                 <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg border border-primary/20 flex items-center justify-center">
@@ -267,14 +259,6 @@ export default function ProductPage() {
                 Join successful startups that have accelerated their growth with our 
                 multi-agent AI solutions. Start with a free consultation.
               </p>
-              <div className="flex justify-center">
-                <Button size="lg" className="hover:scale-105 transition-all duration-300" asChild>
-                  <Link href="#waitlist">
-                    <Target className="h-4 w-4 mr-2" />
-                    Join the Waitlist
-                  </Link>
-                </Button>
-              </div>
             </CardContent>
           </Card>
         </PageContainer>

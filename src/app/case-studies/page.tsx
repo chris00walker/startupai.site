@@ -272,12 +272,6 @@ export default function CaseStudiesPage() {
             </PageDescription>
           </PageHeader>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <Button size="lg" className="hover:scale-105 transition-all duration-300" asChild>
-              <Link href="/product#waitlist">
-                <Sparkles className="h-4 w-4 mr-2" />
-                Join the Waitlist
-              </Link>
-            </Button>
             <Button variant="outline" size="lg" className="hover:scale-105 transition-all duration-300" asChild>
               <Link href="/ai-strategy">
                 See How It Works

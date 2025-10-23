@@ -44,18 +44,13 @@ export function AIStrategySection() {
                 From canvas to execution: generate strategy canvases, design experiments, and turn
                 learning into a concrete plan. Built for founders, indie hackers, and consultants.
               </p>
-              <div className="mt-6">
-                <Button asChild size="lg">
-                  <Link href="#waitlist">Join the Waitlist</Link>
-                </Button>
-              </div>
             </div>
 
             <Card id="waitlist" className="border-primary/20 shadow-sm scroll-mt-24">
               <CardHeader>
                 <CardTitle>Request Early Access</CardTitle>
                 <CardDescription>
-                  Join the waitlist for the private pilot. We'll reach out with next steps.
+                  Request early access to our private pilot program.
                 </CardDescription>
               </CardHeader>
               <CardContent>
