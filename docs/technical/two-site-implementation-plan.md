@@ -253,7 +253,18 @@ ReportCard component → ❌ No /report/[id] detail page
 - **Time to Fix:** Integrate AI + add visibility (6 hours)
 - 📋 **Analysis Report:** [`MARKETING_VS_PRODUCT_REALITY_CHECK.md`](../../../app.startupai.site/docs/features/completion-reports/MARKETING_VS_PRODUCT_REALITY_CHECK.md)
 
-**🔴 BLOCKER 4: Critical Accessibility Failures**
+**🔴 BLOCKER 4: Onboarding 404 Error - Complete User Journey Failure**
+- ❌ **All Users Hit 404:** Every user (Free Trial, Founder, Consultant) redirected to non-existent `/onboarding` page
+- ❌ **Core Value Prop Broken:** AI-guided onboarding is the primary product feature - completely missing
+- ❌ **Authentication Flow Broken:** Successful signup → immediate 404 error
+- ❌ **Universal Impact:** Affects 100% of new users regardless of plan selection
+- **Impact:** Complete failure to deliver core marketing promise of "AI-guided strategic analysis"
+- **Business Risk:** Every new user experiences immediate product failure
+- **User Experience:** Signup success → 404 error → abandonment
+- **Time to Fix:** 20-25 hours (complete onboarding system implementation)
+- 📋 **Implementation Plan:** [`onboarding-agent-integration.md`](../../app.startupai.site/docs/features/onboarding-agent-integration.md)
+
+**🔴 BLOCKER 5: Critical Accessibility Failures**
 - ❌ **WCAG Compliance:** Fails at all levels (A, AA, AAA)
 - ❌ **Missing Landmarks:** No `<main>` elements, no skip navigation
 - ❌ **Data Visualization:** Charts/metrics have zero accessibility
@@ -298,7 +309,43 @@ ReportCard component → ❌ No /report/[id] detail page
 3. Display AI-generated insights in UI (1h)
 4. Add onboarding showing AI features (1h)
 
-**Phase 4: Critical Accessibility Fixes (8-10 hours) - LAUNCH BLOCKER**
+**Phase 4: AI-Guided Onboarding System (20-25 hours) - LAUNCH BLOCKER**
+1. **Database Schema Updates** (2-3 hours)
+   - Create `onboarding_sessions` table with conversation state management
+   - Create `entrepreneur_briefs` table for structured data collection
+   - Integrate with existing `projects` table for workflow handoff
+   - 📋 **Reference:** [`database-schema-updates.md`](../../app.startupai.site/docs/engineering/database-schema-updates.md)
+
+2. **API Endpoints Implementation** (4-6 hours)
+   - `/api/onboarding/start` - Initialize conversation with CrewAI agent
+   - `/api/onboarding/message` - Handle user responses and AI replies
+   - `/api/onboarding/complete` - Trigger full strategic analysis workflow
+   - Server-Sent Events for real-time streaming responses
+   - 📋 **Reference:** [`onboarding-api-endpoints.md`](../../app.startupai.site/docs/engineering/onboarding-api-endpoints.md)
+
+3. **Frontend Components Development** (6-8 hours)
+   - `OnboardingWizard` - Shadcn SidebarProvider layout with Sonner toast integration
+   - `ConversationInterface` - Chat interface with Avatar, ScrollArea, and Badge components
+   - `MessageInput` - Enhanced Textarea with Tooltip, voice input, and AI help system
+   - `OnboardingSidebar` - Full Shadcn sidebar with progress tracking and brief summary
+   - WCAG 2.2 AA accessibility compliance with multi-modal interaction support
+   - 📋 **Reference:** [`frontend-components-specification.md`](../../app.startupai.site/docs/engineering/frontend-components-specification.md) - Shadcn-optimized components
+
+4. **AI Conversation Logic** (4-6 hours)
+   - Implement 7-stage conversation flow (Customer → Problem → Solution → Competition → Resources → Goals)
+   - AI help system with contextual examples and guidance
+   - Response validation and follow-up question logic
+   - Multi-modal interaction (voice/text/hybrid modes)
+   - 📋 **Reference:** [`onboarding-agent-personality.md`](../../app.startupai.site/docs/features/onboarding-agent-personality.md)
+
+5. **Integration & Testing** (4-6 hours)
+   - Connect onboarding flow to CrewAI backend workflow trigger
+   - End-to-end testing of complete user journey
+   - Accessibility compliance for all interaction modes
+   - Error handling and recovery scenarios
+   - 📋 **Reference:** [`onboarding-journey-map.md`](../../app.startupai.site/docs/user-experience/onboarding-journey-map.md)
+
+**Phase 5: Critical Accessibility Fixes (8-10 hours) - LAUNCH BLOCKER**
 1. Add semantic HTML landmarks (`<main>`, `<nav>`, `<aside>`) (2h)
 2. Implement skip navigation links (1h)
 3. Add ARIA labels to all status icons and interactive elements (2h)
@@ -307,7 +354,7 @@ ReportCard component → ❌ No /report/[id] detail page
 6. Add live regions for dynamic content updates (1h)
 7. Test with screen reader and keyboard-only navigation (1h)
 
-**Total: 30-35 hours to Minimum Launchable Product (MLP)**
+**Total: 50-60 hours to Minimum Launchable Product (MLP)**
 
 #### **Launch Readiness Checklist**
 
@@ -316,6 +363,14 @@ ReportCard component → ❌ No /report/[id] detail page
 - [ ] Founder role → founder dashboard routing
 - [ ] Consultant role → consultant dashboard routing
 - [ ] Single login flow (no double prompts)
+- [ ] **Onboarding:** `/onboarding` page exists and loads successfully
+- [ ] **Onboarding:** AI-guided conversation flow working end-to-end
+- [ ] **Onboarding:** All 7 conversation stages functional (Customer → Problem → Solution → Competition → Resources → Goals)
+- [ ] **Onboarding:** Voice and text interaction modes working
+- [ ] **Onboarding:** AI help system providing contextual assistance
+- [ ] **Onboarding:** Shadcn/ui components properly integrated (sidebar, card, button, badge, etc.)
+- [ ] **Onboarding:** Conversation data properly saved to database
+- [ ] **Onboarding:** Successful handoff to CrewAI strategic analysis workflow
 - [ ] CrewAI backend generating reports end-to-end
 - [ ] Project creation triggers AI analysis
 - [ ] AI processing visible to users (progress indicators)
@@ -327,9 +382,11 @@ ReportCard component → ❌ No /report/[id] detail page
 - [ ] **Accessibility:** Text alternatives for data visualizations
 - [ ] **Accessibility:** Keyboard navigation working
 - [ ] **Accessibility:** Screen reader compatibility verified
+- [ ] **Accessibility:** Multi-modal onboarding accessible to all users
 
 **Should Have (Polish):**
-- [ ] AI onboarding tutorial
+- [ ] Onboarding conversation quality optimization
+- [ ] Advanced AI help features (brainstorming, validation)
 - [ ] Sample AI insights on dashboard
 - [ ] Tooltips explaining AI features
 - [ ] Error recovery for AI failures
@@ -1828,10 +1885,12 @@ export async function POST(req: Request) {
 - **Update Frequency:** After every major milestone
 - **Owner:** Development team
 - **Review Cycle:** Weekly during active development
-- **Last Review:** October 21, 2025 (Accessibility audit integration)
+- **Last Review:** October 23, 2025 (Onboarding system integration)
 
 ### Change Log
-- **Oct 21, 2025 20:15:** **ACCESSIBILITY AUDIT COMPLETED** - Added BLOCKER 4 (Critical Accessibility Failures) as launch blocker, updated Phase 4 with 8-10 hour implementation plan, synchronized with accessibility-standards.md
+- **Oct 23, 2025 13:12:** **SHADCN FRONTEND OPTIMIZATION** - Updated Phase 4 frontend components section to reflect Shadcn/ui integration, added Shadcn component checklist item to launch readiness, updated frontend components description to include WCAG 2.2 AA compliance and Shadcn optimization
+- **Oct 23, 2025 12:45:** **ONBOARDING SYSTEM INTEGRATION** - Added BLOCKER 4 (Onboarding 404 Error) as critical launch blocker, created comprehensive Phase 4 (20-25 hours) for AI-guided onboarding system, updated launch readiness checklist with onboarding requirements, cross-referenced 8 new documentation files for complete implementation logic
+- **Oct 21, 2025 20:15:** **ACCESSIBILITY AUDIT COMPLETED** - Added BLOCKER 5 (Critical Accessibility Failures) as launch blocker, updated Phase 5 with 8-10 hour implementation plan, synchronized with accessibility-standards.md
 - **Oct 4, 2025 18:00:** **AI STRATEGY FINALIZED** - Added comprehensive CrewAI + Vercel AI SDK implementation plan with step-by-step instructions (Phase 4)
 - **Oct 4, 2025 17:00:** Major consolidation - created single source of truth, archived 3 redundant docs
 - **Oct 4, 2025 16:00:** Added testing infrastructure, secrets management, build verification status
@@ -1842,6 +1901,18 @@ export async function POST(req: Request) {
 - **Sept 26, 2025:** pnpm migration completed
 
 ### Related Documents
+
+**🚨 CRITICAL ONBOARDING DOCUMENTATION (Oct 23, 2025):**
+- **Onboarding Agent Integration:** [`app.startupai.site/docs/features/onboarding-agent-integration.md`](../../app.startupai.site/docs/features/onboarding-agent-integration.md) - Complete UI/UX specification for AI-guided onboarding
+- **AI Conversation Interface:** [`app.startupai.site/docs/features/ai-conversation-interface.md`](../../app.startupai.site/docs/features/ai-conversation-interface.md) - Chat-like interface design and implementation
+- **CrewAI Frontend Integration:** [`app.startupai.site/docs/engineering/crewai-frontend-integration.md`](../../app.startupai.site/docs/engineering/crewai-frontend-integration.md) - API endpoints and streaming responses
+- **Onboarding Journey Map:** [`app.startupai.site/docs/user-experience/onboarding-journey-map.md`](../../app.startupai.site/docs/user-experience/onboarding-journey-map.md) - Complete user experience flow
+- **Onboarding Agent Personality:** [`app.startupai.site/docs/features/onboarding-agent-personality.md`](../../app.startupai.site/docs/features/onboarding-agent-personality.md) - AI conversation design and personality
+- **Onboarding API Endpoints:** [`app.startupai.site/docs/engineering/onboarding-api-endpoints.md`](../../app.startupai.site/docs/engineering/onboarding-api-endpoints.md) - Complete API specification
+- **Frontend Components:** [`app.startupai.site/docs/engineering/frontend-components-specification.md`](../../app.startupai.site/docs/engineering/frontend-components-specification.md) - Shadcn-optimized React component architecture with WCAG 2.2 AA compliance
+- **Database Schema Updates:** [`app.startupai.site/docs/engineering/database-schema-updates.md`](../../app.startupai.site/docs/engineering/database-schema-updates.md) - Supabase schema extensions
+
+**Existing Documentation:**
 - **Accessibility Standards:** [`docs/design/accessibility-standards.md`](../design/accessibility-standards.md) - WCAG compliance requirements and implementation details
 - Operational guides: `app.startupai.site/docs/operations/`
 - Engineering specs: `app.startupai.site/docs/engineering/`
