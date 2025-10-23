@@ -294,9 +294,6 @@ export default function ServicesPage() {
             <p className="text-xl mb-8 opacity-90">
               Let's discuss which services are right for your business.
             </p>
-            <Button asChild size="lg">
-              <Link href="/product#waitlist">Join the Waitlist</Link>
-            </Button>
           </div>
         </div>
       </section>
