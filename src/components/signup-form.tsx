@@ -153,10 +153,38 @@ export function SignupForm({
 
     analytics.signup.started(plan)
 
-    // Redirect to app site for OAuth to maintain cookies on same domain
-    // This prevents PKCE code verifier mismatch errors
-    const params = new URLSearchParams({ provider: "github", plan, next: "/onboarding" })
-    window.location.href = `${appUrl}/login?${params.toString()}`
+    try {
+      // In development, handle OAuth directly on marketing site
+      // In production, redirect to app site for proper domain handling
+      const isDevelopment = process.env.NODE_ENV === 'development'
+      
+      if (isDevelopment) {
+        // Handle GitHub OAuth directly on marketing site for local dev
+        const { error } = await supabase.auth.signInWithOAuth({
+          provider: 'github',
+          options: {
+            redirectTo: `${window.location.origin}/auth/callback?plan=${plan}&next=/dashboard`,
+            queryParams: {
+              access_type: 'offline',
+              prompt: 'consent',
+            },
+          },
+        })
+
+        if (error) {
+          setError(error.message)
+          setIsOAuthLoading(false)
+        }
+      } else {
+        // Production: redirect to app site for OAuth
+        const params = new URLSearchParams({ provider: "github", plan, next: "/onboarding" })
+        window.location.href = `${appUrl}/login?${params.toString()}`
+      }
+    } catch (err) {
+      console.error('GitHub signup error:', err)
+      setError('GitHub signup failed. Please try again.')
+      setIsOAuthLoading(false)
+    }
   }
 
   return (

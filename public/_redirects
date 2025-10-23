@@ -1,0 +1,22 @@
+# Netlify redirects for old HTML files
+# These redirects handle legacy URLs from previous site versions
+
+# Main pages
+/index.html           /                     301
+/about.html           /about/               301
+/services.html        /services/            301
+/portfolio.html       /portfolio/           301
+/contact.html         /contact/             301
+/blog.html            /blog/                301
+/process.html         /process/             301
+/preview.html         /preview/             301
+
+# Service pages
+/services/discovery.html      /services/discovery/      301
+/services/validation.html     /services/validation/     301
+/services/scaling.html        /services/scaling/        301
+/services/advisory.html       /services/advisory/       301
+/services/optimization.html   /services/optimization/   301
+
+# Fallback for any other .html files
+/*.html               /:splat/              301

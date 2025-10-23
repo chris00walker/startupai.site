@@ -107,10 +107,10 @@ export function Navigation() {
           {/* Action Buttons */}
           <div className="hidden md:flex items-center gap-3 ml-6">
             <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white hover:bg-slate-800 text-sm" asChild>
-              <a href="https://app-startupai-site.netlify.app/login?signup=true">Sign-up</a>
+              <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/signup`}>Sign-up</a>
             </Button>
             <Button size="sm" className="bg-primary hover:bg-primary/90 text-white text-sm" asChild>
-              <a href="https://app-startupai-site.netlify.app/login">Login</a>
+              <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/login`}>Login</a>
             </Button>
           </div>
 
@@ -178,19 +178,19 @@ export function Navigation() {
 
                   <div className="flex flex-col gap-2 mt-4">
                     <Button 
-                      variant="outline" 
-                      className="border-slate-700 text-gray-300 hover:text-white hover:bg-slate-800" 
+                      variant="ghost" 
+                      className="text-gray-300 hover:text-white hover:bg-slate-800"
                       onClick={handleMobileMenuClick}
                       asChild
                     >
-                      <a href="https://app-startupai-site.netlify.app/login?signup=true">Sign-up</a>
+                      <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/signup`}>Sign-up</a>
                     </Button>
                     <Button 
                       className="bg-primary hover:bg-primary/90 text-white"
                       onClick={handleMobileMenuClick}
                       asChild
                     >
-                      <a href="https://app-startupai-site.netlify.app/login">Login</a>
+                      <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/login`}>Login</a>
                     </Button>
                   </div>
                 </div>

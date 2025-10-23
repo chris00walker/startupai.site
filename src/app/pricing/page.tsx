@@ -37,6 +37,27 @@ export default function PricingPage() {
 
   const pricingTiers = [
     {
+      name: "Free Trial",
+      plan: "trial",
+      price: "$0",
+      period: "forever",
+      description: "Test the core evidence experience and explore fit",
+      badge: "Get Started",
+      badgeVariant: "secondary" as const,
+      icon: Lightbulb,
+      savings: "No risk, no commitment",
+      timeValue: "Perfect for founders exploring fit",
+      features: [
+        "Basic evidence collection and organization",
+        "AI-powered insights on collected evidence",
+        "Simple assumption tracking",
+        "Export to common formats",
+        "Community support and resources"
+      ],
+      cta: "Start Free",
+      highlighted: false
+    },
+    {
       name: "Strategy Sprint",
       plan: "strategy-sprint",
       price: "$1,500",
@@ -175,7 +196,7 @@ export default function PricingPage() {
       {/* Pricing Tiers */}
       <section className="bg-gray-50 py-12">
         <PageContainer variant="wide">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {pricingTiers.map((tier, index) => {
             const IconComponent = tier.icon;
             const isHovered = hoveredCard === index;
@@ -253,10 +274,10 @@ export default function PricingPage() {
                     }`} 
                     asChild
                   >
-                    <Link href={`/signup?plan=${tier.plan}`}>
+                    <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/login?signup=true&plan=${tier.plan}`}>
                       {tier.cta}
                       <ArrowRight className="h-4 w-4 ml-2" />
-                    </Link>
+                    </a>
                   </Button>
                   <Link
                     href="/product#waitlist"
