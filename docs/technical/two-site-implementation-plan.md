@@ -34,6 +34,7 @@ All implementation details, architecture decisions, status tracking, and next st
 - [`app.startupai.site/docs/engineering/10-authentication/authentication-setup.md`](../../../app.startupai.site/docs/engineering/10-authentication/authentication-setup.md) — Authentication system
 - [`app.startupai.site/docs/engineering/30-data/supabase-setup.md`](../../../app.startupai.site/docs/engineering/30-data/supabase-setup.md) — Database setup
 - [`app.startupai.site/docs/engineering/50-testing/README.md`](../../../app.startupai.site/docs/engineering/50-testing/README.md) — Testing infrastructure
+- [`app.startupai.site/docs/engineering/50-testing/specification-driven-test-plan.md`](../../../app.startupai.site/docs/engineering/50-testing/specification-driven-test-plan.md) — **Specification-driven test strategy** (validates business requirements)
 - [`app.startupai.site/backend/CREW_AI.md`](../../../app.startupai.site/backend/CREW_AI.md) — CrewAI implementation spec
 
 **Operations & Status:**
