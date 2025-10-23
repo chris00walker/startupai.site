@@ -274,7 +274,7 @@ export default function PricingPage() {
                     }`} 
                     asChild
                   >
-                    <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/login?signup=true&plan=${tier.plan}`}>
+                    <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/signup?plan=${tier.plan}`}>
                       {tier.cta}
                       <ArrowRight className="h-4 w-4 ml-2" />
                     </a>
