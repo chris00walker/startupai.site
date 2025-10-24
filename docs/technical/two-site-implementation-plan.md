@@ -1129,21 +1129,47 @@ e8290ab - Progress documentation (consolidated here)
 - ✅ Admin client only imported in API routes (/app/api/*)
 - ✅ Environment variables accessed at runtime, not build time
 
-**Commit:** `[pending]` - "fix(deploy): configure Netlify secrets scanner for server-side env vars"
+**Commit:** `c4492bd` - "fix(deploy): configure Netlify secrets scanner for server-side env vars"
+
+#### 🔧 Critical Fix: OAuth Session Cookies
+
+**Issue Discovered:** After OAuth redirect, users landing on `/onboarding` with error "User not authenticated or not found"
+
+**Root Cause:** OAuth callback route was using abstracted `createClient()` helper which didn't properly include session cookies in the redirect response. When `exchangeCodeForSession()` set cookies via cookieStore, the subsequent `NextResponse.redirect()` didn't include those cookies.
+
+**Solution Applied:**
+- Replaced helper function with direct `createServerClient()` in callback route
+- Explicit cookie handlers now properly set cookies via `cookieStore.set()`
+- Next.js automatically includes cookieStore updates in response
+- Session now persists through OAuth redirect to `/onboarding`
+
+**Files Modified:**
+- `frontend/src/app/auth/callback/route.ts` - Direct Supabase client with explicit cookie handling
+
+**Commit:** `67935ab` - "fix(auth): ensure OAuth callback properly sets session cookies"
+
+**Status:** ✅ Fix deployed, awaiting Netlify build
 
 #### 🎯 Next Steps
 
-**Immediate (5 minutes):**
-1. Apply migration via Supabase SQL Editor
-2. Test signup with new GitHub account
-3. Verify `/onboarding` page loads successfully
-4. Confirm profile auto-creation works
+**Immediate Testing (after Netlify deploy completes):**
+1. ✅ Migration applied (00010_user_profile_trigger.sql)
+2. Test complete OAuth flow with fresh GitHub account:
+   - Navigate to https://app-startupai-site.netlify.app/signup
+   - Select a plan (e.g., "Founder")
+   - Click "Sign up with GitHub"
+   - Authorize the app
+   - **Expected:** Redirect to `/onboarding` with session authenticated
+   - **Expected:** No "User not authenticated" error
+3. Verify user profile auto-created in database
+4. Verify onboarding session starts successfully
 
-**Post-Deployment:**
-- Monitor authentication flow
-- Verify user_profiles table population
-- Plan Phase 1: Accessibility fixes
-- Plan Phase 2: CrewAI integration
+**Post-Successful-Test:**
+- Monitor authentication flow metrics
+- Verify user_profiles table population via Supabase dashboard
+- Test onboarding conversation flow
+- Plan Phase 1: Accessibility fixes (8-10 hours)
+- Plan Phase 2: Replace mock AI with CrewAI (6-8 hours)
 
 ---
 
