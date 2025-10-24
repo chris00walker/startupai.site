@@ -1150,6 +1150,50 @@ e8290ab - Progress documentation (consolidated here)
 
 **Status:** ✅ Fix deployed, awaiting Netlify build
 
+#### 🚨 CRITICAL SECURITY ISSUE: Exposed Service Role Key
+
+**Issue Discovered:** Netlify secrets scanner detected hardcoded `SUPABASE_SERVICE_ROLE_KEY` in repository file `frontend/create-users-mcp.mjs` line 7
+
+**Severity:** CRITICAL - Service role key grants full admin access to Supabase database
+
+**Immediate Actions Taken:**
+1. ✅ Removed all development scripts from repository
+2. ✅ Added .gitignore patterns to prevent future commits
+3. ✅ Force-pushed to remove files from latest commits
+4. ✅ Documented incident
+
+**Files Removed:**
+- `frontend/create-users-mcp.mjs` (contained exposed key)
+- `frontend/create-test-users-working.mjs`
+- `frontend/create-test-users.mjs`
+- `frontend/create-users-properly.mjs`
+- `frontend/debug-auth.mjs`
+- `frontend/test-auth-flow.mjs`
+
+**Commits:**
+- `fd4a1f1` - "security: remove dev scripts with hardcoded secrets"
+- `fd5eb94` - "chore: update Supabase CLI to v2.53.6"
+
+**⚠️ REQUIRED USER ACTION:**
+
+**YOU MUST ROTATE THE SERVICE ROLE KEY IMMEDIATELY:**
+
+1. Go to Supabase API Settings:
+   https://supabase.com/dashboard/project/eqxropalhxjeyvfcoyxg/settings/api
+
+2. Reset/regenerate the service_role key
+
+3. Update Netlify environment variable:
+   ```bash
+   netlify env:set SUPABASE_SERVICE_ROLE_KEY "new-key-here"
+   ```
+   
+   Or via dashboard: https://app.netlify.com/sites/app-startupai-site/settings/env
+
+**Reason:** Exposed key must be considered compromised. Git history still contains it until repository is force-cleaned or abandoned.
+
+**Post-Rotation:** Trigger new Netlify deploy - build should succeed with files removed
+
 #### 🎯 Next Steps
 
 **Immediate Testing (after Netlify deploy completes):**
