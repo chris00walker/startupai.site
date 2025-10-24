@@ -1030,9 +1030,9 @@ Add intelligent follow-up logic based on conversation stage and user responses.
 
 ### 🎯 PHASE 0 IMPLEMENTATION STATUS
 
-**Last Updated:** October 24, 2025, 9:40am UTC-03:00  
-**Time Invested:** 2 hours (of 4-6 hour estimate)  
-**Current Launch Readiness:** 85% (90% after manual migration application)
+**Last Updated:** October 24, 2025, 10:10am UTC-03:00  
+**Time Invested:** 2.5 hours (of 4-6 hour estimate)  
+**Current Launch Readiness:** 90% (migration applied, ready for testing)
 
 #### ✅ Completed Steps
 
@@ -1040,6 +1040,8 @@ Add intelligent follow-up logic based on conversation stage and user responses.
 - **Commit:** `e348c3b` - "fix: add read:user scope to GitHub OAuth for full profile access"
 - Added `scopes: 'user:email read:user'` to GitHub OAuth configuration
 - File: `frontend/src/components/signup-form.tsx`
+- **Verified:** GitHub OAuth Apps request scopes in authorization URL (not in GitHub settings)
+- **Configuration:** GitHub Client ID/Secret configured in Supabase Dashboard ✅
 - **Result:** GitHub OAuth now requests full user profile data
 
 **Step 5: Plan Selection Capture** ✅  
@@ -1058,37 +1060,36 @@ Add intelligent follow-up logic based on conversation stage and user responses.
 - Already exists in migration `00009_onboarding_schema.sql`
 - No action needed
 
-#### ⚠️ Manual Action Required (5 Minutes)
+#### ✅ Database Infrastructure Applied
 
-**Steps 2-3: Database Infrastructure**
+**Steps 2-3: Database Infrastructure** ✅
 - **Commit:** `c666666` - "feat(db): add user profile auto-creation trigger migration"
 - **Migration File:** `supabase/migrations/00010_user_profile_trigger.sql`
-- **Status:** Created and committed, awaiting manual application
+- **Status:** Successfully applied via Supabase MCP server
 
-**Why Manual?** Local migration history conflicts with remote database. SQL is validated and safe to run directly.
+**Applied via:** Supabase MCP `apply_migration` tool
 
-**To Apply:**
-1. Navigate to: https://supabase.com/dashboard/project/eqxropalhxjeyvfcoyxg/sql/new
-2. Copy contents of `supabase/migrations/00010_user_profile_trigger.sql`
-3. Paste and execute in SQL Editor
-4. Verify with test signup
+**What Was Applied:**
+- ✅ `avatar_url` column added to `user_profiles` table
+- ✅ `handle_new_user()` trigger function created
+- ✅ `on_auth_user_created` trigger active on `auth.users` table
 
-**What It Does:**
-- Adds `avatar_url` column to `user_profiles` table
-- Creates `handle_new_user()` trigger function
-- Automatically creates profile on OAuth signup
-- Reads plan metadata from `raw_user_meta_data`
-
-**Verification:**
+**Verification Results:**
 ```sql
--- Check column exists
-SELECT column_name FROM information_schema.columns 
-WHERE table_name = 'user_profiles' AND column_name = 'avatar_url';
+-- Column exists ✅
+avatar_url | text
 
--- Check trigger exists
-SELECT trigger_name FROM information_schema.triggers 
-WHERE trigger_name = 'on_auth_user_created';
+-- Trigger exists ✅
+on_auth_user_created | INSERT | users
 ```
+
+**How It Works:**
+1. User signs up with GitHub OAuth
+2. GitHub returns full profile (email, full_name, avatar_url)
+3. Supabase creates auth.users record
+4. Trigger automatically creates user_profiles record
+5. Profile includes data from raw_user_meta_data
+6. User redirected to /onboarding with complete profile
 
 #### 🔄 Deferred to Post-Deployment
 
