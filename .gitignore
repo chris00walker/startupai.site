@@ -46,3 +46,9 @@ next-env.d.ts
 # Proprietary documentation
 /docs/
 .netlify/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Supabase local temp files
+supabase/.temp/
