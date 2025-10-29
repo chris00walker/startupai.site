@@ -264,6 +264,23 @@ For product-specific documentation (authentication, database, testing, CrewAI), 
 2. Implement custom analytics events (2 hours)
 3. Add A/B testing framework (8 hours)
 
+## 🗂️ Part of StartupAI Workspace
+
+This repository is one of three interconnected projects:
+
+1. **startupai.site** (this repo) - Marketing website
+2. **app.startupai.site** - Product platform
+3. **startupai-crew** - CrewAI automation
+
+**Open Full Workspace:**
+```bash
+code ~/startupai.site/startupai-code-workspace.code-workspace
+```
+
+**Complete Workspace Documentation:** See [`~/WORKSPACE.md`](../WORKSPACE.md)
+
+---
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
