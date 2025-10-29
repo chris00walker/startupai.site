@@ -50,6 +50,9 @@ next-env.d.ts
 /research.md
 /migration-task.md
 
+# Windsurf IDE Files to ignore
+startupai-code-workspace.code-workspace
+
 # Proprietary documentation
 /docs/
 .netlify/
