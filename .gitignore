@@ -6,6 +6,13 @@
 # testing
 /coverage
 
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
 # next.js
 /.next/
 /out/
