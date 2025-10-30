@@ -176,9 +176,22 @@ export function SignupForm({
           setIsOAuthLoading(false)
         }
       } else {
-        // Production: redirect to app site for OAuth
-        const params = new URLSearchParams({ provider: "github", plan, next: "/onboarding" })
-        window.location.href = `${appUrl}/login?${params.toString()}`
+        // Production: Use proper OAuth flow with onboarding redirect
+        const { error } = await supabase.auth.signInWithOAuth({
+          provider: 'github',
+          options: {
+            redirectTo: `${appUrl}/auth/callback?plan=${plan}&next=${encodeURIComponent('/onboarding')}`,
+            queryParams: {
+              access_type: 'offline',
+              prompt: 'consent',
+            },
+          },
+        })
+
+        if (error) {
+          setError(error.message)
+          setIsOAuthLoading(false)
+        }
       }
     } catch (err) {
       console.error('GitHub signup error:', err)
