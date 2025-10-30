@@ -33,15 +33,23 @@ pnpm dev:local
 
 ---
 
-### Staging (Production-Like Testing)
+### Staging (Production-Like Testing with Netlify Dev)
 ```bash
-# Run with Netlify Dev for production simulation
+# Run with Netlify Dev to simulate production environment
 pnpm dev:staging
 
 # Access at: http://localhost:8888
 ```
 
-**Use for:** Testing production builds, Netlify Functions, environment variable validation
+**What happens:**
+- Runs `netlify dev` which starts a production-like local server
+- Loads environment variables from `[context.dev.environment]` in netlify.toml
+- Simulates Netlify's production infrastructure (redirects, headers, functions)
+- Tests cross-site authentication with app platform on port 8889
+
+**Use for:** Testing production builds, Netlify Functions, environment variable validation, cross-site flows
+
+**Important:** Staging does NOT use `.env.staging` file - it uses environment variables defined in `[context.dev.environment]` section of netlify.toml!
 
 ---
 
@@ -65,11 +73,19 @@ git push origin main
 startupai.site/
 ├── .env.example          # Template with all required variables
 ├── .env.local            # Local development (gitignored)
-├── .env.staging          # Staging environment (gitignored)
+├── .env.staging          # NOT USED BY NETLIFY DEV (reference only)
 ├── .env.production       # Production reference (non-secret values)
 ├── .envrc                # direnv integration (loads ~/.secrets/startupai)
-└── netlify.toml          # Context-specific Netlify configuration
+└── netlify.toml          # ⭐ Contains staging env vars in [context.dev.environment]
 ```
+
+**Important Note about .env.staging:**
+The `.env.staging` file is NOT used by `netlify dev`. When you run `netlify dev`, environment variables come from:
+1. `[context.dev.environment]` in netlify.toml (staging-specific vars)
+2. `.env.local` file (local overrides)
+3. Netlify project settings (from dashboard)
+
+The `.env.staging` file exists only as a reference/documentation of what staging variables should be.
 
 ---
 
@@ -92,26 +108,40 @@ ENABLE_DEBUG=true
 
 ---
 
-### Staging (.env.staging)
+### Staging (Netlify Dev)
 
-**Purpose:** Production-like testing without affecting live users
+**Purpose:** Production-like testing without affecting live users using Netlify's local dev server
 
-**Key Settings:**
-```bash
-NODE_ENV=staging
-NEXT_PUBLIC_MARKETING_URL=http://localhost:8888
-NEXT_PUBLIC_APP_URL=http://localhost:8889
-ENABLE_EXPERIMENTAL_FEATURES=true
-DEBUG_MODE=true
+**Configuration Location:** `netlify.toml` file (NOT .env.staging)
+
+**Key Settings in netlify.toml:**
+```toml
+# Environment variables for staging (netlify dev)
+[context.dev.environment]
+  NODE_ENV = "development"
+  NEXT_PUBLIC_MARKETING_URL = "http://localhost:8888"
+  NEXT_PUBLIC_APP_URL = "http://localhost:8889"
+
+# Dev server configuration
+[dev]
+  command = "pnpm dev"
+  port = 8888
+  targetPort = 3000
+  autoLaunch = false
 ```
 
-**Runs:** `netlify dev` (port 8888, proxies to 3000)
+**Runs:** `netlify dev` which:
+1. Starts your framework dev server on port 3000 (`targetPort`)
+2. Proxies it through Netlify's server on port 8888 (`port`)
+3. Injects environment variables from `[context.dev.environment]`
+4. Simulates production infrastructure (functions, redirects, headers)
 
 **Features:**
-- Simulates Netlify Functions
-- Tests redirects and headers
-- Validates environment variable loading
-- Uses production build process
+- ✅ Simulates Netlify Functions
+- ✅ Tests redirects and headers from netlify.toml
+- ✅ Validates environment variable loading
+- ✅ Tests cross-site flows with app platform
+- ✅ Production-like behavior without deploying
 
 ---
 
