@@ -1,7 +1,7 @@
 ---
 purpose: "High-level overview of the two-site architecture and shared goals"
 status: "active"
-last_reviewed: "2025-10-27"
+last_reviewed: "2025-10-30"
 ---
 
 # Two-Site Plan (Public Overview)
@@ -9,7 +9,7 @@ last_reviewed: "2025-10-27"
 StartupAI operates as a coordinated pair of Next.js applications:
 
 - **`startupai.site` (marketing)** – Owns positioning, lead capture, and the cross-site handshake. Source: this repo (`src/app/**/*`).
-- **`app.startupai.site` (product)** – Hosts authentication, guided onboarding, evidence ledger, and CrewAI workflows. Source: `app.startupai.site/frontend/src/app/**/*`.
+- **`app.startupai.site` (product)** – Hosts authentication, guided onboarding, evidence ledger, and AI-powered workflows. Source: `app.startupai.site/frontend/src/app/**/*`.
 
 Both properties share Supabase authentication, PostHog analytics, and design primitives (Shadcn UI with synchronized tokens).
 
@@ -27,8 +27,8 @@ Visitor → startupai.site (Next.js App Router)
                     ▼
 Authenticated → app.startupai.site
           ├─ /auth/callback (Supabase session exchange)
-          ├─ /onboarding (guided wizard + entrepreneur brief)
-          └─ CrewAI queue + evidence ledger (post-onboarding experience)
+          ├─ /onboarding (AI-powered 7-stage conversation via Vercel AI SDK)
+          └─ Dashboard + evidence ledger (post-onboarding experience)
 ```
 
 ### Shared Services
@@ -45,17 +45,18 @@ Authenticated → app.startupai.site
 1. **Start at marketing** – Pricing cards append `plan` to CTA links; see `src/app/pricing/page.tsx`.
 2. **Auth redirect** – `/login` route triggers Supabase OAuth (GitHub) or email flow. Environment keys validated by `docs/dev/local-dev.md`.
 3. **Callback** – `app.startupai.site/frontend/src/app/auth/callback/route.ts` exchanges the PKCE code, sets cookies, and forwards to onboarding.
-4. **Onboarding** – Multi-stage chat-like wizard at `frontend/src/app/onboarding/page.tsx` collects strategy inputs, stores them in Supabase (`onboarding_sessions` table), and emits PostHog events.
-5. **Outputs** – Current production experience delivers generated canvases, Fit Report, and evidence ledger previews. CrewAI runs are mocked while final orchestration ships (see `frontend/src/app/projects/[id]/gate` for hard gating).
+4. **Onboarding** – AI-powered 7-stage conversation at `frontend/src/app/onboarding/page.tsx` using Vercel AI SDK with OpenAI GPT-4.1-nano. Collects strategy inputs via streaming chat, stores them in Supabase (`onboarding_sessions`, `entrepreneur_briefs` tables), and emits PostHog events. Stage progression handled via AI tools (assessQuality, advanceStage, completeOnboarding).
+5. **Outputs** – Current production experience delivers generated canvases, Fit Report, and evidence ledger previews.
 
-## Current Status (25 Oct 2025 Snapshot)
+## Current Status (30 Oct 2025 Snapshot)
 
 | Area | Status | Evidence |
 | --- | --- | --- |
 | Authentication bridge | ✅ | Integration tests under `frontend/src/tests/auth/*.test.ts` pass; manual walkthrough documented in `docs/specs/auth.md`. |
-| Onboarding wizard | ✅ | API routes in `docs/specs/api-onboarding.md`; PostHog funnel `Marketing → Onboarding` shows full completion path. |
-| CrewAI workflow | 🟡 | Backend spec implemented to 70%; awaiting agent orchestration completion (see `docs/specs/crewai-integration.md`). |
-| Evidence dashboard | 🟡 | UI complete, awaiting live agent data; tracked in `docs/work/in-progress.md`. |
+| Onboarding wizard | ✅ | **Vercel AI SDK implementation complete** - 7-stage conversation with streaming chat, quality assessment, and AI-driven stage progression. See `frontend/src/app/api/chat/route.ts`. PostHog funnel `Marketing → Onboarding` shows full completion path. |
+| AI Onboarding Backend | ✅ | **Migrated to Vercel AI SDK with OpenAI GPT-4.1-nano** (primary) + Anthropic Claude (fallback). Stage progression via AI tools. 12 database migrations deployed including `onboarding_sessions` and `entrepreneur_briefs` tables. |
+| CrewAI Integration | 🟡 | **Deprecated for onboarding** (migrated to Vercel AI SDK). CrewAI crew available at CrewAI AMP for future batch analysis workflows if needed. See deprecation notice in `docs/specs/crewai-integration.md`. |
+| Evidence dashboard | 🟡 | UI complete, awaiting post-onboarding workflow integration; tracked in `docs/work/in-progress.md`. |
 | Marketing analytics | ✅ | `docs/dev/analytics-seo.md` + PostHog dashboards configured; incident runbook in `docs/ops/monitoring.md`. |
 | CMS migration | 🟡 | Content still sourced from in-repo MDX; evaluation issue `marketing#142` in backlog. |
 
@@ -70,9 +71,11 @@ Authenticated → app.startupai.site
 
 ## Near-Term Roadmap
 
-1. **CrewAI back-propagation** – Feed agent summaries into Fit Dashboard and marketing demo (`docs/work/phases.md#phase-3`).
-2. **Dynamic testimonials** – Pull sanitized quotes from Supabase `marketing_testimonials` view to power `/case-studies`.
-3. **Self-serve trials** – Expand trial tier to allow limited project creation from marketing CTA without human approval.
+1. **Post-onboarding integration** – Complete project creation wizard integration with entrepreneur briefs from AI onboarding.
+2. **E2E test expansion** – Expand test coverage for AI onboarding flow and stage progression.
+3. **Dynamic testimonials** – Pull sanitized quotes from Supabase `marketing_testimonials` view to power `/case-studies`.
+4. **Self-serve trials** – Expand trial tier to allow limited project creation from marketing CTA without human approval.
+5. **CrewAI batch workflows (Optional)** – Consider CrewAI integration for batch analysis workflows if needed in future.
 
 Each item carries cross-repo checklist entries in `docs/work/roadmap.md` (marketing) and `app.startupai.site/docs/work/roadmap.md` (product).
 
