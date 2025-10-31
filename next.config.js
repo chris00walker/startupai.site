@@ -2,9 +2,9 @@
 const path = require('path');
 
 const nextConfig = {
-  // Removed output: 'export' to support API routes and serverless functions
+  output: 'export', // Static HTML export - API routes moved to Netlify Functions
   images: {
-    unoptimized: true,
+    unoptimized: true, // Required for static export
     domains: ['fonts.googleapis.com'],
     formats: ['image/webp', 'image/avif'],
   },

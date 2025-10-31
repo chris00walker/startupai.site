@@ -53,6 +53,9 @@
     "@radix-ui/react-tooltip": "^1.2.8",
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.58.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
     "autoprefixer": "^10.4.14",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -68,12 +71,10 @@
     "tailwindcss": "^3.4.17",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.8.3",
-    "@types/node": "^20.0.0",
-    "@types/react": "^19.1.13",
-    "@types/react-dom": "^19.1.9",
     "zod": "^4.0.17"
   },
   "devDependencies": {
+    "@netlify/functions": "^5.0.1",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.16",
     "eslint": "^8.38.0",

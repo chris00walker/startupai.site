@@ -63,3 +63,4 @@ startupai-code-workspace.code-workspace
 
 # Supabase local temp files
 supabase/.temp/
+src/app/api.bak/
