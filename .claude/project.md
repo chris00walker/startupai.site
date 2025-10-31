@@ -1,4 +1,4 @@
-# CLAUDE.md
+# .claude/project.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
@@ -225,8 +225,8 @@ See `.env.example` for complete template.
 
 ### Repository Documentation
 - **README.md** - Comprehensive project overview with features and setup
-- **ENVIRONMENTS.md** - Multi-environment setup guide (local, staging, production)
-- **agents.md** - AI agents implementation details
+- **docs/environments.md** - Multi-environment setup guide (local, staging, production)
+- **.claude/agents.md** - AI agents implementation details
 
 ### Docs Directory (`/docs`)
 ```

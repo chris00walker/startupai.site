@@ -81,7 +81,7 @@ Understand and respect the repository layout:
 
 ## Key Files
 
-- `agents.md` - This file, project-specific AI assistant instructions
+- `.claude/agents.md` - This file, project-specific AI assistant instructions
 - `package.json` - Dependencies and scripts (uses pnpm)
 - `tailwind.config.js` - Tailwind CSS configuration
 - `next.config.js` - Next.js configuration
@@ -228,7 +228,7 @@ pnpm dev           # Verify development server starts correctly
 ## StartupAI-Specific Requirements
 
 ### Documentation Updates
-- Update `agents.md` if project structure, APIs, or conventions change
+- Update `.claude/agents.md` if project structure, APIs, or conventions change
 - Update business documentation in `/docs/business/` if content strategy changes
 - Maintain cross-reference integrity between sequenced documents (1-6)
 - Document any new environment variables or configuration requirements
