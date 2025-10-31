@@ -2,13 +2,13 @@
 const path = require('path');
 
 const nextConfig = {
-  output: 'export',
+  // Removed output: 'export' to support API routes and serverless functions
   images: {
-    unoptimized: true, // Required for static export
+    unoptimized: true,
     domains: ['fonts.googleapis.com'],
     formats: ['image/webp', 'image/avif'],
   },
-  trailingSlash: true, // Ensures consistent URLs
+  trailingSlash: true,
 
   // Configure webpack aliases for path resolution
   webpack: (config) => {
@@ -18,9 +18,6 @@ const nextConfig = {
     };
     return config;
   },
-
-  // Note: Redirects removed for static export compatibility
-  // These should be handled at the web server level (Netlify _redirects file)
 };
 
 module.exports = nextConfig;
