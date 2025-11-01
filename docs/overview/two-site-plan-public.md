@@ -23,7 +23,7 @@ Visitor → startupai.site (Next.js App Router)
                     │
                     ▼
           Redirect: /signup?plan={id}
-                    │ (Supabase PKCE auth handled in marketing `src/app/login/page.tsx`)
+                    │ (`/login` redirects to product domain for Supabase PKCE)
                     ▼
 Authenticated → app.startupai.site
           ├─ /auth/callback (Supabase session exchange)
@@ -43,7 +43,7 @@ Authenticated → app.startupai.site
 ## Journey Walkthrough (What’s Live Today)
 
 1. **Start at marketing** – Pricing cards append `plan` to CTA links; see `src/app/pricing/page.tsx`.
-2. **Auth redirect** – `/login` route triggers Supabase OAuth (GitHub) or email flow. Environment keys validated by `docs/dev/local-dev.md`.
+2. **Auth redirect** – `/login` route forwards visitors to the product domain so Supabase OAuth (GitHub/email) completes against the authoritative app instance. Environment keys validated by `docs/dev/local-dev.md`.
 3. **Callback** – `app.startupai.site/frontend/src/app/auth/callback/route.ts` exchanges the PKCE code, sets cookies, and forwards to onboarding.
 4. **Onboarding** – AI-powered 7-stage conversation at `frontend/src/app/onboarding/page.tsx` using Vercel AI SDK with OpenAI GPT-4.1-nano. Collects strategy inputs via streaming chat, stores them in Supabase (`onboarding_sessions`, `entrepreneur_briefs` tables), and emits PostHog events. Stage progression handled via AI tools (assessQuality, advanceStage, completeOnboarding).
 5. **Outputs** – Current production experience delivers generated canvases, Fit Report, and evidence ledger previews.

@@ -11,8 +11,8 @@ last_reviewed: "2025-10-27"
 | Framework | Next.js 15 (App Router) | File-based routing, static export, shared patterns with application repo. | `package.json`, `src/app/*` |
 | Language | TypeScript | Strong typing for marketing components + shared utilities. | `tsconfig.json` |
 | Styling | Tailwind CSS + Shadcn UI | Rapid iteration + consistent design tokens shared with product. | `tailwind.config.js`, `src/components/ui/*` |
-| State / Forms | React Hook Form + Zod | Accessible form validation, reused in app repo. | `src/components/signup-form.tsx`, `src/app/api/waitlist/route.ts` |
-| Data Fetching | Static props / fetch | Site is statically exported; only waitlist API uses runtime fetch. | `next.config.js`, `src/app/api/waitlist/route.ts` |
+| State / Forms | React Hook Form + Zod | Accessible form validation, reused in app repo. | `src/components/signup-form.tsx`, `src/components/waitlist-form.tsx` |
+| Data Fetching | Static props / fetch | Site is statically exported; only the waitlist flow requires runtime work (via Netlify function or restored API route). | `next.config.js`, `netlify/functions/waitlist.ts`, `src/app/api.bak/waitlist/route.ts` |
 | Analytics | PostHog JS client | Unified event pipeline with application analytics. | `instrumentation-client.ts`, `src/lib/analytics.ts` |
 
 ## Project Structure
@@ -36,7 +36,7 @@ Key directories:
 - `pnpm dev` – Next.js dev server (Turbopack).
 - `pnpm build` – `next build && next export` producing `out/` for Netlify.
 - Netlify deploy uses `netlify.toml` for headers and redirects. Production build injects Supabase/PostHog env vars.
-- No serverless functions beyond `/api/waitlist`.
+- Netlify functions live under `netlify/functions`; current usage is `waitlist.ts` for Resend notifications during dev/preview (manually invoked via `pnpm dev:staging`).
 
 ## Shared Code with Application Repo
 

@@ -12,7 +12,7 @@ The marketing site exposes a single Netlify-friendly API route and otherwise def
 
 | Route | Method | Handler | Purpose | Notes |
 | --- | --- | --- | --- | --- |
-| `/api/waitlist` | `POST` | `src/app/api/waitlist/route.ts` | Accepts `{ email }`, validates with Zod, and optionally notifies the team via Resend. | Returns `{ ok: true, delivered: boolean }`. Rate-limiting delegated to Netlify. |
+| `/api/waitlist` | `POST` | Not mounted by default—use `netlify/functions/waitlist.ts` or restore `src/app/api.bak/waitlist/route.ts`. | Accepts `{ email }`, validates with Zod, and optionally notifies the team via Resend. | Returns `{ ok: true, delivered: boolean }` when handler is active. Rate-limiting delegated to Netlify. |
 
 ### Request / Response
 
@@ -28,7 +28,7 @@ Content-Type: application/json
 - **400** `{ ok: false, error: "Invalid payload" }` – Zod validation failed.
 - **500** `{ ok: false, error: "Server error" }` – Resend failure or unexpected exception.
 
-Consumer: `src/components/waitlist-form.tsx`. PostHog instrumentation is planned but not yet wired; see backlog item `marketing#151`.
+Consumer: `src/components/waitlist-form.tsx`. The form targets `/api/waitlist`, so re-enable the App Router handler or proxy the request to `/.netlify/functions/waitlist` when using Netlify dev. PostHog instrumentation is planned but not yet wired; see backlog item `marketing#151`.
 
 ## Contracts with the Application Platform
 
@@ -37,7 +37,7 @@ Marketing hands users off to `app.startupai.site` instead of proxying sensitive 
 | Concern | Marketing Input | Product Expectation | Source |
 | --- | --- | --- | --- |
 | **Plan identifiers** | Links append `plan=` (`trial`, `strategy-sprint`, `founder-platform`, `agency-co-pilot`). | Callback maps to canonical plan types (`trial`, `sprint`, `founder`, `enterprise`). | `src/app/pricing/page.tsx`, `app.frontend/src/app/auth/callback/route.ts` |
-| **Auth redirect** | `/login` page posts credentials to `NEXT_PUBLIC_APP_URL` Supabase instance. | Product handles OAuth + PKCE exchange. | `src/app/login/page.tsx` |
+| **Auth redirect** | `/login` immediately redirects to `${NEXT_PUBLIC_APP_URL}/login` so Supabase OAuth completes on the product domain. | Product handles OAuth + PKCE exchange. | `src/app/login/page.tsx` |
 | **Status ribbon** | Fetches `https://status.startupai.site` and `public-status-links.md` targets. | Product keeps status JSON up-to-date during incidents. | `docs/product-handshake/public-status-links.md` |
 | **Testimonials** | Marketing curates sanitized quotes. | Product exposes read-only testimonial API when CMS work completes (in progress). | `docs/work/roadmap.md#q2-2026-content-expansion` |
 

@@ -25,6 +25,7 @@ Use this index to navigate the restored documentation. Each section cross-links 
 | [`overview/`](overview/) | Value proposition, messaging matrix, two-site plan, and public roadmap. |
 | [`dev/`](dev/) | Stack overview, local dev instructions, accessibility, analytics, performance, security, and data sources. |
 | [`ops/`](ops/) | Deploy, monitoring, incident response, lead handling, and PostHog runbooks. |
+| [`incidents/`](incidents/) | Historical incident reports with timelines, root cause, and follow-up actions. |
 | [`schema/`](schema/) | Supabase plans for marketing-owned data (current + roadmap). |
 | [`product-handshake/`](product-handshake/) | Contracts and status links shared with the application team. |
 | [`work/`](work/) | Backlog, in-progress items, delivered work, phases, and roadmap themes. |

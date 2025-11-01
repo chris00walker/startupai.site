@@ -13,7 +13,7 @@ Marketing currently runs two lead capture surfaces (waitlist + contact). This pa
 | Environment | Path | Processor | Storage | Notes |
 | --- | --- | --- | --- | --- |
 | Production | Landing hero + pricing modals | Formspree form `mpwjagrn` | Formspree inbox → Zapier → Supabase `marketing_waitlist` | Sends Resend notification if `RESEND_API_KEY` configured. |
-| Local / Preview | `/api/waitlist` | Next.js route (`src/app/api/waitlist/route.ts`) | Console log (no DB write) | Used for developer testing. |
+| Local / Preview | `/api/waitlist` (needs restoration) or `/.netlify/functions/waitlist` | Bring back `src/app/api.bak/waitlist/route.ts` for Next dev, or run Netlify function (`netlify/functions/waitlist.ts`) via `pnpm dev:staging` | Console log (no DB write) | Ensure the client posts to the endpoint you expose; default code still points to `/api/waitlist`. |
 
 Validation is handled client-side via Zod (`src/components/waitlist-form.tsx`) and server-side in the API route. Formspree includes basic spam filtering; add hCaptcha if abuse increases (`marketing#154`).
 

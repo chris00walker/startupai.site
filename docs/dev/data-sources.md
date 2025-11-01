@@ -10,7 +10,7 @@ last_reviewed: "2025-10-27"
 | --- | --- | --- | --- |
 | Pricing tiers | In-repo config (`src/app/pricing/page.tsx`) synced with product plan IDs. | Renders pricing cards and CTA URLs. | Marketing (copy) + Product (plan identifiers). |
 | Testimonials | Static arrays inside `src/app/case-studies/page.tsx`. | Case study highlights and social proof. | Marketing (sanitized anonymisation). |
-| Waitlist entries | Formspree (production) or `/api/waitlist` (local). | Captures email leads and routes notifications. | Marketing Ops. |
+| Waitlist entries | Formspree form `mpwjagrn` (production); optional Netlify function (`netlify/functions/waitlist.ts`) for local tests. | Captures email leads and routes notifications. | Marketing Ops. |
 | Contact leads | Netlify form with Zapier automation. | Sends detailed inquiries to CRM. | Marketing Ops + Sales. |
 | Application status | External: `https://status.startupai.site`. | Populates trust ribbon and incident copy. | Product/SRE. |
 | PostHog events | `instrumentation-client.ts` + `src/lib/analytics.ts`. | Funnel + campaign analytics, conversion goals. | Shared. |

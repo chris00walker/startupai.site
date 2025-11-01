@@ -14,7 +14,7 @@ This page aligns the historical PostHog documentation with the code that now pow
 | --- | --- | --- | --- |
 | **PostHog (primary)** | Event + session analytics for marketing funnel and evidence previews. | Client bootstrap in `instrumentation-client.ts`; helpers in `src/lib/analytics.ts`. | `person_profiles: 'identified_only'` ensures PII only after consent (signup or demo form). |
 | **Netlify Analytics** | Backup pageview trends + deploy regression checks. | Enabled at site level; no code dependency. | Used for sanity checks when PostHog is disabled in local/dev. |
-| **Server logs** | Waitlist API success/failure metrics. | `src/app/api/waitlist/route.ts` logs to stdout. | Forwarded to Netlify log drain; errors raise incident in `ops/monitoring.md`. |
+| **Server logs** | Waitlist success/failure metrics. | `netlify/functions/waitlist.ts` (mirrors `src/app/api.bak/waitlist/route.ts`) logs to stdout when invoked. | Forwarded to Netlify log drain; errors raise incident in `ops/monitoring.md`. |
 
 > GA4 is not currently deployed. If reinstated, add a dedicated section covering consent, tag manager, and duplication safeguards with PostHog.
 
@@ -22,7 +22,7 @@ This page aligns the historical PostHog documentation with the code that now pow
 
 All marketing events are declared in `src/lib/analytics.ts`. Key categories:
 
-- `signup_started`, `signup_completed` – Fired from the marketing signup form (`src/components/signup-form.tsx`) and login flow when Supabase identifies a user.
+- `signup_started`, `signup_completed` – Fired from the marketing signup form (`src/components/signup-form.tsx`) once Supabase begins and completes account creation.
 - `pricing_viewed` – Triggered on `src/app/pricing/page.tsx` load to populate plan-level funnels.
 - `demo_requested`, `contact_form_submitted` – Attached to respective forms in `src/app/demo/page.tsx` and `src/app/contact/page.tsx`.
 - `case_study_viewed`, `blog_post_viewed`, `service_clicked` – Fired when visitors engage with long-form content.

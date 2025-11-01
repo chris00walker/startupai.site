@@ -9,6 +9,11 @@ const nextConfig = {
     formats: ['image/webp', 'image/avif'],
   },
   trailingSlash: true,
+  turbopack: {
+    resolveAlias: {
+      '@': './src',
+    },
+  },
 
   // Configure webpack aliases for path resolution
   webpack: (config) => {
