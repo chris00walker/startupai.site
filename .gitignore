@@ -64,3 +64,15 @@ startupai-code-workspace.code-workspace
 # Supabase local temp files
 supabase/.temp/
 src/app/api.bak/
+
+# Local Netlify CLI configuration
+.netlify-cli/
+.config/
+
+# Temporary fix scripts
+apply_fix.js
+execute_fix.js
+
+# Supabase local branches and backups
+supabase/.branches/
+*.sql.backup
