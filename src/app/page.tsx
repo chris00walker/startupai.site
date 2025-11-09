@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Hero } from '@/components/sections/Hero';
+import { RoleSelection } from '@/components/sections/RoleSelection';
 import { ServiceCard } from '@/components/sections/ServiceCard';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -64,6 +65,9 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       <Hero />
+
+      {/* Role Selection - Two Clear Paths */}
+      <RoleSelection />
 
       {/* Services Preview */}
       <section className="bg-gray-50">
