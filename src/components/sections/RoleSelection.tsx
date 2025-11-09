@@ -23,7 +23,7 @@ export function RoleSelection() {
         'Value Proposition Canvas',
       ],
       icon: Lightbulb,
-      href: `${process.env.NEXT_PUBLIC_APP_URL}/signup?role=founder&plan=trial`,
+      href: `/pricing?role=founder`,
       primaryColor: 'from-blue-500 to-indigo-600',
       accentColor: 'border-blue-500/20 hover:border-blue-500/50',
     },
@@ -39,7 +39,7 @@ export function RoleSelection() {
         'Practice analytics dashboard',
       ],
       icon: Users,
-      href: `${process.env.NEXT_PUBLIC_APP_URL}/signup?role=consultant&plan=trial`,
+      href: `/pricing?role=consultant`,
       primaryColor: 'from-purple-500 to-pink-600',
       accentColor: 'border-purple-500/20 hover:border-purple-500/50',
     },
@@ -136,7 +136,7 @@ export function RoleSelection() {
           <p className="text-sm text-muted-foreground">
             Not sure which path is right for you?{' '}
             <Link href="/pricing" className="text-primary hover:underline underline-offset-4 font-medium">
-              View all plans and pricing
+              Pricing
             </Link>
           </p>
         </div>

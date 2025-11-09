@@ -2,13 +2,15 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { PageContainer } from '@/components/ui/layout/page-container';
 import { PageHeader, PageTitle, PageDescription } from '@/components/ui/layout/page-header';
-import { 
-  Check, 
+import {
+  Check,
   Zap,
   ArrowRight,
   Target,
@@ -32,13 +34,44 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 
-export default function PricingPage() {
-  const [hoveredCard, setHoveredCard] = React.useState<number | null>(null);
+type Role = 'founder' | 'consultant';
 
-  const pricingTiers = [
+interface PricingTier {
+  name: string;
+  plan: string;
+  roles: readonly Role[];
+  price: string;
+  period: string;
+  description: string;
+  badge: string;
+  badgeVariant: 'default' | 'secondary';
+  icon: React.ComponentType<{ className?: string }>;
+  savings: string;
+  timeValue: string;
+  features: string[];
+  cta: string;
+  highlighted: boolean;
+}
+
+function PricingContent() {
+  const searchParams = useSearchParams();
+  const [hoveredCard, setHoveredCard] = React.useState<number | null>(null);
+  const [selectedRole, setSelectedRole] = React.useState<Role>('founder');
+
+  React.useEffect(() => {
+    const roleParam = searchParams?.get('role');
+    if (roleParam === 'consultant') {
+      setSelectedRole('consultant');
+    } else if (roleParam === 'founder') {
+      setSelectedRole('founder');
+    }
+  }, [searchParams]);
+
+  const pricingTiers: PricingTier[] = [
     {
       name: "Free Trial",
       plan: "trial",
+      roles: ['founder', 'consultant'],
       price: "$0",
       period: "forever",
       description: "Test the core evidence experience and explore fit",
@@ -60,6 +93,7 @@ export default function PricingPage() {
     {
       name: "Strategy Sprint",
       plan: "strategy-sprint",
+      roles: ['founder'],
       price: "$1,500",
       period: "one-time",
       description: "Evidence-backed strategy canvases & DDD architecture in 1 week",
@@ -81,6 +115,7 @@ export default function PricingPage() {
     {
       name: "Founder Platform",
       plan: "founder-platform",
+      roles: ['founder'],
       price: "$199",
       period: "seat / month",
       description: "Your AI strategist for continuous iteration and validation",
@@ -103,6 +138,7 @@ export default function PricingPage() {
     {
       name: "Agency Co-Pilot",
       plan: "agency-co-pilot",
+      roles: ['consultant'],
       price: "$499",
       period: "seat / month (pooled usage)",
       description: "Embedded AI strategy consultant for agencies serving multiple clients",
@@ -124,6 +160,8 @@ export default function PricingPage() {
       highlighted: false
     }
   ];
+
+  const filteredTiers = pricingTiers.filter(tier => tier.roles.includes(selectedRole));
 
   const comparisonData = [
     {
@@ -196,8 +234,24 @@ export default function PricingPage() {
       {/* Pricing Tiers */}
       <section className="bg-gray-50 py-12">
         <PageContainer variant="wide">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {pricingTiers.map((tier, index) => {
+          {/* Role Tabs */}
+          <div className="flex justify-center mb-8">
+            <Tabs value={selectedRole} onValueChange={(value) => setSelectedRole(value as Role)} className="w-full max-w-md">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="founder">
+                  <Lightbulb className="h-4 w-4 mr-2" />
+                  For Founders
+                </TabsTrigger>
+                <TabsTrigger value="consultant">
+                  <Users className="h-4 w-4 mr-2" />
+                  For Consultants
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {filteredTiers.map((tier, index) => {
             const IconComponent = tier.icon;
             const isHovered = hoveredCard === index;
             const isOtherHovered = hoveredCard !== null && hoveredCard !== index;
@@ -268,13 +322,13 @@ export default function PricingPage() {
                     ))}
                   </ul>
                   
-                  <Button 
+                  <Button
                     className={`w-full mt-6 glow-effect hover:scale-105 transition-all duration-300 ${
                       tier.highlighted ? 'bg-primary hover:bg-primary/90' : ''
-                    }`} 
+                    }`}
                     asChild
                   >
-                    <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/signup?plan=${tier.plan}`}>
+                    <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/signup?plan=${tier.plan}&role=${selectedRole}`}>
                       {tier.cta}
                       <ArrowRight className="h-4 w-4 ml-2" />
                     </a>
@@ -401,5 +455,20 @@ export default function PricingPage() {
         </PageContainer>
       </section>
     </div>
+  );
+}
+
+export default function PricingPage() {
+  return (
+    <React.Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading pricing...</p>
+        </div>
+      </div>
+    }>
+      <PricingContent />
+    </React.Suspense>
   );
 }
