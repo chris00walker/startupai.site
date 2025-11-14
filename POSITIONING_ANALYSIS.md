@@ -109,7 +109,7 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
 ### Primary Audience: Independent Founders
 
 **Profile:**
-- Non-technical founders with validated startup ideas
+- Non-technical founders with unvalidated startup ideas
 - Solopreneurs, indie hackers, small teams (1-3 people)
 - Budget: $1,500-5,000 available for MVP development
 - Timeline: Need to launch in weeks, not months
