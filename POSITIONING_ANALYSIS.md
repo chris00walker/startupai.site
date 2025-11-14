@@ -201,12 +201,6 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
 - Contact form: Remove "eCommerce trends" language (misaligned)
 - Chris Walker = Founder/CEO (bio on About page), not the service itself
 
-**Action Items:**
-- [ ] Update `src/app/page.tsx` metadata: Remove "Chris Walker" from title
-- [ ] Update `src/components/ContactForm.tsx`: Remove eCommerce newsletter language
-- [ ] Update `src/app/services/*/page.tsx`: Remove "Chris Walker Consulting" references
-- [ ] Add `/about` page: Introduce Chris as founder, but product is StartupAI
-
 ---
 
 ### ~~Conflict #2: Reports vs. Working Software~~ ✅ RESOLVED
@@ -235,12 +229,6 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
    - Data-driven recommendations: Pivot or Proceed
    - If pivot: Next cycle begins (up to 3 total)
 
-**Action Items:**
-- [ ] Update hero: "From Idea to **Validated MVP** in 2 Weeks"
-- [ ] Update pricing Sprint description: List all 4 deliverable types above
-- [ ] Update services pages: Show progression (Strategy → Build → Test → Pivot)
-- [ ] Add visual timeline: What happens each day of the 2-week cycle
-
 ---
 
 ### ~~Conflict #3: Consulting Services vs. Self-Service Platform~~ ✅ RESOLVED
@@ -259,15 +247,6 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
 - Behind scenes: AI agents + Chris orchestrate tools (Claude Code, Cursor, Bolt)
 - User receives: Deployed MVP + validation data + pivot recommendations
 - User perception: Platform delivered everything (not aware of manual orchestration)
-
-**Action Items:**
-- [ ] Remove "Services" page linear flow (Discovery → Validation → Scaling)
-- [ ] Replace with "How It Works" (platform-centric language)
-  - Step 1: Tell us your idea
-  - Step 2: We build your MVP
-  - Step 3: We test with real users
-  - Step 4: We tell you if it works or how to pivot
-- [ ] Pricing: Keep tiers (Trial, Sprint, Founder, Agency) but clarify they're platform access, not consulting packages
 
 ---
 
@@ -291,12 +270,6 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
 - Week 2: Need time to collect real user data (can't analyze Day 1 traffic)
 - 2 weeks = fast enough to be compelling, realistic enough to deliver quality
 
-**Action Items:**
-- [ ] Update hero: "2 Weeks" not "Days"
-- [ ] Update pricing Sprint: "$1,500 / 14-Day Cycle" (not "1 week")
-- [ ] Add timeline visual: Day-by-day breakdown of what happens
-- [ ] Services pages: Remove multi-month timelines (1-2 weeks, 2-3 weeks, 4-8 weeks)
-
 ---
 
 ### ~~Conflict #5: Target Sophistication Level~~ ✅ RESOLVED
@@ -319,12 +292,6 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
 - **Product Page:** Light technical detail (what you get)
 - **Pricing Page:** Features clear, technical specs in tooltips
 - **Docs/Settings:** Full technical depth for power users
-
-**Action Items:**
-- [ ] Homepage: Remove jargon (DDD, TBI, bounded contexts, RLS, PKCE)
-- [ ] Simplify to: "We build your startup, you talk to customers"
-- [ ] Add "For Developers" section (collapsed): Technical details, export options
-- [ ] Pricing: Add tooltip on each tier: "Technical users: Click for architecture details"
 
 ---
 
@@ -523,151 +490,17 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
 
 ---
 
-## Beta Rollout Action Plan
+## Document Summary
 
-### **Immediate (This Week):**
-1. ✅ Finalize LTD offer details (documented above)
-2. [ ] Update homepage hero for beta positioning
-3. [ ] Create "Apply for Beta" application form
-   - Collect: Startup idea, industry, timeline, budget
-   - Filter: Ensure fit with product capabilities
-4. [ ] Set up Stripe payment for $1,500 LTD
-5. [ ] Create private Slack community for beta users
+**Document Status**: ✅ Complete - Strategic Positioning Defined
 
-### **Week 1-2: Website Updates**
-6. [ ] Update hero section (`src/components/sections/Hero.tsx`)
-   - Headline: "The AI Co-Founder That Validates Your Startup Idea"
-   - Subhead: "Join our private beta - Limited lifetime deal"
-   - CTA: "Apply for Beta Access (Only 50 Spots)"
-7. [ ] Update pricing page (`src/app/pricing/page.tsx`)
-   - Feature LTD prominently
-   - Show what's included (3 cycles, ad spend, etc.)
-   - Add comparison vs. alternatives
-8. [ ] Create "How It Works" section
-   - Week 1: Strategy + Build + Deploy
-   - Week 2: Test + Analyze + Pivot
-   - Visual timeline
-9. [ ] Remove/update services pages
-   - Remove consulting-style linear flow
-   - Replace with platform-centric language
+**Purpose**: This document captures the strategic analysis and decisions that resolved all positioning conflicts. It defines WHAT we are (product identity), WHO we serve (target audiences), and WHY we're positioned this way (strategic rationale).
 
-### **Week 3-4: Content & Proof**
-10. [ ] Create beta program page (`/beta`)
-    - Full details on LTD offer
-    - FAQ about validation cycles
-    - Application form
-11. [ ] Update product page (`src/app/product/page.tsx`)
-    - Show full validation engine
-    - Include mock screenshots/demos
-12. [ ] Set up waitlist for overflow
-    - Capture leads beyond 200 LTD cap
-    - Nurture for public launch
+**Implementation**: See `IMPLEMENTATION_PLAN.md` for HOW to execute these strategic decisions with specific tasks, timelines, and file changes.
 
-### **Week 5+: First Beta Cohort (50 Users)**
-13. [ ] Accept first 50 applications
-14. [ ] Onboard in batches of 5-10 (manageable)
-15. [ ] Deliver validation cycles manually
-16. [ ] Collect feedback and testimonials
-17. [ ] Iterate product based on learnings
-18. [ ] Document case studies
-
-### **Q1 2026: Scale Beta**
-19. [ ] Open Phase 2: Next 50 spots (total 100)
-20. [ ] Increase automation (reduce manual work)
-21. [ ] Open Phase 3: Next 50 spots (total 150)
-22. [ ] Open Phase 4: Final 50 spots (total 200)
-23. [ ] Prepare for public launch (Q2 2026)
-
----
-
-## Success Metrics
-
-### **Beta Success Criteria:**
-- [ ] Sell 200 LTD spots ($300K revenue)
-- [ ] Deliver 600 validation cycles total (200 users × 3 cycles)
-- [ ] Achieve 60%+ "Pivot or Proceed" accuracy (recommendations align with outcomes)
-- [ ] NPS ≥50 from beta users
-- [ ] Generate 20+ written case studies
-- [ ] Record 5+ video testimonials
-- [ ] <10% refund rate
-
-### **Product Validation Metrics:**
-- [ ] 80%+ users complete at least 1 validation cycle
-- [ ] 50%+ users complete all 3 validation cycles
-- [ ] Average time to deployed MVP: <10 days (Week 1 target: 7 days)
-- [ ] Hypothesis testing accuracy: Can system correctly identify failed assumptions?
-- [ ] Pivot success rate: Do pivots lead to better outcomes?
-
-### **Business Metrics:**
-- [ ] $300K revenue from LTD sales
-- [ ] CAC: <$500 per beta user (organic, referrals, content)
-- [ ] Word-of-mouth: 30%+ beta users from referrals
-- [ ] Retention: 80%+ beta users would recommend to others
-
----
-
-## Files Requiring Updates
-
-### **Critical Priority (Week 1-2):**
-1. `/src/components/sections/Hero.tsx` - Beta positioning
-2. `/src/app/pricing/page.tsx` - LTD offer
-3. `/src/app/page.tsx` - Add "How It Works" section
-4. `/src/app/product/page.tsx` - Full validation engine explanation
-5. `/src/app/page.tsx` (metadata) - Remove personal brand references
-
-### **High Priority (Week 3-4):**
-6. `/src/app/services/**/*.tsx` - Remove/update or delete
-7. Create: `/src/app/beta/page.tsx` - Dedicated beta program page
-8. Create: `/src/components/sections/HowItWorks.tsx` - Timeline visual
-9. `/docs/overview/value-proposition.md` - Update positioning
-10. `/docs/overview/messaging-matrix.md` - Update message grid
-
-### **Medium Priority (Week 5+):**
-11. Create: `/src/app/about/page.tsx` - Introduce Chris as founder
-12. Create: Beta application form component
-13. Create: Waitlist component for overflow
-14. Update: All page metadata (titles, descriptions)
-
----
-
-## Next Steps
-
-### **For Chris:**
-1. **Review & Approve** this positioning document
-2. **Finalize Details:**
-   - Exact ad spend amount (30-35% = $450-525?)
-   - Token credit allocation per LTD user
-   - Timeline for beta launch (target date?)
-3. **Technical Readiness:**
-   - What works today vs. needs building?
-   - Manual orchestration workflow documented?
-   - Payment processing setup (Stripe)?
-4. **Create Application Form:**
-   - What questions to ask applicants?
-   - How to filter (first-come vs. hand-picked)?
-5. **Beta Delivery Plan:**
-   - Can you handle 50 users initially?
-   - Batch size (5-10 at a time)?
-   - Support capacity (Slack, email)?
-
-### **For Marketing Site:**
-1. Implement critical priority updates (Hero, Pricing, How It Works)
-2. Create beta application flow
-3. Set up waitlist for overflow
-4. Remove personal brand references
-
-### **For Product Development:**
-1. Define MVP for beta: What must work vs. manual?
-2. Build validation cycle workflow
-3. Integrate ad platforms (Facebook, Google Ads?)
-4. Analytics instrumentation (PostHog, etc.)
-5. Hypothesis testing logic
-
----
-
-**Document Status**: ✅ Complete - Ready for Implementation
-**Next Action**: Review with Chris, finalize beta launch timeline
 **Related Docs**:
-- `STRATEGIC_GAP_ANALYSIS.md` - Identifies messaging gaps to fix
+- `IMPLEMENTATION_PLAN.md` - Tactical execution plan with tasks and timelines
 - `PERSONA_INDEPENDENT_FOUNDERS.md` - Primary audience detail
 - `JTBD_INDEPENDENT_FOUNDERS.md` - Jobs-to-be-done framework
+- `PERSONA_CONSULTANTS_AGENCIES.md` - Secondary audience (post-beta)
+- `JTBD_CONSULTANTS_AGENCIES.md` - Consultant jobs framework
