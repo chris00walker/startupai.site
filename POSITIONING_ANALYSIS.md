@@ -212,22 +212,47 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
 - Working software: Deployed MVP at live URL, functional for customer testing
 - Validation layer: Real ads, user data, hypothesis testing, pivot recommendations
 
-**What Users Get:**
-1. **Strategy Foundation** (Week 1, Days 1-3)
-   - Validated Business Model Canvas
-   - Value Proposition Design
-   - Domain model and architecture
-2. **Working MVP** (Week 1, Days 4-7)
-   - Code generated and deployed
-   - Live URL, customers can access
+**What Users Get: 3 Desirability Validation Cycles Over 6 Weeks**
+
+The goal: Get your value proposition on target (or close enough to know it's viable) in 3 cycles or less.
+
+**Each Cycle (2 weeks):**
+1. **Value Proposition Design** (Days 1-3)
+   - Define/refine value proposition based on previous cycle data
+   - Testing Business Ideas framework setup
+   - Create hypothesis to test
+
+2. **Minimum Testable Product** (Days 4-7)
+   - Build whatever tests the value prop (landing page, SPA, signup flow, etc.)
+   - Deploy to live URL
    - Analytics instrumented
-3. **Validation Testing** (Week 2)
-   - Ads drive real traffic (~$450-525 ad spend)
-   - User behavior tracked
-   - Hypothesis tests evaluated
+
+3. **Desirability Testing** (Week 2)
+   - Drive real traffic with ads (~$150-175 per cycle)
+   - Track: Click-through rates, signups, time on page, bounce rates
+   - Collect qualitative feedback where possible
+
 4. **Pivot Analysis** (Week 2, End)
-   - Data-driven recommendations: Pivot or Proceed
-   - If pivot: Next cycle begins (up to 3 total)
+   - What resonated? What didn't?
+   - What signals in the data suggest a better direction?
+   - **Decision**: Pivot to refined value prop OR Proceed with validated desirability
+
+**After 3 Cycles:**
+- If validated: You have a value proposition people want + evidence to support it
+- If not validated: You have data showing what didn't work + saved 6+ months of building the wrong thing
+
+**Out of Scope (For LTD Beta):**
+- Feasibility testing (can we technically build this at scale?)
+- Viability testing (unit economics, business model validation)
+- Full production architecture and domain modeling
+→ These require additional time and investment beyond initial validation
+
+**Natural Upgrade Path:**
+Once desirability is validated, upgrade to **Founder Tier ($199/mo)** for:
+- Feasibility and viability testing
+- Production-ready product with proper architecture
+- Business model refinement and unit economics
+- Ongoing iteration and scaling support
 
 ---
 
