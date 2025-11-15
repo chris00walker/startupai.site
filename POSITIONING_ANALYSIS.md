@@ -10,13 +10,15 @@
 
 **POSITIONING CLARIFIED:**
 
-StartupAI is a **self-service SaaS platform** that acts as an AI co-founding team for non-technical founders. It compresses the journey from idea to validated product from months to weeks by delivering:
+StartupAI is a **self-service SaaS platform** (launching fully automated Q2 2026, currently in private beta with guided delivery) that acts as an AI co-founding team for non-technical founders. It compresses the journey from idea to desirability-validated MVP from months to weeks by delivering:
 
-1. **Strategy Foundation** - Business model, domain models, technical architecture
-2. **Working MVP** - Built, deployed, and functional at a live URL
-3. **Real User Validation** - Paid ads drive traffic, data collected and analyzed
-4. **Pivot Intelligence** - System tests hypotheses, recommends pivot or proceed
-5. **Iteration Cycles** - Up to 3 validation cycles per package
+1. **Value Proposition Foundation** - Value proposition design, testable hypotheses, minimum testable product specs
+2. **Working Test Product** - Built, deployed, and functional at a live URL
+3. **Real User Testing** - Paid ads drive traffic, behavioral data collected and analyzed
+4. **Pivot Intelligence** - System analyzes desirability signals, recommends pivot or proceed
+5. **Iteration Cycles** - Up to 3 desirability validation cycles per package
+
+**Scope:** Desirability validation only. Feasibility testing (can we build at scale?) and viability testing (business model economics) are out of scope for LTD beta—available via Founder Tier ($199/mo) upgrade after validation.
 
 **LAUNCH STATUS:** Pre-launch private beta with Lifetime Deal strategy
 
@@ -35,10 +37,10 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
 - Platform is the product, not the person
 - Chris is founder/CEO, not the service provider
 
-### ✅ Decision #2: Full Validation Engine (Not Just Strategy)
-**Resolution:** Deliver end-to-end validation, not just documents
-- Strategy foundation + Working MVP + Testing + Pivot recommendations
-- Users get deployed applications they can test with real customers
+### ✅ Decision #2: Full Desirability Validation Engine (Not Just Strategy)
+**Resolution:** Deliver end-to-end desirability validation, not just documents
+- Value proposition foundation + Minimum Testable Product + Desirability testing + Pivot recommendations
+- Users get deployed test products they can validate with real customers
 - Evidence-based pivot analysis included
 
 ### ✅ Decision #3: Self-Service Platform (Not Consulting)
@@ -50,7 +52,7 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
 ### ✅ Decision #4: Realistic Timelines
 **Resolution:** 2-week validation cycles (not "days")
 - Week 1: Strategy + Build + Deploy
-- Week 2: Test + Analyze + Pivot Recommendation
+- Week 2: Test + Analyze + Pivot Recommendation (you decide whether to pivot based on data)
 - Up to 3 cycles = 6 weeks maximum per startup idea
 
 ### ✅ Decision #5: Target Non-Technical Founders
@@ -68,11 +70,11 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
 **Price:** $1,500 one-time payment
 
 **What's Included:**
-- **3 Full Validation Cycles**
-  - Each cycle = Strategy + Build + Deploy + Test + Analyze + Pivot
+- **3 Desirability Validation Cycles**
+  - Each cycle = Value Prop Design + Build + Deploy + Test + Analyze + Pivot
   - Can test 3 different startup ideas OR 1 idea with up to 3 pivots
 - **Real Ad Spend** (~$450-525, 30-35% of package)
-- **Deployed MVP** at live URL for each cycle
+- **Deployed Test Product** at live URL for each cycle
 - **User Analytics** - Track real customer behavior
 - **Pivot Recommendations** - Data-driven guidance on next steps
 - **Fixed Token Credits** - Computational budget included
@@ -90,8 +92,8 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
 - After 200 LTD sold: Switch to standard pricing ($199/mo Founder tier)
 
 **Purpose:**
-1. Validate willingness to pay ($1,500 is real money)
-2. Generate cash flow during product development
+1. Validate founder willingness to pay for desirability validation ($1,500 is real money)
+2. Generate cash flow while building full automation
 3. Build early adopter community
 4. Gather case studies and testimonials
 5. Test full value proposition before public launch
@@ -116,7 +118,7 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
 - Pain: Can't find/afford technical co-founder, freelancer quality variable
 
 **What They Need:**
-- Working MVP they can test with real customers
+- Minimum testable product (could be landing page, signup flow, or simple app) they can test with real customers
 - Speed (weeks, not months)
 - Fixed price (no scope creep)
 - No technical expertise required
@@ -125,7 +127,7 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
 **Evidence in Docs:**
 - `PERSONA_INDEPENDENT_FOUNDERS.md` - 3 detailed personas (Sarah, Marcus, Jennifer)
 - `JTBD_INDEPENDENT_FOUNDERS.md` - Jobs-to-be-done framework
-- Hero copy aligns: "From Idea to Working MVP"
+- Hero copy aligns: "From Idea to Desirability-Validated MVP"
 
 **Messaging Focus:**
 - "You bring the idea, we build and test it"
@@ -207,14 +209,14 @@ StartupAI is a **self-service SaaS platform** that acts as an AI co-founding tea
 
 **WAS:** Services listed deliverables like "Market Analysis Report", "Customer Persona Profiles", but hero promised "Production in Days"
 
-**NOW:** Full validation engine delivers BOTH strategy foundation AND working software
-- Strategy artifacts: Business Model Canvas, Domain Models, Architecture Docs
-- Working software: Deployed MVP at live URL, functional for customer testing
+**NOW:** Desirability validation engine delivers BOTH value proposition foundation AND working software
+- Strategy artifacts: Value Proposition Canvas, Testing Hypotheses, Test Results
+- Working software: Deployed test product at live URL, functional for customer testing
 - Validation layer: Real ads, user data, hypothesis testing, pivot recommendations
 
 **What Users Get: 3 Desirability Validation Cycles Over 6 Weeks**
 
-The goal: Get your value proposition on target (or close enough to know it's viable) in 3 cycles or less.
+The goal: Get your value proposition on target (or close enough to know how desirable it is) in 3 cycles or less.
 
 **Each Cycle (2 weeks):**
 1. **Value Proposition Design** (Days 1-3)
@@ -227,19 +229,19 @@ The goal: Get your value proposition on target (or close enough to know it's via
    - Deploy to live URL
    - Analytics instrumented
 
-3. **Desirability Testing** (Week 2)
+3. **Desirability Testing** (Days 8-13)
    - Drive real traffic with ads (~$150-175 per cycle)
    - Track: Click-through rates, signups, time on page, bounce rates
    - Collect qualitative feedback where possible
 
-4. **Pivot Analysis** (Week 2, End)
+4. **Pivot Analysis** (Day 14)
    - What resonated? What didn't?
    - What signals in the data suggest a better direction?
    - **Decision**: Pivot to refined value prop OR Proceed with validated desirability
 
 **After 3 Cycles:**
 - If validated: You have a value proposition people want + evidence to support it
-- If not validated: You have data showing what didn't work + saved 6+ months of building the wrong thing
+- If not validated: You have data showing what didn't work + saved 2-6 months of building the wrong thing (and $8-15K in dev costs)
 
 **Out of Scope (For LTD Beta):**
 - Feasibility testing (can we technically build this at scale?)
@@ -250,9 +252,11 @@ The goal: Get your value proposition on target (or close enough to know it's via
 **Natural Upgrade Path:**
 Once desirability is validated, upgrade to **Founder Tier ($199/mo)** for:
 - Feasibility and viability testing
-- Production-ready product with proper architecture
-- Business model refinement and unit economics
-- Ongoing iteration and scaling support
+- Scaling architecture (from test-ready to production-grade)
+- Business model refinement and unit economics validation
+- Ongoing iteration and growth optimization
+
+**Note:** LTD gives you a working, testable product. Founder tier scales it for production traffic and validates the business model.
 
 ---
 
@@ -270,7 +274,7 @@ Once desirability is validated, upgrade to **Founder Tier ($199/mo)** for:
 - User signs up for LTD ($1,500)
 - Platform guides onboarding (business model questions)
 - Behind scenes: AI agents + Chris orchestrate tools (Claude Code, Cursor, Bolt)
-- User receives: Deployed MVP + validation data + pivot recommendations
+- User receives: Deployed test product + validation data + pivot recommendations
 - User perception: Platform delivered everything (not aware of manual orchestration)
 
 ---
@@ -335,7 +339,7 @@ Once desirability is validated, upgrade to **Founder Tier ($199/mo)** for:
 
 ### ✅ Clear Pricing Signal for Sprint
 - $1,500 = 3 validation cycles (clear value)
-- Comparison: Freelancer $8-15K, 2-3 months (StartupAI 6-10x cheaper, 3-6x faster)
+- Comparison: Freelancer $8-15K, 2-3 months (StartupAI 6-10x cheaper, 4-6x faster)
 - Anchoring: Dev shop $25-50K, 4-6 months (StartupAI 15-30x cheaper, 12x faster)
 
 ### ✅ Explanation of AI Value
@@ -367,11 +371,11 @@ Once desirability is validated, upgrade to **Founder Tier ($199/mo)** for:
 
 ### **One-Sentence Position (NEW):**
 
-"StartupAI is the AI co-founding team that compresses the journey from idea to validated product from months to weeks by building your MVP, testing it with real customers, and telling you if your idea works—or how to pivot."
+"StartupAI is the AI co-founding team that compresses the journey from idea to desirability-validated MVP from months to weeks by building your test product, testing it with real customers, and telling you if people want it—or how to pivot."
 
 ### **Elevator Pitch (NEW):**
 
-"You bring the startup idea, we bring the AI team. In 2 weeks, you get: (1) a working MVP deployed at a live URL, (2) real user data from paid traffic, and (3) evidence-based recommendations to pivot or proceed. No hiring, no months of development, no guessing. $1,500 for 3 validation cycles—test 3 ideas or pivot 3 times."
+"You bring the startup idea, we bring the AI team. In each 2-week cycle, you get: (1) a minimum testable product deployed at a live URL, (2) real user data from paid traffic, and (3) evidence-based recommendations to pivot or proceed. No hiring, no months of development, no guessing. $1,500 for 3 validation cycles—test 3 ideas or pivot 3 times."
 
 ### **For Investors/Press (NEW):**
 
@@ -382,7 +386,7 @@ Once desirability is validated, upgrade to **Founder Tier ($199/mo)** for:
 1. "Your AI Co-Founder: Idea to MVP in 2 Weeks"
 2. "We Build Your Startup While You Find Customers"
 3. "The AI Team That Turns Ideas Into Products"
-4. "From Napkin Sketch to Working App in Two Weeks"
+4. "From Napkin Sketch to Working App in 2 Weeks"
 5. "Test Your Startup Idea With Real Customers, Not Guesswork"
 
 ---
@@ -404,7 +408,7 @@ Once desirability is validated, upgrade to **Founder Tier ($199/mo)** for:
 - Timeline: From "days" to "2 weeks" (realistic)
 
 ### ➕ ADD (Missing from Site)
-1. **Tool orchestration section** - Claude Code, Cursor, Bolt, etc.
+1. **AI Development Process section** - How our AI team builds your product (technical details available for power users)
 2. **"How It Works" flow** - Strategy → Build → Deploy → Test → Pivot
 3. **"AI Co-Founding Team" positioning** - 4 roles in one (Advisor + CTO + PM + Growth)
 4. **Framework credibility** - VPD, BMG, TBI foundation
@@ -493,9 +497,9 @@ Once desirability is validated, upgrade to **Founder Tier ($199/mo)** for:
 - Position as SaaS platform, not personal consulting practice
 - Chris Walker = Founder/CEO (bio on About page), not the brand
 
-### ✅ Deliverable: Full Validation Engine
-- Strategy + Working MVP + Real User Testing + Pivot Recommendations
-- Clear messaging: "We don't just build, we validate"
+### ✅ Deliverable: Full Desirability Validation Engine
+- Value Proposition Design + Minimum Testable Product + Real User Testing + Pivot Recommendations
+- Clear messaging: "We don't just build, we validate demand"
 - Differentiate from: Strategy consultants (no execution) and dev shops (no validation)
 
 ### ✅ Model: Self-Service SaaS Platform
