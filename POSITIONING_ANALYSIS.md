@@ -18,7 +18,7 @@ StartupAI is a **self-service SaaS platform** (launching fully automated Q2 2026
 4. **Pivot Intelligence** - System analyzes desirability signals, recommends pivot or proceed
 5. **Iteration Cycles** - Up to 3 desirability validation cycles per package
 
-**Scope:** Desirability validation only. Feasibility testing (can we build at scale?) and viability testing (business model economics) are out of scope for LTD beta—available via Founder Tier ($199/mo) upgrade after validation.
+**Scope:** Desirability validation only. Feasibility testing (can we build at scale?) and viability testing (business model economics) are out of scope for initial LTD validation cycles—but automatically included via FREE Founder Tier upgrade after validation (LTD customers never pay subscription fees, only inference costs).
 
 **LAUNCH STATUS:** Pre-launch private beta with Lifetime Deal strategy
 
@@ -78,11 +78,24 @@ StartupAI is a **self-service SaaS platform** (launching fully automated Q2 2026
 - **User Analytics** - Track real customer behavior
 - **Pivot Recommendations** - Data-driven guidance on next steps
 - **Fixed Token Credits** - Computational budget included
+- **FREE Lifetime Founder Tier Upgrade** - Automatically activated after validation
+  - All Founder Tier features forever (normally $199/mo)
+  - No monthly subscription fees, ever
+  - Only pay inference costs (~$20-50/month typical usage)
+- **Priority Support** - Beta users get faster response times
+- **Beta Feedback Role** - Help shape product roadmap and features
 
 **After Credits Exhausted:**
 - Buy additional credits at cost (inference costs only)
 - **No monthly platform fees, ever** (LTD benefit)
 - Transparent pass-through pricing for LLM API calls
+- Inference costs = actual AI API costs with zero markup (~$20-50/month for typical usage)
+
+**Lifetime Value:**
+- LTD: $1,500 one-time + ~$20-50/month inference costs
+- Standard Founder Tier: $199/month subscription + inference costs
+- **Savings: $2,388/year in subscription fees** (LTD customers never pay this)
+- **5-year value: $10,440 saved** in subscription fees alone
 
 **Rollout Plan:**
 - **Phase 1:** First 50 LTD spots
@@ -90,6 +103,7 @@ StartupAI is a **self-service SaaS platform** (launching fully automated Q2 2026
 - **Phase 3:** Next 50 spots (total 150)
 - **Phase 4:** Final 50 spots (total 200 maximum)
 - After 200 LTD sold: Switch to standard pricing ($199/mo Founder tier)
+- **LTD customers grandfathered with FREE lifetime Founder Tier access**
 
 **Purpose:**
 1. Validate founder willingness to pay for desirability validation ($1,500 is real money)
@@ -97,12 +111,14 @@ StartupAI is a **self-service SaaS platform** (launching fully automated Q2 2026
 3. Build early adopter community
 4. Gather case studies and testimonials
 5. Test full value proposition before public launch
+6. Reward early adopters with lifetime access worth $2,388/year
 
-**Anti-Abuse Guardrails:**
-- Token credits are fixed allocation
+**Fair-Use Policy:**
+- Token credits are fixed allocation per validation cycle
 - After exhaustion, users buy more at cost (no platform markup)
-- Reasonable use policy applies
-- LTD users never pay monthly subscription fees
+- Reasonable use policy applies to prevent abuse
+- LTD users never pay monthly subscription fees (only inference costs)
+- Heavy computational usage may require fair-use discussion
 
 ---
 
@@ -250,13 +266,16 @@ The goal: Get your value proposition on target (or close enough to know how desi
 → These require additional time and investment beyond initial validation
 
 **Natural Upgrade Path:**
-Once desirability is validated, upgrade to **Founder Tier ($199/mo)** for:
+Once desirability is validated, **LTD customers automatically get FREE lifetime access to Founder Tier** for:
 - Feasibility and viability testing
 - Scaling architecture (from test-ready to production-grade)
 - Business model refinement and unit economics validation
 - Ongoing iteration and growth optimization
+- All future Founder Tier features and updates
 
-**Note:** LTD gives you a working, testable product. Founder tier scales it for production traffic and validates the business model.
+**LTD Benefit:** You never pay monthly subscription fees (normally $199/mo). You only pay inference costs (~$20-50/month for typical usage) with zero markup—actual AI API costs passed through transparently.
+
+**Note:** LTD gives you a working, testable product for desirability validation. FREE Founder Tier upgrade gives you everything needed to scale it for production traffic and validate the full business model.
 
 ---
 
@@ -396,7 +415,7 @@ Once desirability is validated, upgrade to **Founder Tier ($199/mo)** for:
 ### ✅ KEEP (Already Aligned)
 - Evidence-based approach
 - Privacy-first positioning
-- Pricing structure ($199 Founder, $499 Agency - for post-beta)
+- Pricing structure ($199 Founder, $499 Agency - for post-beta; LTD customers get FREE Founder Tier for life)
 - Target audience: Founders, consultants, advisors
 - Tool orchestration vision (Claude Code, Cursor, Bolt)
 
@@ -458,7 +477,8 @@ Once desirability is validated, upgrade to **Founder Tier ($199/mo)** for:
 **Messaging:**
 - "The AI Co-Founder for Non-Technical Founders"
 - Standard pricing: $199/mo Founder tier, $499/mo Agency tier
-- LTD no longer available (creates FOMO for beta)
+- **LTD customers get FREE Founder Tier for life** (only pay inference costs)
+- LTD no longer available to new customers (creates FOMO for beta)
 
 **Target:**
 - Expand to all three segments: Founders, Consultants, AI Agents
@@ -471,7 +491,8 @@ Once desirability is validated, upgrade to **Founder Tier ($199/mo)** for:
 
 **Revenue Model:**
 - Monthly subscriptions (recurring revenue)
-- LTD users grandfathered (no monthly fees)
+- **LTD users get FREE lifetime Founder Tier access** (never pay subscription fees, only inference costs)
+- Inference costs from LTD users = predictable revenue stream (~$20-50/user/month)
 - Upsell: Enterprise tier for accelerators
 
 ---
