@@ -7,7 +7,8 @@
 
 ## Overview
 
-This document provides a comprehensive, checkable implementation plan to transform the marketing site from its current "strategy consulting" positioning to the correct "AI co-founding validation platform" with Lifetime Deal beta launch.
+This document provides a comprehensive, checkable implementation plan to transform the marketing site from its current "strategy 
+consulting" positioning to the correct "AI co-founding validation platform" with Lifetime Deal beta launch.
 
 **Source Document:** `POSITIONING_ANALYSIS.md` (Strategic decisions and positioning)
 **This Document:** Step-by-step implementation tasks organized by phase
@@ -46,12 +47,10 @@ This document provides a comprehensive, checkable implementation plan to transfo
 - [ ] **Update primary CTA**
   - Current: "Get Started" or "Start Free Trial"
   - New: "Get Started"
-  - Link to: `/beta` (to be created)
 
 - [ ] **Add beta badge**
   - Add visual indicator: "Private Beta - Only 200 Spots"
   - Style: Small chip/badge above or near headline
-  - Optional: Consider adding "$10,440+ value - FREE Founder Tier for life" to badge or subheadline
 
 - [ ] **Remove "Chris Walker" personal branding**
   - Check metadata, ensure it says "StartupAI" not "Chris Walker Consulting"
@@ -59,7 +58,6 @@ This document provides a comprehensive, checkable implementation plan to transfo
 **Acceptance Criteria:**
 - Hero clearly communicates: Build + Test + Validate (not just "plan")
 - Beta positioning front and center
-- CTA drives to beta application, not general signup
 - FREE Founder Tier value mentioned (badge, subheadline, or near CTA)
 
 ---
