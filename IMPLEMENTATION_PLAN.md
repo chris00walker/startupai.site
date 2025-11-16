@@ -58,7 +58,6 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 **Acceptance Criteria:**
 - Hero clearly communicates: Build + Test + Validate (not just "plan")
 - Beta positioning front and center
-- FREE Founder Tier value mentioned (badge, subheadline, or near CTA)
 
 ---
 
