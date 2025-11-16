@@ -9,7 +9,7 @@ import { PageContainer } from '@/components/ui/layout/page-container';
 import { PageHeader, PageTitle, PageDescription } from '@/components/ui/layout/page-header';
 
 export const metadata: Metadata = {
-  title: 'Chris Walker | AI-Powered Forward Deployed Engineer',
+  title: 'StartupAI - AI Co-Founder for Non-Technical Founders',
   description: 'Transform startup ideas into evidence-backed business models and production-ready architectures in hours, not months. Your AI FDE-in-a-box for rapid validation and execution.',
 };
 

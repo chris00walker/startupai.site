@@ -39,20 +39,15 @@ export function Hero() {
           
           <Badge variant="secondary" className="mb-4">
             <Sparkles className="mr-1 h-3 w-3" />
-            AI Strategy Sprint
+            Private Beta - Only 200 Spots
           </Badge>
           
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            From Idea to
-            <span className="text-gradient relative inline-block ml-2">Production</span>
-            <br />
-            in Days, Not Months
+            The AI Co-Founder That Validates Your Startup Idea
           </h1>
           
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            Transform your startup idea into a validated business model and technical architecture 
-            in just one week. Get evidence-based validation and production-ready MVP plans without 
-            the guesswork.
+            We build your MVP, test it with real customers, and tell you if your idea works—or how to pivot. Join our private beta.
           </p>
           
           
