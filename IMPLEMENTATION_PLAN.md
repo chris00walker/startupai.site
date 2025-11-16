@@ -76,6 +76,8 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Time Value: "First 200 only • Lifetime Founder Tier included ($199/mo value)"
   - Features list updated with all 9 LTD benefits
   - Added FREE Founder Tier callout in card header
+  - Roles: Available to both 'founder' and 'consultant' (not just founders)
+  - Ad spend: "~$450-525 total across all cycles" (not per cycle)
 
 - [x] **Add Disabled State to Platform Cards**
   - Updated PricingTier interface with `disabled` and `disabledMessage` properties
@@ -103,10 +105,12 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 - [x] Sprint card badge shows "Limited Beta - First 200 Only"
 - [x] Sprint card header displays FREE Lifetime Founder Tier callout
 - [x] Sprint card savings shows "$7,164+ over 3 years"
-- [x] Sprint features list includes all 9 LTD benefits
+- [x] Sprint features list includes all 9 LTD benefits (with correct ad spend wording)
+- [x] Sprint card visible to both founders AND consultants
+- [x] Ad spend shows "~$450-525 total across all cycles" (not per cycle)
 - [x] Founder Platform card greyed out with "Unlocked After Sprint" overlay
 - [x] Agency Co-Pilot card greyed out with "Unlocked After Sprint" overlay
-- [x] Free Trial card remains fully active
+- [x] Free Trial card remains fully active for both roles
 - [x] All 7 FAQ questions use $7,164+ / 3-year messaging
 - [x] Hero section emphasizes beta positioning
 - [x] Bottom CTA drives beta applications
