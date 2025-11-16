@@ -45,11 +45,11 @@ This document provides a comprehensive, checkable implementation plan to transfo
 
 - [ ] **Update primary CTA**
   - Current: "Get Started" or "Start Free Trial"
-  - New: "Apply for Beta Access"
+  - New: "Get Started"
   - Link to: `/beta` (to be created)
 
 - [ ] **Add beta badge**
-  - Add visual indicator: "Private Beta - Only 50 Spots"
+  - Add visual indicator: "Private Beta - Only 200 Spots"
   - Style: Small chip/badge above or near headline
   - Optional: Consider adding "$10,440+ value - FREE Founder Tier for life" to badge or subheadline
 
