@@ -51,6 +51,8 @@ interface PricingTier {
   features: string[];
   cta: string;
   highlighted: boolean;
+  disabled?: boolean;
+  disabledMessage?: string;
 }
 
 function PricingContent() {
@@ -97,17 +99,21 @@ function PricingContent() {
       price: "$1,500",
       period: "one-time",
       description: "Evidence-backed strategy canvases & DDD architecture in 1 week",
-      badge: "Most Popular",
+      badge: "Limited Beta - First 200 Only",
       badgeVariant: "default" as const,
       icon: Target,
-      savings: "Save $2,250 vs traditional consulting",
-      timeValue: "100% traceable to sources (citations + audit log)",
+      savings: "Save $7,164+ over 3 years (FREE Lifetime Platform Access)",
+      timeValue: "First 200 only • Lifetime Founder Tier included ($199/mo value)",
       features: [
-        "Fit Report with Evidence Stamp + citations",
-        "Value Proposition & Business Model with assumption→evidence chain",
-        "Competitor analysis & MVP architecture",
-        "API contracts & data flows; Testing Business Ideas roadmap",
-        "Option to convert to Platform (credit $199 to first month)"
+        "3 full validation cycles (test 3 ideas OR pivot 3x on one idea)",
+        "Each cycle: Strategy + Build + Deploy + Test + Pivot analysis",
+        "Real ad spend included (~$450-525 per cycle)",
+        "Deployed MVP at live URL with analytics",
+        "🎁 FREE Lifetime Founder Tier Upgrade (automatic after validation)",
+        "All Founder Tier features forever - normally $199/mo",
+        "Never pay subscription fees - only inference costs (~$20-50/mo)",
+        "Priority support for beta users",
+        "Beta feedback role (help shape product roadmap)"
       ],
       cta: "Start Sprint",
       highlighted: true
@@ -133,7 +139,9 @@ function PricingContent() {
         "Overages: +100 assumptions $10 · +1 experiment credit $0.50",
       ],
       cta: "Start Subscription",
-      highlighted: false
+      highlighted: false,
+      disabled: true,
+      disabledMessage: "Unlocked After Sprint"
     },
     {
       name: "Agency Co-Pilot",
@@ -157,7 +165,9 @@ function PricingContent() {
         "Overages: +1 experiment credit $0.30 (team-pooled)",
       ],
       cta: "Go Pro",
-      highlighted: false
+      highlighted: false,
+      disabled: true,
+      disabledMessage: "Unlocked After Sprint"
     }
   ];
 
@@ -206,6 +216,15 @@ function PricingContent() {
         </Breadcrumb>
       </PageContainer>
 
+      {/* Beta Banner */}
+      <PageContainer variant="wide" padding="sm" className="pt-4">
+        <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-green-500/30 rounded-lg p-4 text-center">
+          <p className="text-sm md:text-base font-semibold text-foreground">
+            🎯 <span className="text-green-600 dark:text-green-400">Private Beta Launch:</span> First 200 Sprint customers get <span className="text-primary font-bold">FREE Lifetime Platform Access</span> ($7,164+ value over 3 years)
+          </p>
+        </div>
+      </PageContainer>
+
       {/* Hero Section */}
       <section className="business-gradient relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
@@ -217,14 +236,14 @@ function PricingContent() {
           <div className="text-center">
             <Badge variant="secondary" className="mb-4 glow-effect">
               <Sparkles className="mr-1 h-3 w-3" />
-              Evidence-Based Pricing
+              Private Beta - Limited to 200 Spots
             </Badge>
             <PageHeader variant="centered">
               <PageTitle className="business-title text-4xl md:text-6xl mb-6">
-                From Idea to Production Without Breaking the Bank
+                Join the Private Beta: Get Lifetime Platform Access
               </PageTitle>
               <PageDescription className="business-subtitle text-xl max-w-3xl mx-auto">
-                Get the strategy validation of a $10K consultant and the technical architecture of a senior developer—all powered by your AI strategy consultant.
+                First 200 Sprint customers get FREE Lifetime Founder Tier access ($7,164+ value). Validate your startup idea with 3 full cycles, then scale forever without subscription fees.
               </PageDescription>
             </PageHeader>
           </div>
@@ -258,25 +277,36 @@ function PricingContent() {
             const shouldScale = tier.highlighted && hoveredCard === null;
             
             return (
-              <Card 
+              <Card
                 key={index}
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
                 className={`business-card relative overflow-hidden transition-all duration-500 flex flex-col ${
-                  tier.highlighted 
-                    ? 'border-primary/30 shadow-2xl' 
+                  tier.highlighted
+                    ? 'border-primary/30 shadow-2xl'
                     : ''
                 } ${
-                  isHovered 
-                    ? 'scale-105 shadow-2xl ring-2 ring-primary/20' 
-                    : shouldScale 
-                      ? 'scale-105' 
-                      : isOtherHovered 
-                        ? 'scale-95 opacity-75' 
+                  tier.disabled ? 'opacity-60 grayscale' : ''
+                } ${
+                  isHovered
+                    ? 'scale-105 shadow-2xl ring-2 ring-primary/20'
+                    : shouldScale
+                      ? 'scale-105'
+                      : isOtherHovered
+                        ? 'scale-95 opacity-75'
                         : 'scale-100'
                 }`}
               >
-                
+                {/* Disabled Overlay */}
+                {tier.disabled && (
+                  <div className="absolute inset-0 bg-gray-900/60 backdrop-blur-[2px] z-10 rounded-lg flex items-center justify-center">
+                    <div className="text-center p-6">
+                      <p className="text-white font-bold text-lg mb-2">{tier.disabledMessage}</p>
+                      <p className="text-gray-300 text-sm">Available after Sprint completion</p>
+                    </div>
+                  </div>
+                )}
+
                 <CardHeader className="text-center pb-4">
                   <div className="flex items-center justify-center gap-3 mb-4">
                     <div className="p-3 rounded-lg bg-primary/10 glow-effect">
@@ -310,6 +340,18 @@ function PricingContent() {
                       </p>
                     </div>
                   </div>
+
+                  {/* FREE Founder Tier Callout for Sprint */}
+                  {tier.plan === 'strategy-sprint' && (
+                    <div className="mt-4 p-3 rounded-lg bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-green-500/30">
+                      <p className="text-sm font-bold text-green-600 dark:text-green-400">
+                        🎁 Includes FREE Lifetime Founder Tier Upgrade
+                      </p>
+                      <p className="text-xs text-green-600/80 dark:text-green-300/80 mt-1">
+                        Never pay subscription fees • $7,164+ saved over 3 years
+                      </p>
+                    </div>
+                  )}
                 </CardHeader>
                 
                 <CardContent className="space-y-4 flex-grow flex flex-col">
@@ -326,12 +368,20 @@ function PricingContent() {
                     className={`w-full mt-6 glow-effect hover:scale-105 transition-all duration-300 ${
                       tier.highlighted ? 'bg-primary hover:bg-primary/90' : ''
                     }`}
-                    asChild
+                    disabled={tier.disabled}
+                    asChild={!tier.disabled}
                   >
-                    <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/signup?plan=${tier.plan}&role=${selectedRole}`}>
-                      {tier.cta}
-                      <ArrowRight className="h-4 w-4 ml-2" />
-                    </a>
+                    {!tier.disabled ? (
+                      <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/signup?plan=${tier.plan}&role=${selectedRole}`}>
+                        {tier.cta}
+                        <ArrowRight className="h-4 w-4 ml-2" />
+                      </a>
+                    ) : (
+                      <>
+                        {tier.cta}
+                        <ArrowRight className="h-4 w-4 ml-2" />
+                      </>
+                    )}
                   </Button>
                 </CardContent>
               </Card>
@@ -409,31 +459,70 @@ function PricingContent() {
         <div className="max-w-3xl mx-auto space-y-6">
           <Card className="business-card">
             <CardContent className="pt-6">
-              <h3 className="font-semibold mb-2">What's included in the Discovery phase?</h3>
+              <h3 className="font-semibold mb-2">What's a validation cycle?</h3>
               <p className="text-muted-foreground">
-                The Discovery phase includes comprehensive market research, competitive analysis, 
-                customer segment identification, and desirability assessment. You'll receive 
-                a detailed report with actionable recommendations for your next steps.
+                A 2-week validation cycle consists of Week 1 (Strategy + Build + Deploy) and Week 2 (Test + Analyze + Pivot).
+                You get complete evidence on whether your idea works or how to pivot based on real user data.
               </p>
             </CardContent>
           </Card>
-          
+
           <Card className="business-card">
             <CardContent className="pt-6">
-              <h3 className="font-semibold mb-2">Do you offer payment plans?</h3>
+              <h3 className="font-semibold mb-2">Can I test 3 different ideas or pivot 3 times on one idea?</h3>
               <p className="text-muted-foreground">
-                Yes, we offer flexible payment plans for projects over $50,000. Typically, we structure 
-                payments as 50% upfront and 50% upon completion, with milestone-based payments for larger projects.
+                Either! Use your 3 cycles to test 3 separate startup ideas OR test one idea with up to 3 pivots based on
+                real user data. Total flexibility to find what works.
               </p>
             </CardContent>
           </Card>
-          
+
           <Card className="business-card">
             <CardContent className="pt-6">
-              <h3 className="font-semibold mb-2">What if I need custom requirements?</h3>
+              <h3 className="font-semibold mb-2">What happens after I use my 3 cycles?</h3>
               <p className="text-muted-foreground">
-                Every project is unique. These packages serve as starting points, and we're happy to 
-                customize the scope and pricing based on your specific needs. Contact us for a personalized quote.
+                You automatically get FREE lifetime Founder Tier access. Continue building, testing, and scaling—pay only
+                inference costs (~$20-50/mo), never subscription fees. That's $7,164+ saved over 3 years.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="business-card">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold mb-2">What are inference costs?</h3>
+              <p className="text-muted-foreground">
+                Actual cost of AI API calls (Claude, GPT-4, etc.) - typically $20-50/month for active usage. We charge
+                exactly what providers charge us, zero markup. No hidden fees, no surprises.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="business-card">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold mb-2">Will I ever have to pay monthly fees?</h3>
+              <p className="text-muted-foreground">
+                Never. LTD customers are grandfathered with FREE Founder Tier for life. You only pay actual AI inference costs.
+                No $199/mo subscription—that's $7,164+ saved over 3 years.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="business-card">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold mb-2">When does beta start?</h3>
+              <p className="text-muted-foreground">
+                Rolling beta starts Q1 2026. First 200 spots total, released in phases of 50. Apply now to secure your spot
+                in the first cohort and lock in lifetime benefits.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="business-card">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold mb-2">What's included in the Free Trial?</h3>
+              <p className="text-muted-foreground">
+                Free Trial gives you access to onboarding, initial value proposition creation, and lets you explore the AI and UI.
+                No testing or deployment, but perfect to validate StartupAI's desirability before committing to the Sprint LTD.
               </p>
             </CardContent>
           </Card>
@@ -446,9 +535,9 @@ function PricingContent() {
         <PageContainer variant="centered">
         <Card className="business-card bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20">
           <CardContent className="text-center py-12">
-            <h2 className="business-title text-3xl md:text-4xl mb-4">Ready to Get Started?</h2>
+            <h2 className="business-title text-3xl md:text-4xl mb-4">Ready to Join the Beta?</h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Limited spots available for our Q4 2025 pilot program. Secure your spot now!
+              Only 200 lifetime deal spots available. Join the private beta, validate your idea, and get FREE lifetime platform access worth $7,164+.
             </p>
           </CardContent>
         </Card>
