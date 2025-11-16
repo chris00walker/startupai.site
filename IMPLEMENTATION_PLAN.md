@@ -61,73 +61,56 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 
 ---
 
-#### Task 1.2: Update Pricing Page - LTD Offer
+#### Task 1.2: Update Pricing Page for Beta LTD
 **File:** `/src/app/pricing/page.tsx`
 **Priority:** 🔴 CRITICAL
 
-- [ ] **Feature LTD as primary offer**
-  - Add prominent section at top: "Limited Lifetime Deal - Private Beta"
-  - Badge: "Only 50 Spots in Phase 1"
+- [x] **Add Beta Banner**
+  - Create beta announcement banner after breadcrumb, before hero
+  - Content: "🎯 Private Beta Launch: First 200 Sprint customers get FREE Lifetime Platform Access ($7,164+ value over 3 years)"
+  - Style: Prominent gradient banner with green/blue colors
 
-- [ ] **Update Sprint tier (or replace)**
-  - Current name: "Strategy Sprint"
-  - New name: "Beta Lifetime Deal" or "Validation Cycle Bundle"
-  - Price: "$1,500 one-time"
+- [x] **Update Strategy Sprint Card**
+  - Badge: "Limited Beta - First 200 Only"
+  - Savings: "Save $7,164+ over 3 years (FREE Lifetime Platform Access)"
+  - Time Value: "First 200 only • Lifetime Founder Tier included ($199/mo value)"
+  - Features list updated with all 9 LTD benefits
+  - Added FREE Founder Tier callout in card header
 
-- [ ] **List what's included in LTD**
-  - ✅ 3 full validation cycles
-  - ✅ Each cycle: Strategy + Build + Deploy + Test + Pivot analysis
-  - ✅ Real ad spend (~$450-525 included)
-  - ✅ Deployed MVP at live URL
-  - ✅ User analytics and hypothesis testing
-  - ✅ Fixed token credits
-  - ✅ **FREE Lifetime Founder Tier Upgrade** (automatically activated after validation)
-  - ✅ All Founder Tier features forever - normally $199/mo
-  - ✅ No monthly subscription fees, ever - only inference costs
-  - ✅ Priority support (beta users get faster response)
-  - ✅ Beta feedback role (help shape product roadmap)
-  - ✅ After credits: Pay only inference costs (~$20-50/month typical, zero markup)
+- [x] **Add Disabled State to Platform Cards**
+  - Updated PricingTier interface with `disabled` and `disabledMessage` properties
+  - Founder Platform: disabled with "Unlocked After Sprint" message
+  - Agency Co-Pilot: disabled with "Unlocked After Sprint" message
+  - Added grey overlay with backdrop blur on disabled cards
+  - Disabled buttons on greyed out cards
 
-- [ ] **Add lifetime value comparison**
-  - Show static comparison:
-    - LTD: $1,500 one-time + ~$20-50/month inference costs
-    - Regular Founder Tier: $199/month subscription + inference costs
-    - **Savings: $2,388/year** in subscription fees (LTD customers never pay this)
-    - **5-year value: $10,440 saved** in subscription fees alone
-  - Highlight: "This is a $10,440+ value over 5 years"
+- [x] **Update FAQ Section**
+  - Replaced all 3 old FAQs with 7 new LTD-specific FAQs
+  - All FAQs use $7,164+ / 3-year messaging
+  - Added FAQ about Free Trial benefits
 
-- [ ] **Add comparison table**
-  - Create comparison: "LTD vs. Alternatives"
-  - Rows: Freelancer ($8-15K, 2-3 months), Dev Shop ($25-50K, 4-6 months), No-Code (limited), DIY (slow)
-  - Highlight: Speed (2 weeks vs months), Cost (6-30x cheaper), Validation (included vs DIY)
-  - Add column: Lifetime value comparison
+- [x] **Update Page Hero Section**
+  - Badge: "Private Beta - Limited to 200 Spots"
+  - Title: "Join the Private Beta: Get Lifetime Platform Access"
+  - Description: Updated with $7,164+ value and beta positioning
 
-- [ ] **Update monthly tiers display**
-  - Show Founder tier with note: "FREE for LTD customers / $199/mo after beta"
-  - Show Agency tier: "$499/mo - Coming Q2 2026"
-  - Emphasize: LTD customers get Founder Tier features at no monthly cost
-
-- [ ] **Add FAQ section with answers**
-  - Q: "What's a validation cycle?"
-    - A: "2-week cycle: Strategy + Build + Deploy + Test + Pivot analysis for one value proposition"
-  - Q: "Can I test 3 different ideas or pivot 3 times?"
-    - A: "Either! Test 3 separate ideas OR test one idea with up to 3 pivots based on data"
-  - Q: "What happens after I use my 3 cycles?"
-    - A: "You automatically get FREE lifetime Founder Tier access. Continue building, testing, and scaling—pay only inference costs, never subscription fees."
-  - Q: "What are inference costs?"
-    - A: "Actual cost of AI API calls (Claude, GPT-4, etc.) - typically $20-50/month for typical usage. We charge exactly what providers charge us, zero markup."
-  - Q: "Do I get Founder Tier features?"
-    - A: "Yes! FREE lifetime access automatically activated after validation. You'll never pay the $199/mo subscription—only inference costs."
-  - Q: "Will I ever have to pay monthly fees?"
-    - A: "Never. LTD customers are grandfathered with FREE Founder Tier for life. You only pay inference costs."
-  - Q: "When does beta start?"
-    - A: "Phase 1 (first 50 spots) launching Q1 2026. Apply now to secure your spot."
+- [x] **Update Bottom CTA Section**
+  - Headline: "Ready to Join the Beta?"
+  - Description: "Only 200 lifetime deal spots available..."
 
 **Acceptance Criteria:**
-- LTD offer is impossible to miss
-- Value is crystal clear ($1,500 = 3 full cycles)
-- Comparison shows massive savings vs alternatives
-- FAQ addresses common objections
+- [x] Beta banner visible at top of page
+- [x] Sprint card badge shows "Limited Beta - First 200 Only"
+- [x] Sprint card header displays FREE Lifetime Founder Tier callout
+- [x] Sprint card savings shows "$7,164+ over 3 years"
+- [x] Sprint features list includes all 9 LTD benefits
+- [x] Founder Platform card greyed out with "Unlocked After Sprint" overlay
+- [x] Agency Co-Pilot card greyed out with "Unlocked After Sprint" overlay
+- [x] Free Trial card remains fully active
+- [x] All 7 FAQ questions use $7,164+ / 3-year messaging
+- [x] Hero section emphasizes beta positioning
+- [x] Bottom CTA drives beta applications
+- [x] User journey clear: Free Trial → Sprint LTD → Platform
 
 ---
 
