@@ -67,17 +67,24 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 
 - [x] **Add Beta Banner**
   - Create beta announcement banner after breadcrumb, before hero
-  - Content: "🎯 Private Beta Launch: First 200 Sprint customers get FREE Lifetime Platform Access ($7,164+ value over 3 years)"
+  - Content: "🎯 Private Beta Launch: First 200 Sprint customers get FREE Lifetime Platform Access (up to $17,964+ value over 3 years)"
   - Style: Prominent gradient banner with green/blue colors
 
-- [x] **Update Strategy Sprint Card**
+- [x] **Update Strategy Sprint Card (Role-Dynamic)**
   - Badge: "Limited Beta - First 200 Only"
-  - Savings: "Save $7,164+ over 3 years (FREE Lifetime Platform Access)"
-  - Time Value: "First 200 only • Lifetime Founder Tier included ($199/mo value)"
-  - Features list updated with all 9 LTD benefits
-  - Added FREE Founder Tier callout in card header
+  - Savings: Dynamic by role
+    - Founders: "Save $7,164+ over 3 years (FREE Lifetime Founder Tier)"
+    - Consultants: "Save $17,964+ over 3 years (FREE Lifetime Agency Co-Pilot)"
+  - Time Value: Dynamic by role
+    - Founders: "Lifetime Founder Tier included ($199/mo value)"
+    - Consultants: "Lifetime Agency Co-Pilot included ($499/mo value)"
+  - Features list: Dynamic by role (9 benefits total)
+    - Founders get "Founder Tier" messaging
+    - Consultants get "Agency Co-Pilot" + "dedicated success manager"
+  - FREE tier callout in card header: Shows correct tier name and savings by role
   - Roles: Available to both 'founder' and 'consultant' (not just founders)
   - Ad spend: "~$450-525 total across all cycles" (not per cycle)
+  - Helper function `getSprintContent()` provides role-specific content
 
 - [x] **Add Disabled State to Platform Cards**
   - Updated PricingTier interface with `disabled` and `disabledMessage` properties
@@ -86,35 +93,40 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Added grey overlay with backdrop blur on disabled cards
   - Disabled buttons on greyed out cards
 
-- [x] **Update FAQ Section**
+- [x] **Update FAQ Section (Role-Generic)**
   - Replaced all 3 old FAQs with 7 new LTD-specific FAQs
-  - All FAQs use $7,164+ / 3-year messaging
+  - FAQs use generic messaging for both roles:
+    - "FREE lifetime platform access (Founder Tier for founders, Agency Co-Pilot for consultants)"
+    - "$7,164-$17,964+ saved over 3 years depending on your tier"
   - Added FAQ about Free Trial benefits
 
 - [x] **Update Page Hero Section**
   - Badge: "Private Beta - Limited to 200 Spots"
   - Title: "Join the Private Beta: Get Lifetime Platform Access"
-  - Description: Updated with $7,164+ value and beta positioning
+  - Description: "up to $17,964+ value" (shows max consultant value)
 
 - [x] **Update Bottom CTA Section**
   - Headline: "Ready to Join the Beta?"
-  - Description: "Only 200 lifetime deal spots available..."
+  - Description: "up to $17,964+" (shows max consultant value)
 
 **Acceptance Criteria:**
-- [x] Beta banner visible at top of page
+- [x] Beta banner shows "up to $17,964+ value"
 - [x] Sprint card badge shows "Limited Beta - First 200 Only"
-- [x] Sprint card header displays FREE Lifetime Founder Tier callout
-- [x] Sprint card savings shows "$7,164+ over 3 years"
-- [x] Sprint features list includes all 9 LTD benefits (with correct ad spend wording)
+- [x] Sprint card content is DYNAMIC by role:
+  - [x] Founders see: "Founder Tier" + "$7,164+" everywhere
+  - [x] Consultants see: "Agency Co-Pilot" + "$17,964+" everywhere
+- [x] Sprint card header displays role-specific FREE tier callout
+- [x] Sprint features list includes all 9 role-specific LTD benefits
 - [x] Sprint card visible to both founders AND consultants
 - [x] Ad spend shows "~$450-525 total across all cycles" (not per cycle)
 - [x] Founder Platform card greyed out with "Unlocked After Sprint" overlay
 - [x] Agency Co-Pilot card greyed out with "Unlocked After Sprint" overlay
 - [x] Free Trial card remains fully active for both roles
-- [x] All 7 FAQ questions use $7,164+ / 3-year messaging
-- [x] Hero section emphasizes beta positioning
-- [x] Bottom CTA drives beta applications
+- [x] FAQs use generic messaging covering both tiers ($7,164-$17,964+)
+- [x] Hero section shows "up to $17,964+ value"
+- [x] Bottom CTA shows "up to $17,964+"
 - [x] User journey clear: Free Trial → Sprint LTD → Platform
+- [x] Consultants see MASSIVE $17,964+ savings prominently displayed
 
 ---
 
