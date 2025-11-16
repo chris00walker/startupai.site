@@ -95,7 +95,7 @@ function PricingContent() {
     {
       name: "Strategy Sprint",
       plan: "strategy-sprint",
-      roles: ['founder'],
+      roles: ['founder', 'consultant'],
       price: "$1,500",
       period: "one-time",
       description: "Evidence-backed strategy canvases & DDD architecture in 1 week",
@@ -107,7 +107,7 @@ function PricingContent() {
       features: [
         "3 full validation cycles (test 3 ideas OR pivot 3x on one idea)",
         "Each cycle: Strategy + Build + Deploy + Test + Pivot analysis",
-        "Real ad spend included (~$450-525 per cycle)",
+        "Real ad spend included (~$450-525 total across all cycles)",
         "Deployed MVP at live URL with analytics",
         "🎁 FREE Lifetime Founder Tier Upgrade (automatic after validation)",
         "All Founder Tier features forever - normally $199/mo",
