@@ -60,6 +60,7 @@ startupai-code-workspace.code-workspace
 
 # Claude Code local settings
 .claude/settings.local.json
+.mcp.json
 
 # Supabase local temp files
 supabase/.temp/
@@ -77,3 +78,7 @@ execute_fix.js
 supabase/.branches/
 *.sql.backup
 deno.lock
+
+# Temporary SQL test files
+check_rls.sql
+fix_rls_policies.sql
