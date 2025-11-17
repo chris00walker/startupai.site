@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "netlify": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@netlify/mcp"
+      ],
+      "env": {
+        "NETLIFY_AUTH_TOKEN": "your-netlify-auth-token-here",
+        "NETLIFY_SITE_ID": "your-netlify-site-id-here"
+      }
+    },
+    "supabase": {
+      "type": "http",
+      "url": "https://mcp.supabase.com/mcp?project_ref=your-project-ref-here",
+      "headers": {
+        "Authorization": "Bearer your-supabase-service-role-key-here"
+      }
+    },
+    "shadcn": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "shadcn@latest",
+        "mcp"
+      ],
+      "env": {}
+    }
+  }
+}
