@@ -134,32 +134,41 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 **Files:** Multiple
 **Priority:** 🔴 CRITICAL
 
-- [ ] **Update page metadata** (`/src/app/page.tsx`)
+- [x] **Update page metadata** (`/src/app/page.tsx`)
   - Check `<title>` and `<meta name="description">`
   - Remove: "Chris Walker" or "Chris Walker Consulting"
   - Use: "StartupAI - AI Co-Founder for Non-Technical Founders"
+  - **Note:** Already completed in Task 1.1
 
-- [ ] **Update ContactForm** (`/src/components/ContactForm.tsx` or similar)
-  - Line ~213: Remove "Get updates on eCommerce trends"
-  - Replace with: "Get updates on beta launch and startup validation tips"
+- [x] **Update ContactForm** (`/src/components/sections/ContactForm.tsx`)
+  - Line 213: Changed "Get updates on eCommerce trends" → "Get updates on beta launch and startup validation tips"
+  - Line 94: Changed "I'll get back to you" → "We'll get back to you"
+  - Line 104: Changed "contact me directly" → "contact us directly"
+  - Line 187: Changed "Tell me about your project... how I can help" → "Tell us about your startup idea... how we can help"
+  - **Result:** All personal pronouns removed, eCommerce reference replaced with beta/startup messaging
 
 - [ ] **Check Services pages** (`/src/app/services/**/*.tsx`)
   - Search for: "Chris Walker Consulting"
   - Replace with: "StartupAI" or remove reference
-  - May decide to delete/replace services pages entirely (see Task 2.3)
+  - **Status:** Deferred to Task 2.3 (Phase 2) - will handle with full services page overhaul
 
-- [ ] **Update footer** (`/src/components/Footer.tsx` or similar)
-  - Check copyright: "© 2025 StartupAI" (not Chris Walker)
-  - Check company name consistency
+- [x] **Update footer** (`/src/components/ui/Footer.tsx`)
+  - Removed GitHub social link pointing to old "chriswalker.consulting" repo
+  - Copyright already correct: "© 2025 StartupAI"
+  - **Result:** Clean, depersonalized footer
 
 - [ ] **Update About page if exists** (`/src/app/about/page.tsx`)
   - If exists: Add section "About the Founder" (Chris Walker bio)
   - Clearly separate: Chris = founder, StartupAI = product
+  - **Status:** Deferred to Task 3.1 (Phase 3) - About page doesn't exist yet
 
 **Acceptance Criteria:**
-- Zero mentions of "Chris Walker Consulting" in site copy
-- Metadata consistently says "StartupAI"
-- Personal brand only appears in founder bio context
+- [x] ContactForm fully depersonalized (we/us language, no I/me)
+- [x] No eCommerce references in ContactForm
+- [x] Footer has no personal GitHub links
+- [x] Copyright says "StartupAI"
+- [ ] Services pages personal branding removed (deferred to Task 2.3)
+- [ ] About page created with proper separation (deferred to Task 3.1)
 
 ---
 

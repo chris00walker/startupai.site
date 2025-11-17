@@ -91,7 +91,7 @@ export function ContactForm() {
           <CheckCircle2Icon className="h-4 w-4" />
           <AlertTitle>Message sent successfully!</AlertTitle>
           <AlertDescription>
-            Thank you for your message. I'll get back to you within 24 hours.
+            Thank you for your message. We'll get back to you within 24 hours.
           </AlertDescription>
         </Alert>
       )}
@@ -101,7 +101,7 @@ export function ContactForm() {
           <AlertCircleIcon className="h-4 w-4" />
           <AlertTitle>Error sending message</AlertTitle>
           <AlertDescription>
-            There was a problem sending your message. Please try again or contact me directly.
+            There was a problem sending your message. Please try again or contact us directly.
           </AlertDescription>
         </Alert>
       )}
@@ -184,7 +184,7 @@ export function ContactForm() {
                 <FormLabel>Message</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Tell me about your project, goals, and how I can help..."
+                    placeholder="Tell us about your startup idea, goals, and how we can help..."
                     className="min-h-[120px]"
                     {...field}
                   />
@@ -210,7 +210,7 @@ export function ContactForm() {
                     Subscribe to newsletter
                   </FormLabel>
                   <FormDescription>
-                    Get updates on eCommerce trends and insights (optional).
+                    Get updates on beta launch and startup validation tips (optional).
                   </FormDescription>
                 </div>
               </FormItem>
