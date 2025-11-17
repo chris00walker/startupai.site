@@ -69,15 +69,37 @@ export function ContactForm() {
     setSubmitStatus(null);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      
-      // Here you would typically send the form data to your API
-      console.log('Form submitted:', values);
-      
+      const response = await fetch('/.netlify/functions/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          company: values.company,
+          industry: values.industry,
+          message: values.message,
+          newsletter: values.newsletter,
+        }),
+      });
+
+      let data;
+      try {
+        data = await response.json();
+      } catch (e) {
+        // If JSON parsing fails, create a generic error
+        throw new Error('Server error - please try again');
+      }
+
+      if (!response.ok || !data.ok) {
+        throw new Error(data.error || 'Failed to submit form');
+      }
+
       setSubmitStatus('success');
       form.reset();
     } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -156,7 +178,7 @@ export function ContactForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Industry</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select onValueChange={field.onChange} value={field.value}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Select your industry" />
@@ -210,6 +232,8 @@ export function ContactForm() {
                   <Checkbox
                     checked={field.value}
                     onCheckedChange={field.onChange}
+                    ref={field.ref}
+                    name={field.name}
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
@@ -233,6 +257,8 @@ export function ContactForm() {
                   <Checkbox
                     checked={field.value}
                     onCheckedChange={field.onChange}
+                    ref={field.ref}
+                    name={field.name}
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">

@@ -76,3 +76,4 @@ execute_fix.js
 # Supabase local branches and backups
 supabase/.branches/
 *.sql.backup
+deno.lock
