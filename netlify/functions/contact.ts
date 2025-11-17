@@ -10,11 +10,17 @@ interface ContactPayload {
   newsletter: boolean;
 }
 
-//Initialize Supabase client
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+// Helper to get Supabase client with proper error handling
+function getSupabaseClient() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error('Missing Supabase environment variables');
+  }
+
+  return createClient(supabaseUrl, supabaseAnonKey);
+}
 
 // Optional: Send email notification using Resend
 async function sendEmailNotification(data: ContactPayload) {
@@ -66,10 +72,28 @@ async function sendEmailNotification(data: ContactPayload) {
 }
 
 export const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+  // CORS headers
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Content-Type': 'application/json',
+  };
+
+  // Handle preflight request
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers,
+      body: '',
+    };
+  }
+
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
+      headers,
       body: JSON.stringify({ ok: false, error: 'Method not allowed' }),
     };
   }
@@ -82,6 +106,7 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
     if (!body.name || body.name.length < 2) {
       return {
         statusCode: 400,
+        headers,
         body: JSON.stringify({ ok: false, error: 'Name must be at least 2 characters' }),
       };
     }
@@ -89,6 +114,7 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
     if (!body.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) {
       return {
         statusCode: 400,
+        headers,
         body: JSON.stringify({ ok: false, error: 'Invalid email address' }),
       };
     }
@@ -96,6 +122,7 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
     if (!body.industry) {
       return {
         statusCode: 400,
+        headers,
         body: JSON.stringify({ ok: false, error: 'Industry is required' }),
       };
     }
@@ -103,6 +130,7 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
     if (!body.message || body.message.length < 10) {
       return {
         statusCode: 400,
+        headers,
         body: JSON.stringify({ ok: false, error: 'Message must be at least 10 characters' }),
       };
     }
@@ -112,6 +140,9 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
     const ipAddress = event.headers['x-forwarded-for'] ||
                       event.headers['x-real-ip'] ||
                       undefined;
+
+    // Get Supabase client
+    const supabase = getSupabaseClient();
 
     // Insert into Supabase
     const { data, error } = await supabase
@@ -135,6 +166,7 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
       console.error('[contact] Supabase error:', error);
       return {
         statusCode: 500,
+        headers,
         body: JSON.stringify({
           ok: false,
           error: 'Failed to save contact submission',
@@ -151,9 +183,7 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
     // Return success
     return {
       statusCode: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify({
         ok: true,
         message: 'Contact form submitted successfully',
@@ -163,11 +193,17 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
 
   } catch (error) {
     console.error('[contact] Unexpected error:', error);
+
+    // Return more helpful error message
+    const errorMessage = error instanceof Error ? error.message : 'Internal server error';
+
     return {
       statusCode: 500,
+      headers,
       body: JSON.stringify({
         ok: false,
-        error: 'Internal server error'
+        error: 'Internal server error',
+        details: errorMessage
       }),
     };
   }
