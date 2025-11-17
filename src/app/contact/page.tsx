@@ -17,7 +17,7 @@ export default function ContactPage() {
           <div className="max-w-4xl mx-auto">
             <PageHeader variant="centered" className="mb-12">
               <PageTitle>Contact</PageTitle>
-              <PageDescription className="text-xl">
+              <PageDescription className="text-xl max-w-2xl mx-auto">
                 Questions about our beta program or validation services? Get in touch and we'll get back to you within 24 hours.
               </PageDescription>
             </PageHeader>

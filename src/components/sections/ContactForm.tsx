@@ -35,7 +35,7 @@ const formSchema = z.object({
     message: 'Please enter a valid email address.',
   }),
   company: z.string().optional(),
-  service: z.string().min(1, 'Please select a service.'),
+  industry: z.string().min(1, 'Please select an industry.'),
   message: z.string().min(10, {
     message: 'Message must be at least 10 characters.',
   }),
@@ -57,7 +57,7 @@ export function ContactForm() {
       name: '',
       email: '',
       company: '',
-      service: '',
+      industry: '',
       message: '',
       newsletter: false,
       terms: false,
@@ -152,22 +152,29 @@ export function ContactForm() {
 
           <FormField
             control={form.control}
-            name="service"
+            name="industry"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Service Interest</FormLabel>
+                <FormLabel>Industry</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select a service" />
+                      <SelectValue placeholder="Select your industry" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="discovery">Discovery</SelectItem>
-                    <SelectItem value="validation">Validation</SelectItem>
-                    <SelectItem value="scaling">Scaling</SelectItem>
-                    <SelectItem value="advisory">Advisory</SelectItem>
-                    <SelectItem value="optimization">Optimization</SelectItem>
+                    <SelectItem value="ecommerce">E-Commerce / Retail</SelectItem>
+                    <SelectItem value="saas">SaaS / Software</SelectItem>
+                    <SelectItem value="healthcare">Healthcare / Medical</SelectItem>
+                    <SelectItem value="fintech">FinTech / Finance</SelectItem>
+                    <SelectItem value="education">Education / EdTech</SelectItem>
+                    <SelectItem value="foodbev">Food & Beverage</SelectItem>
+                    <SelectItem value="realestate">Real Estate</SelectItem>
+                    <SelectItem value="marketing">Marketing / Agency</SelectItem>
+                    <SelectItem value="consulting">Consulting / Professional Services</SelectItem>
+                    <SelectItem value="manufacturing">Manufacturing</SelectItem>
+                    <SelectItem value="hospitality">Hospitality / Travel</SelectItem>
+                    <SelectItem value="nonprofit">Nonprofit / Social Impact</SelectItem>
                     <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>
