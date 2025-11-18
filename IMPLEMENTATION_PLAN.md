@@ -1,4 +1,5 @@
 # StartupAI Marketing Site Implementation Plan
+
 **Date**: November 14, 2025
 **Status**: Ready for Execution
 **Purpose**: Phased implementation plan to align marketing site with pre-launch beta strategy
@@ -7,7 +8,7 @@
 
 ## Overview
 
-This document provides a comprehensive, checkable implementation plan to transform the marketing site from its current "strategy 
+This document provides a comprehensive, checkable implementation plan to transform the marketing site from its current "strategy
 consulting" positioning to the correct "AI co-founding validation platform" with Lifetime Deal beta launch.
 
 **Source Document:** `POSITIONING_ANALYSIS.md` (Strategic decisions and positioning)
@@ -31,6 +32,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ### Week 1: Hero & Pricing Fixes
 
 #### Task 1.1: Update Hero Section
+
 **File:** `/src/components/sections/Hero.tsx`
 **Priority:** 🔴 CRITICAL
 
@@ -56,12 +58,14 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Check metadata, ensure it says "StartupAI" not "Chris Walker Consulting"
 
 **Acceptance Criteria:**
+
 - Hero clearly communicates: Build + Test + Validate (not just "plan")
 - Beta positioning front and center
 
 ---
 
 #### Task 1.2: Update Pricing Page for Beta LTD
+
 **File:** `/src/app/pricing/page.tsx`
 **Priority:** 🔴 CRITICAL
 
@@ -110,6 +114,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Description: "up to $17,964+" (shows max consultant value)
 
 **Acceptance Criteria:**
+
 - [x] Beta banner shows "up to $17,964+ value"
 - [x] Sprint card badge shows "Limited Beta - First 200 Only"
 - [x] Sprint card content is DYNAMIC by role:
@@ -131,6 +136,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ---
 
 #### Task 1.3: Remove Personal Brand References
+
 **Files:** Multiple
 **Priority:** 🔴 CRITICAL
 
@@ -163,6 +169,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - **Status:** Deferred to Task 3.1 (Phase 3) - About page doesn't exist yet
 
 **Acceptance Criteria:**
+
 - [x] ContactForm fully depersonalized (we/us language, no I/me)
 - [x] No eCommerce references in ContactForm
 - [x] Footer has no personal GitHub links
@@ -175,17 +182,18 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ### Week 2: Beta Infrastructure
 
 #### Task 1.4: Create Beta Application Page
+
 **File:** `/src/app/beta/page.tsx` (NEW)
 **Priority:** 🔴 CRITICAL
 
-- [ ] **Create new page route** at `/beta`
+- [x] **Create new page route** at `/beta`
 
-- [ ] **Hero section**
+- [x] **Hero section**
   - Headline: "Join the StartupAI Private Beta"
   - Subhead: "Limited Lifetime Deal - Only 200 Spots Total (Rolling in Phases of 50)"
   - Countdown or spots remaining indicator (if feasible)
 
-- [ ] **What You Get section**
+- [x] **What You Get section**
   - Repeat LTD offer details from pricing page
   - **Emphasize FREE Founder Tier upgrade** (worth $2,388/year, $10,440 over 5 years)
   - List all benefits:
@@ -199,12 +207,12 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Timeline: 2 weeks per cycle
   - Automatic upgrade flow: Validation → FREE Founder Tier activation → Build & scale forever
 
-- [ ] **How It Works - Visual Flow**
+- [x] **How It Works - Visual Flow**
   - Week 1: Strategy + Build + Deploy
   - Week 2: Test + Analyze + Pivot Decision
   - Repeat up to 3x
 
-- [ ] **Application Form**
+- [x] **Application Form**
   - Fields to collect:
     - Name
     - Email
@@ -216,20 +224,31 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - CTA button: "Apply for Beta Access"
   - Submit to: Email (Formspree) or backend API (if available)
 
-- [ ] **Social Proof section**
+- [x] **Social Proof section**
   - Placeholder testimonials or quotes
   - "Join founders who are validating their ideas 10x faster"
 
-- [ ] **FAQ section** (reuse from pricing page)
+- [x] **FAQ section** (reuse from pricing page)
 
 **Acceptance Criteria:**
-- Clear value proposition for beta
-- Application form captures key qualification info
-- Easy to navigate from homepage hero CTA
+
+- [x] Clear value proposition for beta
+- [x] Application form captures key qualification info
+- [x] Easy to navigate from homepage hero CTA
+
+**Implementation Notes:**
+
+- Created `/src/app/beta/page.tsx` with all required sections
+- Created `/src/app/beta/layout.tsx` for SEO metadata (server component)
+- Form currently logs to console; TODO comment added for Formspree/backend integration
+- Spots remaining indicator set to 200 (static, can be made dynamic)
+- Build passes with no errors
+- TypeScript and ESLint validation passed
 
 ---
 
 #### Task 1.5: Set Up Payment Processing
+
 **Tool:** Stripe (recommended)
 **Priority:** 🔴 CRITICAL
 
@@ -257,6 +276,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Verify email confirmation sent
 
 **Acceptance Criteria:**
+
 - Payment processing works end-to-end
 - User receives confirmation email
 - You're notified of new beta signups
@@ -264,6 +284,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ---
 
 #### Task 1.6: Create Waitlist for Overflow
+
 **File:** `/src/app/waitlist/page.tsx` or component
 **Priority:** 🟡 HIGH
 
@@ -280,6 +301,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - "Beta spots filled. Join waitlist for public launch."
 
 **Acceptance Criteria:**
+
 - Captures leads who miss beta
 - Tagged separately from beta applicants
 - Can nurture for Q2 2026 public launch
@@ -293,6 +315,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ### Week 3: New Homepage Sections
 
 #### Task 2.1: Create "How It Works" Section
+
 **File:** `/src/app/page.tsx` or `/src/components/sections/HowItWorks.tsx` (NEW)
 **Priority:** 🟡 HIGH
 
@@ -327,6 +350,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Location: After hero, before existing services or product section
 
 **Acceptance Criteria:**
+
 - Non-technical founders understand the process
 - Clear that it's not just "build" but "build + test + analyze"
 - Visual is engaging and easy to scan
@@ -334,6 +358,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ---
 
 #### Task 2.2: Create "Why StartupAI?" / Differentiation Section
+
 **File:** `/src/app/page.tsx` or new component
 **Priority:** 🟡 HIGH
 
@@ -381,6 +406,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - **Lifetime value: FREE Founder Tier saves $10,440+ over 5 years**
 
 **Acceptance Criteria:**
+
 - Clear positioning vs. all alternatives
 - Highlights speed + validation as unique combo
 - Addresses "Why not just use Cursor?" objection
@@ -388,17 +414,20 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ---
 
 #### Task 2.3: Replace or Update Services Pages
+
 **Files:** `/src/app/services/**/*.tsx`
 **Priority:** 🟡 HIGH
 
 **Decision Point:** Services pages currently imply consulting phases (Discovery → Validation → Scaling). This conflicts with platform positioning.
 
 **Option A: Delete services pages entirely**
+
 - Remove `/services` route and all sub-pages
 - Redirect to homepage or `/beta`
 - Simplifies messaging (beta launch doesn't need service tiers)
 
 **Option B: Replace with platform-centric language**
+
 - Keep structure but reframe
 - "Discovery" → "Strategy Foundation"
 - "Validation" → "Build & Test"
@@ -406,6 +435,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 - Update copy to be platform-delivered, not consulting-led
 
 **Option C: Keep but mark as "Post-Beta"**
+
 - Add banner: "These services available after beta in Q2 2026"
 - De-emphasize in navigation
 
@@ -416,6 +446,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 - [ ] **Update navigation** to remove or gray out Services link
 
 **Acceptance Criteria:**
+
 - No consulting-style language visible during beta
 - Clear that beta is platform-only (no service tiers yet)
 
@@ -424,6 +455,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ### Week 4: Proof & Credibility
 
 #### Task 2.4: Add Tool Orchestration Section
+
 **File:** `/src/app/page.tsx` or new component
 **Priority:** 🟡 HIGH
 
@@ -451,6 +483,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Keeps non-technical users from being intimidated
 
 **Acceptance Criteria:**
+
 - Clear that StartupAI is orchestrator, not competitor to these tools
 - Differentiates from "just use Cursor yourself"
 - Technical details available but not prominent
@@ -458,6 +491,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ---
 
 #### Task 2.5: Add Framework Credibility Section
+
 **File:** `/src/app/page.tsx` or new component
 **Priority:** 🟢 MEDIUM
 
@@ -477,12 +511,14 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - "Validated by [X] beta users" (after beta starts)
 
 **Acceptance Criteria:**
+
 - Borrows credibility from established methodology
 - Differentiates from "ChatGPT for startups"
 
 ---
 
 #### Task 2.6: Update Product Page
+
 **File:** `/src/app/product/page.tsx`
 **Priority:** 🟡 HIGH
 
@@ -506,6 +542,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Pivot guidance: Recommendations based on evidence
 
 **Acceptance Criteria:**
+
 - Clear that deliverable is working software + validation
 - Visual proof elements (screenshots/demos)
 - Aligns with beta LTD offer
@@ -519,6 +556,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ### Week 5: Refinements
 
 #### Task 3.1: Create About Page
+
 **File:** `/src/app/about/page.tsx` (NEW)
 **Priority:** 🟢 MEDIUM
 
@@ -539,12 +577,14 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Show public roadmap or GitHub activity (if applicable)
 
 **Acceptance Criteria:**
+
 - Provides founder credibility without making it a personal brand
 - Clear separation: founder story vs product story
 
 ---
 
 #### Task 3.2: Add Evidence Ledger / Learning Engine Section
+
 **File:** `/src/app/page.tsx` or new component
 **Priority:** 🟢 MEDIUM
 
@@ -567,6 +607,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - "Your idea stays private"
 
 **Acceptance Criteria:**
+
 - Communicates long-term moat (evidence network effects)
 - Reassures on privacy
 - Differentiates from one-off services
@@ -574,6 +615,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ---
 
 #### Task 3.3: Global Search and Replace
+
 **Files:** All
 **Priority:** 🟢 MEDIUM
 
@@ -594,6 +636,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Secondary: "See How It Works" or "Learn More"
 
 **Acceptance Criteria:**
+
 - Language is consistent across all pages
 - Jargon removed from main copy
 - CTAs all point to beta application
@@ -603,6 +646,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ### Week 6: Testing & Prep
 
 #### Task 3.4: SEO & Metadata Updates
+
 **Files:** All pages
 **Priority:** 🟢 MEDIUM
 
@@ -625,6 +669,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Ensure branding is "StartupAI" not personal
 
 **Acceptance Criteria:**
+
 - All metadata reflects beta positioning
 - SEO-friendly for "startup validation", "AI co-founder", "MVP testing"
 - Social sharing cards look correct
@@ -632,6 +677,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ---
 
 #### Task 3.5: Analytics Setup
+
 **Tool:** PostHog (or existing)
 **Priority:** 🟢 MEDIUM
 
@@ -653,6 +699,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Goal 2: 30 beta payments completed (60% conversion)
 
 **Acceptance Criteria:**
+
 - Can track beta signup flow end-to-end
 - Identify where users drop off
 - Measure conversion rate
@@ -660,6 +707,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ---
 
 #### Task 3.6: Mobile Responsiveness Check
+
 **Files:** All components
 **Priority:** 🟢 MEDIUM
 
@@ -679,6 +727,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Target: LCP < 2.5s, FID < 100ms, CLS < 0.1
 
 **Acceptance Criteria:**
+
 - Site fully usable on mobile
 - No layout breaks
 - Performance meets targets
@@ -692,6 +741,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ### Week 7: Soft Launch
 
 #### Task 4.1: Soft Launch to Inner Circle
+
 **Priority:** 🔴 CRITICAL
 
 - [ ] **Announce to personal network**
@@ -714,6 +764,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Channels: #announcements, #support, #feedback, #wins
 
 **Acceptance Criteria:**
+
 - First 10 beta users onboarded
 - Payment collected
 - Slack community active
@@ -721,6 +772,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ---
 
 #### Task 4.2: First Validation Cycles (Manual Delivery)
+
 **Priority:** 🔴 CRITICAL
 
 - [ ] **Onboard first beta user**
@@ -745,6 +797,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Document case study notes
 
 **Acceptance Criteria:**
+
 - First beta user completes full 2-week cycle
 - Feedback collected
 - Iterate on process based on learnings
@@ -754,6 +807,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ### Week 8+: Scale Beta
 
 #### Task 4.3: Open Phase 2 (Next 50 Spots)
+
 **Priority:** 🟡 HIGH
 
 - [ ] **Announce Phase 2 opening**
@@ -771,6 +825,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Still QA each deliverable before sending to user
 
 #### Task 4.4: Case Study Development
+
 **Priority:** 🟡 HIGH
 
 - [ ] **Document first 5 success stories**
@@ -788,6 +843,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Social proof section: "See how founders validated their ideas"
 
 #### Task 4.5: Continuous Iteration
+
 **Priority:** 🟢 ONGOING
 
 - [ ] **Weekly reviews**
@@ -810,6 +866,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ## Success Metrics & Targets
 
 ### **Beta Success Criteria:**
+
 - [ ] Sell 200 LTD spots ($300K revenue)
 - [ ] Deliver 600 validation cycles total (200 users × 3 cycles)
 - [ ] Achieve 60%+ "Pivot or Proceed" accuracy (recommendations align with outcomes)
@@ -819,6 +876,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 - [ ] <10% refund rate
 
 ### **Product Validation Metrics:**
+
 - [ ] 80%+ users complete at least 1 validation cycle
 - [ ] 50%+ users complete all 3 validation cycles
 - [ ] Average time to deployed MVP: <10 days (Week 1 target: 7 days)
@@ -826,6 +884,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 - [ ] Pivot success rate: Do pivots lead to better outcomes?
 
 ### **Business Metrics:**
+
 - [ ] $300K revenue from LTD sales
 - [ ] CAC: <$500 per beta user (organic, referrals, content)
 - [ ] Word-of-mouth: 30%+ beta users from referrals
@@ -864,6 +923,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ## File Reference: What Needs Updating
 
 ### Critical Files (Phase 1)
+
 1. `/src/components/sections/Hero.tsx` - Hero headline, subhead, CTA
 2. `/src/app/pricing/page.tsx` - LTD offer, comparison table
 3. `/src/app/page.tsx` - Metadata, add new sections
@@ -871,12 +931,14 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 5. `/src/app/beta/page.tsx` - **NEW** beta program page
 
 ### High Priority Files (Phase 2)
+
 6. `/src/components/sections/HowItWorks.tsx` - **NEW** visual flow
 7. `/src/app/product/page.tsx` - Replace "canvases" with "products"
 8. `/src/app/services/**/*.tsx` - Remove or update (TBD)
 9. `/src/app/page.tsx` - Add differentiation section
 
 ### Medium Priority Files (Phase 3)
+
 10. `/src/app/about/page.tsx` - **NEW** about page
 11. `/docs/overview/value-proposition.md` - Update positioning docs
 12. `/docs/overview/messaging-matrix.md` - Update message grid
@@ -887,6 +949,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ## Success Metrics
 
 ### Phase 1 Success (Week 2)
+
 - [ ] Hero clearly communicates validation promise
 - [ ] LTD offer impossible to miss on pricing page
 - [ ] Beta application page live and functional
@@ -894,12 +957,14 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 - [ ] Zero "Chris Walker Consulting" references remain
 
 ### Phase 2 Success (Week 4)
+
 - [ ] "How It Works" section published
 - [ ] Comparison table shows competitive advantage
 - [ ] Product page explains full validation engine
 - [ ] Services pages removed or updated (no consulting language)
 
 ### Phase 3 Success (Week 6)
+
 - [ ] All pages mobile-responsive
 - [ ] SEO metadata updated
 - [ ] Analytics tracking all key events
@@ -907,6 +972,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 - [ ] Global language cleanup complete
 
 ### Phase 4 Success (Week 7+)
+
 - [ ] 10 beta users onboarded
 - [ ] First validation cycles completed
 - [ ] 3+ testimonials collected
@@ -920,6 +986,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ### Decision Log
 
 **Date**: November 14, 2025
+
 - Confirmed: StartupAI is SaaS product, not consulting
 - Confirmed: Full validation engine (not just strategy)
 - Confirmed: 2-week cycles (not days)
@@ -927,6 +994,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 - Confirmed: Beta rollout in phases of 50
 
 **Pending Decisions:**
+
 - [ ] Exact ad spend allocation (30-35% = $450-525?)
 - [ ] Token credit amount per LTD user
 - [ ] Services pages: Delete, update, or hide?
@@ -938,6 +1006,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 ## Next Steps & Action Items
 
 ### **For Chris:**
+
 1. **Review & Approve** the positioning strategy (see `POSITIONING_ANALYSIS.md`)
 2. **Finalize Details:**
    - Exact ad spend amount (30-35% = $450-525?)
@@ -956,6 +1025,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
    - Support capacity (Slack, email)?
 
 ### **For Marketing Site (Priority Order):**
+
 1. **Immediate (Week 1):**
    - Update hero section with beta positioning
    - Update pricing page with LTD offer
@@ -977,6 +1047,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
    - Mobile responsiveness testing
 
 ### **For Product Development:**
+
 1. Define MVP for beta: What must work vs. manual?
 2. Build validation cycle workflow
 3. Integrate ad platforms (Facebook, Google Ads?)
