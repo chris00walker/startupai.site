@@ -13,6 +13,12 @@
   NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxeHJvcGFsaHhqZXl2ZmNveXhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzMjAwNDYsImV4cCI6MjA3Njg5NjA0Nn0.Y2wE2TsKSo2VCHFtdT1r_b4lcgOhlTNJzDT3eqZIza0"
   NEXT_PUBLIC_APP_URL = "https://app-startupai-site.netlify.app"
 
+# Ensure Netlify Functions get Supabase creds at runtime (not just build time)
+[functions.environment]
+  NEXT_PUBLIC_SUPABASE_URL = "https://eqxropalhxjeyvfcoyxg.supabase.co"
+  NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxeHJvcGFsaHhqZXl2ZmNveXhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzMjAwNDYsImV4cCI6MjA3Njg5NjA0Nn0.Y2wE2TsKSo2VCHFtdT1r_b4lcgOhlTNJzDT3eqZIza0"
+  SUPABASE_SERVICE_ROLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxeHJvcGFsaHhqZXl2ZmNveXhnIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTMyMDA0NiwiZXhwIjoyMDc2ODk2MDQ2fQ.yg158PRIYZO8uifOHIfEctgSdOWTRKjQdqTu2xYP-ZM"
+
 # Ensure Netlify Functions get Supabase creds at runtime (build env isn't always forwarded to functions)
 [functions.environment]
   NEXT_PUBLIC_SUPABASE_URL = "https://eqxropalhxjeyvfcoyxg.supabase.co"

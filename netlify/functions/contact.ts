@@ -10,16 +10,19 @@ interface ContactPayload {
   newsletter: boolean;
 }
 
-// Helper to get Supabase client with proper error handling
 function getSupabaseClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-  if (!supabaseUrl || !supabaseAnonKey) {
+  // Prefer service role when available so serverless execution does not depend on anon-key headers/RLS.
+  const resolvedKey = supabaseServiceKey || supabaseAnonKey;
+
+  if (!supabaseUrl || !resolvedKey) {
     throw new Error('Missing Supabase environment variables');
   }
 
-  return createClient(supabaseUrl, supabaseAnonKey);
+  return createClient(supabaseUrl, resolvedKey);
 }
 
 // Optional: Send email notification using Resend
