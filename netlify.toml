@@ -13,6 +13,11 @@
   NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxeHJvcGFsaHhqZXl2ZmNveXhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzMjAwNDYsImV4cCI6MjA3Njg5NjA0Nn0.Y2wE2TsKSo2VCHFtdT1r_b4lcgOhlTNJzDT3eqZIza0"
   NEXT_PUBLIC_APP_URL = "https://app-startupai-site.netlify.app"
 
+# Ensure Netlify Functions get Supabase creds at runtime (build env isn't always forwarded to functions)
+[functions.environment]
+  NEXT_PUBLIC_SUPABASE_URL = "https://eqxropalhxjeyvfcoyxg.supabase.co"
+  NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxeHJvcGFsaHhqZXl2ZmNveXhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzMjAwNDYsImV4cCI6MjA3Njg5NjA0Nn0.Y2wE2TsKSo2VCHFtdT1r_b4lcgOhlTNJzDT3eqZIza0"
+
 # ============================================================================
 # STAGING CONTEXT (staging branch - Deployed Environment)
 # ============================================================================
