@@ -691,6 +691,33 @@ function PricingContent() {
                 </p>
               </CardContent>
             </Card>
+
+            <Card className="business-card">
+              <CardContent className="pt-6">
+                <h3 className="font-semibold mb-2">
+                  What if I'm not accepted into the beta?
+                </h3>
+                <p className="text-muted-foreground">
+                  We're accepting the first 200 qualified applicants. If you
+                  miss this round, you'll be added to our waitlist for future
+                  cohorts. However, the lifetime deal is only available for the
+                  first 200 beta participants.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="business-card">
+              <CardContent className="pt-6">
+                <h3 className="font-semibold mb-2">
+                  Is the $1,500 refundable?
+                </h3>
+                <p className="text-muted-foreground">
+                  We offer a 30-day money-back guarantee. If you're not
+                  satisfied after your first validation cycle, we'll provide a
+                  full refund—no questions asked.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </PageContainer>
       </section>
