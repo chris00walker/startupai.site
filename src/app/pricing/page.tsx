@@ -100,6 +100,8 @@ function PricingContent() {
         'Community support and resources',
       ],
       cta: 'Start Free',
+      disabled: true,
+      disabledMessage: 'Apply Below',
       highlighted: false,
     },
     {
@@ -128,6 +130,8 @@ function PricingContent() {
         'Beta feedback role (help shape product roadmap)',
       ],
       cta: 'Start Sprint',
+      disabled: true,
+      disabledMessage: 'Apply Below',
       highlighted: true,
     },
     {
@@ -704,6 +708,11 @@ function PricingContent() {
                 validate your idea, and get FREE lifetime platform access worth
                 up to $17,964+.
               </p>
+              <Button size="lg" className="bg-primary text-white hover:bg-primary/90" asChild>
+                <Link href="/beta">
+                  Apply Now
+                </Link>
+              </Button>
             </CardContent>
           </Card>
         </PageContainer>
