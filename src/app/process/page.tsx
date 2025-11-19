@@ -28,6 +28,12 @@ export const metadata: Metadata = {
   title: 'How It Works | StartupAI - AI Co-Founder for Founders',
   description:
     'From idea to evidence in 2 weeks. We build, test, and validate your startup with real customers. Repeat up to 3 times to find product-market fit.',
+  openGraph: {
+    title: 'How It Works | StartupAI',
+    description:
+      'From idea to evidence in 2 weeks. Build, test, and validate with our AI founders team.',
+    type: 'website',
+  },
 };
 
 export default function ProcessPage() {

@@ -90,6 +90,15 @@ export function Navigation() {
               >
                 Pricing
               </Link>
+              <Link
+                href="/about"
+                className={cn(
+                  'px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-slate-800 rounded-md transition-all duration-200',
+                  isActive('/about') && 'text-white bg-slate-800'
+                )}
+              >
+                Team
+              </Link>
             </nav>
           </div>
 
@@ -170,6 +179,17 @@ export function Navigation() {
                     )}
                   >
                     Pricing
+                  </Link>
+
+                  <Link
+                    href="/about"
+                    onClick={handleMobileMenuClick}
+                    className={cn(
+                      'block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 rounded-md transition-colors',
+                      isActive('/about') && 'text-white bg-slate-800'
+                    )}
+                  >
+                    Team
                   </Link>
 
                   <div className="flex flex-col gap-2 mt-4">

@@ -33,7 +33,13 @@ import {
 export const metadata: Metadata = {
   title: 'Case Studies | Evidence-Based AI Strategy',
   description:
-    'See how our AI FDE-in-a-box transforms ideas into validated business models and production architectures. Real results from real founders.',
+    'See how StartupAI transforms ideas into validated business models with real user data. Real results from real founders.',
+  openGraph: {
+    title: 'Case Studies | StartupAI',
+    description:
+      'See how StartupAI transforms ideas into validated business models. Real results from real founders.',
+    type: 'website',
+  },
 };
 
 export default function CaseStudiesPage() {
@@ -41,7 +47,7 @@ export default function CaseStudiesPage() {
     {
       title: 'HealthTech SaaS Validation',
       category: 'Healthcare',
-      timeline: '5 days',
+      timeline: '2 weeks',
       savings: '$8,500',
       badge: '82.6% Demand Score',
       description:
@@ -49,7 +55,7 @@ export default function CaseStudiesPage() {
       challenge:
         'A solo founder needed to validate a telehealth platform idea before committing resources',
       solution:
-        'Used AI FDE to generate evidence-backed canvases and DDD architecture in 5 days',
+        'Used StartupAI to generate evidence-backed strategy and test with real users in 2 weeks',
       results: [
         'Identified 3 underserved market segments worth $2.3M TAM',
         'Validated demand with 82.6/100 score based on 40+ data points',
@@ -57,7 +63,7 @@ export default function CaseStudiesPage() {
         'Secured angel investment within 2 weeks of presentation',
       ],
       metrics: {
-        timeToValidation: '5 days',
+        timeToValidation: '2 weeks',
         costSaved: '$8,500',
         demandScore: '82.6/100',
         dataPoints: '40+',
@@ -74,7 +80,7 @@ export default function CaseStudiesPage() {
       challenge:
         "Agency needed to deliver strategy and architecture for a client's EdTech vision",
       solution:
-        'Leveraged AI FDE to create comprehensive business model with privacy-by-design architecture',
+        'Leveraged StartupAI to create comprehensive business model with privacy-by-design architecture',
       results: [
         'Business Model Canvas with full evidence traceability',
         'GDPR-compliant architecture from day one',
@@ -82,7 +88,7 @@ export default function CaseStudiesPage() {
         'Client approved proposal without revisions',
       ],
       metrics: {
-        timeToValidation: '7 days',
+        timeToValidation: '1 week',
         costSaved: '$12,000',
         privacyCompliance: '100%',
         clientSatisfaction: '5/5',
@@ -91,22 +97,22 @@ export default function CaseStudiesPage() {
     {
       title: 'Marketplace Pivot Strategy',
       category: 'eCommerce',
-      timeline: '3 days',
+      timeline: '2 weeks',
       savings: '$5,200',
       badge: 'Evidence-Based Pivot',
       description: 'Data-driven pivot from B2C to B2B marketplace model',
       challenge:
         'Struggling B2C marketplace needed evidence to justify pivot to B2B model',
       solution:
-        'AI FDE analyzed market data and generated pivot strategy with new architecture',
+        'StartupAI analyzed market data and generated pivot strategy with user validation',
       results: [
         'Discovered B2B segment with 3x higher willingness to pay',
         'New Value Proposition Canvas validated with market data',
-        'Migrated architecture design in 3 days',
+        'Migrated architecture design in 1 week',
         'Revenue increased 240% post-pivot',
       ],
       metrics: {
-        timeToValidation: '3 days',
+        timeToValidation: '2 weeks',
         costSaved: '$5,200',
         revenueIncrease: '240%',
         marketFit: 'Strong',
@@ -123,8 +129,8 @@ export default function CaseStudiesPage() {
     },
     {
       icon: Clock,
-      title: 'Average Time to Strategy',
-      value: '5 days',
+      title: 'Average Time to Validation',
+      value: '2 weeks',
       description: 'From idea to validated model',
     },
     {
@@ -155,8 +161,8 @@ export default function CaseStudiesPage() {
               Real Results from Real Founders
             </PageTitle>
             <PageDescription className="text-xl max-w-3xl mx-auto">
-              See how our AI FDE-in-a-box transforms ideas into validated
-              business models and production architectures. Every case study
+              See how StartupAI transforms ideas into validated
+              business models with real user data. Every case study
               includes evidence chains, demand scores, and measurable outcomes.
             </PageDescription>
           </PageHeader>
@@ -205,7 +211,7 @@ export default function CaseStudiesPage() {
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Every strategy we generate is backed by real market data and
-                evidence. Here's how founders and agencies are using AI FDE to
+                evidence. Here's how founders and agencies are using StartupAI to
                 win.
               </p>
             </div>

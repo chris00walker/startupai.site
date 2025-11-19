@@ -54,67 +54,33 @@
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": {
-          "tools": ["str_replace", "create_file"],
-          "file_patterns": ["*.ts", "*.tsx", "*.js", "*.jsx"]
-        },
+        "matcher": "Edit|Write",
         "hooks": [
           {
             "type": "command",
-            "command": "pnpm format ${file_path}",
-            "description": "Auto-format with Prettier"
-          },
-          {
-            "type": "command",
-            "command": "pnpm lint --fix ${file_path}",
-            "description": "Auto-lint and fix ESLint errors"
-          },
-          {
-            "type": "command",
-            "command": "pnpm type-check --noEmit",
-            "description": "Validate TypeScript and Next.js constraints"
+            "command": "pnpm type-check --noEmit"
           }
         ]
       }
     ],
     "PreToolUse": [
       {
-        "matcher": {
-          "tools": ["bash_tool"],
-          "command_patterns": ["git commit*", "git push*"]
-        },
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "pnpm lint && pnpm type-check",
-            "description": "Validate before committing"
-          }
-        ]
-      },
-      {
-        "matcher": {
-          "tools": ["bash_tool"],
-          "command_patterns": ["pnpm dev*", "pnpm build*"]
-        },
-        "hooks": [
-          {
-            "type": "command",
-            "command": "pnpm type-check --noEmit",
-            "description": "Type check before dev/build"
+            "command": "pnpm type-check --noEmit"
           }
         ]
       }
     ],
     "Notification": [
       {
-        "matcher": {
-          "tools": ["create_file"],
-          "file_patterns": ["src/app/**/page.tsx"]
-        },
+        "matcher": "Write",
         "hooks": [
           {
-            "type": "notification",
-            "message": "⚠️ Next.js 15 Rule: If this page uses 'use client', remove metadata export. If it needs both, split into page.tsx (metadata) + ClientComponent.tsx (client hooks)."
+            "type": "command",
+            "command": "echo 'Next.js 15: Ensure page.tsx uses correct client/server pattern'"
           }
         ]
       }

@@ -28,6 +28,12 @@ export const metadata: Metadata = {
   title: 'Product | StartupAI - AI Co-Founder for Founders',
   description:
     'Your startup deserves better than freelancers and no-code. Working software + real user data + pivot guidance. All in 2 weeks.',
+  openGraph: {
+    title: 'Product | StartupAI',
+    description:
+      'Working software + real user data + pivot guidance. All in 2 weeks from our AI founders team.',
+    type: 'website',
+  },
 };
 
 export default function ProductPage() {

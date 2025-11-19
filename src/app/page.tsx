@@ -14,7 +14,7 @@ import {
 export const metadata: Metadata = {
   title: 'StartupAI - AI Co-Founder for Non-Technical Founders',
   description:
-    'Transform startup ideas into evidence-backed business models and production-ready architectures in hours, not months. Your AI FDE-in-a-box for rapid validation and execution.',
+    'Transform startup ideas into evidence-backed business models with real user validation in 2 weeks. Build, test, and pivot with AI-powered startup validation.',
 };
 
 export default function HomePage() {

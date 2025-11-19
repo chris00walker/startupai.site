@@ -18,7 +18,9 @@ export type MarketingEvent =
   | 'contact_form_submitted'
   | 'service_clicked'
   | 'case_study_viewed'
-  | 'blog_post_viewed';
+  | 'blog_post_viewed'
+  | 'founder_profile_viewed'
+  | 'team_page_viewed';
 
 interface EventProperties {
   [key: string]: string | number | boolean | undefined;
@@ -90,6 +92,12 @@ export const analytics = {
       trackEvent('blog_post_viewed', { title }),
     serviceClicked: (serviceName: string) =>
       trackEvent('service_clicked', { service: serviceName }),
+  },
+
+  team: {
+    founderProfileViewed: (founderName: string, role: string) =>
+      trackEvent('founder_profile_viewed', { founder: founderName, role }),
+    pageViewed: () => trackEvent('team_page_viewed'),
   },
 };
 
