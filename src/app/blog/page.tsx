@@ -19,7 +19,7 @@ import {
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Blog | Chris Walker Consulting',
+  title: 'Blog | StartupAI',
   description:
     'Insights and articles about eCommerce strategy, development, and startup growth.',
 };

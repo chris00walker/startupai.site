@@ -39,7 +39,7 @@ import {
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'AI Strategy Assistant | Chris Walker Consulting',
+  title: 'AI Strategy Assistant | StartupAI',
   description:
     'Generate strategy canvases, validate experiments, and turn ideas into execution plans. Private-by-design AI for founders and operators.',
 };

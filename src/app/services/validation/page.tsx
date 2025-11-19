@@ -20,7 +20,7 @@ import { PageContainer } from '@/components/ui/layout/page-container';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Validation Services | Chris Walker Consulting',
+  title: 'Validation Services | StartupAI',
   description:
     'Test your concepts with real customers and refine your approach based on data-driven insights.',
 };

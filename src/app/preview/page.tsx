@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Preview | Chris Walker Consulting',
+  title: 'Preview | StartupAI',
   description:
-    'Preview of upcoming features and services from Chris Walker Consulting.',
+    'Preview of upcoming features and services from StartupAI.',
 };
 
 export default function PreviewPage() {

@@ -20,7 +20,7 @@ import { PageContainer } from '@/components/ui/layout/page-container';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Optimization Services | Chris Walker Consulting',
+  title: 'Optimization Services | StartupAI',
   description:
     'Improve existing systems and processes to maximize efficiency, performance, and user experience.',
 };

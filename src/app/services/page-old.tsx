@@ -27,7 +27,7 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'AI-Powered Services | Chris Walker Consulting',
+  title: 'AI-Powered Services | StartupAI',
   description:
     'AI FDE-powered strategy development and technical architecture services. From idea validation to production deployment in days, not months.',
 };
