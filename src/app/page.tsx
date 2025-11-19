@@ -40,7 +40,7 @@ export default function HomePage() {
                   Join Beta - 3 Validation Cycles for $1,500
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
+              <Button size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90" asChild>
                 <Link href="/product">
                   Learn More
                 </Link>
