@@ -26,7 +26,6 @@ import { Menu, Brain } from 'lucide-react';
 const navigation = [
   { name: 'Process', href: '/process' },
   { name: 'Product', href: '/product' },
-  { name: 'Advisory', href: '/services/advisory' },
   { name: 'Pricing', href: '/pricing' },
   { name: 'Sign-up', href: '/signup' },
   { name: 'Login', href: '/login' },
@@ -72,15 +71,6 @@ export function Navigation() {
                 )}
               >
                 Product
-              </Link>
-              <Link
-                href="/services/advisory"
-                className={cn(
-                  'px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-slate-800 rounded-md transition-all duration-200',
-                  isActive('/services/advisory') && 'text-white bg-slate-800'
-                )}
-              >
-                Advisory
               </Link>
               <Link
                 href="/process"
@@ -160,18 +150,6 @@ export function Navigation() {
                     )}
                   >
                     Product
-                  </Link>
-
-                  <Link
-                    href="/services/advisory"
-                    onClick={handleMobileMenuClick}
-                    className={cn(
-                      'block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 rounded-md transition-colors',
-                      isActive('/services/advisory') &&
-                        'text-white bg-slate-800'
-                    )}
-                  >
-                    Advisory
                   </Link>
 
                   <Link
