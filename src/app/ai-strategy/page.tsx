@@ -17,7 +17,11 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { PageContainer } from '@/components/ui/layout/page-container';
-import { PageHeader, PageTitle, PageDescription } from '@/components/ui/layout/page-header';
+import {
+  PageHeader,
+  PageTitle,
+  PageDescription,
+} from '@/components/ui/layout/page-header';
 import {
   ArrowRight,
   Brain,
@@ -45,9 +49,15 @@ export default function AIStrategyPage() {
     <div className="min-h-screen business-gradient tech-grid">
       {/* Floating geometric elements */}
       <div className="absolute top-40 right-20 w-10 h-10 border border-primary/20 rounded-lg floating-element opacity-20"></div>
-      <div className="absolute top-64 left-20 w-16 h-16 bg-primary/5 rounded-full floating-element" style={{animationDelay: '1.8s'}}></div>
-      <div className="absolute bottom-52 left-2/3 w-8 h-8 border border-primary/15 rotate-45 floating-element" style={{animationDelay: '3.2s'}}></div>
-      
+      <div
+        className="absolute top-64 left-20 w-16 h-16 bg-primary/5 rounded-full floating-element"
+        style={{ animationDelay: '1.8s' }}
+      ></div>
+      <div
+        className="absolute bottom-52 left-2/3 w-8 h-8 border border-primary/15 rotate-45 floating-element"
+        style={{ animationDelay: '3.2s' }}
+      ></div>
+
       {/* Breadcrumb Navigation */}
       <PageContainer variant="wide" padding="sm">
         <Breadcrumb>
@@ -76,18 +86,18 @@ export default function AIStrategyPage() {
               <Sparkles className="mr-1 h-3 w-3" />
               AI Strategy Sprint
             </Badge>
-            <PageTitle className="text-4xl md:text-6xl">Your AI Cofounder</PageTitle>
+            <PageTitle className="text-4xl md:text-6xl">
+              Your AI Cofounder
+            </PageTitle>
             <PageDescription className="text-xl">
-              Transform your startup idea into a validated business model and technical architecture 
-              in just one week. Get evidence-based validation and production-ready plans without 
-              the guesswork.
+              Transform your startup idea into a validated business model and
+              technical architecture in just one week. Get evidence-based
+              validation and production-ready plans without the guesswork.
             </PageDescription>
           </PageHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Button size="lg" variant="outline" asChild>
-              <Link href="#how-it-works">
-                See How It Works
-              </Link>
+              <Link href="#how-it-works">See How It Works</Link>
             </Button>
           </div>
         </PageContainer>
@@ -140,8 +150,8 @@ export default function AIStrategyPage() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Jumping between 10+ tools breaks your flow. Strategy,
-                  design, and development remain disconnected silos.
+                  Jumping between 10+ tools breaks your flow. Strategy, design,
+                  and development remain disconnected silos.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -155,7 +165,9 @@ export default function AIStrategyPage() {
         <div className="absolute inset-0 bg-[url('/graphics/abstract-mesh.svg')] bg-center bg-cover opacity-10"></div>
         <div className="container relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">AI Strategy Sprint Features</h2>
+            <h2 className="text-3xl font-bold mb-4">
+              AI Strategy Sprint Features
+            </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Everything you need to validate and launch your AI startup idea
             </p>
@@ -170,8 +182,8 @@ export default function AIStrategyPage() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Generate Strategy Canvases, Business Model Canvases, and
-                  Value Propositions backed by real market data and competitor
+                  Generate Strategy Canvases, Business Model Canvases, and Value
+                  Propositions backed by real market data and competitor
                   analysis—not generic templates.
                 </CardDescription>
               </CardContent>
@@ -227,7 +239,9 @@ export default function AIStrategyPage() {
                   <FileSearch className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="mb-2 font-semibold">Evidence-Based Validation</h3>
+                  <h3 className="mb-2 font-semibold">
+                    Evidence-Based Validation
+                  </h3>
                   <p className="text-sm text-muted-foreground">
                     Generate Strategy Canvases, Business Model Canvases, and
                     Value Propositions backed by real market data and competitor
@@ -240,7 +254,9 @@ export default function AIStrategyPage() {
                   <Layers className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="mb-2 font-semibold">Domain-Driven Architecture</h3>
+                  <h3 className="mb-2 font-semibold">
+                    Domain-Driven Architecture
+                  </h3>
                   <p className="text-sm text-muted-foreground">
                     Automatically generate bounded contexts, entity models, and
                     API contracts that align with your business strategy—no more
@@ -253,7 +269,9 @@ export default function AIStrategyPage() {
                   <Zap className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="mb-2 font-semibold">Instant Code Scaffolding</h3>
+                  <h3 className="mb-2 font-semibold">
+                    Instant Code Scaffolding
+                  </h3>
                   <p className="text-sm text-muted-foreground">
                     Go from validated strategy to working prototype in minutes.
                     Generate production-ready code with best practices baked in.
@@ -285,23 +303,33 @@ export default function AIStrategyPage() {
                 <CardContent className="space-y-3">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-green-600" />
-                    <span className="text-sm">Market analysis: 47 competitors analyzed</span>
+                    <span className="text-sm">
+                      Market analysis: 47 competitors analyzed
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-green-600" />
-                    <span className="text-sm">Value prop: 3 unique differentiators found</span>
+                    <span className="text-sm">
+                      Value prop: 3 unique differentiators found
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-green-600" />
-                    <span className="text-sm">DDD model: 5 bounded contexts defined</span>
+                    <span className="text-sm">
+                      DDD model: 5 bounded contexts defined
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-green-600" />
-                    <span className="text-sm">Code: 12 microservices scaffolded</span>
+                    <span className="text-sm">
+                      Code: 12 microservices scaffolded
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-green-600" />
-                    <span className="text-sm">Evidence chain: 100% traceable</span>
+                    <span className="text-sm">
+                      Evidence chain: 100% traceable
+                    </span>
                   </div>
                 </CardContent>
               </Card>
@@ -324,17 +352,21 @@ export default function AIStrategyPage() {
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                 <span className="text-2xl font-bold text-primary">1</span>
               </div>
-              <h3 className="mb-2 text-lg font-semibold">Describe Your Vision</h3>
+              <h3 className="mb-2 text-lg font-semibold">
+                Describe Your Vision
+              </h3>
               <p className="text-sm text-muted-foreground">
-                Tell us your idea in plain language. Our AI analyzes market
-                fit, competition, and viability using real data.
+                Tell us your idea in plain language. Our AI analyzes market fit,
+                competition, and viability using real data.
               </p>
             </div>
             <div className="text-center">
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                 <span className="text-2xl font-bold text-primary">2</span>
               </div>
-              <h3 className="mb-2 text-lg font-semibold">Generate & Validate</h3>
+              <h3 className="mb-2 text-lg font-semibold">
+                Generate & Validate
+              </h3>
               <p className="text-sm text-muted-foreground">
                 Get evidence-backed canvases, value props, and technical
                 architectures. Every claim is traceable to sources.
@@ -395,8 +427,8 @@ export default function AIStrategyPage() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Generated code follows best practices. CI/CD ready.
-                  Security and performance considerations built-in.
+                  Generated code follows best practices. CI/CD ready. Security
+                  and performance considerations built-in.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -416,9 +448,7 @@ export default function AIStrategyPage() {
           </p>
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Button size="lg" variant="outline" asChild>
-              <Link href="/contact">
-                Schedule a Demo
-              </Link>
+              <Link href="/contact">Schedule a Demo</Link>
             </Button>
           </div>
           <p className="mt-6 text-sm text-muted-foreground">

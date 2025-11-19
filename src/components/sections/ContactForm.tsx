@@ -49,7 +49,9 @@ type FormValues = z.infer<typeof formSchema>;
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(
+    null
+  );
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -123,7 +125,8 @@ export function ContactForm() {
           <AlertCircleIcon className="h-4 w-4" />
           <AlertTitle>Error sending message</AlertTitle>
           <AlertDescription>
-            There was a problem sending your message. Please try again or contact us directly.
+            There was a problem sending your message. Please try again or
+            contact us directly.
           </AlertDescription>
         </Alert>
       )}
@@ -151,7 +154,11 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="your.email@example.com" {...field} />
+                  <Input
+                    type="email"
+                    placeholder="your.email@example.com"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -185,18 +192,32 @@ export function ContactForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="ecommerce">E-Commerce / Retail</SelectItem>
+                    <SelectItem value="ecommerce">
+                      E-Commerce / Retail
+                    </SelectItem>
                     <SelectItem value="saas">SaaS / Software</SelectItem>
-                    <SelectItem value="healthcare">Healthcare / Medical</SelectItem>
+                    <SelectItem value="healthcare">
+                      Healthcare / Medical
+                    </SelectItem>
                     <SelectItem value="fintech">FinTech / Finance</SelectItem>
-                    <SelectItem value="education">Education / EdTech</SelectItem>
+                    <SelectItem value="education">
+                      Education / EdTech
+                    </SelectItem>
                     <SelectItem value="foodbev">Food & Beverage</SelectItem>
                     <SelectItem value="realestate">Real Estate</SelectItem>
-                    <SelectItem value="marketing">Marketing / Agency</SelectItem>
-                    <SelectItem value="consulting">Consulting / Professional Services</SelectItem>
+                    <SelectItem value="marketing">
+                      Marketing / Agency
+                    </SelectItem>
+                    <SelectItem value="consulting">
+                      Consulting / Professional Services
+                    </SelectItem>
                     <SelectItem value="manufacturing">Manufacturing</SelectItem>
-                    <SelectItem value="hospitality">Hospitality / Travel</SelectItem>
-                    <SelectItem value="nonprofit">Nonprofit / Social Impact</SelectItem>
+                    <SelectItem value="hospitality">
+                      Hospitality / Travel
+                    </SelectItem>
+                    <SelectItem value="nonprofit">
+                      Nonprofit / Social Impact
+                    </SelectItem>
                     <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>
@@ -237,11 +258,10 @@ export function ContactForm() {
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel>
-                    Subscribe to newsletter
-                  </FormLabel>
+                  <FormLabel>Subscribe to newsletter</FormLabel>
                   <FormDescription>
-                    Get updates on beta launch and startup validation tips (optional).
+                    Get updates on beta launch and startup validation tips
+                    (optional).
                   </FormDescription>
                 </div>
               </FormItem>
@@ -262,11 +282,10 @@ export function ContactForm() {
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel>
-                    I agree to the terms and conditions
-                  </FormLabel>
+                  <FormLabel>I agree to the terms and conditions</FormLabel>
                   <FormDescription>
-                    By submitting this form, you agree to our privacy policy and terms of service.
+                    By submitting this form, you agree to our privacy policy and
+                    terms of service.
                   </FormDescription>
                 </div>
                 <FormMessage />

@@ -5,13 +5,14 @@ globs: **/*.tsx
 
 For planning and building with ShadCN UI - powered by the MCP server. Ensures clean UI architecture, consistent usage, and error-free implementation with full context.
 
-
 ## Component Usage Rule
+
 Whenever a ShadCN component is requested, route through the MCP server first.
 This ensures access to context-aware patterns, consistent styling, and prevents broken
 implementations.
 
 ## Planning Rule
+
 When generating or revising UI plans that involve ShadCN:
 
 - Use the MCP server to provide structure and UX flow
@@ -20,6 +21,7 @@ When generating or revising UI plans that involve ShadCN:
 - Treat the MCP output as source-of-truth for layout and flow decisions
 
 ## Implementation Rule
+
 When implementing ShadCN components in code:
 
 1. Always begin by calling `getComponentDemo` to pull proper usage examples
@@ -27,5 +29,6 @@ When implementing ShadCN components in code:
 3. Use the demo as a context snapshot - don't improvise unless required
 
 Bonus:
+
 - If working with multi-component flows (e.g. forms, modals, auth flows), check if a **Block** exists
   first before composing manually.

@@ -10,6 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **app.startupai.site** (Product) - Deliver value and create advocates
 
 **Tech Stack:**
+
 - Frontend: Next.js 15.5.3 (TypeScript 5.8.3, React 19.1.1)
 - Styling: Tailwind CSS 3.4.17 with ShadCN/UI component library (68+ components)
 - Backend: Supabase PostgreSQL with Auth (JWT, OAuth)
@@ -54,6 +55,7 @@ pnpm env:check            # Check environment variables
 This project uses **Next.js App Router** exclusively (`src/app/`).
 
 **Key Routes:**
+
 - `/` - Home page with hero and service overview
 - `/login`, `/signup` - Authentication flows (Supabase)
 - `/services/*` - 5 service pages (discovery, validation, scaling, advisory, optimization)
@@ -67,6 +69,7 @@ This project uses **Next.js App Router** exclusively (`src/app/`).
 - `/api/waitlist` - POST endpoint for waitlist signup
 
 **Layout Structure:**
+
 - Root layout: `src/app/layout.tsx` includes Navigation and Footer
 - All pages are static/pre-rendered for optimal performance
 
@@ -101,6 +104,7 @@ src/components/
 ### Static Export Configuration
 
 **Build Output:**
+
 - Static export to `/out` directory
 - Deployed to Netlify CDN
 - Images unoptimized (required for static export)
@@ -109,12 +113,14 @@ src/components/
 ### Authentication
 
 **Supabase Integration:**
+
 - OAuth providers: Google, GitHub, Azure
 - JWT token management
 - Secure cross-site token handoff to app.startupai.site
 - Magic link support
 
 **Key Files:**
+
 - `src/lib/supabase/client.ts` - Supabase client initialization
 - `src/lib/auth.ts` - Authentication helpers
 - `src/components/login-form.tsx` - Login UI
@@ -123,6 +129,7 @@ src/components/
 ### Environment Variables
 
 **Required** (set in `.env.local`):
+
 - `NEXT_PUBLIC_SUPABASE_URL` - Supabase project URL
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Supabase anonymous key
 - `NEXT_PUBLIC_MARKETING_URL` - Marketing site URL (this site)
@@ -131,12 +138,14 @@ src/components/
 - `NEXT_PUBLIC_POSTHOG_HOST` - PostHog endpoint (https://us.i.posthog.com)
 
 **Optional:**
+
 - `JWT_SECRET` - Session JWT (backend only)
 - `SESSION_SECRET` - Session secret (backend only)
 - `RESEND_API_KEY` - Email API for waitlist notifications
 - `NODE_ENV` - Environment (development/staging/production)
 
 **Environment Files:**
+
 - `.env.example` - Template for all environments
 - `.env.local` - Local development (gitignored)
 - `.env.production` - Production variables (committed)
@@ -159,6 +168,7 @@ See `.env.example` for complete template.
 - **Validation:** All forms use Zod schemas for validation
 - **Form Handling:** React Hook Form for state management
 - **Patterns:**
+
   ```typescript
   import { useForm } from 'react-hook-form';
   import { zodResolver } from '@hookform/resolvers/zod';
@@ -200,11 +210,13 @@ See `.env.example` for complete template.
 ### Netlify Configuration
 
 **Build Settings (`netlify.toml`):**
+
 - Build command: `pnpm build`
 - Publish directory: `out`
 - Node.js 18, pnpm 9.12.1
 
 **Deployment Contexts:**
+
 1. **Production (main branch)**
    - URL: https://startupai-site.netlify.app
    - NODE_ENV=production
@@ -214,6 +226,7 @@ See `.env.example` for complete template.
    - NODE_ENV=staging
 
 **Features:**
+
 - Automatic builds on push to main
 - Preview deploys for pull requests
 - Redirects for old HTML routes
@@ -224,11 +237,13 @@ See `.env.example` for complete template.
 ## Key Documentation
 
 ### Repository Documentation
+
 - **README.md** - Comprehensive project overview with features and setup
 - **docs/environments.md** - Multi-environment setup guide (local, staging, production)
 - **.claude/agents.md** - AI agents implementation details
 
 ### Docs Directory (`/docs`)
+
 ```
 docs/
 ├── overview/           # Platform overview & architecture
@@ -242,12 +257,14 @@ docs/
 ```
 
 **Key Files:**
+
 - `docs/overview/platform-overview.md` - Two-site architecture
 - `docs/overview/two-site-plan-public.md` - Implementation plan
 - `docs/overview/architecture.md` - System architecture
 - `docs/overview/messaging-matrix.md` - Feature/messaging mapping
 
 ### External References
+
 - **Two-Site Implementation Plan:** See docs/overview/two-site-plan-public.md - Single source of truth for all StartupAI development
 - **Product Platform:** `../app.startupai.site` - Related product repository
 - **CrewAI Backend:** `../startupai-crew` - AI analysis backend
@@ -265,6 +282,7 @@ docs/
 ## Project Status
 
 **Overall:** ~95% Complete (as of October 2025)
+
 - ✅ Infrastructure: 100% (Netlify, Supabase, Analytics)
 - ✅ UI Components: 95% (68+ components, ShadCN/UI library)
 - ✅ Pages: 100% (19 pages, all static/pre-rendered)
@@ -272,12 +290,14 @@ docs/
 - ⚠️ Testing: 0% (No testing framework configured)
 
 **Recent Updates:**
+
 - Migrated from npm to pnpm (Sept 26, 2025)
 - Updated to Next.js 15.5.3 and React 19.1.1
 - Integrated PostHog analytics
 - Added comprehensive environment documentation
 
 **Next Priorities:**
+
 1. Complete Supabase authentication integration
 2. Add Jest/Vitest testing framework
 3. Implement E2E tests with Playwright
@@ -287,12 +307,14 @@ docs/
 ## Testing
 
 **Current Status:** No testing framework configured
+
 - No Jest, Vitest, or Playwright tests
 - Type checking via TypeScript (`pnpm type-check`)
 - Linting via ESLint
 - Manual testing approach currently in use
 
 **Recommended Testing Setup:**
+
 - Unit tests: Jest or Vitest for component testing
 - Integration tests: Test API routes and Supabase integration
 - E2E tests: Playwright for user flow testing

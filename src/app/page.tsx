@@ -6,59 +6,68 @@ import { ServiceCard } from '@/components/sections/ServiceCard';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { PageContainer } from '@/components/ui/layout/page-container';
-import { PageHeader, PageTitle, PageDescription } from '@/components/ui/layout/page-header';
+import {
+  PageHeader,
+  PageTitle,
+  PageDescription,
+} from '@/components/ui/layout/page-header';
 
 export const metadata: Metadata = {
   title: 'StartupAI - AI Co-Founder for Non-Technical Founders',
-  description: 'Transform startup ideas into evidence-backed business models and production-ready architectures in hours, not months. Your AI FDE-in-a-box for rapid validation and execution.',
+  description:
+    'Transform startup ideas into evidence-backed business models and production-ready architectures in hours, not months. Your AI FDE-in-a-box for rapid validation and execution.',
 };
 
 const services = [
   {
     title: 'Discovery',
-    description: 'Validate your business idea and identify market opportunities with comprehensive research and analysis.',
+    description:
+      'Validate your business idea and identify market opportunities with comprehensive research and analysis.',
     features: [
       'Market research and competitive analysis',
       'Customer persona development',
       'Opportunity assessment',
-      'Customer desirability validation'
+      'Customer desirability validation',
     ],
     href: '/services/discovery',
-    badge: 'Popular'
+    badge: 'Popular',
   },
   {
     title: 'Validation',
-    description: 'Test your concepts with real customers and refine your approach based on data-driven insights.',
+    description:
+      'Test your concepts with real customers and refine your approach based on data-driven insights.',
     features: [
       'MVP development and testing',
       'Customer feedback collection',
       'A/B testing implementation',
-      'Product-market fit validation'
+      'Product-market fit validation',
     ],
-    href: '/services/validation'
+    href: '/services/validation',
   },
   {
     title: 'Scaling',
-    description: 'Build robust systems and processes that support sustainable growth and operational excellence.',
+    description:
+      'Build robust systems and processes that support sustainable growth and operational excellence.',
     features: [
       'Infrastructure optimization',
       'Process automation',
       'Performance monitoring',
-      'Growth strategy development'
+      'Growth strategy development',
     ],
-    href: '/services/scaling'
+    href: '/services/scaling',
   },
   {
     title: 'Optimization',
-    description: 'Continuously improve performance and efficiency through data-driven insights and strategic refinements.',
+    description:
+      'Continuously improve performance and efficiency through data-driven insights and strategic refinements.',
     features: [
       'Performance analytics',
       'Conversion optimization',
       'Cost reduction strategies',
-      'Strategic refinements'
+      'Strategic refinements',
     ],
-    href: '/services/optimization'
-  }
+    href: '/services/optimization',
+  },
 ];
 
 export default function HomePage() {
@@ -78,7 +87,7 @@ export default function HomePage() {
               Transform your startup with our comprehensive service offerings
             </PageDescription>
           </PageHeader>
-          
+
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {services.map((service, index) => (
               <ServiceCard
@@ -104,7 +113,8 @@ export default function HomePage() {
               Ready to Transform Your Startup
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Let's discuss how StartupAI can help you achieve your startup's goals.
+              Let's discuss how StartupAI can help you achieve your startup's
+              goals.
             </p>
           </div>
         </PageContainer>

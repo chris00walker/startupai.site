@@ -2,11 +2,16 @@ import { Metadata } from 'next';
 import { ContactForm } from '@/components/sections/ContactForm';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PageContainer } from '@/components/ui/layout/page-container';
-import { PageHeader, PageTitle, PageDescription } from '@/components/ui/layout/page-header';
+import {
+  PageHeader,
+  PageTitle,
+  PageDescription,
+} from '@/components/ui/layout/page-header';
 
 export const metadata: Metadata = {
   title: 'Contact | StartupAI',
-  description: 'Get in touch with StartupAI. Questions about our beta program or validation services? We\'re here to help.',
+  description:
+    "Get in touch with StartupAI. Questions about our beta program or validation services? We're here to help.",
 };
 
 export default function ContactPage() {
@@ -18,7 +23,8 @@ export default function ContactPage() {
             <PageHeader variant="centered" className="mb-12">
               <PageTitle>Contact</PageTitle>
               <PageDescription className="text-xl max-w-2xl mx-auto">
-                Questions about our beta program or validation services? Get in touch and we'll get back to you within 24 hours.
+                Questions about our beta program or validation services? Get in
+                touch and we'll get back to you within 24 hours.
               </PageDescription>
             </PageHeader>
 

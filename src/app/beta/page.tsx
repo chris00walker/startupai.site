@@ -110,12 +110,35 @@ export default function BetaPage() {
     setSubmitStatus(null);
 
     try {
-      // TODO: Replace with actual backend endpoint or Formspree
-      // For now, we'll simulate a submission
-      console.log('Beta application submitted:', values);
+      // Map timeline values to backend format
+      const timelineMap: Record<string, string> = {
+        asap: '0-3 months',
+        phase2: '3-6 months',
+        phase3: '6-12 months',
+        phase4: '12+ months',
+        flexible: '0-3 months',
+      };
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch('/.netlify/functions/beta-application', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          startupIdea: values.startupIdea,
+          industry: values.industry,
+          timeline: timelineMap[values.timeline] || values.timeline,
+          referralSource: values.referralSource,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.ok) {
+        throw new Error(data.error || 'Failed to submit application');
+      }
 
       setSubmitStatus('success');
       form.reset();

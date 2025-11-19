@@ -15,6 +15,7 @@
 1. **Open Supabase SQL Editor**: https://supabase.com/dashboard/project/eqxropalhxjeyvfcoyxg/sql
 
 2. **Run this SQL**:
+
    ```sql
    -- Drop problematic RLS policy
    DROP POLICY IF EXISTS "Users can insert own profile" ON public.user_profiles;
@@ -46,6 +47,7 @@ node test_signup.js
 ### Step 3: Test with Real Account
 
 Try creating account at production with:
+
 - Email: `test@startupai.site`
 - Password: `Test123456!`
 

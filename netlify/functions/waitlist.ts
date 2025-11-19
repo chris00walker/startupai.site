@@ -1,4 +1,4 @@
-import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
+import type { Handler, HandlerEvent, HandlerContext } from '@netlify/functions';
 
 interface WaitlistPayload {
   email: string;
@@ -17,7 +17,7 @@ async function notifyOwner(email: string) {
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${apiKey}`,
+      Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -43,7 +43,10 @@ function isValidEmail(email: string): boolean {
   return emailRegex.test(email);
 }
 
-export const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+export const handler: Handler = async (
+  event: HandlerEvent,
+  context: HandlerContext
+) => {
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
     return {

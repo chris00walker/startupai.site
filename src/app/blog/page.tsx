@@ -1,70 +1,90 @@
 import { Metadata } from 'next';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Blog | Chris Walker Consulting',
-  description: 'Insights and articles about eCommerce strategy, development, and startup growth.',
+  description:
+    'Insights and articles about eCommerce strategy, development, and startup growth.',
 };
 
 const blogPosts = [
   {
     id: 1,
     title: 'Building Scalable eCommerce Architecture',
-    excerpt: 'Learn how to design and implement scalable eCommerce systems that can handle growth from startup to enterprise.',
+    excerpt:
+      'Learn how to design and implement scalable eCommerce systems that can handle growth from startup to enterprise.',
     category: 'Architecture',
     readTime: '8 min read',
     publishDate: '2024-01-15',
-    tags: ['Architecture', 'Scalability', 'eCommerce']
+    tags: ['Architecture', 'Scalability', 'eCommerce'],
   },
   {
     id: 2,
     title: 'MVP Development Strategy for Startups',
-    excerpt: 'A comprehensive guide to building minimum viable products that validate your business idea and attract investors.',
+    excerpt:
+      'A comprehensive guide to building minimum viable products that validate your business idea and attract investors.',
     category: 'Strategy',
     readTime: '12 min read',
     publishDate: '2024-01-10',
-    tags: ['MVP', 'Startup', 'Strategy']
+    tags: ['MVP', 'Startup', 'Strategy'],
   },
   {
     id: 3,
     title: 'Performance Optimization Techniques',
-    excerpt: 'Advanced techniques for optimizing eCommerce platform performance, from database queries to frontend rendering.',
+    excerpt:
+      'Advanced techniques for optimizing eCommerce platform performance, from database queries to frontend rendering.',
     category: 'Performance',
     readTime: '10 min read',
     publishDate: '2024-01-05',
-    tags: ['Performance', 'Optimization', 'Development']
+    tags: ['Performance', 'Optimization', 'Development'],
   },
   {
     id: 4,
     title: 'Data-Driven Decision Making in eCommerce',
-    excerpt: 'How to leverage analytics and data science to make informed decisions that drive business growth.',
+    excerpt:
+      'How to leverage analytics and data science to make informed decisions that drive business growth.',
     category: 'Analytics',
     readTime: '6 min read',
     publishDate: '2023-12-28',
-    tags: ['Analytics', 'Data Science', 'Business']
+    tags: ['Analytics', 'Data Science', 'Business'],
   },
   {
     id: 5,
     title: 'Modern Frontend Technologies for eCommerce',
-    excerpt: 'Exploring the latest frontend frameworks and tools that can enhance user experience and conversion rates.',
+    excerpt:
+      'Exploring the latest frontend frameworks and tools that can enhance user experience and conversion rates.',
     category: 'Frontend',
     readTime: '9 min read',
     publishDate: '2023-12-20',
-    tags: ['Frontend', 'React', 'UX']
+    tags: ['Frontend', 'React', 'UX'],
   },
   {
     id: 6,
     title: 'API Design Best Practices',
-    excerpt: 'Essential principles for designing robust, scalable APIs that power modern eCommerce applications.',
+    excerpt:
+      'Essential principles for designing robust, scalable APIs that power modern eCommerce applications.',
     category: 'Backend',
     readTime: '7 min read',
     publishDate: '2023-12-15',
-    tags: ['API', 'Backend', 'Architecture']
-  }
+    tags: ['API', 'Backend', 'Architecture'],
+  },
 ];
 
 export default function BlogPage() {
@@ -78,7 +98,8 @@ export default function BlogPage() {
                 Blog
               </h1>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Insights and articles about eCommerce strategy, development, and startup growth.
+                Insights and articles about eCommerce strategy, development, and
+                startup growth.
               </p>
               <div className="flex flex-wrap justify-center gap-2">
                 <Badge variant="secondary">Strategy</Badge>
@@ -87,17 +108,25 @@ export default function BlogPage() {
                 <Badge variant="secondary">Performance</Badge>
               </div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
               {blogPosts.map((post) => (
-                <Card key={post.id} className="hover:shadow-lg transition-shadow duration-200">
+                <Card
+                  key={post.id}
+                  className="hover:shadow-lg transition-shadow duration-200"
+                >
                   <CardHeader>
                     <div className="flex items-center justify-between mb-2">
                       <Badge variant="outline">{post.category}</Badge>
-                      <span className="text-xs text-muted-foreground">{post.readTime}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {post.readTime}
+                      </span>
                     </div>
                     <CardTitle className="line-clamp-2">
-                      <Link href={`/blog/${post.id}`} className="hover:text-primary">
+                      <Link
+                        href={`/blog/${post.id}`}
+                        className="hover:text-primary"
+                      >
                         {post.title}
                       </Link>
                     </CardTitle>
@@ -109,16 +138,25 @@ export default function BlogPage() {
                     <div className="space-y-4">
                       <div className="flex flex-wrap gap-1">
                         {post.tags.map((tag) => (
-                          <Badge key={tag} variant="secondary" className="text-xs">{tag}</Badge>
+                          <Badge
+                            key={tag}
+                            variant="secondary"
+                            className="text-xs"
+                          >
+                            {tag}
+                          </Badge>
                         ))}
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-muted-foreground">
-                          {new Date(post.publishDate).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                          })}
+                          {new Date(post.publishDate).toLocaleDateString(
+                            'en-US',
+                            {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                            }
+                          )}
                         </span>
                         <Button asChild variant="ghost" size="sm">
                           <Link href={`/blog/${post.id}`}>Read More</Link>

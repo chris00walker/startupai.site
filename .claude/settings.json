@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "version": "1.0",
+  "project_name": "StartupAI Marketing Site",
+  "description": "Static Next.js 15 marketing site - SEO-optimized lead capture",
+
+  "security": {
+    "mode": "strict",
+    "deny_file_access": [
+      ".env*",
+      "*.pem",
+      "*.key",
+      "netlify.toml",
+      ".netlify/**",
+      "node_modules/**",
+      ".git/**"
+    ],
+    "deny_file_edit": [".env*", "netlify.toml"],
+    "sensitive_patterns": [
+      "SUPABASE_ANON_KEY",
+      "POSTHOG_KEY",
+      "RESEND_API_KEY",
+      "JWT_SECRET"
+    ]
+  },
+
+  "permissions": {
+    "allowed_commands_no_confirm": [
+      "git status",
+      "git log",
+      "git diff",
+      "pnpm dev",
+      "pnpm lint",
+      "pnpm type-check",
+      "pnpm format:check",
+      "ls",
+      "cat",
+      "pwd"
+    ],
+    "require_confirmation": [
+      "pnpm add*",
+      "pnpm remove*",
+      "pnpm install",
+      "pnpm build",
+      "git push*",
+      "git commit*",
+      "netlify deploy*",
+      "rm *",
+      "mv *"
+    ],
+    "blocked_commands": ["sudo*", "chmod*", "npm*"]
+  },
+
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": {
+          "tools": ["str_replace", "create_file"],
+          "file_patterns": ["*.ts", "*.tsx", "*.js", "*.jsx"]
+        },
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pnpm format ${file_path}",
+            "description": "Auto-format with Prettier"
+          },
+          {
+            "type": "command",
+            "command": "pnpm lint --fix ${file_path}",
+            "description": "Auto-lint and fix ESLint errors"
+          },
+          {
+            "type": "command",
+            "command": "pnpm type-check --noEmit",
+            "description": "Validate TypeScript and Next.js constraints"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": {
+          "tools": ["bash_tool"],
+          "command_patterns": ["git commit*", "git push*"]
+        },
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pnpm lint && pnpm type-check",
+            "description": "Validate before committing"
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "tools": ["bash_tool"],
+          "command_patterns": ["pnpm dev*", "pnpm build*"]
+        },
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pnpm type-check --noEmit",
+            "description": "Type check before dev/build"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": {
+          "tools": ["create_file"],
+          "file_patterns": ["src/app/**/page.tsx"]
+        },
+        "hooks": [
+          {
+            "type": "notification",
+            "message": "⚠️ Next.js 15 Rule: If this page uses 'use client', remove metadata export. If it needs both, split into page.tsx (metadata) + ClientComponent.tsx (client hooks)."
+          }
+        ]
+      }
+    ]
+  },
+
+  "project_context": {
+    "framework": "Next.js 15 (App Router)",
+    "architecture": "Static Export (JAMstack)",
+    "deployment": "Netlify",
+    "node_version": "18+",
+    "package_manager": "pnpm",
+    "purpose": "Marketing and lead capture",
+    "constraints": [
+      "NO server-side code (static export only)",
+      "NO API routes (use Netlify Functions)",
+      "NO dynamic rendering",
+      "Formspree for form submissions"
+    ]
+  },
+
+  "coding_standards": {
+    "component_structure": "Shadcn New York theme",
+    "css_framework": "Tailwind CSS (shared design tokens)",
+    "form_validation": "React Hook Form + Zod",
+    "analytics": "PostHog (client-side only)",
+    "seo": "Next.js Metadata API"
+  },
+
+  "workflow": {
+    "planning_mode": "hybrid",
+    "require_plan_for": [
+      "new_pages",
+      "routing_changes",
+      "form_submissions",
+      "analytics_events"
+    ],
+    "yolo_mode_for": [
+      "typo_fixes",
+      "style_tweaks",
+      "content_updates",
+      "comment_additions"
+    ]
+  }
+}

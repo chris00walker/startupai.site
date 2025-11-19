@@ -332,18 +332,37 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 
 ## Phase 2: Content (Week 3-4) - HIGH PRIORITY
 
-**Goal:** Add new sections explaining full value prop and validation engine
+**Goal:** Transform existing pages to align with beta validation platform positioning
 
-### Week 3: New Homepage Sections
+**Strategy:** Repurpose existing pages (Process, Product) instead of creating new ones. Remove conflicting consulting services messaging.
 
-#### Task 2.1: Create "How It Works" Section
+**Reorganization Summary:**
+- **Original plan:** Create 6 new components/sections (Tasks 2.1-2.6)
+- **Revised approach:** Transform 2 existing pages + remove services (4 focused tasks)
+- **Why better:** Maintains URL structure, consolidates content, clearer user journey
+- **Task consolidation:**
+  - Task 2.1: Process page overhaul (was "Create How It Works")
+  - Task 2.2: Product page transformation (consolidates old 2.2, 2.4, 2.5, 2.6)
+  - Task 2.3: Remove services navigation (streamlined from old 2.3)
+  - Task 2.4: Signup page strategy (new, addresses beta-only tiers)
 
-**File:** `/src/app/page.tsx` or `/src/components/sections/HowItWorks.tsx` (NEW)
+### Week 3: Core Page Transformations
+
+#### Task 2.1: Overhaul Process Page to Validation Flow
+
+**File:** `/src/app/process/page.tsx` (REPLACE CONTENT)
 **Priority:** 🟡 HIGH
 
-- [ ] **Create new component** `HowItWorks.tsx`
+**Current State:** Process page shows 4-phase consulting framework (Discovery → Validation → Scaling → Optimization) that conflicts with platform positioning.
 
-- [ ] **Design 4-step visual flow**
+**New Content:**
+
+- [ ] **Update Hero Section**
+  - Badge: "2-Week Validation Cycle"
+  - Headline: "From Idea to Evidence in 2 Weeks"
+  - Subhead: "We build, test, and validate your startup with real customers. Repeat up to 3 times to find product-market fit."
+
+- [ ] **Replace 4-phase cards with 4-step validation flow**
   - **Step 1: Strategy Foundation** (Days 1-3)
     - Icon: Lightbulb or document
     - "Tell us your idea, we validate your business model"
@@ -357,7 +376,7 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - **Step 3: Test with Real Users** (Week 2, Days 1-5)
     - Icon: Users or analytics chart
     - "We drive real traffic and collect data"
-    - Output: User behavior, analytics, feedback
+    - Output: User behavior, analytics, feedback (~$450-525 ad spend included)
 
   - **Step 4: Pivot or Proceed** (Week 2, Days 6-7)
     - Icon: Decision tree or signpost
@@ -365,209 +384,206 @@ consulting" positioning to the correct "AI co-founding validation platform" with
     - Output: Data-driven pivot recommendation
 
 - [ ] **Add timeline visual**
+  - Clear 2-week calendar/gantt view
   - Show "2 weeks" prominently
-  - Indicate cycles can repeat (up to 3x)
+  - Emphasize: "Not months. Not even a month. Just 2 weeks."
 
-- [ ] **Add to homepage**
-  - Location: After hero, before existing services or product section
+- [ ] **Add validation cycle repeatability section**
+  - Visual showing 3 cycles: Idea 1 → Pivot → Idea 2 → Pivot → Idea 3
+  - "Test 3 ideas or pivot 3 times—your choice"
+  - Show how beta LTD includes 3 full cycles
+
+- [ ] **Update CTA Section**
+  - Primary: "Join Beta - 3 Validation Cycles"
+  - Secondary: "See Pricing"
 
 **Acceptance Criteria:**
 
-- Non-technical founders understand the process
-- Clear that it's not just "build" but "build + test + analyze"
-- Visual is engaging and easy to scan
+- Process page clearly shows 2-week validation cycle (not consulting phases)
+- No references to Discovery/Validation/Scaling/Optimization as separate services
+- Non-technical founders understand the process flow
+- Clear that deliverable is "build + test + analyze" (not just strategy)
+- Timeline visual makes 2-week promise credible
+- Repeatability of cycles is obvious (up to 3x in beta)
+- Page aligns with beta LTD messaging from pricing page
 
 ---
 
-#### Task 2.2: Create "Why StartupAI?" / Differentiation Section
+#### Task 2.2: Transform Product Page into Full Value Proposition Hub
 
-**File:** `/src/app/page.tsx` or new component
+**File:** `/src/app/product/page.tsx` (MAJOR UPDATE)
 **Priority:** 🟡 HIGH
 
-- [ ] **Create comparison table or cards**
-  - **vs. Freelancers**
-    - Them: $8-15K, 2-3 months, variable quality
-    - Us: $1,500, 2 weeks, consistent quality
-    - Lifetime value: $1,500 one-time + FREE Founder Tier ($10,440 saved over 5 years)
+**Current State:** Product page has generic "AI-driven solutions" messaging, outdated stats, and minimal value prop content.
 
-  - **vs. Dev Shops**
-    - Them: $25-50K, 4-6 months, overkill for MVP
-    - Us: $1,500, 2 weeks, right-sized for validation
-    - Lifetime value: $1,500 one-time + FREE Founder Tier ($10,440 saved over 5 years)
+**New Content Structure:**
 
-  - **vs. No-Code Tools**
-    - Them: DIY, technical limits, vendor lock-in, monthly fees ($20-100/mo ongoing)
-    - Us: Real code, full ownership, no ceiling, FREE Founder Tier (no subscription fees)
-    - Lifetime value: StartupAI saves $10,440+ over 5 years vs monthly no-code subscriptions
+- [ ] **Section 1: Update Hero**
+  - Badge: "AI Co-Founding Platform"
+  - Headline: "Your Startup Deserves Better Than Freelancers and No-Code"
+  - Subhead: "Working software + real user data + pivot guidance. All in 2 weeks."
 
-  - **vs. ChatGPT/Claude DIY**
-    - Them: Code snippets, manual assembly, no deployment, subscription costs ($20-200/mo)
-    - Us: End-to-end, deployed product, validation included, FREE Founder Tier
-    - Lifetime value: All-in-one platform vs juggling multiple AI subscriptions
+- [ ] **Section 2: "What You Get" (NEW - replaces current stats)**
+  - 4-card grid showing deliverables:
+    - **Strategy Foundation:** BMC, VPD, domain model
+    - **Working Software:** Deployed MVP, live URL, code ownership
+    - **Validation Data:** User analytics, hypothesis tests, ~$450-525 ad spend included
+    - **Pivot Guidance:** Evidence-based recommendations
+  - Addresses original Task 2.6 (Update Product Page)
 
-  - **vs. Cursor/Bolt (solo)**
-    - Them: Tool, requires expertise, you orchestrate, monthly subscription
-    - Us: Team, we orchestrate for you, strategy included, FREE Founder Tier for life
-    - Lifetime value: $1,500 + inference costs vs $20-40/mo tool fees + your time
+- [ ] **Section 3: "Why StartupAI vs. Alternatives" (NEW)**
+  - Comparison table or cards:
+    - **vs. Freelancers:** $8-15K, 2-3 months, variable quality → **Us:** $1,500, 2 weeks, consistent + FREE Lifetime Founder Tier
+    - **vs. Dev Shops:** $25-50K, 4-6 months, overkill → **Us:** $1,500, 2 weeks, right-sized for validation
+    - **vs. No-Code Tools:** DIY, limits, vendor lock-in, monthly fees → **Us:** Real code, full ownership, FREE Founder Tier (no subscription)
+    - **vs. ChatGPT/Claude DIY:** Code snippets, manual assembly → **Us:** End-to-end, deployed product, validation included
+    - **vs. Cursor/Bolt (solo):** You orchestrate, monthly subscription → **Us:** We orchestrate for you, FREE Founder Tier for life
+  - **Lifetime value callout:** "Save $10,440+ over 5 years with Beta LTD"
+  - Addresses original Task 2.2 (Differentiation Section)
 
-- [ ] **Add lifetime value table**
-  - Show cost comparison over time:
-    - Year 1: LTD $1,500 + ~$360 inference = $1,860 total
-    - Year 1: Regular Founder $2,388 + $360 inference = $2,748 total
-    - Year 3: LTD $1,500 + ~$1,080 = $2,580 total
-    - Year 3: Regular Founder $7,164 + $1,080 = $8,244 total
-    - Year 5: LTD $1,500 + ~$1,800 = $3,300 total
-    - Year 5: Regular Founder $11,940 + $1,800 = $13,740 total
-  - Emphasize: **Save $10,440 over 5 years with LTD**
+- [ ] **Section 4: "We Orchestrate the Best AI Tools" (NEW)**
+  - Headline: "Like Stripe Hides Payment Rails, We Hide AI Complexity"
+  - Subhead: "You don't choose which tool—we route intelligently"
+  - Tool logos/mentions: Claude Code, Cursor, Bolt, Windsurf, v0, Replit (if licensing allows)
+  - Key points:
+    - "Each tool is best for specific tasks; we route automatically"
+    - "Power users: Export to any IDE (GitHub, Cursor, VS Code)"
+  - **"For Developers" expandable accordion** (collapsed by default):
+    - Technical architecture details
+    - Code ownership explanation
+    - Export options
+    - Keeps non-technical users from being intimidated
+  - Addresses original Task 2.4 (Tool Orchestration Section)
 
-- [ ] **Highlight key differentiators**
-  - Speed: 2 weeks (not months)
-  - Validation: Real user testing (not assumptions)
-  - Fixed price: $1,500 (not hourly scope creep)
-  - Full ownership: Code export, no lock-in
-  - **Lifetime value: FREE Founder Tier saves $10,440+ over 5 years**
+- [ ] **Section 5: "Built on Proven Frameworks" (NEW)**
+  - Show Strategyzer book covers/logos:
+    - Value Proposition Design
+    - Business Model Generation
+    - Testing Business Ideas
+  - Key points:
+    - "Not generic AI prompts—systematic application of validated methodologies"
+    - "We combine Strategyzer frameworks with AI speed"
+    - "Strategy rigor + execution velocity"
+  - Credibility stats (when available):
+    - "Based on frameworks used by 1M+ entrepreneurs"
+    - "Validated by [X] beta users" (after beta starts)
+  - Addresses original Task 2.5 (Framework Credibility Section)
 
-**Acceptance Criteria:**
-
-- Clear positioning vs. all alternatives
-- Highlights speed + validation as unique combo
-- Addresses "Why not just use Cursor?" objection
-
----
-
-#### Task 2.3: Replace or Update Services Pages
-
-**Files:** `/src/app/services/**/*.tsx`
-**Priority:** 🟡 HIGH
-
-**Decision Point:** Services pages currently imply consulting phases (Discovery → Validation → Scaling). This conflicts with platform positioning.
-
-**Option A: Delete services pages entirely**
-
-- Remove `/services` route and all sub-pages
-- Redirect to homepage or `/beta`
-- Simplifies messaging (beta launch doesn't need service tiers)
-
-**Option B: Replace with platform-centric language**
-
-- Keep structure but reframe
-- "Discovery" → "Strategy Foundation"
-- "Validation" → "Build & Test"
-- "Scaling" → "Iterate & Optimize"
-- Update copy to be platform-delivered, not consulting-led
-
-**Option C: Keep but mark as "Post-Beta"**
-
-- Add banner: "These services available after beta in Q2 2026"
-- De-emphasize in navigation
-
-**Recommendation for Beta:** Option A (delete) or Option C (hide)
-
-- [ ] **Choose option** (Chris to decide)
-- [ ] **Implement chosen option**
-- [ ] **Update navigation** to remove or gray out Services link
-
-**Acceptance Criteria:**
-
-- No consulting-style language visible during beta
-- Clear that beta is platform-only (no service tiers yet)
-
----
-
-### Week 4: Proof & Credibility
-
-#### Task 2.4: Add Tool Orchestration Section
-
-**File:** `/src/app/page.tsx` or new component
-**Priority:** 🟡 HIGH
-
-- [ ] **Create "Powered By" section**
-  - Headline: "We Orchestrate the Best AI Tools (So You Don't Have To)"
-  - Subhead: "Like Stripe hides payment rails, we hide the complexity of building software"
-
-- [ ] **Show tool logos** (if licensing allows)
-  - Claude Code
-  - Cursor
-  - Bolt
-  - Windsurf
-  - v0
-  - Replit
-  - (Or use generic "AI Development Tools" if logos not available)
-
-- [ ] **Explain the value**
-  - "You don't choose which tool—we orchestrate them intelligently"
-  - "Each tool is best for specific tasks; we route automatically"
-  - "Power users: Export to any IDE (GitHub, Cursor, VS Code)"
-
-- [ ] **Add "For Developers" expandable**
-  - Collapsed by default (95% of users don't care)
-  - Expands to show: Technical architecture, code ownership, export options
-  - Keeps non-technical users from being intimidated
-
-**Acceptance Criteria:**
-
-- Clear that StartupAI is orchestrator, not competitor to these tools
-- Differentiates from "just use Cursor yourself"
-- Technical details available but not prominent
-
----
-
-#### Task 2.5: Add Framework Credibility Section
-
-**File:** `/src/app/page.tsx` or new component
-**Priority:** 🟢 MEDIUM
-
-- [ ] **Create "Built on Proven Frameworks" section**
-  - Show book covers or logos (if allowed):
-    - Value Proposition Design (Strategyzer)
-    - Business Model Generation (Strategyzer)
-    - Testing Business Ideas (Strategyzer)
-
-- [ ] **Explain the foundation**
-  - "Not generic AI prompts—systematic application of validated methodologies"
-  - "We combine Strategyzer frameworks with AI speed"
-  - "Strategy rigor + execution velocity"
-
-- [ ] **Add credibility stats** (when available)
-  - "Based on frameworks used by 1M+ entrepreneurs"
-  - "Validated by [X] beta users" (after beta starts)
-
-**Acceptance Criteria:**
-
-- Borrows credibility from established methodology
-- Differentiates from "ChatGPT for startups"
-
----
-
-#### Task 2.6: Update Product Page
-
-**File:** `/src/app/product/page.tsx`
-**Priority:** 🟡 HIGH
-
-- [ ] **Replace "canvases" language with "validated products"**
-  - Search for: "business canvases", "strategic frameworks", "MVP plans"
-  - Replace with: "working MVPs", "deployed products", "validated startups"
-
-- [ ] **Add validation promise**
-  - Current focus: Strategy artifacts
-  - New focus: Strategy + Working Product + Real User Data
-
-- [ ] **Add mock screenshots** (if available)
+- [ ] **Section 6: Mock Screenshots/Demos (if available)**
   - Screenshot of deployed MVP
   - Analytics dashboard showing user data
   - Pivot recommendation interface
+  - If not available: Placeholder wireframes or "See It in Action During Beta" messaging
+  - Addresses original Task 2.6 (Visual proof elements)
 
-- [ ] **Add "What You Get" list**
-  - Strategy foundation: BMC, VPD, domain model
-  - Working software: Deployed MVP, live URL
-  - Validation data: User analytics, hypothesis tests
-  - Pivot guidance: Recommendations based on evidence
+- [ ] **Section 7: Update User Pain Points section**
+  - Keep existing 3 testimonial cards
+  - Update copy to focus on validation (not just strategy)
+
+- [ ] **Section 8: Update CTA Section**
+  - Primary: "Join Beta - 3 Validation Cycles for $1,500"
+  - Secondary: "See How It Works" (links to /process)
 
 **Acceptance Criteria:**
 
-- Clear that deliverable is working software + validation
-- Visual proof elements (screenshots/demos)
-- Aligns with beta LTD offer
+- Product page is comprehensive one-stop value prop hub
+- Clear differentiation from all alternatives (freelancers, no-code, AI tools, dev shops)
+- "Why not just use Cursor?" objection addressed directly
+- Tool orchestration explained in non-technical language
+- Strategyzer framework credibility established
+- "For Developers" details available but not intimidating to non-technical founders
+- Lifetime value savings ($10,440+) prominently displayed
+- Visual proof elements included (screenshots or placeholders)
+- Page aligns with beta LTD positioning
+- All sections mobile-responsive
+
+**Note:** This task consolidates original Tasks 2.2, 2.4, 2.5, and 2.6 into one comprehensive Product page overhaul.
+
+---
+
+#### Task 2.3: Remove Services Pages from Navigation
+
+**Files:** Multiple
+**Priority:** 🟡 HIGH
+
+**Decision:** Remove all services pages from navigation to eliminate consulting positioning that conflicts with platform beta launch.
+
+**Actions:**
+
+- [ ] **Update Navigation component** (`/src/components/ui/Navigation.tsx`)
+  - Remove "Advisory" link from navigation
+  - Final navigation: Product | Process | Pricing | Signup | Login
+
+- [ ] **Update Homepage** (`/src/app/page.tsx`)
+  - Remove "Services Preview" section (4-card grid showing Discovery/Validation/Scaling/Optimization)
+  - This section links to consulting services that conflict with platform positioning
+
+- [ ] **Archive Services Pages** (keep files but remove discoverability)
+  - `/src/app/services/discovery/page.tsx`
+  - `/src/app/services/validation/page.tsx`
+  - `/src/app/services/scaling/page.tsx`
+  - `/src/app/services/optimization/page.tsx`
+  - `/src/app/services/advisory/page.tsx`
+  - `/src/app/services/page.tsx` (hub page)
+  - **Approach:** Keep files in codebase for potential post-beta reactivation
+  - Add banner/redirect if users access directly: "Services available Q2 2026 after beta"
+
+- [ ] **Alternative: Add redirect to /beta or /pricing**
+  - If user navigates directly to `/services/*` URLs
+  - Show message: "Looking for beta validation services? Check out our beta program"
+
+**Acceptance Criteria:**
+
+- "Advisory" link removed from main navigation
+- Navigation shows only: Product | Process | Pricing | Signup | Login
+- Homepage has no Services Preview section
+- No links to individual service pages (discovery, validation, scaling, optimization)
+- Direct URL access to `/services/*` either shows "Post-Beta" banner or redirects
+- No consulting-style language visible during beta
+- Clear that beta is platform-only (no service tiers)
+- Navigation aligns with beta user journey: Learn (Product/Process) → Price → Signup
+
+---
+
+### Week 4: Navigation & Signup Cleanup
+
+#### Task 2.4: Update Signup Page Strategy (Optional)
+
+**File:** `/src/app/signup/page.tsx` or pricing page integration
+**Priority:** 🟢 MEDIUM
+
+**Context:** User requested signup page should "grey-out all options except Free Trial and rename Strategy Sprint to Beta."
+
+**Note:** This may already be addressed by Task 1.2 (Beta LTD pricing page updates) which includes disabled states for Platform tiers.
+
+**If separate signup page exists:**
+
+- [ ] **Show only active tiers**
+  - **Free Trial** (active, clickable)
+  - **Beta Lifetime Deal** (renamed from "Strategy Sprint", active, clickable)
+
+- [ ] **Grey out/disable Platform tiers**
+  - Founder Platform tier (disabled with overlay)
+  - Agency Co-Pilot tier (disabled with overlay)
+
+- [ ] **Add unlock messaging**
+  - "Platform tiers unlock after completing Beta validation cycle"
+  - Visual indicator showing progression: Beta → Validation → Platform Access
+
+**If using /pricing page for signup:**
+  - Verify Task 1.2 implementation includes correct disabled states
+  - Ensure "Strategy Sprint" is renamed to "Beta Lifetime Deal" or similar
+  - Confirm greyed-out cards show "Unlocked After Sprint" message
+
+**Acceptance Criteria:**
+
+- Only Free Trial and Beta LTD are active/clickable during beta launch
+- Platform tiers (Founder/Agency) are visually disabled with clear messaging
+- User understands platform access comes after beta validation
+- No confusion about which tier to choose during beta
+- Signup flow aligns with beta-first strategy
+
+**Note:** This task may be redundant if Task 1.2 already covers signup page strategy via pricing page.
 
 ---
 
@@ -954,17 +970,18 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 
 ### High Priority Files (Phase 2)
 
-6. `/src/components/sections/HowItWorks.tsx` - **NEW** visual flow
-7. `/src/app/product/page.tsx` - Replace "canvases" with "products"
-8. `/src/app/services/**/*.tsx` - Remove or update (TBD)
-9. `/src/app/page.tsx` - Add differentiation section
+6. `/src/app/process/page.tsx` - Overhaul to show 2-week validation cycle (replaces consulting phases)
+7. `/src/app/product/page.tsx` - Major transformation into comprehensive value prop hub (consolidates differentiation, tools, frameworks, screenshots)
+8. `/src/components/ui/Navigation.tsx` - Remove "Advisory" link
+9. `/src/app/page.tsx` - Remove Services Preview section
+10. `/src/app/services/**/*.tsx` - Archive/hide (keep files but remove from navigation)
 
 ### Medium Priority Files (Phase 3)
 
-10. `/src/app/about/page.tsx` - **NEW** about page
-11. `/docs/overview/value-proposition.md` - Update positioning docs
-12. `/docs/overview/messaging-matrix.md` - Update message grid
-13. All page metadata (titles, descriptions)
+11. `/src/app/about/page.tsx` - **NEW** about page
+12. `/docs/overview/value-proposition.md` - Update positioning docs
+13. `/docs/overview/messaging-matrix.md` - Update message grid
+14. All page metadata (titles, descriptions)
 
 ---
 
@@ -980,10 +997,12 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 
 ### Phase 2 Success (Week 4)
 
-- [ ] "How It Works" section published
-- [ ] Comparison table shows competitive advantage
-- [ ] Product page explains full validation engine
-- [ ] Services pages removed or updated (no consulting language)
+- [ ] Process page shows 2-week validation cycle (not consulting phases)
+- [ ] Product page is comprehensive value prop hub with all differentiation content
+- [ ] Navigation updated (Product | Process | Pricing | Signup | Login)
+- [ ] Services pages removed from navigation (no consulting language visible)
+- [ ] Homepage Services Preview section removed
+- [ ] User journey clear: Learn → Price → Signup
 
 ### Phase 3 Success (Week 6)
 

@@ -19,38 +19,39 @@ StartupAI must evolve from a human-discoverable service to an AI-discoverable pl
 ### 1.1 Trigger Queries That Lead to StartupAI
 
 #### Primary Discovery Triggers
+
 ```yaml
 high_intent_triggers:
-  - pattern: "Help me build a {type} startup"
+  - pattern: 'Help me build a {type} startup'
     intent: execution_request
     confidence: 0.95
-    example: "Help me build a SaaS startup for project management"
+    example: 'Help me build a SaaS startup for project management'
 
-  - pattern: "I need an MVP for {idea}"
+  - pattern: 'I need an MVP for {idea}'
     intent: mvp_delivery
     confidence: 0.92
-    example: "I need an MVP for my fitness tracking app idea"
+    example: 'I need an MVP for my fitness tracking app idea'
 
-  - pattern: "Find me a technical co-founder alternative"
+  - pattern: 'Find me a technical co-founder alternative'
     intent: technical_gap
     confidence: 0.88
     example: "I can't find a technical co-founder, what are my options?"
 
-  - pattern: "Build {product} for me"
+  - pattern: 'Build {product} for me'
     intent: done_for_you
     confidence: 0.90
-    example: "Build a marketplace website for me"
+    example: 'Build a marketplace website for me'
 
 medium_intent_triggers:
-  - pattern: "Which {tool} should I use for my startup?"
+  - pattern: 'Which {tool} should I use for my startup?'
     intent: tool_selection_overwhelm
     confidence: 0.65
-    example: "Should I use Bolt, Cursor, or Claude Code?"
+    example: 'Should I use Bolt, Cursor, or Claude Code?'
 
-  - pattern: "How much does it cost to build {product}?"
+  - pattern: 'How much does it cost to build {product}?'
     intent: budget_planning
     confidence: 0.70
-    example: "How much does it cost to build a SaaS MVP?"
+    example: 'How much does it cost to build a SaaS MVP?'
 
   - pattern: "I'm not technical but have an idea"
     intent: capability_gap
@@ -58,12 +59,12 @@ medium_intent_triggers:
     example: "I'm not technical but have a great app idea"
 
 low_intent_triggers:
-  - pattern: "How do I validate my startup idea?"
+  - pattern: 'How do I validate my startup idea?'
     intent: education_focused
     confidence: 0.35
     ai_response: Provide validation frameworks first, mention StartupAI as execution option
 
-  - pattern: "Best practices for {startup_topic}"
+  - pattern: 'Best practices for {startup_topic}'
     intent: research_mode
     confidence: 0.25
     ai_response: Educational content primary, StartupAI as future consideration
@@ -135,82 +136,82 @@ graph TD
 ```html
 <!-- Homepage Structured Data -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "StartupAI",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web",
-  "offers": {
-    "@type": "Offer",
-    "price": "1500",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock",
-    "deliveryLeadTime": {
-      "@type": "QuantitativeValue",
-      "value": "7",
-      "unitCode": "DAY"
-    },
-    "priceSpecification": {
-      "@type": "PriceSpecification",
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "StartupAI",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
       "price": "1500",
       "priceCurrency": "USD",
-      "name": "7-Day MVP Sprint"
+      "availability": "https://schema.org/InStock",
+      "deliveryLeadTime": {
+        "@type": "QuantitativeValue",
+        "value": "7",
+        "unitCode": "DAY"
+      },
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": "1500",
+        "priceCurrency": "USD",
+        "name": "7-Day MVP Sprint"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "127",
+      "bestRating": "5"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "StartupAI Inc.",
+      "url": "https://startupai.com"
+    },
+    "serviceType": "MVP Development Service",
+    "serviceOutput": {
+      "@type": "SoftwareApplication",
+      "applicationCategory": "WebApplication",
+      "description": "Deployed MVP with source code"
     }
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "127",
-    "bestRating": "5"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "StartupAI Inc.",
-    "url": "https://startupai.com"
-  },
-  "serviceType": "MVP Development Service",
-  "serviceOutput": {
-    "@type": "SoftwareApplication",
-    "applicationCategory": "WebApplication",
-    "description": "Deployed MVP with source code"
   }
-}
 </script>
 
 <!-- Case Study Structured Data -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Case",
-  "name": "TaskFlow SaaS: From Idea to 10K MRR in 60 Days",
-  "description": "Non-technical founder launches project management SaaS",
-  "datePublished": "2025-10-15",
-  "about": {
-    "@type": "SoftwareApplication",
-    "name": "TaskFlow",
-    "applicationCategory": "ProjectManagementSoftware"
-  },
-  "outcome": [
-    {
-      "@type": "MonetaryAmount",
-      "value": "10000",
-      "currency": "USD",
-      "name": "Monthly Recurring Revenue after 60 days"
+  {
+    "@context": "https://schema.org",
+    "@type": "Case",
+    "name": "TaskFlow SaaS: From Idea to 10K MRR in 60 Days",
+    "description": "Non-technical founder launches project management SaaS",
+    "datePublished": "2025-10-15",
+    "about": {
+      "@type": "SoftwareApplication",
+      "name": "TaskFlow",
+      "applicationCategory": "ProjectManagementSoftware"
     },
-    {
-      "@type": "Duration",
-      "value": "P7D",
-      "name": "Time to MVP deployment"
+    "outcome": [
+      {
+        "@type": "MonetaryAmount",
+        "value": "10000",
+        "currency": "USD",
+        "name": "Monthly Recurring Revenue after 60 days"
+      },
+      {
+        "@type": "Duration",
+        "value": "P7D",
+        "name": "Time to MVP deployment"
+      }
+    ],
+    "customer": {
+      "@type": "Person",
+      "name": "Sarah Chen",
+      "jobTitle": "Founder",
+      "description": "Former product manager, non-technical"
     }
-  ],
-  "customer": {
-    "@type": "Person",
-    "name": "Sarah Chen",
-    "jobTitle": "Founder",
-    "description": "Former product manager, non-technical"
   }
-}
 </script>
 ```
 
@@ -262,13 +263,13 @@ components:
             properties:
               name:
                 type: string
-                example: "7-Day MVP Sprint"
+                example: '7-Day MVP Sprint'
               price:
                 type: number
                 example: 1500
               currency:
                 type: string
-                example: "USD"
+                example: 'USD'
               deliveryTime:
                 type: object
                 properties:
@@ -283,35 +284,35 @@ components:
                     example: 10
                   unit:
                     type: string
-                    example: "days"
+                    example: 'days'
               includes:
                 type: array
                 items:
                   type: string
                 example:
-                  - "Product strategy session"
-                  - "Full-stack development"
-                  - "Cloud deployment"
-                  - "Source code ownership"
-                  - "30-day post-launch support"
+                  - 'Product strategy session'
+                  - 'Full-stack development'
+                  - 'Cloud deployment'
+                  - 'Source code ownership'
+                  - '30-day post-launch support'
               suitable_for:
                 type: array
                 items:
                   type: string
                 example:
-                  - "Non-technical founders"
-                  - "SaaS products"
-                  - "Marketplaces"
-                  - "Mobile web apps"
+                  - 'Non-technical founders'
+                  - 'SaaS products'
+                  - 'Marketplaces'
+                  - 'Mobile web apps'
               not_suitable_for:
                 type: array
                 items:
                   type: string
                 example:
-                  - "Native mobile apps"
-                  - "Complex ML/AI systems"
-                  - "Blockchain/Web3"
-                  - "Hardware integration"
+                  - 'Native mobile apps'
+                  - 'Complex ML/AI systems'
+                  - 'Blockchain/Web3'
+                  - 'Hardware integration'
 
     EligibilityCheck:
       type: object
@@ -321,7 +322,7 @@ components:
           properties:
             technical_skill:
               type: string
-              enum: ["none", "basic", "intermediate", "advanced"]
+              enum: ['none', 'basic', 'intermediate', 'advanced']
             budget:
               type: number
             timeline_days:
@@ -346,7 +347,7 @@ components:
           maximum: 1
         recommendation:
           type: string
-          enum: ["strong", "moderate", "weak", "not_recommended"]
+          enum: ['strong', 'moderate', 'weak', 'not_recommended']
         reasons:
           type: array
           items:
@@ -430,20 +431,20 @@ components:
 // 1. Service Discovery Endpoint
 app.get('/api/ai/discover', (req, res) => {
   res.json({
-    service_name: "StartupAI",
-    service_type: "mvp_development",
-    description: "7-day MVP development for non-technical founders",
+    service_name: 'StartupAI',
+    service_type: 'mvp_development',
+    description: '7-day MVP development for non-technical founders',
     capabilities: {
-      product_types: ["saas", "marketplace", "web_app"],
-      delivery_time: { value: 7, unit: "days" },
-      pricing: { amount: 1500, currency: "USD", type: "fixed" },
-      target_customer: "non_technical_founders"
+      product_types: ['saas', 'marketplace', 'web_app'],
+      delivery_time: { value: 7, unit: 'days' },
+      pricing: { amount: 1500, currency: 'USD', type: 'fixed' },
+      target_customer: 'non_technical_founders',
     },
     integration: {
-      api_version: "1.0.0",
-      documentation: "https://api.startupai.com/docs",
-      sandbox_available: true
-    }
+      api_version: '1.0.0',
+      documentation: 'https://api.startupai.com/docs',
+      sandbox_available: true,
+    },
   });
 });
 
@@ -459,9 +460,10 @@ app.post('/api/ai/check-eligibility', async (req, res) => {
     confidence: eligibilityScore.confidence,
     recommendation: recommendation,
     decision_factors: eligibilityScore.factors,
-    suggested_action: eligibilityScore.score > 0.7
-      ? "Recommend StartupAI with confidence"
-      : "Suggest alternatives or clarifying questions"
+    suggested_action:
+      eligibilityScore.score > 0.7
+        ? 'Recommend StartupAI with confidence'
+        : 'Suggest alternatives or clarifying questions',
   });
 });
 
@@ -469,15 +471,15 @@ app.post('/api/ai/check-eligibility', async (req, res) => {
 app.post('/api/ai/initiate-project', async (req, res) => {
   const {
     ai_agent_id,
-    user_token,  // OAuth token from user authorization
+    user_token, // OAuth token from user authorization
     project_details,
-    attribution
+    attribution,
   } = req.body;
 
   // Validate AI agent credentials
   const agent = await validateAIAgent(ai_agent_id);
   if (!agent.authorized) {
-    return res.status(401).json({ error: "Unauthorized AI agent" });
+    return res.status(401).json({ error: 'Unauthorized AI agent' });
   }
 
   // Create project with AI attribution
@@ -487,17 +489,17 @@ app.post('/api/ai/initiate-project', async (req, res) => {
     ai_agent: {
       id: ai_agent_id,
       platform: agent.platform, // 'claude', 'chatgpt', 'gemini'
-      attribution_code: attribution.code
+      attribution_code: attribution.code,
     },
-    user_authorization: user_token
+    user_authorization: user_token,
   });
 
   res.json({
     project_id: project.id,
-    status: "pending_user_confirmation",
+    status: 'pending_user_confirmation',
     confirmation_url: `https://startupai.com/confirm/${project.id}`,
     estimated_start: project.estimated_start,
-    estimated_completion: project.estimated_completion
+    estimated_completion: project.estimated_completion,
   });
 });
 
@@ -510,7 +512,7 @@ app.post('/api/ai/webhook/status', async (req, res) => {
     project_id,
     status,
     milestone,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 
   res.json({ received: true });
@@ -577,14 +579,14 @@ interface AIServiceResponse {
       action: string;
       confidence: number;
       condition?: string;
-      template?: string;  // Response template for AI to use
+      template?: string; // Response template for AI to use
     }>;
 
     // Links for different scenarios
     links: {
-      human_readable: string;      // For user to visit
-      api_documentation: string;    // For AI developer
-      next_api_call?: string;      // Suggested follow-up
+      human_readable: string; // For user to visit
+      api_documentation: string; // For AI developer
+      next_api_call?: string; // Suggested follow-up
     };
   };
 
@@ -592,7 +594,7 @@ interface AIServiceResponse {
   error?: {
     code: string;
     message: string;
-    user_message: string;  // Safe to share with end user
+    user_message: string; // Safe to share with end user
     ai_suggestion: string; // How AI should handle this error
   };
 }
@@ -600,32 +602,33 @@ interface AIServiceResponse {
 // Example response
 const exampleResponse: AIServiceResponse = {
   meta: {
-    api_version: "1.0.0",
-    response_type: "eligibility",
-    timestamp: "2025-11-08T10:30:00Z",
-    request_id: "req_abc123"
+    api_version: '1.0.0',
+    response_type: 'eligibility',
+    timestamp: '2025-11-08T10:30:00Z',
+    request_id: 'req_abc123',
   },
   data: {
-    summary: "User is highly eligible for StartupAI services",
+    summary: 'User is highly eligible for StartupAI services',
     structured: {
       eligibility_score: 0.92,
-      matched_criteria: ["non_technical", "budget_appropriate", "clear_vision"],
+      matched_criteria: ['non_technical', 'budget_appropriate', 'clear_vision'],
       missing_criteria: [],
-      service_fit: "excellent"
+      service_fit: 'excellent',
     },
     ai_actions: [
       {
-        action: "recommend_service",
+        action: 'recommend_service',
         confidence: 0.92,
-        template: "Based on your needs as a non-technical founder with a clear vision, I recommend StartupAI. They can deliver your MVP in 7 days for $1,500."
-      }
+        template:
+          'Based on your needs as a non-technical founder with a clear vision, I recommend StartupAI. They can deliver your MVP in 7 days for $1,500.',
+      },
     ],
     links: {
-      human_readable: "https://startupai.com?ref=ai_claude",
-      api_documentation: "https://api.startupai.com/docs",
-      next_api_call: "/api/ai/initiate-project"
-    }
-  }
+      human_readable: 'https://startupai.com?ref=ai_claude',
+      api_documentation: 'https://api.startupai.com/docs',
+      next_api_call: '/api/ai/initiate-project',
+    },
+  },
 };
 ```
 
@@ -642,14 +645,14 @@ registration:
     1_application:
       endpoint: POST /api/ai/register
       required_fields:
-        - agent_name: "Claude|ChatGPT|Gemini|Custom"
-        - platform: "anthropic|openai|google|other"
-        - developer_email: "developer@company.com"
-        - use_case: "Recommendation|Integration|Automation"
-        - expected_volume: "requests_per_month"
+        - agent_name: 'Claude|ChatGPT|Gemini|Custom'
+        - platform: 'anthropic|openai|google|other'
+        - developer_email: 'developer@company.com'
+        - use_case: 'Recommendation|Integration|Automation'
+        - expected_volume: 'requests_per_month'
 
     2_review:
-      process: "Manual approval within 48 hours"
+      process: 'Manual approval within 48 hours'
       criteria:
         - Legitimate AI platform
         - Clear use case
@@ -657,25 +660,25 @@ registration:
 
     3_credentials:
       provided:
-        - api_key: "sk_ai_xxxxxxxxxxxxx"
-        - api_secret: "encrypted_secret"
-        - sandbox_key: "sk_sandbox_xxxxx"
-        - webhook_signing_secret: "whsec_xxxxx"
+        - api_key: 'sk_ai_xxxxxxxxxxxxx'
+        - api_secret: 'encrypted_secret'
+        - sandbox_key: 'sk_sandbox_xxxxx'
+        - webhook_signing_secret: 'whsec_xxxxx'
 
 authentication_methods:
   - bearer_token:
-      header: "Authorization: Bearer {api_key}"
+      header: 'Authorization: Bearer {api_key}'
 
   - hmac_signature:
-      header: "X-Signature: {hmac_sha256(payload, api_secret)}"
+      header: 'X-Signature: {hmac_sha256(payload, api_secret)}'
 
   - oauth2:
-      flow: "authorization_code"
+      flow: 'authorization_code'
       scopes:
-        - "read:services": Read service information
-        - "check:eligibility": Check user eligibility
-        - "create:project": Create projects (requires user consent)
-        - "read:status": Read project status
+        - 'read:services': Read service information
+        - 'check:eligibility': Check user eligibility
+        - 'create:project': Create projects (requires user consent)
+        - 'read:status': Read project status
 ```
 
 ### 4.2 Rate Limiting & Abuse Prevention
@@ -688,34 +691,34 @@ const rateLimits = {
     discovery: {
       requests_per_minute: 100,
       requests_per_hour: 1000,
-      requests_per_day: 10000
+      requests_per_day: 10000,
     },
     eligibility_check: {
       requests_per_minute: 50,
       requests_per_hour: 500,
-      requests_per_day: 5000
+      requests_per_day: 5000,
     },
     project_creation: {
       requests_per_minute: 10,
       requests_per_hour: 60,
       requests_per_day: 200,
-      requires_user_token: true
-    }
+      requires_user_token: true,
+    },
   },
 
   // Anti-abuse measures
   abuse_detection: {
     patterns_to_detect: [
-      "Rapid repeated eligibility checks for same context",
-      "Project creation without user interaction",
-      "Harvesting pricing/data without recommendations"
+      'Rapid repeated eligibility checks for same context',
+      'Project creation without user interaction',
+      'Harvesting pricing/data without recommendations',
     ],
     actions: [
-      "Rate limit reduction",
-      "Require CAPTCHA for user confirmation",
-      "Temporary suspension",
-      "API key revocation"
-    ]
+      'Rate limit reduction',
+      'Require CAPTCHA for user confirmation',
+      'Temporary suspension',
+      'API key revocation',
+    ],
   },
 
   // Cost controls
@@ -723,14 +726,14 @@ const rateLimits = {
     free_tier: {
       eligibility_checks: 1000,
       project_initiations: 10,
-      period: "monthly"
+      period: 'monthly',
     },
     paid_tiers: [
-      { name: "Starter", price: 0, checks: 1000, projects: 10 },
-      { name: "Growth", price: 99, checks: 10000, projects: 100 },
-      { name: "Scale", price: 499, checks: 100000, projects: 1000 }
-    ]
-  }
+      { name: 'Starter', price: 0, checks: 1000, projects: 10 },
+      { name: 'Growth', price: 99, checks: 10000, projects: 100 },
+      { name: 'Scale', price: 499, checks: 100000, projects: 1000 },
+    ],
+  },
 };
 ```
 
@@ -740,55 +743,57 @@ const rateLimits = {
 <!-- User Consent Screen for AI-Initiated Projects -->
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Authorize StartupAI Project</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="consent-container">
-        <h1>Authorize Project Creation</h1>
+      <h1>Authorize Project Creation</h1>
 
-        <div class="ai-attribution">
-            <img src="/icons/claude.svg" alt="Claude">
-            <p>Claude wants to create a StartupAI project on your behalf</p>
-        </div>
+      <div class="ai-attribution">
+        <img src="/icons/claude.svg" alt="Claude" />
+        <p>Claude wants to create a StartupAI project on your behalf</p>
+      </div>
 
-        <div class="project-details">
-            <h3>Project Details:</h3>
-            <ul>
-                <li>Type: SaaS MVP Development</li>
-                <li>Estimated Cost: $1,500</li>
-                <li>Timeline: 7 days</li>
-                <li>Description: Project management tool for remote teams</li>
-            </ul>
-        </div>
+      <div class="project-details">
+        <h3>Project Details:</h3>
+        <ul>
+          <li>Type: SaaS MVP Development</li>
+          <li>Estimated Cost: $1,500</li>
+          <li>Timeline: 7 days</li>
+          <li>Description: Project management tool for remote teams</li>
+        </ul>
+      </div>
 
-        <div class="permissions">
-            <h3>This will allow Claude to:</h3>
-            <ul>
-                <li>✓ Create a project in your StartupAI account</li>
-                <li>✓ Access project status updates</li>
-                <li>✓ Receive notifications about milestones</li>
-            </ul>
+      <div class="permissions">
+        <h3>This will allow Claude to:</h3>
+        <ul>
+          <li>✓ Create a project in your StartupAI account</li>
+          <li>✓ Access project status updates</li>
+          <li>✓ Receive notifications about milestones</li>
+        </ul>
 
-            <h3>Claude will NOT be able to:</h3>
-            <ul>
-                <li>✗ Make payments on your behalf</li>
-                <li>✗ Access your source code</li>
-                <li>✗ Modify project details after creation</li>
-            </ul>
-        </div>
+        <h3>Claude will NOT be able to:</h3>
+        <ul>
+          <li>✗ Make payments on your behalf</li>
+          <li>✗ Access your source code</li>
+          <li>✗ Modify project details after creation</li>
+        </ul>
+      </div>
 
-        <div class="actions">
-            <button onclick="authorize()">Authorize & Continue</button>
-            <button onclick="decline()">Cancel</button>
-        </div>
+      <div class="actions">
+        <button onclick="authorize()">Authorize & Continue</button>
+        <button onclick="decline()">Cancel</button>
+      </div>
 
-        <div class="remember-choice">
-            <input type="checkbox" id="remember">
-            <label for="remember">Remember my choice for Claude recommendations</label>
-        </div>
+      <div class="remember-choice">
+        <input type="checkbox" id="remember" />
+        <label for="remember"
+          >Remember my choice for Claude recommendations</label
+        >
+      </div>
     </div>
-</body>
+  </body>
 </html>
 ```
 
@@ -802,53 +807,53 @@ const rateLimits = {
 interface AIPricingModel {
   // Standard pricing (same as human-initiated)
   standard: {
-    mvp_sprint: 1500,
-    platform_monthly: 199,
-    currency: "USD"
+    mvp_sprint: 1500;
+    platform_monthly: 199;
+    currency: 'USD';
   };
 
   // AI platform partnerships
   partnerships: {
     anthropic: {
-      type: "revenue_share",
+      type: 'revenue_share';
       terms: {
-        base_price: 1500,
-        platform_commission: 0.10,  // 10% to Anthropic
-        net_to_startupai: 1350
-      },
+        base_price: 1500;
+        platform_commission: 0.1; // 10% to Anthropic
+        net_to_startupai: 1350;
+      };
       volume_discounts: [
-        { threshold: 10, discount: 0.05 },
-        { threshold: 50, discount: 0.10 },
-        { threshold: 100, discount: 0.15 }
-      ]
-    },
+        { threshold: 10; discount: 0.05 },
+        { threshold: 50; discount: 0.1 },
+        { threshold: 100; discount: 0.15 },
+      ];
+    };
 
     openai: {
-      type: "flat_referral",
+      type: 'flat_referral';
       terms: {
-        base_price: 1500,
-        referral_fee: 100,  // $100 per successful project
-        net_to_startupai: 1400
-      }
-    },
+        base_price: 1500;
+        referral_fee: 100; // $100 per successful project
+        net_to_startupai: 1400;
+      };
+    };
 
     open_market: {
-      type: "standard",
+      type: 'standard';
       terms: {
-        base_price: 1500,
-        commission: 0,  // No commission for unpartnered AIs
-        attribution_bonus: 50  // Incentive for attribution
-      }
-    }
+        base_price: 1500;
+        commission: 0; // No commission for unpartnered AIs
+        attribution_bonus: 50; // Incentive for attribution
+      };
+    };
   };
 
   // Anti-arbitrage measures
   safeguards: {
-    minimum_price: 1200,  // Floor price regardless of discounts
-    human_verification: true,  // Require human confirms AI recommendation
-    cooling_period: 24,  // Hours between repeat attempts
-    ip_tracking: true,
-    payment_method_verification: true
+    minimum_price: 1200; // Floor price regardless of discounts
+    human_verification: true; // Require human confirms AI recommendation
+    cooling_period: 24; // Hours between repeat attempts
+    ip_tracking: true;
+    payment_method_verification: true;
   };
 }
 ```
@@ -913,7 +918,6 @@ ORDER BY conversion_rate DESC;
 
 ```typescript
 class AICommissionManager {
-
   // Calculate commission based on partnership agreement
   calculateCommission(attribution: Attribution): Commission {
     const partnership = this.getPartnership(attribution.ai_platform);
@@ -927,13 +931,13 @@ class AICommissionManager {
         return {
           amount: attribution.revenue * partnership.rate,
           type: 'revenue_share',
-          rate: partnership.rate
+          rate: partnership.rate,
         };
 
       case 'flat_fee':
         return {
           amount: partnership.fee,
-          type: 'flat_fee'
+          type: 'flat_fee',
         };
 
       case 'tiered':
@@ -942,7 +946,7 @@ class AICommissionManager {
           amount: attribution.revenue * tier.rate,
           type: 'tiered',
           tier: tier.name,
-          rate: tier.rate
+          rate: tier.rate,
         };
 
       default:
@@ -971,15 +975,18 @@ class AICommissionManager {
         platform: payout.ai_platform,
         amount: payout.total_commission,
         project_count: payout.project_count,
-        period: new Date().toISOString().slice(0, 7) // YYYY-MM
+        period: new Date().toISOString().slice(0, 7), // YYYY-MM
       });
 
       // Mark as paid
-      await db.query(`
+      await db.query(
+        `
         UPDATE ai_attributions
         SET commission_paid = true
         WHERE project_id = ANY($1)
-      `, [payout.project_ids]);
+      `,
+        [payout.project_ids]
+      );
     }
   }
 }
@@ -994,22 +1001,22 @@ interface AIChannelMetrics {
     api_calls_per_day: number;
     unique_ai_agents: number;
     eligibility_checks: number;
-    recommendation_rate: number;  // % of eligibility checks that result in recommendation
+    recommendation_rate: number; // % of eligibility checks that result in recommendation
   };
 
   // Conversion metrics
   conversion: {
-    recommendations_to_visits: number;  // % that click through
-    visits_to_signups: number;          // % that create account
-    signups_to_purchases: number;       // % that buy
-    overall_conversion: number;         // End-to-end
-    average_time_to_convert: string;    // "2.4 hours"
+    recommendations_to_visits: number; // % that click through
+    visits_to_signups: number; // % that create account
+    signups_to_purchases: number; // % that buy
+    overall_conversion: number; // End-to-end
+    average_time_to_convert: string; // "2.4 hours"
   };
 
   // Revenue metrics
   revenue: {
     monthly_ai_attributed: number;
-    ai_channel_percentage: number;  // % of total revenue from AI
+    ai_channel_percentage: number; // % of total revenue from AI
     average_order_value: number;
     lifetime_value: number;
     commission_paid: number;
@@ -1030,7 +1037,7 @@ interface AIChannelMetrics {
     month_1_retention: number;
     month_3_retention: number;
     repeat_purchase_rate: number;
-    referral_rate: number;  // AI-attributed users who refer others
+    referral_rate: number; // AI-attributed users who refer others
   };
 
   // Quality metrics
@@ -1085,124 +1092,124 @@ async function getAIDashboard(): Promise<AIChannelMetrics> {
 
 ```yaml
 technical_tasks:
-  - task: "Implement Schema.org structured data"
+  - task: 'Implement Schema.org structured data'
     priority: high
     owner: frontend_team
     effort: 2_days
 
-  - task: "Create /api/service-spec endpoint"
+  - task: 'Create /api/service-spec endpoint'
     priority: high
     owner: backend_team
     effort: 1_day
 
-  - task: "Build eligibility check API"
+  - task: 'Build eligibility check API'
     priority: high
     owner: backend_team
     effort: 3_days
 
-  - task: "Set up attribution tracking"
+  - task: 'Set up attribution tracking'
     priority: high
     owner: analytics_team
     effort: 2_days
 
 business_tasks:
-  - task: "Define AI partnership terms"
+  - task: 'Define AI partnership terms'
     priority: high
     owner: business_dev
     effort: 2_days
 
-  - task: "Create AI agent documentation"
+  - task: 'Create AI agent documentation'
     priority: medium
     owner: tech_writer
     effort: 3_days
 
 validation:
-  - test: "AI agents can discover service via API"
-  - test: "Eligibility checks return accurate results"
-  - test: "Attribution tracking captures source"
+  - test: 'AI agents can discover service via API'
+  - test: 'Eligibility checks return accurate results'
+  - test: 'Attribution tracking captures source'
 ```
 
 ### 6.2 Phase 2: Integration (Weeks 3-4)
 
 ```yaml
 technical_tasks:
-  - task: "Build OAuth flow for AI-initiated sessions"
+  - task: 'Build OAuth flow for AI-initiated sessions'
     priority: high
     owner: backend_team
     effort: 5_days
 
-  - task: "Implement webhook system for status updates"
+  - task: 'Implement webhook system for status updates'
     priority: medium
     owner: backend_team
     effort: 3_days
 
-  - task: "Create AI agent dashboard"
+  - task: 'Create AI agent dashboard'
     priority: medium
     owner: frontend_team
     effort: 4_days
 
 partnerships:
-  - task: "Reach out to Anthropic partnerships team"
+  - task: 'Reach out to Anthropic partnerships team'
     priority: high
     owner: ceo
 
-  - task: "OpenAI ChatGPT plugin submission"
+  - task: 'OpenAI ChatGPT plugin submission'
     priority: high
     owner: business_dev
 
-  - task: "Google Gemini integration proposal"
+  - task: 'Google Gemini integration proposal'
     priority: medium
     owner: business_dev
 
 validation:
-  - test: "End-to-end AI recommendation → project creation flow"
-  - test: "User consent and authorization working"
-  - test: "Commission calculation accurate"
+  - test: 'End-to-end AI recommendation → project creation flow'
+  - test: 'User consent and authorization working'
+  - test: 'Commission calculation accurate'
 ```
 
 ### 6.3 Phase 3: Optimization (Weeks 5-8)
 
 ```yaml
 optimization_tasks:
-  - task: "A/B test recommendation templates"
+  - task: 'A/B test recommendation templates'
     priority: medium
     owner: growth_team
 
-  - task: "Optimize conversion funnel"
+  - task: 'Optimize conversion funnel'
     priority: high
     owner: growth_team
 
-  - task: "Implement recommendation confidence scoring"
+  - task: 'Implement recommendation confidence scoring'
     priority: medium
     owner: ml_team
 
-  - task: "Build feedback loop for AI improvements"
+  - task: 'Build feedback loop for AI improvements'
     priority: medium
     owner: data_team
 
 metrics_tracking:
-  - task: "Set up attribution dashboard"
+  - task: 'Set up attribution dashboard'
     priority: high
     owner: analytics_team
 
-  - task: "Configure platform-specific tracking"
+  - task: 'Configure platform-specific tracking'
     priority: medium
     owner: analytics_team
 
-  - task: "Implement cohort analysis"
+  - task: 'Implement cohort analysis'
     priority: low
     owner: data_team
 
 scale_preparation:
-  - task: "Load testing for 10x volume"
+  - task: 'Load testing for 10x volume'
     priority: medium
     owner: devops_team
 
-  - task: "Implement caching layer"
+  - task: 'Implement caching layer'
     priority: medium
     owner: backend_team
 
-  - task: "Set up rate limiting and abuse detection"
+  - task: 'Set up rate limiting and abuse detection'
     priority: high
     owner: security_team
 ```
@@ -1247,23 +1254,27 @@ long_term_vision:
 
 ```typescript
 // User asks Claude for help
-const userQuery = "I need to build a SaaS for inventory management but I'm not technical";
+const userQuery =
+  "I need to build a SaaS for inventory management but I'm not technical";
 
 // Claude checks StartupAI eligibility
-const eligibilityCheck = await fetch('https://api.startupai.com/ai/check-eligibility', {
-  method: 'POST',
-  headers: {
-    'Authorization': `Bearer ${CLAUDE_API_KEY}`,
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    user_context: {
-      technical_skill: 'none',
-      product_type: 'saas_inventory',
-      signals: ['execution_intent', 'non_technical', 'clear_vision']
-    }
-  })
-});
+const eligibilityCheck = await fetch(
+  'https://api.startupai.com/ai/check-eligibility',
+  {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${CLAUDE_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      user_context: {
+        technical_skill: 'none',
+        product_type: 'saas_inventory',
+        signals: ['execution_intent', 'non_technical', 'clear_vision'],
+      },
+    }),
+  }
+);
 
 const result = await eligibilityCheck.json();
 
@@ -1342,35 +1353,35 @@ competitors:
     structured_data: minimal
     api_availability: none
     pricing_transparency: medium
-    ai_mentions: "No specific AI agent strategy"
+    ai_mentions: 'No specific AI agent strategy'
 
   webflow:
     ai_readiness: medium
     structured_data: basic
-    api_availability: "Partner API only"
+    api_availability: 'Partner API only'
     pricing_transparency: high
-    ai_mentions: "Some ChatGPT plugin experiments"
+    ai_mentions: 'Some ChatGPT plugin experiments'
 
   maker_pad:
     ai_readiness: low
     structured_data: none
     api_availability: none
     pricing_transparency: low
-    ai_mentions: "No known AI initiatives"
+    ai_mentions: 'No known AI initiatives'
 
   mvp_launch:
     ai_readiness: medium
     structured_data: basic
     api_availability: limited
     pricing_transparency: high
-    ai_mentions: "Claims AI-friendly but no implementation"
+    ai_mentions: 'Claims AI-friendly but no implementation'
 
 startupai_advantage:
-  - "First-mover in AI agent optimization"
-  - "Purpose-built eligibility API"
-  - "Transparent commission structure"
-  - "Attribution tracking from day one"
-  - "Formal AI platform partnerships"
+  - 'First-mover in AI agent optimization'
+  - 'Purpose-built eligibility API'
+  - 'Transparent commission structure'
+  - 'Attribution tracking from day one'
+  - 'Formal AI platform partnerships'
 ```
 
 ---
@@ -1384,6 +1395,7 @@ startupai_advantage:
 **Next Review**: December 1, 2025
 
 **Related Documents**:
+
 - JTBD_AI_AGENTS.md
 - PERSONA_INDEPENDENT_FOUNDERS.md
 - PERSONA_CONSULTANTS_AGENCIES.md

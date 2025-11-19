@@ -1,21 +1,23 @@
 /**
  * Login Page - Redirect to App Site
- * 
+ *
  * This page redirects users to the app site for login to ensure
  * OAuth flows complete on the same domain (prevents PKCE errors).
  */
 
-"use client"
+'use client';
 
-import { useEffect } from "react"
-import { Loader2 } from "lucide-react"
+import { useEffect } from 'react';
+import { Loader2 } from 'lucide-react';
 
 export default function LoginPage() {
   useEffect(() => {
     // Redirect to app site login page
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://app-startupai-site.netlify.app"
-    window.location.href = `${appUrl}/login`
-  }, [])
+    const appUrl =
+      process.env.NEXT_PUBLIC_APP_URL ||
+      'https://app-startupai-site.netlify.app';
+    window.location.href = `${appUrl}/login`;
+  }, []);
 
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
@@ -41,46 +43,87 @@ export default function LoginPage() {
                 Welcome Back
               </h2>
               <p className="text-muted-foreground text-lg">
-                Continue your journey toward business excellence with personalized expert guidance.
+                Continue your journey toward business excellence with
+                personalized expert guidance.
               </p>
             </div>
             <div className="grid gap-4 text-left">
               <div className="flex items-center gap-3">
                 <div className="bg-primary/10 text-primary flex size-8 items-center justify-center rounded-full">
-                  <svg className="size-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  <svg
+                    className="size-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </div>
-                <span className="text-sm font-medium">Access Your Dashboard</span>
+                <span className="text-sm font-medium">
+                  Access Your Dashboard
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="bg-primary/10 text-primary flex size-8 items-center justify-center rounded-full">
-                  <svg className="size-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  <svg
+                    className="size-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </div>
-                <span className="text-sm font-medium">Direct Expert Communication</span>
+                <span className="text-sm font-medium">
+                  Direct Expert Communication
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="bg-primary/10 text-primary flex size-8 items-center justify-center rounded-full">
-                  <svg className="size-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  <svg
+                    className="size-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </div>
-                <span className="text-sm font-medium">Track Progress & Insights</span>
+                <span className="text-sm font-medium">
+                  Track Progress & Insights
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="bg-primary/10 text-primary flex size-8 items-center justify-center rounded-full">
-                  <svg className="size-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  <svg
+                    className="size-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </div>
-                <span className="text-sm font-medium">Exclusive Resources & Tools</span>
+                <span className="text-sm font-medium">
+                  Exclusive Resources & Tools
+                </span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

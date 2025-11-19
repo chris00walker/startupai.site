@@ -1,59 +1,59 @@
-"use client"
+'use client';
 
-import { useEffect, useMemo, useState } from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Badge } from "@/components/ui/badge"
-import { createClient } from "@/lib/supabase/client"
-import { analytics } from "@/lib/analytics"
+import { useEffect, useMemo, useState } from 'react';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
+import { createClient } from '@/lib/supabase/client';
+import { analytics } from '@/lib/analytics';
 
 type PlanOption = {
-  id: string
-  name: string
-  description: string
-  price: string
-  bestFor: string
-  badge?: string
-}
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  bestFor: string;
+  badge?: string;
+};
 
-type SignupFormProps = React.ComponentProps<"form"> & {
-  planOptions?: PlanOption[]
-  selectedPlan?: string
-  onPlanChange?: (plan: string) => void
-}
+type SignupFormProps = React.ComponentProps<'form'> & {
+  planOptions?: PlanOption[];
+  selectedPlan?: string;
+  onPlanChange?: (plan: string) => void;
+};
 
 export const DEFAULT_PLAN_OPTIONS: PlanOption[] = [
   {
-    id: "founder-platform",
-    name: "Founder Platform",
-    description: "Continuous validation with AI strategist",
-    price: "$199/mo",
-    bestFor: "Founders scaling validated ideas"
+    id: 'founder-platform',
+    name: 'Founder Platform',
+    description: 'Continuous validation with AI strategist',
+    price: '$199/mo',
+    bestFor: 'Founders scaling validated ideas',
   },
   {
-    id: "strategy-sprint",
-    name: "Strategy Sprint",
-    description: "One-week evidence-backed strategy",
-    price: "$1,500",
-    bestFor: "Teams needing rapid direction"
+    id: 'strategy-sprint',
+    name: 'Strategy Sprint',
+    description: 'One-week evidence-backed strategy',
+    price: '$1,500',
+    bestFor: 'Teams needing rapid direction',
   },
   {
-    id: "agency-co-pilot",
-    name: "Agency Co-Pilot",
-    description: "White-label AI workflows for agencies",
-    price: "$499/mo",
-    bestFor: "Consultancies serving multiple clients"
+    id: 'agency-co-pilot',
+    name: 'Agency Co-Pilot',
+    description: 'White-label AI workflows for agencies',
+    price: '$499/mo',
+    bestFor: 'Consultancies serving multiple clients',
   },
   {
-    id: "trial",
-    name: "Free Trial",
-    description: "Test the core evidence experience",
-    price: "$0",
-    bestFor: "Founders exploring fit"
-  }
-]
+    id: 'trial',
+    name: 'Free Trial',
+    description: 'Test the core evidence experience',
+    price: '$0',
+    bestFor: 'Founders exploring fit',
+  },
+];
 
 export function SignupForm({
   className,
@@ -62,57 +62,63 @@ export function SignupForm({
   onPlanChange,
   ...props
 }: SignupFormProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isOAuthLoading, setIsOAuthLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [success, setSuccess] = useState<string | null>(null)
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [company, setCompany] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const supabase = useMemo(() => createClient(), [])
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isOAuthLoading, setIsOAuthLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const supabase = useMemo(() => createClient(), []);
   const [localPlan, setLocalPlan] = useState(() => {
-    if (selectedPlan && planOptions.some((option) => option.id === selectedPlan)) {
-      return selectedPlan
+    if (
+      selectedPlan &&
+      planOptions.some((option) => option.id === selectedPlan)
+    ) {
+      return selectedPlan;
     }
-    return planOptions[0]?.id ?? "trial"
-  })
+    return planOptions[0]?.id ?? 'trial';
+  });
 
   useEffect(() => {
-    if (selectedPlan && planOptions.some((option) => option.id === selectedPlan)) {
-      setLocalPlan(selectedPlan)
+    if (
+      selectedPlan &&
+      planOptions.some((option) => option.id === selectedPlan)
+    ) {
+      setLocalPlan(selectedPlan);
     }
-  }, [selectedPlan, planOptions])
+  }, [selectedPlan, planOptions]);
 
-  const plan = selectedPlan ?? localPlan
+  const plan = selectedPlan ?? localPlan;
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3001"
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3001';
 
   const handlePlanChange = (value: string) => {
     if (!planOptions.some((option) => option.id === value)) {
-      return
+      return;
     }
     if (!selectedPlan) {
-      setLocalPlan(value)
+      setLocalPlan(value);
     }
-    onPlanChange?.(value)
-  }
+    onPlanChange?.(value);
+  };
 
   const handleEmailSignup = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setError(null)
-    setSuccess(null)
+    event.preventDefault();
+    setError(null);
+    setSuccess(null);
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match")
-      return
+      setError('Passwords do not match');
+      return;
     }
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     try {
-      analytics.signup.started(plan)
+      analytics.signup.started(plan);
 
       const { data: result, error } = await supabase.auth.signUp({
         email,
@@ -125,39 +131,41 @@ export function SignupForm({
           },
           emailRedirectTo: `${appUrl}/auth/callback?next=${encodeURIComponent(`/onboarding?plan=${plan}`)}`,
         },
-      })
+      });
 
       if (error) {
-        setError(error.message)
-        setIsSubmitting(false)
-        return
+        setError(error.message);
+        setIsSubmitting(false);
+        return;
       }
 
       if (result.user?.id) {
-        analytics.signup.completed(result.user.id, plan)
+        analytics.signup.completed(result.user.id, plan);
       }
 
-      setSuccess("Check your email to confirm your account. Once verified, you'll be redirected to your dashboard.")
-      setIsSubmitting(false)
+      setSuccess(
+        "Check your email to confirm your account. Once verified, you'll be redirected to your dashboard."
+      );
+      setIsSubmitting(false);
     } catch (err) {
-      console.error(err)
-      setError("Sign up failed. Please try again.")
-      setIsSubmitting(false)
+      console.error(err);
+      setError('Sign up failed. Please try again.');
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const handleGitHubSignup = async () => {
-    setError(null)
-    setSuccess(null)
-    setIsOAuthLoading(true)
+    setError(null);
+    setSuccess(null);
+    setIsOAuthLoading(true);
 
-    analytics.signup.started(plan)
+    analytics.signup.started(plan);
 
     try {
       // In development, handle OAuth directly on marketing site
       // In production, redirect to app site for proper domain handling
-      const isDevelopment = process.env.NODE_ENV === 'development'
-      
+      const isDevelopment = process.env.NODE_ENV === 'development';
+
       if (isDevelopment) {
         // Handle GitHub OAuth directly on marketing site for local dev
         const { error } = await supabase.auth.signInWithOAuth({
@@ -169,11 +177,11 @@ export function SignupForm({
               prompt: 'consent',
             },
           },
-        })
+        });
 
         if (error) {
-          setError(error.message)
-          setIsOAuthLoading(false)
+          setError(error.message);
+          setIsOAuthLoading(false);
         }
       } else {
         // Production: Use proper OAuth flow with onboarding redirect
@@ -186,22 +194,26 @@ export function SignupForm({
               prompt: 'consent',
             },
           },
-        })
+        });
 
         if (error) {
-          setError(error.message)
-          setIsOAuthLoading(false)
+          setError(error.message);
+          setIsOAuthLoading(false);
         }
       }
     } catch (err) {
-      console.error('GitHub signup error:', err)
-      setError('GitHub signup failed. Please try again.')
-      setIsOAuthLoading(false)
+      console.error('GitHub signup error:', err);
+      setError('GitHub signup failed. Please try again.');
+      setIsOAuthLoading(false);
     }
-  }
+  };
 
   return (
-    <form className={cn("flex flex-col gap-6", className)} onSubmit={handleEmailSignup} {...props}>
+    <form
+      className={cn('flex flex-col gap-6', className)}
+      onSubmit={handleEmailSignup}
+      {...props}
+    >
       <div className="flex flex-col items-center gap-2 text-center">
         <h1 className="text-2xl font-bold">Create your account</h1>
         <p className="text-muted-foreground text-sm text-balance">
@@ -217,8 +229,10 @@ export function SignupForm({
                 key={option.id}
                 htmlFor={`plan-${option.id}`}
                 className={cn(
-                  "flex cursor-pointer items-start gap-3 rounded-lg border p-4 transition focus-within:ring-2 focus-within:ring-primary",
-                  plan === option.id ? "border-primary bg-primary/5" : "border-border"
+                  'flex cursor-pointer items-start gap-3 rounded-lg border p-4 transition focus-within:ring-2 focus-within:ring-primary',
+                  plan === option.id
+                    ? 'border-primary bg-primary/5'
+                    : 'border-border'
                 )}
               >
                 <input
@@ -233,11 +247,19 @@ export function SignupForm({
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-2">
                     <span className="font-semibold">{option.name}</span>
-                    {option.badge && <Badge variant="secondary">{option.badge}</Badge>}
-                    <span className="text-sm text-muted-foreground">{option.price}</span>
+                    {option.badge && (
+                      <Badge variant="secondary">{option.badge}</Badge>
+                    )}
+                    <span className="text-sm text-muted-foreground">
+                      {option.price}
+                    </span>
                   </div>
-                  <p className="text-sm text-muted-foreground">{option.description}</p>
-                  <p className="text-xs text-muted-foreground">Best for: {option.bestFor}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {option.description}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Best for: {option.bestFor}
+                  </p>
                 </div>
               </label>
             ))}
@@ -315,7 +337,7 @@ export function SignupForm({
           className="w-full"
           disabled={isSubmitting || isOAuthLoading}
         >
-          {isSubmitting ? "Creating account..." : "Create Account"}
+          {isSubmitting ? 'Creating account...' : 'Create Account'}
         </Button>
         <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
           <span className="bg-background text-muted-foreground relative z-10 px-2">
@@ -329,15 +351,15 @@ export function SignupForm({
           onClick={handleGitHubSignup}
           disabled={isOAuthLoading || isSubmitting}
         >
-          {isOAuthLoading ? "Redirecting to GitHub..." : "Sign up with GitHub"}
+          {isOAuthLoading ? 'Redirecting to GitHub...' : 'Sign up with GitHub'}
         </Button>
       </div>
       <div className="text-center text-sm">
-        Already have an account?{" "}
+        Already have an account?{' '}
         <a href="/login" className="underline underline-offset-4">
           Login
         </a>
       </div>
     </form>
-  )
+  );
 }

@@ -45,7 +45,6 @@ export function Navigation() {
     setIsOpen(false);
   };
 
-
   return (
     <header className="bg-slate-900 sticky top-0 z-50 border-b border-slate-800">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -106,11 +105,28 @@ export function Navigation() {
 
           {/* Action Buttons */}
           <div className="hidden md:flex items-center gap-3 ml-6">
-            <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white hover:bg-slate-800 text-sm" asChild>
-              <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/signup`}>Sign-up</a>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-gray-300 hover:text-white hover:bg-slate-800 text-sm"
+              asChild
+            >
+              <a
+                href={`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001'}/signup`}
+              >
+                Sign-up
+              </a>
             </Button>
-            <Button size="sm" className="bg-primary hover:bg-primary/90 text-white text-sm" asChild>
-              <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/login`}>Login</a>
+            <Button
+              size="sm"
+              className="bg-primary hover:bg-primary/90 text-white text-sm"
+              asChild
+            >
+              <a
+                href={`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001'}/login`}
+              >
+                Login
+              </a>
             </Button>
           </div>
 
@@ -118,16 +134,19 @@ export function Navigation() {
           <div className="md:hidden flex items-center">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
+                <Button
+                  variant="ghost"
+                  size="icon"
                   className="text-gray-300 hover:text-white hover:bg-slate-800"
                 >
                   <Menu className="h-6 w-6" />
                   <span className="sr-only">Toggle navigation menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-slate-900 border-slate-800">
+              <SheetContent
+                side="right"
+                className="bg-slate-900 border-slate-800"
+              >
                 <SheetHeader>
                   <SheetTitle className="text-white">Navigation</SheetTitle>
                 </SheetHeader>
@@ -142,13 +161,14 @@ export function Navigation() {
                   >
                     Product
                   </Link>
-                  
+
                   <Link
                     href="/services/advisory"
                     onClick={handleMobileMenuClick}
                     className={cn(
                       'block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 rounded-md transition-colors',
-                      isActive('/services/advisory') && 'text-white bg-slate-800'
+                      isActive('/services/advisory') &&
+                        'text-white bg-slate-800'
                     )}
                   >
                     Advisory
@@ -177,20 +197,28 @@ export function Navigation() {
                   </Link>
 
                   <div className="flex flex-col gap-2 mt-4">
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       className="text-gray-300 hover:text-white hover:bg-slate-800"
                       onClick={handleMobileMenuClick}
                       asChild
                     >
-                      <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/signup`}>Sign-up</a>
+                      <a
+                        href={`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001'}/signup`}
+                      >
+                        Sign-up
+                      </a>
                     </Button>
-                    <Button 
+                    <Button
                       className="bg-primary hover:bg-primary/90 text-white"
                       onClick={handleMobileMenuClick}
                       asChild
                     >
-                      <a href={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001"}/login`}>Login</a>
+                      <a
+                        href={`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001'}/login`}
+                      >
+                        Login
+                      </a>
                     </Button>
                   </div>
                 </div>
@@ -208,7 +236,7 @@ function ListItem({
   children,
   href,
   ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+}: React.ComponentPropsWithoutRef<'li'> & { href: string }) {
   return (
     <li {...props}>
       <NavigationMenuLink asChild>

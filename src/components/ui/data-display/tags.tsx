@@ -1,11 +1,11 @@
-import * as React from "react"
-import { X } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Badge, type BadgeProps } from "@/components/ui/base/badge"
+import * as React from 'react';
+import { X } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { Badge, type BadgeProps } from '@/components/ui/base/badge';
 
 export interface TagProps extends BadgeProps {
-  onRemove?: () => void
-  removable?: boolean
+  onRemove?: () => void;
+  removable?: boolean;
 }
 
 const Tag = React.forwardRef<HTMLDivElement, TagProps>(
@@ -14,8 +14,8 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>(
       <Badge
         ref={ref}
         className={cn(
-          "inline-flex items-center gap-1",
-          removable && "pr-1",
+          'inline-flex items-center gap-1',
+          removable && 'pr-1',
           className
         )}
         {...props}
@@ -32,15 +32,15 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>(
           </button>
         )}
       </Badge>
-    )
+    );
   }
-)
-Tag.displayName = "Tag"
+);
+Tag.displayName = 'Tag';
 
 export interface TagListProps extends React.HTMLAttributes<HTMLDivElement> {
-  tags: Array<{ id: string; label: string; variant?: BadgeProps["variant"] }>
-  onRemove?: (id: string) => void
-  removable?: boolean
+  tags: Array<{ id: string; label: string; variant?: BadgeProps['variant'] }>;
+  onRemove?: (id: string) => void;
+  removable?: boolean;
 }
 
 const TagList = React.forwardRef<HTMLDivElement, TagListProps>(
@@ -48,7 +48,7 @@ const TagList = React.forwardRef<HTMLDivElement, TagListProps>(
     return (
       <div
         ref={ref}
-        className={cn("flex flex-wrap gap-2", className)}
+        className={cn('flex flex-wrap gap-2', className)}
         {...props}
       >
         {tags.map((tag) => (
@@ -62,9 +62,9 @@ const TagList = React.forwardRef<HTMLDivElement, TagListProps>(
           </Tag>
         ))}
       </div>
-    )
+    );
   }
-)
-TagList.displayName = "TagList"
+);
+TagList.displayName = 'TagList';
 
-export { Tag, TagList }
+export { Tag, TagList };

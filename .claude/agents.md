@@ -11,6 +11,7 @@ This file provides explicit instructions and context for AI‑based coding assis
 Based on comprehensive market research (see `/docs/business/` directory), StartupAI addresses a validated market need where entrepreneurs feel "overwhelmed with startup ideas" and "unsure how to validate them." The platform targets the $300-$1,000 market currently served by freelance consultants and fragmented tools.
 
 **Key Value Propositions:**
+
 - **Speed**: Transform ideas into Business Model Canvas in minutes vs. weeks
 - **Evidence-Based**: All recommendations backed by research and citations
 - **Privacy-First**: Enterprise-grade data protection for sensitive business ideas
@@ -19,6 +20,7 @@ Based on comprehensive market research (see `/docs/business/` directory), Startu
 ## Architecture Role
 
 **StartupAI.site** serves as:
+
 1. **Marketing Hub**: Landing pages, feature explanations, pricing tiers
 2. **Authentication Gateway**: User registration and login
 3. **Documentation Portal**: Business research, case studies, methodology
@@ -48,7 +50,7 @@ Based on comprehensive market research (see `/docs/business/` directory), Startu
 
 Before modifying or running the application, execute the following commands:
 
-```text
+````text
 | Task                     | Command          |
 | ------------------------ | ---------------- |
 | Install dependencies     | `pnpm install`   |
@@ -116,13 +118,15 @@ Create new files in the appropriate folder following existing patterns. Avoid re
 ## StartupAI-Specific Conventions
 
 ### Component Organization
-```
+````
+
 /src/components/
-  ├── ui/           # shadcn/ui components
-  ├── forms/        # Form components (login, contact, etc.)
-  ├── layout/       # Headers, footers, navigation
-  └── marketing/    # Landing page sections
-```
+├── ui/ # shadcn/ui components
+├── forms/ # Form components (login, contact, etc.)
+├── layout/ # Headers, footers, navigation
+└── marketing/ # Landing page sections
+
+````
 
 ### Business Content Integration
 - Reference business research from `/docs/business/` when creating marketing copy
@@ -191,7 +195,7 @@ pnpm test:watch
 
 # Run tests with coverage
 pnpm test:coverage
-```
+````
 
 ## Testing Guidelines
 
@@ -219,7 +223,7 @@ Before opening a pull request, verify all checks pass:
 
 ```bash
 pnpm run lint       # Style and linting
-pnpm run type-check # Static type checking  
+pnpm run type-check # Static type checking
 pnpm run test       # Unit and integration tests
 pnpm run build      # Production build
 pnpm dev           # Verify development server starts correctly
@@ -228,12 +232,14 @@ pnpm dev           # Verify development server starts correctly
 ## StartupAI-Specific Requirements
 
 ### Documentation Updates
+
 - Update `.claude/agents.md` if project structure, APIs, or conventions change
 - Update business documentation in `/docs/business/` if content strategy changes
 - Maintain cross-reference integrity between sequenced documents (1-6)
 - Document any new environment variables or configuration requirements
 
 ### Authentication Considerations
+
 - **If modifying login/auth**: Test Supabase Auth integration and JWT token generation
 - **If database changes**: Update Drizzle ORM schemas and run migrations
 - **If vector search changes**: Test pgvector functions and embedding generation
@@ -241,11 +247,13 @@ pnpm dev           # Verify development server starts correctly
 - **Database testing**: Verify RLS policies and cross-site data access
 
 ### Content and Marketing Changes
+
 - **Evidence-based claims**: Cite sources from `/docs/business/` research
 - **Pricing information**: Ensure alignment with validated pricing tiers ($99-$199, $500-$1000, $1000-$3000)
 - **Value propositions**: Maintain consistency with established business messaging
 
 ### UI/UX Changes
+
 - **Design consistency**: Use shadcn/ui components and Tailwind patterns
 - **Responsive design**: Test across mobile, tablet, and desktop viewports
 - **Accessibility**: Ensure WCAG compliance for key user interactions
@@ -254,7 +262,9 @@ pnpm dev           # Verify development server starts correctly
 ## Commit and PR Standards
 
 ### Commit Format
+
 Use conventional commits: `[type] description`
+
 - `[feature]` - New functionality
 - `[fix]` - Bug fixes
 - `[docs]` - Documentation updates
@@ -263,21 +273,26 @@ Use conventional commits: `[type] description`
 - `[test]` - Test additions/updates
 
 ### PR Description Template
+
 ```markdown
 ## Changes
+
 - Brief description of what changed
 
 ## Business Context
+
 - Reference to relevant business research if applicable
 - Impact on user experience or business goals
 
 ## Testing
+
 - [ ] All automated tests pass
 - [ ] Manual testing completed
 - [ ] Cross-browser testing (if UI changes)
 - [ ] Authentication flow tested (if relevant)
 
 ## Screenshots/GIFs
+
 - Include for any UI changes
 ```
 

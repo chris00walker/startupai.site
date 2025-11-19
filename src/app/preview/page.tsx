@@ -2,7 +2,8 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Preview | Chris Walker Consulting',
-  description: 'Preview of upcoming features and services from Chris Walker Consulting.',
+  description:
+    'Preview of upcoming features and services from Chris Walker Consulting.',
 };
 
 export default function PreviewPage() {
@@ -17,7 +18,7 @@ export default function PreviewPage() {
             <p className="text-xl text-gray-600 mb-12">
               Get a sneak peek at upcoming features and services.
             </p>
-            
+
             <div className="text-center py-12">
               <p className="text-gray-500 text-lg">
                 Exciting new features coming soon. Stay tuned for updates.

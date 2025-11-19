@@ -10,13 +10,15 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'Chris Walker | eCommerce Strategy & Development',
-  description: 'Expert eCommerce strategy and development services for early-stage startups. Validate, build, and scale your custom platform with data-driven approaches.',
+  description:
+    'Expert eCommerce strategy and development services for early-stage startups. Validate, build, and scale your custom platform with data-driven approaches.',
   keywords: ['ecommerce', 'consulting', 'development', 'strategy', 'startup'],
   authors: [{ name: 'Chris Walker' }],
   robots: 'index, follow',
   openGraph: {
     title: 'Chris Walker | eCommerce Strategy & Development',
-    description: 'Expert eCommerce strategy and development services for early-stage startups.',
+    description:
+      'Expert eCommerce strategy and development services for early-stage startups.',
     type: 'website',
     locale: 'en_US',
   },

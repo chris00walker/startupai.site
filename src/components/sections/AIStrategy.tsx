@@ -2,29 +2,40 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { WaitlistForm } from '@/components/waitlist-form';
 import { Brain, Layout, FlaskConical, ShieldCheck } from 'lucide-react';
 
 const features = [
   {
     title: 'Strategy Canvases',
-    description: 'Instant Value Proposition & Business Model canvases from your idea and market signals.',
+    description:
+      'Instant Value Proposition & Business Model canvases from your idea and market signals.',
     Icon: Layout,
   },
   {
     title: 'Experiment Design',
-    description: 'Frame tests using Testing Business Ideas patterns and generate action-ready experiments.',
+    description:
+      'Frame tests using Testing Business Ideas patterns and generate action-ready experiments.',
     Icon: FlaskConical,
   },
   {
     title: 'AI Strategy Brain',
-    description: 'Compose domain models, goals, and roadmaps that stay in sync as your learning evolves.',
+    description:
+      'Compose domain models, goals, and roadmaps that stay in sync as your learning evolves.',
     Icon: Brain,
   },
   {
     title: 'Privacy & Control',
-    description: 'Your data stays private. Transparent inputs, editable outputs, and export-anywhere control.',
+    description:
+      'Your data stays private. Transparent inputs, editable outputs, and export-anywhere control.',
     Icon: ShieldCheck,
   },
 ] as const;
@@ -41,12 +52,16 @@ export function AIStrategySection() {
                 AI Strategy Assistant
               </h2>
               <p className="mt-4 text-lg text-gray-600">
-                From canvas to execution: generate strategy canvases, design experiments, and turn
-                learning into a concrete plan. Built for founders, indie hackers, and consultants.
+                From canvas to execution: generate strategy canvases, design
+                experiments, and turn learning into a concrete plan. Built for
+                founders, indie hackers, and consultants.
               </p>
             </div>
 
-            <Card id="waitlist" className="border-primary/20 shadow-sm scroll-mt-24">
+            <Card
+              id="waitlist"
+              className="border-primary/20 shadow-sm scroll-mt-24"
+            >
               <CardHeader>
                 <CardTitle>Request Early Access</CardTitle>
                 <CardDescription>
@@ -68,9 +83,12 @@ export function AIStrategySection() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-10">
-            <h3 className="text-2xl md:text-3xl font-semibold tracking-tight">What you can do</h3>
+            <h3 className="text-2xl md:text-3xl font-semibold tracking-tight">
+              What you can do
+            </h3>
             <p className="mt-2 text-gray-600">
-              Practical strategy building blocks that work together and stay aligned as you learn.
+              Practical strategy building blocks that work together and stay
+              aligned as you learn.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">

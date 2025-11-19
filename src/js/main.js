@@ -2,16 +2,16 @@
 document.addEventListener('DOMContentLoaded', () => {
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
-  
+
   if (mobileMenuButton && mobileMenu) {
     mobileMenuButton.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
   }
-  
+
   // Back to top button
   const backToTopButton = document.getElementById('back-to-top');
-  
+
   if (backToTopButton) {
     window.addEventListener('scroll', () => {
       if (window.pageYOffset > 300) {
@@ -22,30 +22,30 @@ document.addEventListener('DOMContentLoaded', () => {
         backToTopButton.classList.add('opacity-0', 'invisible');
       }
     });
-    
+
     backToTopButton.addEventListener('click', (e) => {
       e.preventDefault();
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     });
   }
-  
+
   // Smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
       if (targetId === '#') return;
-      
+
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
         window.scrollTo({
           top: targetElement.offsetTop - 100,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
-        
+
         // Close mobile menu if open
         if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
           mobileMenu.classList.add('hidden');

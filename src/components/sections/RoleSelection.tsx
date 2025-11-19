@@ -3,19 +3,29 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Lightbulb, Users, CheckCircle2 } from 'lucide-react';
 
 export function RoleSelection() {
-  const [hoveredCard, setHoveredCard] = React.useState<'founder' | 'consultant' | null>(null);
+  const [hoveredCard, setHoveredCard] = React.useState<
+    'founder' | 'consultant' | null
+  >(null);
 
   const roles = [
     {
       id: 'founder' as const,
       title: 'For Founders',
       badge: 'Free Trial Available',
-      description: 'Independent entrepreneurs validating and building their startup ideas',
+      description:
+        'Independent entrepreneurs validating and building their startup ideas',
       benefits: [
         'Evidence-based validation framework',
         'AI-powered strategy guidance',
@@ -57,8 +67,8 @@ export function RoleSelection() {
             Choose Your Path
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Whether you're building your own startup or helping others build theirs,
-            we have the tools and workflows designed for your needs.
+            Whether you're building your own startup or helping others build
+            theirs, we have the tools and workflows designed for your needs.
           </p>
         </div>
 
@@ -67,7 +77,8 @@ export function RoleSelection() {
           {roles.map((role) => {
             const IconComponent = role.icon;
             const isHovered = hoveredCard === role.id;
-            const isOtherHovered = hoveredCard !== null && hoveredCard !== role.id;
+            const isOtherHovered =
+              hoveredCard !== null && hoveredCard !== role.id;
 
             return (
               <Card
@@ -78,18 +89,22 @@ export function RoleSelection() {
                   isHovered
                     ? 'scale-105 shadow-2xl'
                     : isOtherHovered
-                    ? 'scale-95 opacity-75'
-                    : 'scale-100'
+                      ? 'scale-95 opacity-75'
+                      : 'scale-100'
                 } ${role.accentColor} border-2`}
               >
                 {/* Gradient overlay on hover */}
                 {isHovered && (
-                  <div className={`absolute inset-0 bg-gradient-to-br ${role.primaryColor} opacity-5 rounded-xl transition-opacity duration-300`}></div>
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${role.primaryColor} opacity-5 rounded-xl transition-opacity duration-300`}
+                  ></div>
                 )}
 
                 <CardHeader className="relative">
                   <div className="flex items-start justify-between mb-2">
-                    <div className={`p-3 rounded-lg bg-gradient-to-br ${role.primaryColor} shadow-lg`}>
+                    <div
+                      className={`p-3 rounded-lg bg-gradient-to-br ${role.primaryColor} shadow-lg`}
+                    >
                       <IconComponent className="h-6 w-6 text-white" />
                     </div>
                     <Badge variant="secondary" className="text-xs">
@@ -107,7 +122,9 @@ export function RoleSelection() {
                     {role.benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start gap-2">
                         <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">{benefit}</span>
+                        <span className="text-sm text-muted-foreground">
+                          {benefit}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -120,9 +137,11 @@ export function RoleSelection() {
                       size="lg"
                     >
                       Get Started
-                      <ArrowRight className={`ml-2 h-4 w-4 transition-transform duration-300 ${
-                        isHovered ? 'translate-x-1' : ''
-                      }`} />
+                      <ArrowRight
+                        className={`ml-2 h-4 w-4 transition-transform duration-300 ${
+                          isHovered ? 'translate-x-1' : ''
+                        }`}
+                      />
                     </Button>
                   </Link>
                 </CardFooter>
@@ -135,7 +154,10 @@ export function RoleSelection() {
         <div className="text-center mt-12">
           <p className="text-sm text-muted-foreground">
             Not sure which path is right for you?{' '}
-            <Link href="/pricing" className="text-primary hover:underline underline-offset-4 font-medium">
+            <Link
+              href="/pricing"
+              className="text-primary hover:underline underline-offset-4 font-medium"
+            >
               Pricing
             </Link>
           </p>

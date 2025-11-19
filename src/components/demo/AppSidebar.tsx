@@ -1,7 +1,7 @@
-"use client"
+'use client';
 
-import * as React from "react"
-import Link from "next/link"
+import * as React from 'react';
+import Link from 'next/link';
 import {
   BarChart3,
   Brain,
@@ -13,7 +13,7 @@ import {
   Settings,
   Users,
   Workflow,
-} from "lucide-react"
+} from 'lucide-react';
 
 import {
   Sidebar,
@@ -26,71 +26,71 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
-import { Button } from "@/components/ui/button"
+} from '@/components/ui/sidebar';
+import { Button } from '@/components/ui/button';
 
 // Strategyzer AI navigation data
 const navigationData = {
   main: [
     {
-      title: "Dashboard",
-      url: "/demo/dashboard",
+      title: 'Dashboard',
+      url: '/demo/dashboard',
       icon: LayoutDashboard,
     },
     {
-      title: "Client Portfolio",
-      url: "/demo/clients",
+      title: 'Client Portfolio',
+      url: '/demo/clients',
       icon: Users,
     },
     {
-      title: "Canvas Gallery",
-      url: "/demo/canvas",
+      title: 'Canvas Gallery',
+      url: '/demo/canvas',
       icon: Palette,
     },
     {
-      title: "AI Workflows",
-      url: "/demo/workflows",
+      title: 'AI Workflows',
+      url: '/demo/workflows',
       icon: Workflow,
     },
     {
-      title: "Analytics",
-      url: "/demo/analytics",
+      title: 'Analytics',
+      url: '/demo/analytics',
       icon: BarChart3,
     },
   ],
   canvasTypes: [
     {
-      title: "Value Proposition Canvas",
-      url: "/demo/canvas/vpc",
+      title: 'Value Proposition Canvas',
+      url: '/demo/canvas/vpc',
       icon: Lightbulb,
-      description: "Customer Profile + Value Map",
+      description: 'Customer Profile + Value Map',
     },
     {
-      title: "Business Model Canvas",
-      url: "/demo/canvas/bmc",
+      title: 'Business Model Canvas',
+      url: '/demo/canvas/bmc',
       icon: Brain,
-      description: "9-block BMC structure",
+      description: '9-block BMC structure',
     },
     {
-      title: "Testing Business Ideas",
-      url: "/demo/canvas/tbi",
+      title: 'Testing Business Ideas',
+      url: '/demo/canvas/tbi',
       icon: FileText,
-      description: "Experiment design framework",
+      description: 'Experiment design framework',
     },
   ],
   settings: [
     {
-      title: "Back to Site",
-      url: "/",
+      title: 'Back to Site',
+      url: '/',
       icon: Home,
     },
     {
-      title: "Settings",
-      url: "/demo/settings",
+      title: 'Settings',
+      url: '/demo/settings',
       icon: Settings,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -108,7 +108,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </div>
         </Link>
       </SidebarHeader>
-      
+
       <SidebarContent>
         {/* Main Navigation */}
         <SidebarGroup>
@@ -166,11 +166,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      
+
       <SidebarFooter>
-        <div className="p-2">
-        </div>
+        <div className="p-2"></div>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

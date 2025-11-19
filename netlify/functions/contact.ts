@@ -1,4 +1,4 @@
-import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
+import type { Handler, HandlerEvent, HandlerContext } from '@netlify/functions';
 import { createClient } from '@supabase/supabase-js';
 
 interface ContactPayload {
@@ -40,7 +40,7 @@ async function sendEmailNotification(data: ContactPayload) {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -74,7 +74,10 @@ async function sendEmailNotification(data: ContactPayload) {
   }
 }
 
-export const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+export const handler: Handler = async (
+  event: HandlerEvent,
+  context: HandlerContext
+) => {
   // CORS headers
   const headers = {
     'Access-Control-Allow-Origin': '*',
@@ -110,7 +113,10 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ ok: false, error: 'Name must be at least 2 characters' }),
+        body: JSON.stringify({
+          ok: false,
+          error: 'Name must be at least 2 characters',
+        }),
       };
     }
 
@@ -134,15 +140,19 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ ok: false, error: 'Message must be at least 10 characters' }),
+        body: JSON.stringify({
+          ok: false,
+          error: 'Message must be at least 10 characters',
+        }),
       };
     }
 
     // Extract metadata from event
     const userAgent = event.headers['user-agent'] || undefined;
-    const ipAddress = event.headers['x-forwarded-for'] ||
-                      event.headers['x-real-ip'] ||
-                      undefined;
+    const ipAddress =
+      event.headers['x-forwarded-for'] ||
+      event.headers['x-real-ip'] ||
+      undefined;
 
     // Get Supabase client
     const supabase = getSupabaseClient();
@@ -173,13 +183,13 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
         body: JSON.stringify({
           ok: false,
           error: 'Failed to save contact submission',
-          details: error.message
+          details: error.message,
         }),
       };
     }
 
     // Send email notification (fire and forget)
-    sendEmailNotification(body).catch(err => {
+    sendEmailNotification(body).catch((err) => {
       console.error('[contact] Email notification failed:', err);
     });
 
@@ -193,12 +203,12 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
         id: data.id,
       }),
     };
-
   } catch (error) {
     console.error('[contact] Unexpected error:', error);
 
     // Return more helpful error message
-    const errorMessage = error instanceof Error ? error.message : 'Internal server error';
+    const errorMessage =
+      error instanceof Error ? error.message : 'Internal server error';
 
     return {
       statusCode: 500,
@@ -206,7 +216,7 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
       body: JSON.stringify({
         ok: false,
         error: 'Internal server error',
-        details: errorMessage
+        details: errorMessage,
       }),
     };
   }

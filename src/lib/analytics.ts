@@ -1,14 +1,14 @@
 /**
  * Analytics Helper Utilities for PostHog
- * 
+ *
  * Provides type-safe event tracking for marketing site analytics.
  * Use these helpers instead of calling posthog directly for consistency.
  */
 
-import posthog from 'posthog-js'
+import posthog from 'posthog-js';
 
 // Marketing Site Events
-export type MarketingEvent = 
+export type MarketingEvent =
   | 'page_view'
   | 'signup_started'
   | 'signup_completed'
@@ -18,10 +18,10 @@ export type MarketingEvent =
   | 'contact_form_submitted'
   | 'service_clicked'
   | 'case_study_viewed'
-  | 'blog_post_viewed'
+  | 'blog_post_viewed';
 
 interface EventProperties {
-  [key: string]: string | number | boolean | undefined
+  [key: string]: string | number | boolean | undefined;
 }
 
 /**
@@ -35,9 +35,9 @@ export const trackEvent = (
     posthog.capture(eventName, {
       ...properties,
       timestamp: new Date().toISOString(),
-    })
+    });
   }
-}
+};
 
 /**
  * Identify a user after authentication
@@ -45,61 +45,59 @@ export const trackEvent = (
 export const identifyUser = (
   userId: string,
   properties?: {
-    email?: string
-    name?: string
-    role?: string
-    plan?: string
-    [key: string]: string | undefined
+    email?: string;
+    name?: string;
+    role?: string;
+    plan?: string;
+    [key: string]: string | undefined;
   }
 ) => {
   if (typeof window !== 'undefined') {
-    posthog.identify(userId, properties)
+    posthog.identify(userId, properties);
   }
-}
+};
 
 /**
  * Track signup flow
  */
 export const analytics = {
   signup: {
-    started: (source?: string) => 
-      trackEvent('signup_started', { source }),
+    started: (source?: string) => trackEvent('signup_started', { source }),
     completed: (userId: string, plan: string) => {
-      trackEvent('signup_completed', { plan })
-      identifyUser(userId, { plan })
+      trackEvent('signup_completed', { plan });
+      identifyUser(userId, { plan });
     },
   },
-  
+
   pricing: {
-    viewed: (referrer?: string) => 
-      trackEvent('pricing_viewed', { referrer }),
+    viewed: (referrer?: string) => trackEvent('pricing_viewed', { referrer }),
   },
-  
+
   demo: {
-    requested: (companyName?: string) => 
+    requested: (companyName?: string) =>
       trackEvent('demo_requested', { companyName }),
   },
-  
+
   contact: {
-    submitted: (subject?: string) => 
+    submitted: (subject?: string) =>
       trackEvent('contact_form_submitted', { subject }),
   },
-  
+
   content: {
-    caseStudyViewed: (title: string) => 
+    caseStudyViewed: (title: string) =>
       trackEvent('case_study_viewed', { title }),
-    blogPostViewed: (title: string) => 
+    blogPostViewed: (title: string) =>
       trackEvent('blog_post_viewed', { title }),
-    serviceClicked: (serviceName: string) => 
+    serviceClicked: (serviceName: string) =>
       trackEvent('service_clicked', { service: serviceName }),
   },
-}
+};
 
 /**
  * Reset user identity (on logout)
  */
 export const resetUser = () => {
   if (typeof window !== 'undefined') {
-    posthog.reset()
+    posthog.reset();
   }
-}
+};

@@ -7,7 +7,7 @@
     /* ============================================ */
     /* DESIGN SYSTEM TOKENS - Phase 1 Implementation */
     /* ============================================ */
-    
+
     /* ---------- Color System ---------- */
     /* Semantic colors with HSL values for flexibility */
     --background: 0 0% 100%;
@@ -35,11 +35,11 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    
+
     /* Layout-specific colors */
     --container: 0 0% 100%;
     --container-foreground: 222.2 84% 4.9%;
-    
+
     /* Sidebar colors */
     --sidebar: 222.2 84% 4.9%;
     --sidebar-foreground: 210 40% 98%;
@@ -90,11 +90,28 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family:
+      'Inter',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      sans-serif;
   }
-  
+
   /* Ensure all text content is selectable by default */
-  p, h1, h2, h3, h4, h5, h6, span, div, section, article, main {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  div,
+  section,
+  article,
+  main {
     -webkit-user-select: text;
     -moz-user-select: text;
     -ms-user-select: text;
@@ -108,7 +125,7 @@
     @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50;
     position: relative;
   }
-  
+
   .business-gradient::before {
     content: '';
     position: absolute;
@@ -116,27 +133,29 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, 
-      hsl(var(--primary) / 0.05) 0%, 
-      transparent 25%, 
-      transparent 75%, 
-      hsl(var(--primary) / 0.03) 100%);
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.05) 0%,
+      transparent 25%,
+      transparent 75%,
+      hsl(var(--primary) / 0.03) 100%
+    );
     animation: shimmer 8s ease-in-out infinite;
     pointer-events: none;
   }
-  
+
   .business-header {
     @apply bg-white/95 backdrop-blur-md border-b border-border shadow-lg;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .business-card {
     @apply bg-card border border-border rounded-xl shadow-lg hover:shadow-2xl;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
   }
-  
+
   .business-card::before {
     content: '';
     position: absolute;
@@ -144,31 +163,44 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.1), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary) / 0.1),
+      transparent
+    );
     transition: left 0.6s;
   }
-  
+
   .business-card:hover::before {
     left: 100%;
   }
-  
+
   .business-card:hover {
     transform: translateY(-4px);
     border-color: hsl(var(--primary) / 0.3);
   }
-  
+
   .business-card-header {
     @apply p-6 border-b border-border;
-    background: linear-gradient(135deg, hsl(var(--background)), hsl(var(--muted) / 0.3));
+    background: linear-gradient(
+      135deg,
+      hsl(var(--background)),
+      hsl(var(--muted) / 0.3)
+    );
   }
-  
+
   .business-card-content {
     @apply p-6;
   }
-  
+
   .business-title {
     @apply text-3xl font-bold text-foreground mb-2;
-    background: linear-gradient(135deg, hsl(var(--foreground)), hsl(var(--primary)));
+    background: linear-gradient(
+      135deg,
+      hsl(var(--foreground)),
+      hsl(var(--primary))
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -177,27 +209,31 @@
     -ms-user-select: text;
     user-select: text;
   }
-  
+
   .business-subtitle {
     @apply text-lg text-muted-foreground;
   }
-  
+
   .business-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-  
+
   .status-indicator {
     @apply h-3 w-3 rounded-full;
     animation: pulse-glow 2s ease-in-out infinite;
   }
-  
+
   .metric-card {
     @apply business-card text-center;
   }
-  
+
   .metric-value {
     @apply text-3xl font-bold mb-1;
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.7));
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)),
+      hsl(var(--primary) / 0.7)
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -206,41 +242,49 @@
     -ms-user-select: text;
     user-select: text;
   }
-  
+
   .metric-label {
     @apply text-sm text-muted-foreground;
   }
-  
+
   .tech-grid {
-    background-image: 
+    background-image:
       linear-gradient(rgba(var(--primary-rgb) / 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(var(--primary-rgb) / 0.03) 1px, transparent 1px);
+      linear-gradient(
+        90deg,
+        rgba(var(--primary-rgb) / 0.03) 1px,
+        transparent 1px
+      );
     background-size: 20px 20px;
     animation: grid-move 20s linear infinite;
   }
-  
+
   .floating-element {
     animation: float 6s ease-in-out infinite;
     pointer-events: none;
   }
-  
+
   .glow-effect {
-    box-shadow: 
+    box-shadow:
       0 0 20px hsl(var(--primary) / 0.1),
       0 0 40px hsl(var(--primary) / 0.05),
       inset 0 1px 0 hsl(var(--primary) / 0.1);
   }
-  
+
   .glass-effect {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
-  
+
   .gradient-blob {
     animation: morph 8s ease-in-out infinite;
-    background: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--primary) / 0.05));
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.1),
+      hsl(var(--primary) / 0.05)
+    );
     filter: blur(40px);
   }
 
@@ -311,7 +355,11 @@
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.7));
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)),
+      hsl(var(--primary) / 0.7)
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -320,55 +368,95 @@
     -ms-user-select: text;
     user-select: text;
   }
-  
+
   .border-gradient {
     border: 1px solid transparent;
-    background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
-                linear-gradient(135deg, hsl(var(--primary) / 0.3), hsl(var(--primary) / 0.1)) border-box;
+    background:
+      linear-gradient(hsl(var(--background)), hsl(var(--background)))
+        padding-box,
+      linear-gradient(
+          135deg,
+          hsl(var(--primary) / 0.3),
+          hsl(var(--primary) / 0.1)
+        )
+        border-box;
   }
 }
 
 @keyframes shimmer {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { 
+  0%,
+  100% {
     box-shadow: 0 0 5px hsl(var(--primary) / 0.5);
     transform: scale(1);
   }
-  50% { 
+  50% {
     box-shadow: 0 0 20px hsl(var(--primary) / 0.8);
     transform: scale(1.1);
   }
 }
 
 @keyframes grid-move {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(20px, 20px); }
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(20px, 20px);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes pulse-subtle {
-  0%, 100% { opacity: 0.15; }
-  50% { opacity: 0.25; }
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.25;
+  }
 }
 
 @keyframes drift {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  33% { transform: translate(30px, -30px) rotate(120deg); }
-  66% { transform: translate(-20px, 20px) rotate(240deg); }
-  100% { transform: translate(0, 0) rotate(360deg); }
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(30px, -30px) rotate(120deg);
+  }
+  66% {
+    transform: translate(-20px, 20px) rotate(240deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
 }
 
 @keyframes morph {
-  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  0%,
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
 }
 
 /* ===================================== */

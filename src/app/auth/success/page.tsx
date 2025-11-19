@@ -1,5 +1,5 @@
-import { Suspense } from 'react'
-import { CheckCircle } from 'lucide-react'
+import { Suspense } from 'react';
+import { CheckCircle } from 'lucide-react';
 
 function AuthSuccessContent() {
   return (
@@ -11,12 +11,13 @@ function AuthSuccessContent() {
             Authentication Successful
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            You have been successfully authenticated. Redirecting to your dashboard...
+            You have been successfully authenticated. Redirecting to your
+            dashboard...
           </p>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default function AuthSuccessPage() {
@@ -24,5 +25,5 @@ export default function AuthSuccessPage() {
     <Suspense fallback={<div>Loading...</div>}>
       <AuthSuccessContent />
     </Suspense>
-  )
+  );
 }

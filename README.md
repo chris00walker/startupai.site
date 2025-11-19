@@ -11,15 +11,15 @@ This repository hosts the public marketing surface for StartupAI. It positions t
 
 ## Tech Stack
 
-| Layer | Tooling | Notes |
-| --- | --- | --- |
-| Framework | Next.js 15 + Turbopack dev server | App Router, React 19, static export workflow. |
-| Language | TypeScript 5.8 | Strict mode with bundler module resolution. |
-| UI | Tailwind CSS + Shadcn UI | `components.json` tracks generator config. |
-| Forms | React Hook Form + Zod | Used by waitlist, contact, and sign-up flows. |
-| Auth | Supabase Auth (browser client) | `src/lib/supabase/client.ts` wraps `@supabase/ssr`. |
-| Analytics | PostHog | Bootstraps in `instrumentation-client.ts`; helpers in `src/lib/analytics.ts`. |
-| Deployment | Netlify | `netlify.toml` sets build command, redirects, headers, env vars. |
+| Layer      | Tooling                           | Notes                                                                         |
+| ---------- | --------------------------------- | ----------------------------------------------------------------------------- |
+| Framework  | Next.js 15 + Turbopack dev server | App Router, React 19, static export workflow.                                 |
+| Language   | TypeScript 5.8                    | Strict mode with bundler module resolution.                                   |
+| UI         | Tailwind CSS + Shadcn UI          | `components.json` tracks generator config.                                    |
+| Forms      | React Hook Form + Zod             | Used by waitlist, contact, and sign-up flows.                                 |
+| Auth       | Supabase Auth (browser client)    | `src/lib/supabase/client.ts` wraps `@supabase/ssr`.                           |
+| Analytics  | PostHog                           | Bootstraps in `instrumentation-client.ts`; helpers in `src/lib/analytics.ts`. |
+| Deployment | Netlify                           | `netlify.toml` sets build command, redirects, headers, env vars.              |
 
 ## Directory Layout
 

@@ -19,13 +19,13 @@ interface ServiceCardProps {
   badge?: string;
 }
 
-export function ServiceCard({ 
-  title, 
-  description, 
-  features, 
-  href, 
-  icon, 
-  badge 
+export function ServiceCard({
+  title,
+  description,
+  features,
+  href,
+  icon,
+  badge,
 }: ServiceCardProps) {
   return (
     <Card className="professional-card">
@@ -38,9 +38,13 @@ export function ServiceCard({
               </div>
             )}
             <div>
-              <CardTitle className="text-lg font-semibold text-gray-900 leading-tight">{title}</CardTitle>
+              <CardTitle className="text-lg font-semibold text-gray-900 leading-tight">
+                {title}
+              </CardTitle>
               {badge && (
-                <Badge variant="secondary" className="mt-1 text-xs font-medium">{badge}</Badge>
+                <Badge variant="secondary" className="mt-1 text-xs font-medium">
+                  {badge}
+                </Badge>
               )}
             </div>
           </div>
@@ -49,23 +53,23 @@ export function ServiceCard({
           {description}
         </CardDescription>
       </CardHeader>
-      
+
       <CardContent className="flex-1 pt-0">
         <ul className="space-y-3">
           {features.map((feature, index) => (
             <li key={index} className="flex items-start space-x-3">
               <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-              <span className="text-sm text-gray-700 leading-relaxed">{feature}</span>
+              <span className="text-sm text-gray-700 leading-relaxed">
+                {feature}
+              </span>
             </li>
           ))}
         </ul>
       </CardContent>
-      
+
       <CardFooter className="pt-4">
         <Button asChild className="btn-card">
-          <Link href={href}>
-            Learn More
-          </Link>
+          <Link href={href}>Learn More</Link>
         </Button>
       </CardFooter>
     </Card>
