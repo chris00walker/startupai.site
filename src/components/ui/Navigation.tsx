@@ -101,11 +101,9 @@ export function Navigation() {
               className="text-gray-300 hover:text-white hover:bg-slate-800 text-sm"
               asChild
             >
-              <a
-                href={`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001'}/signup`}
-              >
-                Sign-up
-              </a>
+              <Link href="/beta">
+                Beta
+              </Link>
             </Button>
             <Button
               size="sm"
@@ -181,11 +179,9 @@ export function Navigation() {
                       onClick={handleMobileMenuClick}
                       asChild
                     >
-                      <a
-                        href={`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001'}/signup`}
-                      >
-                        Sign-up
-                      </a>
+                      <Link href="/beta">
+                        Beta
+                      </Link>
                     </Button>
                     <Button
                       className="bg-primary hover:bg-primary/90 text-white"

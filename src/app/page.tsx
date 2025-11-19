@@ -34,10 +34,18 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to Transform Your Startup
             </h2>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Let's discuss how StartupAI can help you achieve your startup's
-              goals.
-            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+              <Button size="lg" asChild>
+                <Link href="/beta">
+                  Join Beta - 3 Validation Cycles for $1,500
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90" asChild>
+                <Link href="/product">
+                  Learn More
+                </Link>
+              </Button>
+            </div>
           </div>
         </PageContainer>
       </section>
