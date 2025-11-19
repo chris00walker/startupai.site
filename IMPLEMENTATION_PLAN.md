@@ -589,70 +589,334 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 
 ## Phase 3: Polish (Week 5-6) - MEDIUM PRIORITY
 
-**Goal:** Refinements, testing, and final prep before beta launch
+**Goal:** AI Founders Team integration, refinements, testing, and final prep before beta launch
 
-### Week 5: Refinements
+**Strategic Shift:** Replace traditional About page with bold AI-first narrative. StartupAI is operated entirely by real autonomous AI agents (CrewAI), demonstrating ultimate proof-of-concept: "We validate startups using AI. We're validated BY AI. We're RUN by AI."
 
-#### Task 3.1: Create About Page
+**Tone:** Transparent & experimental journey. We're pioneering AI-first company operations and sharing what we learn.
+
+**Integration Approach:** Create lightweight About/Team page as primary home for AI founders narrative. Chris Walker stays behind the scenes.
+
+---
+
+**📚 Implementation Resources:**
+- **Complete Persona Guide:** See `docs/AI_FOUNDERS_PERSONAS.md` for full persona details (Sage, Forge, Pulse, Compass), design guidelines, voice/tone, content examples, and implementation checklist
+- **Quick Reference:** See `docs/PHASE3_QUICK_REFERENCE.md` for TL;DR version with task breakdown, key files, sample content, and approval checklist
+
+---
+
+### Week 5: AI Founders Team Integration
+
+#### Task 3.1: Build AI Founders Team Page (About Page Replacement)
 
 **File:** `/src/app/about/page.tsx` (NEW)
 **Priority:** 🟢 MEDIUM
 
+**Context:** Replace traditional "About the Company/Founder" page with AI Founders Team directory. This is a bold positioning play: StartupAI is run entirely by AI agents, proving we practice what we preach.
+
+**📖 Reference:** See `docs/AI_FOUNDERS_PERSONAS.md` for complete persona details, sample content, and design specifications
+
 - [ ] **Create new page** at `/about`
 
-- [ ] **Company section**
-  - "StartupAI is the AI co-founding platform..."
-  - Mission, vision, why we exist
+- [ ] **Section 1: Hero**
+  - Badge: "AI-First Company" or "Operated by AI"
+  - Headline: "Meet the Team Running StartupAI - Four AI Founders"
+  - Subhead: "The world's first startup validation platform operated entirely by autonomous AI agents. This is an experiment. Here's what we're learning."
 
-- [ ] **Founder section**
-  - "About Chris Walker" (founder bio)
-  - Headshot, background, credentials
-  - Clearly separate: Chris = person, StartupAI = product
+- [ ] **Section 2: The Experiment**
+  - Headline: "Why We Built an AI-Operated Company"
+  - Key points:
+    - "We validate startups using AI. So we asked: Why not validate ourselves?"
+    - "StartupAI went through its own validation process—and it worked"
+    - "Now we're taking it further: letting AI agents run the company"
+    - "This isn't marketing—it's proof. Every validation you get comes from these agents."
+  - Transparent journey framing: "We're pioneering AI-first operations. Not everything works perfectly yet. But we're learning and improving daily."
 
-- [ ] **How We Build section** (optional)
-  - "We practice what we preach: StartupAI is built using StartupAI"
-  - Meta credibility play
-  - Show public roadmap or GitHub activity (if applicable)
+- [ ] **Section 3: Founder Profiles (4 AI Founders)**
+  - **Sage** (Strategy AI)
+    - Avatar: AI-generated (consistent style, professional)
+    - Role: Chief Strategy Officer
+    - Real Agent: Maps to Strategic Analysis CrewAI agent
+    - Capabilities: Business Model Canvas, Value Proposition Design, Market Analysis
+    - Personality: "Analytical, framework-driven. I ask tough questions because assumptions are expensive."
+    - Current Status: "Analyzing [X] validation cycles this week"
+
+  - **Forge** (Engineering AI)
+    - Avatar: AI-generated (consistent with Sage's style)
+    - Role: Chief Technology Officer
+    - Real Agent: Maps to Build/Deploy CrewAI agent
+    - Capabilities: MVP generation, code architecture, deployment automation
+    - Personality: "Pragmatic, speed-focused. Working software beats perfect plans. Let's ship it."
+    - Current Status: "Deployed [X] MVPs this month"
+
+  - **Pulse** (Growth AI)
+    - Avatar: AI-generated (consistent style)
+    - Role: Chief Growth Officer
+    - Real Agent: Maps to Marketing/Testing CrewAI agent
+    - Capabilities: Ad campaign optimization, user acquisition experiments, analytics
+    - Personality: "Data-driven, experimental. Every campaign is a hypothesis. Let's test it."
+    - Current Status: "Running [X] ad experiments across [Y] startups"
+
+  - **Compass** (Decision AI)
+    - Avatar: AI-generated (consistent style)
+    - Role: Chief Product Officer
+    - Real Agent: Maps to Orchestrator/Synthesis CrewAI agent
+    - Capabilities: Evidence synthesis, pivot analysis, founder-friendly recommendations
+    - Personality: "Balanced, evidence-based. I synthesize what the team learns and recommend your next move."
+    - Current Status: "Analyzed [X] pivot decisions this week"
+
+- [ ] **Section 4: Transparency Dashboard**
+  - Component showing recent AI agent activity
+  - Examples:
+    - "Sage completed strategic analysis for 3 startups today"
+    - "Forge deployed 2 MVPs this week"
+    - "Pulse optimized 5 ad campaigns (avg. CPC reduced 22%)"
+    - "Compass recommended 4 pivots based on validation data"
+  - Include timestamps, anonymized metrics
+  - Optional: Live status indicators ("Sage is analyzing a strategy right now...")
+
+- [ ] **Section 5: How It Works (Technical Explanation)**
+  - Headline: "Behind the Scenes: Real CrewAI Agents"
+  - Explain the technical stack:
+    - "Each AI founder is a CrewAI agent with specific capabilities"
+    - "Agents collaborate to deliver your validation cycle"
+    - "Sage analyzes strategy → Forge builds MVP → Pulse tests with users → Compass synthesizes recommendations"
+  - Code transparency: Optional link to GitHub repo (if open-sourcing agent orchestration code)
+  - "For Developers" expandable accordion with technical details
+
+- [ ] **Section 6: The Journey (Blog-Style Updates)**
+  - Headline: "What We're Learning Building an AI Company"
+  - 2-3 recent learnings or updates:
+    - Example: "Week 3: Sage's strategic analysis accuracy improved 15% after analyzing 50 validation cycles"
+    - Example: "Forge can now deploy MVPs 30% faster by learning common patterns"
+    - Example: "Pulse identified 3 new audience targeting strategies across industries"
+  - Tone: Honest, transparent, experimental
+  - Shows continuous improvement and learning
+
+- [ ] **Section 7: Open Questions**
+  - Headline: "What We're Still Figuring Out"
+  - Be honest about limitations:
+    - "When should humans override AI decisions?"
+    - "How do we handle edge cases agents haven't seen?"
+    - "What's the right balance of automation vs. human oversight?"
+  - Shows humility and transparency
+  - Positions this as genuine experiment, not hype
+
+- [ ] **Section 8: CTA**
+  - Primary: "See Our AI Team in Action - Apply for Beta"
+  - Secondary: "How It Works" (link to /process)
+  - Tertiary: "Questions? We're Here" (link to contact)
+
+- [ ] **Chris Walker Reference (Minimal/Optional)**
+  - Small footer note or collapsed section: "Human Orchestrator: Chris Walker built and oversees the AI team"
+  - No photo, no bio, no personal branding
+  - Keeps focus on AI founders
+
+**Design Requirements:**
+
+- [ ] **AI-Generated Avatars**
+  - Create 4 consistent avatars for Sage, Forge, Pulse, Compass
+  - Style: Professional, futuristic but approachable
+  - Tools: Midjourney, DALL-E, or similar
+  - Consistent style across all 4
+
+- [ ] **Activity Feed Component**
+  - Reusable component for displaying agent activity
+  - Props: agentName, activity, timestamp, metric (optional)
+  - Style: Timeline or card-based layout
+
+- [ ] **Status Indicators (Optional)**
+  - Small badges showing "Active", "Idle", "Analyzing", etc.
+  - Real-time or recent status per agent
+
+- [ ] **Mobile Responsive**
+  - Founder profiles stack vertically on mobile
+  - Activity feed remains readable
+  - All sections work on small screens
 
 **Acceptance Criteria:**
 
-- Provides founder credibility without making it a personal brand
-- Clear separation: founder story vs product story
+- [ ] About page clearly introduces AI founders concept
+- [ ] Four AI founder personas are distinct and memorable
+- [ ] Each founder maps to real CrewAI agent capabilities
+- [ ] Transparency dashboard shows genuine agent activity (not fake metrics)
+- [ ] Tone is "transparent journey" not "hype" or "gimmick"
+- [ ] Chris Walker stays behind the scenes (minimal or no mention)
+- [ ] Technical explanation is available but not intimidating
+- [ ] Page communicates: This is real, experimental, and improving
+- [ ] SEO metadata optimized for "AI founders", "AI-operated company", "StartupAI team"
+
+**Note:** This task replaces the traditional About page. The goal is bold differentiation: We're the first company to publicly operate with AI founders, proving our validation platform works by using it on ourselves.
+
+**Implementation Guide:**
+- For complete persona details, design specs, and content examples: `docs/AI_FOUNDERS_PERSONAS.md`
+- For quick task overview and checklist: `docs/PHASE3_QUICK_REFERENCE.md`
 
 ---
 
-#### Task 3.2: Add Evidence Ledger / Learning Engine Section
+#### Task 3.2: Define & Document Real AI Agent Mapping
 
-**File:** `/src/app/page.tsx` or new component
+**Files:** Documentation + Code Comments
 **Priority:** 🟢 MEDIUM
 
-- [ ] **Create "The Learning Engine" section**
-  - Headline: "Your Startup Benefits from Collective Intelligence"
-  - Subhead: "Every validation cycle teaches our system. Recommendations improve with each project."
+**Context:** Map the AI founder personas (Sage, Forge, Pulse, Compass) to actual CrewAI agents from the `startupai-crew` repository. Document their real capabilities and decision-making processes for transparency.
 
-- [ ] **Explain network effects**
-  - "We learn from thousands of startups (anonymized)"
-  - "Your pivot recommendations are informed by what worked for others"
-  - "Evidence accumulation is our competitive moat"
+**📖 Reference:** See `docs/AI_FOUNDERS_PERSONAS.md` section "The Four AI Founders" for persona details and "CrewAI Agent Details" for mapping specifications
 
-- [ ] **Add stats** (when available)
-  - "Trained on [X] startup experiments"
-  - "Analyzed [Y] pivot decisions"
-  - "Success rate: [Z]% of recommended pivots led to better outcomes"
+- [ ] **Map AI Founders to CrewAI Agents**
+  - **Sage → Strategic Analysis Agent**
+    - Real capabilities: BMC generation, Value Prop Design, Market Analysis
+    - Input: Founder's idea description, target market
+    - Output: Strategic framework documents, assumption identification
 
-- [ ] **Privacy note**
-  - "All data is anonymized and aggregated"
-  - "Your idea stays private"
+  - **Forge → Build/Deploy Agent**
+    - Real capabilities: MVP code generation, deployment automation, technical architecture
+    - Input: Strategic framework, feature requirements
+    - Output: Deployed MVP, live URL, codebase
+
+  - **Pulse → Marketing/Testing Agent**
+    - Real capabilities: Ad campaign setup, user acquisition, analytics tracking
+    - Input: MVP URL, target audience, budget
+    - Output: Campaign performance data, user behavior metrics
+
+  - **Compass → Orchestrator/Synthesis Agent**
+    - Real capabilities: Evidence synthesis, pivot analysis, recommendation generation
+    - Input: Strategic frameworks, validation data, user feedback
+    - Output: Pivot/proceed recommendation, next steps
+
+- [ ] **Document Agent Decision Logs**
+  - Create log format for displaying agent decisions on About page
+  - Examples:
+    - "Sage identified 3 critical assumptions in business model"
+    - "Forge selected Next.js framework based on speed requirements"
+    - "Pulse optimized ad targeting after 24h of data collection"
+    - "Compass recommended pivot based on 85% bounce rate"
+
+- [ ] **Prepare Transparency Data**
+  - Define what metrics to show publicly:
+    - Number of validations completed
+    - Agent accuracy rates (where measurable)
+    - Common patterns identified
+    - Learning improvements over time
+  - Ensure data is anonymized (no customer-specific info)
+
+- [ ] **Link to Agent Code (Optional)**
+  - If open-sourcing agent orchestration:
+    - Create public GitHub repo with agent code
+    - Add link from About page: "See the code behind our AI founders"
+  - If keeping private:
+    - Document agent architecture in internal docs
+    - Provide high-level explanation on About page
 
 **Acceptance Criteria:**
 
-- Communicates long-term moat (evidence network effects)
-- Reassures on privacy
-- Differentiates from one-off services
+- [ ] Each AI founder persona clearly maps to a real CrewAI agent
+- [ ] Agent capabilities are documented and match persona descriptions
+- [ ] Decision log format defined for transparency dashboard
+- [ ] Metrics for public display are identified and anonymized
+- [ ] Optional: Agent code is linked or documented
+
+**Note:** This task provides the technical foundation for the About page. The mapping ensures AI founders aren't just marketing—they represent real autonomous agents.
 
 ---
 
-#### Task 3.3: Global Search and Replace
+#### Task 3.3: Create Evidence/Proof Components
+
+**Files:** `/src/components/about/*` (NEW components)
+**Priority:** 🟢 MEDIUM
+
+**Context:** Build UI components to display real agent work and provide transparency/credibility for the AI founders narrative.
+
+**📖 Reference:** See `docs/AI_FOUNDERS_PERSONAS.md` section "Design Guidelines" for UI component specifications and "Sample Activities" for content examples
+
+- [ ] **Component 1: Agent Activity Feed**
+  - File: `/src/components/about/AgentActivityFeed.tsx`
+  - Purpose: Display recent agent activities with timestamps
+  - Props:
+    - `activities: Array<{ agentName, activity, timestamp, metric? }>`
+    - `maxItems?: number` (default: 10)
+  - Design: Timeline-style layout or card-based feed
+  - Example activities:
+    - "Sage completed strategic analysis for [business type] startup"
+    - "Forge deployed MVP in 6.2 hours (18% faster than average)"
+    - "Pulse launched ad campaign targeting [demographic]"
+    - "Compass synthesized 3 pivot recommendations with 89% confidence"
+  - Data source: Pull from real agent logs (anonymized)
+  - Mobile responsive
+
+- [ ] **Component 2: Founder Profile Card**
+  - File: `/src/components/about/FounderProfileCard.tsx`
+  - Purpose: Display each AI founder with avatar, role, capabilities
+  - Props:
+    - `founder: { name, role, avatar, capabilities[], personality, currentStatus }`
+  - Design: Card layout with avatar, text, and status badge
+  - Sections:
+    - Avatar image (AI-generated)
+    - Name + Role
+    - Capabilities list
+    - Personality quote
+    - Current status (optional live indicator)
+  - Reusable for all 4 founders
+
+- [ ] **Component 3: Transparency Metrics Dashboard**
+  - File: `/src/components/about/TransparencyDashboard.tsx`
+  - Purpose: Show aggregate metrics about AI agent performance
+  - Metrics to display:
+    - "Validations completed: [X]"
+    - "MVPs deployed: [Y]"
+    - "Ad campaigns run: [Z]"
+    - "Average pivot accuracy: [N]%"
+    - "Learning improvement: +[M]% this month"
+  - Design: Stat cards or simple metric display
+  - Data source: Real aggregate data from agent operations
+  - Privacy: All data anonymized, no customer-specific info
+
+- [ ] **Component 4: Real Validation Report Embed (Optional)**
+  - File: `/src/components/about/ValidationReportSample.tsx`
+  - Purpose: Show example of actual validation output
+  - Content: Anonymized sample validation report
+  - Sections:
+    - Strategic analysis excerpt
+    - MVP screenshot
+    - User data visualization
+    - Pivot recommendation summary
+  - Design: Embedded document viewer or screenshot gallery
+  - Privacy: Remove all customer names, specific business details
+
+- [ ] **Component 5: Agent Code Link (Optional)**
+  - File: Simple link component
+  - Purpose: Link to GitHub repo with agent orchestration code
+  - Only if open-sourcing the agent code
+  - Button/link: "View Agent Source Code on GitHub"
+
+**Data Integration:**
+
+- [ ] **Create mock data structure** (for initial development)
+  - File: `/src/data/agentActivity.ts`
+  - Structure matches component props
+  - Replace with real data once agent logging is implemented
+
+- [ ] **Set up agent logging** (if not already done)
+  - CrewAI agents log decisions to database
+  - Create API endpoint to fetch recent activity
+  - Anonymize data before exposing publicly
+
+**Acceptance Criteria:**
+
+- [ ] Agent Activity Feed component renders timeline of activities
+- [ ] Founder Profile Card displays all 4 founders with distinct personalities
+- [ ] Transparency Dashboard shows real aggregate metrics (not fake numbers)
+- [ ] Components are reusable and well-documented
+- [ ] Mobile responsive design
+- [ ] Data anonymization prevents exposing customer info
+- [ ] Optional: Real validation report sample embedded
+- [ ] Optional: Link to agent source code (if open-source)
+
+**Note:** These components provide the visual proof for the AI founders narrative. They should show real agent work to establish credibility and transparency.
+
+---
+
+#### Task 3.4: Global Content Updates (Renamed from Task 3.3)
 
 **Files:** All
 **Priority:** 🟢 MEDIUM
@@ -673,17 +937,23 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Primary CTA: "Apply for Beta Access"
   - Secondary: "See How It Works" or "Learn More"
 
+- [ ] **Add subtle AI-first references (optional)**
+  - Footer tagline: "Built by AI founders" or "Operated by AI"
+  - Navigation: Optional "Team" link to About page
+  - Homepage: Optional small mention/link to AI founders story
+
 **Acceptance Criteria:**
 
 - Language is consistent across all pages
 - Jargon removed from main copy
 - CTAs all point to beta application
+- Optional AI-first branding elements added
 
 ---
 
 ### Week 6: Testing & Prep
 
-#### Task 3.4: SEO & Metadata Updates
+#### Task 3.5: SEO & Metadata Updates (Renamed from Task 3.4)
 
 **Files:** All pages
 **Priority:** 🟢 MEDIUM
@@ -693,15 +963,18 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Examples:
     - "Private Beta | StartupAI - AI Co-Founder for Founders"
     - "How It Works | StartupAI - AI Co-Founder for Founders"
+    - "Meet the AI Founders | StartupAI - The Team Running StartupAI" (About page)
 
 - [ ] **Update meta descriptions**
   - Homepage: "StartupAI builds, tests, and validates your startup idea with real customers in 2 weeks. Join our private beta - $1,500 lifetime deal, only 200 spots."
   - Beta page: "Join the StartupAI private beta. Get 3 full validation cycles (build + test + pivot analysis) for $1,500 one-time. Limited to 200 spots."
   - Pricing: "Beta lifetime deal: 3 validation cycles for $1,500. Test your startup idea with real users, not assumptions."
+  - About page: "Meet Sage, Forge, Pulse, and Compass - the AI founders running StartupAI. The world's first AI-operated startup validation platform."
 
 - [ ] **Add Open Graph tags**
   - `og:title`, `og:description`, `og:image`
   - Use beta offer messaging
+  - About page: OG image featuring AI founder avatars
 
 - [ ] **Update favicons and logos** (if needed)
   - Ensure branding is "StartupAI" not personal
@@ -709,12 +982,13 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 **Acceptance Criteria:**
 
 - All metadata reflects beta positioning
-- SEO-friendly for "startup validation", "AI co-founder", "MVP testing"
+- SEO-friendly for "startup validation", "AI co-founder", "MVP testing", "AI founders", "AI-operated company"
 - Social sharing cards look correct
+- About page optimized for AI founders narrative
 
 ---
 
-#### Task 3.5: Analytics Setup
+#### Task 3.6: Analytics Setup (Renamed from Task 3.5)
 
 **Tool:** PostHog (or existing)
 **Priority:** 🟢 MEDIUM
@@ -727,26 +1001,32 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - `hero_cta_clicked`
   - `how_it_works_viewed`
   - `pricing_page_viewed`
+  - `about_page_viewed` (NEW - AI founders page)
+  - `founder_profile_clicked` (NEW - which AI founder)
+  - `transparency_dashboard_viewed` (NEW)
 
 - [ ] **Create funnels**
   - Homepage → Beta Page → Application → Payment
   - Track drop-off at each stage
+  - About Page → Beta Page (NEW - measure AI founders narrative impact)
 
 - [ ] **Set up goals**
   - Goal 1: 50 beta applications submitted (Phase 1)
   - Goal 2: 30 beta payments completed (60% conversion)
+  - Goal 3: 20% of visitors view About/AI Founders page
 
 **Acceptance Criteria:**
 
 - Can track beta signup flow end-to-end
 - Identify where users drop off
 - Measure conversion rate
+- Track engagement with AI founders narrative
 
 ---
 
-#### Task 3.6: Mobile Responsiveness Check
+#### Task 3.7: Mobile Responsiveness Check (Renamed from Task 3.6)
 
-**Files:** All components
+**Files:** All components, especially new About page
 **Priority:** 🟢 MEDIUM
 
 - [ ] **Test on mobile devices**
@@ -759,16 +1039,21 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Forms usable on mobile
   - Timeline visualizations don't break
   - Navigation works on small screens
+  - About page: Founder profiles stack vertically
+  - About page: Activity feed remains readable
+  - About page: Transparency dashboard cards responsive
 
 - [ ] **Performance check**
   - Run Lighthouse audit
   - Target: LCP < 2.5s, FID < 100ms, CLS < 0.1
+  - About page: AI-generated avatars optimized (WebP, lazy loading)
 
 **Acceptance Criteria:**
 
 - Site fully usable on mobile
 - No layout breaks
 - Performance meets targets
+- AI founders page works perfectly on mobile
 
 ---
 
@@ -978,10 +1263,16 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 
 ### Medium Priority Files (Phase 3)
 
-11. `/src/app/about/page.tsx` - **NEW** about page
-12. `/docs/overview/value-proposition.md` - Update positioning docs
-13. `/docs/overview/messaging-matrix.md` - Update message grid
-14. All page metadata (titles, descriptions)
+11. `/src/app/about/page.tsx` - **NEW** AI Founders Team page (replaces traditional about page)
+12. `/src/components/about/AgentActivityFeed.tsx` - **NEW** component for displaying agent activity
+13. `/src/components/about/FounderProfileCard.tsx` - **NEW** component for AI founder profiles
+14. `/src/components/about/TransparencyDashboard.tsx` - **NEW** component for metrics display
+15. `/src/components/about/ValidationReportSample.tsx` - **NEW** optional component for validation report samples
+16. `/src/data/agentActivity.ts` - **NEW** mock data structure for agent activity (replaced with real data later)
+17. `/docs/ai-founders-mapping.md` - **NEW** documentation mapping AI founders to CrewAI agents
+18. `/docs/overview/value-proposition.md` - Update positioning docs
+19. `/docs/overview/messaging-matrix.md` - Update message grid
+20. All page metadata (titles, descriptions)
 
 ---
 
@@ -1006,11 +1297,17 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 
 ### Phase 3 Success (Week 6)
 
-- [ ] All pages mobile-responsive
-- [ ] SEO metadata updated
-- [ ] Analytics tracking all key events
-- [ ] About page published
+- [ ] AI Founders Team About page published with 4 founder profiles
+- [ ] AI founder personas (Sage, Forge, Pulse, Compass) mapped to real CrewAI agents
+- [ ] Transparency dashboard showing real agent activity (not fake metrics)
+- [ ] Agent activity feed components built and displaying data
+- [ ] Founder profile cards created with AI-generated avatars
+- [ ] SEO metadata updated (including AI founders page)
+- [ ] Analytics tracking all key events (including About page engagement)
+- [ ] All pages mobile-responsive (including new About page)
 - [ ] Global language cleanup complete
+- [ ] Optional: AI-first branding elements added to footer/navigation
+- [ ] Tone is "transparent journey" not hype - positioning as experiment
 
 ### Phase 4 Success (Week 7+)
 
@@ -1033,6 +1330,18 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 - Confirmed: 2-week cycles (not days)
 - Confirmed: LTD at $1,500 for 3 cycles, max 200 spots
 - Confirmed: Beta rollout in phases of 50
+
+**Date**: November 19, 2025
+
+- **Phase 3 Revision: AI Founders Team Integration**
+- Confirmed: Replace traditional About page with AI Founders Team narrative
+- Confirmed: StartupAI operated entirely by AI agents (Sage, Forge, Pulse, Compass)
+- Confirmed: Each AI founder maps to real CrewAI agent from startupai-crew repository
+- Confirmed: Tone is "transparent & experimental journey" (not hype)
+- Confirmed: Chris Walker stays behind the scenes (minimal/no mention)
+- Confirmed: About page only integration point (not homepage/product/process pages)
+- Confirmed: Real autonomous agents, not just narrative personas
+- Positioning: "We validate startups using AI. We're validated BY AI. We're RUN by AI."
 
 **Pending Decisions:**
 
@@ -1101,11 +1410,16 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 
 ## Related Documents
 
+### Core Strategy
 - **`POSITIONING_ANALYSIS.md`** - Strategic positioning and beta strategy (source of truth)
 - **`PERSONA_INDEPENDENT_FOUNDERS.md`** - Primary audience deep-dive
 - **`JTBD_INDEPENDENT_FOUNDERS.md`** - Jobs-to-be-done framework
 - **`PERSONA_CONSULTANTS_AGENCIES.md`** - Secondary audience (post-beta)
 - **`JTBD_CONSULTANTS_AGENCIES.md`** - Consultant jobs framework
+
+### Phase 3: AI Founders Team (NEW - November 2025)
+- **`AI_FOUNDERS_PERSONAS.md`** - Complete AI founders persona reference (Sage, Forge, Pulse, Compass) - voices, design guidelines, content examples, implementation checklist
+- **`PHASE3_QUICK_REFERENCE.md`** - Quick-start guide for Phase 3 implementation - task breakdown, key files, sample content, approval checklist
 
 ---
 
