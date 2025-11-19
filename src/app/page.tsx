@@ -35,12 +35,12 @@ export default function HomePage() {
               Ready to Transform Your Startup
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
-              <Button size="lg" asChild>
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90" asChild>
                 <Link href="/beta">
                   Join Beta - 3 Validation Cycles for $1,500
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90" asChild>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
                 <Link href="/product">
                   Learn More
                 </Link>
