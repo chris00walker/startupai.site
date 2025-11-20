@@ -603,7 +603,7 @@ export default function ProcessPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="text-lg">
-                <Link href="/beta">Join Beta - 3 Validation Cycles</Link>
+                <Link href="/beta">Apply for Beta Access</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="text-lg">
                 <Link href="/pricing">See Pricing</Link>

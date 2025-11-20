@@ -99,9 +99,9 @@ function PricingContent() {
         'Export to common formats',
         'Community support and resources',
       ],
-      cta: 'Start Free',
-      disabled: true,
-      disabledMessage: 'Apply Below',
+      cta: 'Start Free Trial',
+      disabled: false,
+      disabledMessage: '',
       highlighted: false,
     },
     {
@@ -393,7 +393,7 @@ function PricingContent() {
                 >
                   {/* Disabled Overlay */}
                   {tier.disabled && (
-                    <div className="absolute inset-0 bg-gray-900/60 backdrop-blur-[2px] z-10 rounded-lg flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gray-900/40 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
                       <div className="text-center p-6">
                         <p className="text-white font-bold text-lg mb-2">
                           {tier.disabledMessage}
@@ -737,7 +737,7 @@ function PricingContent() {
               </p>
               <Button size="lg" className="bg-primary text-white hover:bg-primary/90" asChild>
                 <Link href="/beta">
-                  Apply Now
+                  Apply for Beta Access
                 </Link>
               </Button>
             </CardContent>
