@@ -1,58 +1,285 @@
 ---
-purpose: "Private technical source of truth for CrewAI integration"
+purpose: "Technical specification for AI Founders Core Service (CrewAI)"
 status: "active"
-last_reviewed: "2025-10-27"
+last_reviewed: "2025-11-20"
 ---
 
-# CrewAI Integration
+# AI Founders Core Service Specification
 
-CrewAI orchestrates multi-agent workflows that transform onboarding inputs into strategic deliverables. Marketing messaging around “AI-generated insights” should reflect the status below.
+The AI Founders Team (CrewAI) is the central intelligence of StartupAI, orchestrating market analysis, idea validation, and strategic recommendations across both marketing and product interfaces.
 
-## Architecture Snapshot
+## Core Service Architecture
 
-| Layer | Location | Notes |
+```
+                AI Founders Core
+                (startupai-crew)
+                      |
+        ┌─────────────┼─────────────┐
+        |             |             |
+   [Analysis]    [Activity]    [Results]
+        |             |             |
+   Product API   Marketing API   Webhook
+```
+
+| Component | Location | Purpose |
 | --- | --- | --- |
-| Orchestration spec | `backend/CREW_AI.md` | Defines agents, tasks, tools, and expected outputs. |
-| Backend code | `backend/src/startupai/` | Python crew that runs on Netlify serverless (or background worker). |
-| Frontend triggers | `frontend/src/app/api/onboarding/*` | Calls CrewAI (currently stubbed) once onboarding completes. |
-| Outputs surfaced | `frontend/src/app/(app)/reports/*`, Fit Dashboard components | Awaiting live CrewAI data. |
+| Core Service | `startupai-crew` repository | Python CrewAI orchestration with 5 AI agents |
+| Agent Definitions | `startupai-crew/src/agents/` | Sage, Forge, Pulse, Compass, Guardian implementations |
+| API Gateway | `startupai-crew/api/` | RESTful endpoints for both marketing and product |
+| Activity Feed | `startupai-crew/src/activity/` | Real-time agent status for transparency |
+| Analysis Engine | `startupai-crew/src/analysis/` | Market validation and strategy generation |
 
-## Agents (per `CREW_AI.md`)
+## The AI Founders Team
 
-- **Discovery Agent** – Parses conversation history, identifies gaps.
-- **Strategy Agent** – Synthesises Fit Report, Value Prop Canvas, and roadmap suggestions.
-- **Evidence Agent** – Maps user claims to supporting evidence (future; requires ingestion pipeline).
-- **QA Agent** – Validates outputs, flags missing sections.
+### Primary Agents
 
-Each agent has access to shared tools (Notion-style memory, Supabase fetchers, PostHog context) once implemented.
+1. **Sage (CEO Agent)**
+   - Role: Strategic vision and market positioning
+   - Tools: Market research APIs, competitive analysis, trend detection
+   - Outputs: Strategic recommendations, positioning statements, vision documents
 
-## Workflow
+2. **Forge (CTO Agent)**
+   - Role: Technical architecture and feasibility assessment
+   - Tools: Tech stack analyzer, complexity estimator, architecture patterns
+   - Outputs: Technical roadmap, architecture diagrams, feasibility reports
 
-1. Onboarding completes (`/api/onboarding/complete`) and enqueues CrewAI job when `systemActions.triggerWorkflow` is true.
-2. CrewAI pulls session history + entrepreneur brief, generates:
-   - Strategy narrative (Fit Report)
-   - Canvas drafts (BMC/VPC/TBI)
-   - Experiment backlog suggestions
-3. Outputs stored in Supabase tables (`crew_ai_runs`, `crew_ai_outputs`) for retrieval.
-4. Frontend surfaces results in dashboard/report views; marketing demo will embed excerpts.
+3. **Pulse (CMO Agent)**
+   - Role: Market analysis and go-to-market strategy
+   - Tools: Market sizing, customer segmentation, channel analysis
+   - Outputs: Marketing strategy, customer personas, GTM playbook
 
-**Current status (Oct 2025):** Steps 1–2 are scaffolded; integration points exist but job execution still returns scripted responses pending final tooling. Messaging should promise “AI-generated insights (rolling out)” until automation ships.
+4. **Compass (COO Agent)**
+   - Role: Operations planning and resource optimization
+   - Tools: Process mapping, resource calculator, milestone planner
+   - Outputs: Operational plan, resource allocation, timeline
 
-## Error Handling
+5. **Guardian (Chief of Staff Agent)**
+   - Role: Quality assurance and meta-governance
+   - Tools: Consistency checker, completeness validator, risk assessor
+   - Outputs: Quality reports, risk assessments, improvement recommendations
 
-- CrewAI tasks include retry logic (backoff) defined in `backend/src/startupai/crew.py`.
-- API returns `retryable` flags; marketing should avoid promising immediate AI output if service degrades.
-- Failures log to PostHog (`crewai_analysis_failed`) and to backend logs for SRE review.
+### Agent Collaboration Patterns
 
-## Privacy & Compliance
+```python
+# Example orchestration flow
+class AIFoundersOrchestrator:
+    def analyze_startup(self, project_data):
+        # Stage 1: Market Understanding (Pulse leads)
+        market_analysis = self.pulse.analyze_market(project_data)
 
-- Sensitive fields (customer names, revenue) are redacted before sending to CrewAI. See masking utilities in `backend/src/startupai/tools.py (sanitization stubs)`.
-- Opt-in flag required for enhanced analysis; marketing must communicate opt-in requirement.
+        # Stage 2: Technical Feasibility (Forge leads)
+        tech_assessment = self.forge.assess_feasibility(
+            project_data,
+            market_analysis
+        )
 
-## Roadmap
+        # Stage 3: Strategic Synthesis (Sage leads)
+        strategy = self.sage.formulate_strategy(
+            market_analysis,
+            tech_assessment
+        )
 
-- **Short term** – Wire CrewAI job triggering from `/api/onboarding/complete`, surface outputs in Fit Report UI.
-- **Medium term** – Support background re-runs when new evidence arrives; expose change history.
-- **Long term** – Allow agencies to plug in their own knowledge bases.
+        # Stage 4: Operational Planning (Compass leads)
+        operations = self.compass.plan_execution(
+            strategy,
+            tech_assessment
+        )
 
-Marketing copy should align with these phases and reference this doc when updating claims.
+        # Stage 5: Quality Assurance (Guardian reviews all)
+        final_report = self.guardian.validate_and_enhance(
+            market_analysis,
+            tech_assessment,
+            strategy,
+            operations
+        )
+
+        return final_report
+```
+
+## Service APIs
+
+### Public APIs (Marketing Interface)
+
+```yaml
+# Activity Feed - No auth required
+GET /api/v1/public/activity
+Response:
+  agents:
+    - name: string
+      status: analyzing|idle|reporting
+      currentTask: string
+      progress: 0-100
+  totalAnalyses: number
+  successRate: percentage
+
+# Trust Metrics - No auth required
+GET /api/v1/public/metrics
+Response:
+  validationsCompleted: number
+  marketsAnalyzed: number
+  averageCompletionTime: seconds
+  agentUptime: percentage
+```
+
+### Private APIs (Product Interface)
+
+```yaml
+# Start Analysis - Requires service auth
+POST /api/v1/analysis/start
+Headers:
+  X-Service-Token: jwt_token
+Body:
+  userId: uuid
+  planTier: trial|sprint|founder|enterprise
+  projectData: object
+Response:
+  analysisId: uuid
+  estimatedCompletion: timestamp
+  assignedAgents: array
+
+# Get Results - Requires service auth
+GET /api/v1/analysis/{analysisId}/results
+Headers:
+  X-Service-Token: jwt_token
+Response:
+  status: pending|processing|complete
+  results:
+    sage: object      # Strategic recommendations
+    forge: object     # Technical assessment
+    pulse: object     # Market analysis
+    compass: object   # Operational plan
+    guardian: object  # Quality report
+```
+
+## Deployment Architecture
+
+### Production Infrastructure
+
+```yaml
+Service: startupai-crew
+Platform: [Railway/Render/AWS Lambda]
+Runtime: Python 3.11+
+Framework: CrewAI 0.x + LangChain
+LLM: GPT-4 (primary) + Claude (fallback)
+
+Components:
+  - API Gateway (FastAPI)
+  - Task Queue (Celery + Redis)
+  - Agent Orchestrator (CrewAI)
+  - Activity Publisher (WebSockets)
+  - Result Storage (PostgreSQL)
+```
+
+### Scaling Strategy
+
+- **Horizontal**: Multiple worker nodes for parallel analysis
+- **Vertical**: GPU instances for enhanced LLM processing
+- **Queue-based**: Async processing with priority queues by plan tier
+- **Caching**: Results cached for similar analysis requests
+
+## Data Flow Specifications
+
+### Analysis Lifecycle
+
+```
+1. Request Initiation
+   Product → POST /api/v1/analysis/start → CrewAI Core
+
+2. Agent Orchestration
+   CrewAI Core → Assign to agent pool → Begin analysis
+
+3. Progress Updates
+   CrewAI Core → WebSocket → Marketing (public status)
+   CrewAI Core → Webhook → Product (detailed progress)
+
+4. Result Delivery
+   CrewAI Core → Store results → Notify Product
+   Product → GET /api/v1/analysis/results → Display
+```
+
+### Real-time Transparency
+
+```
+Every 5 seconds:
+  CrewAI Core → Publish agent status → Redis PubSub
+  Marketing Site → Subscribe to updates → Update UI
+
+On significant events:
+  CrewAI Core → Emit event → PostHog Analytics
+  Marketing Site → Display achievement → Trust signals
+```
+
+## Security & Compliance
+
+### Data Protection
+
+- **PII Handling**: All customer data sanitized before LLM processing
+- **Data Retention**: Analysis results retained per plan tier (30-365 days)
+- **Encryption**: TLS 1.3 for transit, AES-256 for storage
+- **Access Control**: Service-to-service auth via JWT tokens
+
+### Rate Limiting
+
+| Plan Tier | Analyses/Month | Concurrent | Priority |
+| --- | --- | --- | --- |
+| Trial | 1 | 1 | Low |
+| Sprint | 5 | 2 | Medium |
+| Founder | Unlimited | 5 | High |
+| Enterprise | Unlimited | 10+ | Highest |
+
+## Monitoring & Observability
+
+### Key Metrics
+
+- **Agent Performance**: Tasks completed, average duration, error rates
+- **System Health**: API latency, queue depth, worker utilization
+- **Business Metrics**: Analyses completed, customer satisfaction scores
+- **Cost Tracking**: LLM token usage, compute hours
+
+### Alerting Thresholds
+
+```yaml
+Critical:
+  - API response time > 5s
+  - Agent error rate > 5%
+  - Queue depth > 100 items
+
+Warning:
+  - API response time > 2s
+  - Agent error rate > 2%
+  - Queue depth > 50 items
+```
+
+## Evolution Roadmap
+
+### Phase 1: Foundation (Current)
+- ✅ 5 AI Founders agents defined
+- ✅ Basic orchestration working
+- 🔄 API endpoints implemented
+- 🔄 Marketing transparency integration
+
+### Phase 2: Enhancement (Q1 2025)
+- [ ] Advanced agent collaboration
+- [ ] Custom analysis templates
+- [ ] White-label agent teams
+- [ ] Knowledge base integration
+
+### Phase 3: Scale (Q2 2025)
+- [ ] Multi-tenant architecture
+- [ ] Agent marketplace
+- [ ] Custom agent creation
+- [ ] Enterprise workflows
+
+## Migration Notes
+
+**From Integration to Core Service:**
+
+The CrewAI system has evolved from a backend integration to the core service of StartupAI. Key changes:
+
+1. **Positioning**: No longer "CrewAI integration" but "AI Founders Core Service"
+2. **Architecture**: Hub-and-spoke with CrewAI at center, not peripheral
+3. **Agents**: Elevated from tools to C-suite AI Founders Team
+4. **Visibility**: Public transparency through marketing interface
+5. **Priority**: Core differentiator, not future enhancement
+
+All documentation should reflect CrewAI as the heart of StartupAI, with the two web interfaces serving as windows into the AI team's work.

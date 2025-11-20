@@ -1,7 +1,7 @@
 ---
 purpose: "Public messaging matrix for StartupAI marketing surfaces"
 status: "active"
-last_reviewed: "2025-10-27"
+last_reviewed: "2025-11-20"
 ---
 
 # Messaging Matrix
@@ -22,6 +22,7 @@ This matrix keeps messaging, proof points, and CTAs aligned with the product exp
 - **Speed to Clarity** – Borrow language from onboarding stage prompts (`app.startupai.site/frontend/src/app/onboarding/stages.ts`).
 - **Traceability** – Cite evidence ledger UI (screenshots curated in Figma). Mention citations + audit logs.
 - **Strategic Continuity** – Reference CrewAI workflow status and gating logic. Keep expectations realistic until full automation ships.
+- **AI-Operated Transparency** – Reference the AI Founders Team (Guardian, Sage, Forge, Pulse, Compass) and two-layer governance architecture on About page. See [`overview/ai-founders-personas.md`](ai-founders-personas.md) for persona details.
 
 ## Surface Checklist
 
@@ -42,7 +43,7 @@ This matrix keeps messaging, proof points, and CTAs aligned with the product exp
 
 ## Governance
 
-- Review messaging monthly or when product milestones shift (`docs/work/phases.md`).
+- Review messaging monthly or when product milestones shift (see [`docs/work/implementation-plan.md`](../work/implementation-plan.md)).
 - Log any major copy change in `docs/work/in-progress.md` (Messaging lane).
 - Mirror updates in nurture email sequences and sales collateral to stay consistent.
 

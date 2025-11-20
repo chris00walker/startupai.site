@@ -1,13 +1,21 @@
 # StartupAI Marketing Site
 
-This repository hosts the public marketing surface for StartupAI. It positions the product, captures leads, and routes qualified visitors into the application experience at `app.startupai.site`. The site is built with Next.js 15 App Router, exports to static HTML, and deploys to Netlify with Supabase-powered sign-up flows and PostHog analytics.
+This repository hosts the public transparency interface for StartupAI's AI Founders Team. It showcases the AI agents' work, captures leads, and routes qualified visitors into the customer portal at `app.startupai.site`. The site is built with Next.js 15 App Router, exports to static HTML, and deploys to Netlify with Supabase-powered sign-up flows and PostHog analytics.
 
-## Architecture
+## AI Founders Architecture
 
-- **Two-site handshake** – Marketing lives here (`startupai.site`). Authenticated workflows run in [`app.startupai.site`](https://github.com/chris00walker/app.startupai.site). Pricing CTAs and sign-up forms append a `plan` query parameter that the product app validates during Supabase onboarding.
+This site is one of three core services in the AI Founders Architecture:
+
+- **AI Founders Team ([`startupai-crew`](https://github.com/chris00walker/startupai-crew))** – The CrewAI agents that form the brain of StartupAI, analyzing markets and validating ideas.
+- **Marketing Interface (this repository)** – Public transparency layer showing AI team activity, capturing leads, and building trust through visibility.
+- **Product Interface ([`app.startupai.site`](https://github.com/chris00walker/app.startupai.site))** – Customer portal where users receive AI-driven validation results and strategic insights.
+
+### Technical Implementation
+
 - **Static export + edge services** – `next.config.js` sets `output: 'export'`, so pages ship as static assets. Dynamic needs are handled client-side, through Formspree, or via Netlify Functions.
 - **Shared design system** – Shadcn UI components (New York theme) and Tailwind tokens mirror the product repo to keep UX consistent.
 - **Lead capture** – Waitlist submissions post to Formspree in production. A sample API handler lives at `src/app/api.bak/waitlist/route.ts`; move it back under `src/app/api/waitlist/route.ts` or point requests to `/.netlify/functions/waitlist` when using `pnpm dev:staging` to exercise the Netlify function locally.
+- **Service integration** – Pricing CTAs and sign-up forms append a `plan` query parameter that the product app validates during Supabase onboarding.
 
 ## Tech Stack
 
@@ -83,10 +91,10 @@ See [`docs/README.md`](docs/README.md) for a full documentation index.
 - Redirects and headers live in `netlify.toml`, including legacy HTML routes → App Router paths.
 - Environment variables (Supabase, PostHog, marketing/app URLs) are managed in Netlify UI. Keep `.env.local` in sync when testing flows that bridge to the product app.
 
-## Related Projects
+## Related Services
 
-- [`app.startupai.site`](https://github.com/chris00walker/app.startupai.site) – Authenticated product experience.
-- [`startupai-crew`](https://github.com/chris00walker/startupai-crew) – (Archived) CrewAI automation experiments.
+- **AI Founders Core**: [`startupai-crew`](https://github.com/chris00walker/startupai-crew) – The CrewAI agents that power StartupAI's core intelligence.
+- **Product Interface**: [`app.startupai.site`](https://github.com/chris00walker/app.startupai.site) – Customer portal for AI-driven validation delivery.
 
 ## License
 

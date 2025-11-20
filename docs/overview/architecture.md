@@ -1,53 +1,189 @@
 ---
-purpose: "Private technical source of truth for architecture diagrams"
+purpose: "Private technical source of truth for AI Founders Architecture"
 status: "active"
-last_reviewed: "2025-10-27"
+last_reviewed: "2025-11-20"
 ---
 
-# Architecture Overview
+# AI Founders Architecture
+
+## Three-Service Hub Model
 
 ```
+                AI Founders Team
+                (startupai-crew)
+              [Core Intelligence]
+                    ↙    ↘
+        startupai.site   app.startupai.site
+        [Transparency]     [Delivery]
+         Public View      Customer Portal
+
+
+Detail Flow:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 Visitor → startupai.site (Next.js, Netlify)
-          ├─ Pricing / CTA → redirect with plan id → app.startupai.site/signup
-          ├─ Waitlist form → Formspree / Resend (optional)
-          └─ Content / demos (static export)
-
-app.startupai.site (Next.js App Router, Netlify)
+          ├─ About/Team → Show AI Founders activity (from CrewAI)
+          ├─ Pricing/CTA → redirect with plan → app.startupai.site/signup
+          ├─ Waitlist → Formspree/Resend
+          └─ Content/demos (static export)
+                    ↓
+          startupai-crew (CrewAI Python)
+          ├─ 5 AI Founders (Sage, Forge, Pulse, Compass, Guardian)
+          ├─ Market analysis & validation
+          ├─ Activity feed for transparency
+          └─ Results for customer delivery
+                    ↓
+          app.startupai.site (Next.js, Netlify)
           ├─ Supabase Auth (PKCE)
-          ├─ Onboarding API → Supabase → CrewAI (stub)
-          └─ Dashboard / Fit Report / Evidence ledger
-
-Shared services: Supabase Postgres • PostHog • CrewAI backend
+          ├─ Onboarding → CrewAI analysis trigger
+          ├─ Dashboard/Fit Report display
+          └─ Evidence ledger from AI analysis
 ```
 
-## Key Components
+## Core Services
 
-| Layer | Responsibility | Repos |
-| --- | --- | --- |
-| Marketing Next.js | Public storytelling, CTA routing, lead capture. | `startupai.site/src/app/*` |
-| Application Next.js | Authenticated experience, onboarding wizard, dashboards. | `app.startupai.site/frontend/src/app/*` |
-| Supabase | Auth, data storage, RLS policies, plan limits. | `app.startupai.site/supabase/*` |
-| CrewAI backend | Multi-agent analysis pipeline (Python). | `app.startupai.site/backend/*` |
-| Observability | PostHog funnels, Supabase logs, Netlify deploy notifications. | Shared |
+| Service | Role | Technology | Repository |
+|---------|------|------------|------------|
+| **AI Founders Core** | Brain of StartupAI - market analysis, idea validation, strategy generation | CrewAI (Python), LangChain | `startupai-crew` |
+| **Marketing Interface** | Public transparency, lead capture, AI team visibility | Next.js 15 (static), Netlify | `startupai.site` |
+| **Product Interface** | Customer portal, validation delivery, results dashboard | Next.js App Router, Supabase | `app.startupai.site` |
 
-## Data Flow Highlights
+## AI Founders Team (CrewAI Agents)
 
-1. **CTA** – Marketing appends `plan` query param and redirects to product signup.
-2. **Auth** – Product handles Supabase OAuth, sets session cookies, updates plan metadata.
-3. **Onboarding** – API (`/api/onboarding/*`) stores conversation state in Supabase.
-4. **CrewAI** – Workflow runs (stubbed) to generate briefs and recommendations.
-5. **Surfacing** – Dashboards/reports show outputs; marketing reuses screenshots/demos.
+The five AI agents that run StartupAI:
 
-## Cross-Team Touchpoints
+1. **Sage (CEO)** - Strategic vision and market positioning
+2. **Forge (CTO)** - Technical architecture and feasibility
+3. **Pulse (CMO)** - Market analysis and go-to-market strategy
+4. **Compass (COO)** - Operations and execution planning
+5. **Guardian (Chief of Staff)** - Meta-governance and quality assurance
 
-- Plan ID mapping: see [`product-handshake/marketing-to-app-contracts.md`](../product-handshake/marketing-to-app-contracts.md).
-- Analytics taxonomy: coordinated via [`dev/analytics-seo.md`](../dev/analytics-seo.md) and product analytics spec.
-- Accessibility/performance: tracked in [`dev/a11y-i18n.md`](../dev/a11y-i18n.md) + [`dev/performance.md`](../dev/performance.md).
+## Data Flow
 
-## Open Risks
+### 1. Lead Capture Flow
+```
+Visitor → Marketing Site → Formspree/Waitlist → Notification
+                       ↘
+                         Supabase Auth → Product App
+```
 
-- CrewAI workflow not fully live → marketing copy must frame AI insights as rolling out.
-- Marketing Supabase tables TBD → current waitlist/contact flow relies on external services.
-- Status API pending → trust ribbon uses manual updates until product exposes JSON feed.
+### 2. AI Analysis Flow
+```
+Customer Request → Product App → CrewAI Orchestration
+                                    ↓
+                              AI Founders Analysis
+                                    ↓
+                            Results & Recommendations
+                                    ↓
+                    Product Dashboard ← Marketing Transparency
+```
 
-Refer to the product repo (`app.startupai.site/docs/overview/platform-overview.md`) for deeper technical diagrams and ADRs.
+### 3. Transparency Flow
+```
+CrewAI Activity → Activity Feed API
+                    ↙          ↘
+        Marketing Site        Product App
+        (Public View)      (Customer View)
+```
+
+## Integration Points
+
+### Marketing ↔ CrewAI
+- **Activity Feed**: Real-time AI agent activity for About page
+- **Case Studies**: Success stories from AI analysis
+- **Trust Signals**: Live metrics and validation counts
+
+### Marketing ↔ Product
+- **Plan Routing**: Query params (`?plan=professional`)
+- **Auth Handoff**: Supabase PKCE flow
+- **Shared Design**: Shadcn UI components
+
+### Product ↔ CrewAI
+- **Analysis Triggers**: Onboarding → validation request
+- **Result Delivery**: AI insights → customer dashboard
+- **Progress Updates**: Real-time analysis status
+
+## Technical Stack
+
+### Shared Infrastructure
+- **Database**: Supabase PostgreSQL with RLS
+- **Authentication**: Supabase Auth (OAuth, JWT)
+- **Analytics**: PostHog (events, funnels, cohorts)
+- **Monitoring**: Supabase logs, Netlify deploys
+
+### Service-Specific
+- **CrewAI**: Python, LangChain, GPT-4, async task queues
+- **Marketing**: Static Next.js, Formspree, edge functions
+- **Product**: Next.js App Router, server components, API routes
+
+## Service Contracts
+
+Key contracts between services are documented in:
+- [`service-contracts/marketing-to-app-contracts.md`](../service-contracts/marketing-to-app-contracts.md) - Plan IDs, auth flow
+- [`service-contracts/crewai-api-contracts.md`](../service-contracts/crewai-api-contracts.md) - Activity feed, analysis API
+- [`specs/api-contracts.md`](../specs/api-contracts.md) - Detailed API specifications
+
+## Security Model
+
+```
+Public Layer (Marketing)
+├─ No auth required
+├─ Static content only
+└─ Form submissions validated
+
+AI Core (CrewAI)
+├─ Service-to-service auth
+├─ Rate limiting
+└─ Sanitized outputs only
+
+Authenticated Layer (Product)
+├─ Supabase RLS policies
+├─ Plan-based access control
+└─ Session management
+```
+
+## Deployment Architecture
+
+```
+Production:
+- startupai.site → Netlify CDN (static)
+- app.startupai.site → Netlify (SSR + API)
+- startupai-crew → [TBD: Railway/Render/AWS]
+- Supabase → Hosted (shared database)
+
+Development:
+- localhost:3000 → Marketing dev
+- localhost:3001 → Product dev
+- localhost:8000 → CrewAI dev
+- Supabase → Local or staging project
+```
+
+## Evolution Path
+
+### Current State (Phase 3)
+- CrewAI integration in progress
+- Marketing transparency features building
+- Three services loosely coupled
+
+### Next Quarter
+- Full CrewAI production deployment
+- Real-time activity streaming
+- Advanced agent collaboration features
+
+### Future Vision
+- Additional interfaces (mobile, API, plugins)
+- Agent marketplace for specialized analysis
+- White-label AI Founders Teams
+
+## Key Decisions
+
+1. **Hub-and-spoke over monolith**: Allows independent scaling and deployment
+2. **AI-first architecture**: CrewAI is the core, not an add-on
+3. **Transparency as differentiator**: Show the AI team's work publicly
+4. **Static where possible**: Marketing site fully static for performance
+5. **Service contracts over tight coupling**: Clean boundaries between services
+
+For implementation details, see:
+- [`ai-founders-architecture.md`](./ai-founders-architecture.md) - Implementation plan
+- [`ai-founders-personas.md`](./ai-founders-personas.md) - Agent details
+- [`../specs/crewai-integration.md`](../specs/crewai-integration.md) - Technical integration

@@ -1,16 +1,20 @@
 ---
-purpose: "Explain StartupAI’s marketing value proposition using public-safe language"
+purpose: "Explain StartupAI's marketing value proposition using public-safe language"
 status: "active"
-last_reviewed: "2025-10-27"
+last_reviewed: "2025-11-20"
 ---
 
 # Value Proposition
 
-StartupAI positions itself as the **evidence-led strategy co‑pilot** for founders and advisors who need investor-ready artifacts fast without sacrificing rigor. The promise rests on three durable pillars that are reflected in the live experience:
+> **Note**: This document was updated November 2025 to align with the beta launch positioning. For the complete positioning strategy, see [positioning-analysis.md](positioning-analysis.md).
 
-1. **Speed to Clarity** – Guided onboarding (marketing CTA → `app.startupai.site/onboarding`) converts raw ideas into structured canvases and briefs in a single session. Landing experiences such as `src/app/demo/page.tsx` show the before/after transformation to anchor this promise.
-2. **Traceable Advice** – Every recommendation carries citations and confidence flags. Marketing copy references the same evidence ledger surfaced inside the product (`app.startupai.site/src/app/(app)/dashboard`), ensuring no mismatch between what we claim and what users see post-signup.
-3. **Strategic Continuity** – Outputs travel from strategy to execution: exports feed directly into domain models, test plans, and CrewAI workflows. This story is consistent across pricing cards (`src/app/pricing/page.tsx`) and the product spec (`app.startupai.site/docs/specs/frontend-components.md`).
+StartupAI positions itself as the **AI co-founding validation platform** for non-technical founders who need to validate startup ideas with real customer evidence in weeks, not months. The promise rests on three durable pillars:
+
+1. **Speed to Validation** – Complete validation cycles in 2 weeks: strategy foundation (Days 1-3), MVP build & deploy (Days 4-7), real user testing with ad spend (Week 2, Days 1-5), pivot recommendation (Week 2, Days 6-7). Beta users get 3 full cycles to test ideas or pivot.
+2. **Working Software + Real Data** – Not just strategy documents—we deliver deployed MVPs, live URLs, real user analytics, and hypothesis test results. Ad spend (~$450-525) included in beta.
+3. **AI-Operated Transparency** – StartupAI is operated by 5 AI founders (Guardian, Sage, Forge, Pulse, Compass) with two-layer governance. The About page (`/about`) showcases this transparent, AI-first operation.
+
+**Beta Offer**: $1,500 Lifetime Deal for first 200 users. Includes 3 validation cycles + FREE lifetime platform access (Founder Tier $199/mo or Agency Co-Pilot $499/mo value).
 
 ## Target Segments (Validated)
 
@@ -48,8 +52,8 @@ Findings below condense the pre-migration research series (`business/1-research.
 
 ## Looking Forward
 
-- **In Flight** – Dynamic testimonial ingestion and localized messaging (tracked in `docs/work/phases.md`). These will expand segment-specific proof without diluting privacy promises.
-- **Upcoming Research Sprints** – Q1 2026 roadmap includes a new round of advisor interviews plus longitudinal follow-up with paid pilot alumni to refresh the evidence base.
-- **Open Questions** – How do we communicate AI explainability without overloading copy? What is the right balance between transparent citations and competitive secrecy? These threads are captured as research backlog items (`docs/work/backlog.md`).
+- **In Flight** – Phase 4 (Launch & Iteration) is ready to begin. First 10 beta users will be onboarded with manual validation cycle delivery. See [implementation-plan.md](../work/implementation-plan.md) for full task breakdown.
+- **Post-Beta (Q2 2026)** – Transition from LTD to monthly pricing, real case studies from beta users, potential reactivation of consulting services.
+- **Open Questions** – How do we communicate AI governance without overloading copy? What's the right balance between transparency and competitive advantage? These are tracked in [backlog.md](../work/backlog.md).
 
 > 🔗 Need the full raw analysis? See [`app.startupai.site/docs/research`](https://github.com/chris00walker/app.startupai.site/tree/main/docs/research) for transcripts, coding frames, and bibliography. Internal readers can request the redacted qualitative repository via the research Slack channel.

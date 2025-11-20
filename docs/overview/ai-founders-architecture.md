@@ -1,34 +1,41 @@
 ---
-purpose: "High-level overview of the two-site architecture and shared goals"
+purpose: "High-level overview of the AI Founders Architecture and service integration"
 status: "active"
-last_reviewed: "2025-10-30"
+last_reviewed: "2025-11-20"
 ---
 
-# Two-Site Plan (Public Overview)
+# AI Founders Architecture (Implementation Plan)
 
-StartupAI operates as a coordinated pair of Next.js applications:
+StartupAI operates as a three-service AI-driven platform with the AI Founders Team at its core:
 
-- **`startupai.site` (marketing)** – Owns positioning, lead capture, and the cross-site handshake. Source: this repo (`src/app/**/*`).
-- **`app.startupai.site` (product)** – Hosts authentication, guided onboarding, evidence ledger, and AI-powered workflows. Source: `app.startupai.site/frontend/src/app/**/*`.
+- **`startupai-crew` (AI Core)** – The brain of StartupAI: CrewAI agents (Sage, Forge, Pulse, Compass, Guardian) that analyze markets and validate ideas. Source: `startupai-crew` repository.
+- **`startupai.site` (Marketing Interface)** – Public transparency layer showcasing AI team activity, capturing leads, and building trust. Source: this repo (`src/app/**/*`).
+- **`app.startupai.site` (Product Interface)** – Customer portal for AI-driven validation delivery, dashboards, and strategic insights. Source: `app.startupai.site/frontend/src/app/**/*`.
 
-Both properties share Supabase authentication, PostHog analytics, and design primitives (Shadcn UI with synchronized tokens).
+All three services share Supabase authentication, PostHog analytics, and design primitives (Shadcn UI with synchronized tokens), with CrewAI orchestrating the core intelligence.
 
 ## Architecture at a Glance
 
 ```
-Visitor → startupai.site (Next.js App Router)
-          ├─ Pricing CTA (plan query param, /pricing)
-          ├─ Demo / Product storytelling (static + MDX content)
-          └─ Waitlist/Lead capture (Netlify form → Supabase via webhook)
-                    │
-                    ▼
-          Redirect: /signup?plan={id}
-                    │ (`/login` redirects to product domain for Supabase PKCE)
-                    ▼
-Authenticated → app.startupai.site
-          ├─ /auth/callback (Supabase session exchange)
-          ├─ /onboarding (AI-powered 7-stage conversation via Vercel AI SDK)
-          └─ Dashboard + evidence ledger (post-onboarding experience)
+                AI Founders Team (startupai-crew)
+                ├─ Sage (CEO) - Strategic vision
+                ├─ Forge (CTO) - Technical feasibility
+                ├─ Pulse (CMO) - Market analysis
+                ├─ Compass (COO) - Operations planning
+                └─ Guardian (Chief of Staff) - Quality assurance
+                        ↙            ↘
+            Marketing Interface    Product Interface
+            (startupai.site)       (app.startupai.site)
+            ├─ AI Team visibility   ├─ /auth/callback (Supabase session)
+            ├─ Lead capture         ├─ /onboarding (AI-powered wizard)
+            ├─ Pricing/CTAs         ├─ Dashboard (AI results display)
+            └─ Trust signals        └─ Evidence ledger (AI insights)
+                    ↘              ↙
+                     Visitor Journey
+                     ├─ Discover AI team (marketing)
+                     ├─ Sign up with plan selection
+                     ├─ Complete onboarding (product)
+                     └─ Receive AI-driven validation
 ```
 
 ### Shared Services

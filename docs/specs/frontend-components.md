@@ -1,7 +1,7 @@
 ---
 purpose: "Private technical source of truth for frontend component architecture"
 status: "active"
-last_reviewed: "2025-10-27"
+last_reviewed: "2025-11-20"
 ---
 
 # Frontend Components
@@ -29,6 +29,35 @@ Changes to shared components require coordinated updates in both repos.
 | Tests | `frontend/src/components/onboarding/__tests__/*` | Specification-driven tests covering flows and accessibility (jest + testing-library). |
 
 Marketing assets (demo video, screenshots) should remain aligned with these components.
+
+## About Page Components (AI Founders Team)
+
+The About page (`/about`) introduces the 5 AI founder personas with governance architecture visualization.
+
+| Component | File | Responsibility |
+|-----------|------|----------------|
+| `FounderProfileCard` | `startupai.site/src/components/about/FounderProfileCard.tsx` | Displays AI founder profile with avatar, role, capabilities, personality. Opens modal on click with detailed stats. Tracks `founder_profile_viewed` analytics event. |
+| `AgentActivityFeed` | `startupai.site/src/components/about/AgentActivityFeed.tsx` | Timeline-style display of recent agent activities with timestamps. Uses founder avatars and color-coded activity types. |
+| `TransparencyDashboard` | `startupai.site/src/components/about/TransparencyDashboard.tsx` | Aggregate metrics display with trend indicators (positive/negative changes). Shows operational performance stats. |
+| `GovernanceDashboard` | `startupai.site/src/components/about/GovernanceDashboard.tsx` | Two-layer governance metrics: Layer 1 (deterministic rules) and Layer 2 (Guardian AI oversight). Includes security score. |
+
+### Data Structure
+
+Mock data lives in `src/data/agentActivity.ts` with interfaces:
+- `AIFounder` - name, role, avatar, capabilities, personality, stats
+- `AgentActivity` - agent, activity, timestamp, type
+- `DashboardMetric` - label, value, change, trend
+
+Replace with real CrewAI agent data once backend integration is complete.
+
+### Assets
+
+AI founder avatars stored in `public/images/founders/`:
+- `guardian.png` - Chief Governance Officer (ethereal/silver design)
+- `sage.png` - Strategy AI (Indian woman)
+- `forge.png` - Engineering AI (African man)
+- `pulse.png` - Growth AI (Asian woman)
+- `compass.png` - Decision AI (European man)
 
 ## Pages & Routing
 

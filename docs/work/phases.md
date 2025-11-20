@@ -1,10 +1,12 @@
 ---
-purpose: "Publish current marketing phases and goals"
-status: "active"
-last_reviewed: "2025-10-27"
+purpose: "DEPRECATED - See implementation-plan.md for current phases"
+status: "deprecated"
+last_reviewed: "2025-11-20"
 ---
 
-# Current Phases
+> ⚠️ **DEPRECATED**: This document uses an outdated phase system from October 2025. For the current beta launch phases, see **[implementation-plan.md](implementation-plan.md)** which contains Phases 1-4 for the beta launch strategy.
+
+# Current Phases (DEPRECATED)
 
 | Phase | Status | Focus | KPIs | Dependencies |
 | --- | --- | --- | --- | --- |

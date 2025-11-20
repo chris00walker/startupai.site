@@ -1,7 +1,7 @@
 ---
 purpose: "Private technical source of truth for the authentication stack"
 status: "active"
-last_reviewed: "2025-10-27"
+last_reviewed: "2025-11-20"
 ---
 
 # Authentication Specification
@@ -67,11 +67,10 @@ Environment variables (Netlify / `.env.local`):
 - RLS on `user_profiles` ensures only owners/service role can read sensitive metadata.
 - Rate limiting via Supabase + Netlify (further limits planned for brute-force protection).
 - Ensure marketing CTAs only pass allowed plan IDs (`trial`, `sprint`, `founder`, `enterprise`). See [`docs/product-handshake/marketing-to-app-contracts.md`](../product-handshake/marketing-to-app-contracts.md).
+  - **Note**: `sprint` is the internal plan ID for the "Beta Lifetime Deal" (marketed as "Strategy Sprint" on pricing page).
 
 ## TODO / Roadmap
 
 - Enable secondary OAuth providers once QA/legal complete.
 - Automate cross-site signup smoke tests (`marketing#162` counterpart tracked as `app#286`).
 - Document service-role usage for CrewAI jobs when they start issuing Supabase writes.
-
-Refer to marketing-facing summary in `startupai.site/docs/specs/auth.md` for high-level messaging alignment.

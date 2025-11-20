@@ -7,16 +7,29 @@
 **Framework**: Next.js 15 (App Router, Static Export)  
 **Deployment**: Netlify
 
-## Architecture
+## AI Founders Architecture
 
 ```
-[Static HTML/CSS/JS] → [Formspree Forms] → [Supabase Auth Redirect] → [app.startupai.site]
+        AI Founders Team
+         (startupai-crew)
+     [Core Decision Engine]
+             ↙    ↘
+    startupai.site   app.startupai.site
+    [Transparency]      [Delivery]
 ```
+
+### Key Services
+
+- **AI Founders Core (startupai-crew)**: CrewAI agents that analyze, build, and validate
+- **Marketing Interface (startupai.site)**: Public transparency, lead capture, AI team visibility
+- **Product Interface (app.startupai.site)**: Customer portal, validation delivery, results dashboard
+
+The AI Founders Team is the heart of StartupAI. The two web interfaces are windows into their work—one for public transparency, one for customer delivery.
 
 ### Key Constraints
 
 - **Static Export Only**: No server-side rendering, no API routes in production
-- **Two-Site Handshake**: Marketing captures leads, product delivers value
+- **Service Communication**: Marketing displays AI activity; product delivers AI results
 - **Query Parameter Passing**: `?plan=professional` passed to app during signup
 
 ## Directory Structure
@@ -306,10 +319,11 @@ Before creating any page in `src/app/`:
 3. Verify redirect with token to product app
 4. Check Supabase dashboard for new user
 
-## Related Repositories
+## Related Services
 
-- Product App: `app.startupai.site` (authenticated experience)
-- AI Backend: `startupai-crew` (CrewAI strategic analysis)
+- **AI Founders Core**: `startupai-crew` (CrewAI agents - the brain of the operation)
+- **Product Interface**: `app.startupai.site` (customer portal for AI-driven validation)
+- **Marketing Interface**: `startupai.site` (this repository - public transparency layer)
 
 ## Documentation
 
@@ -337,7 +351,7 @@ When creating a new `.md` file, place it under `docs/` based on purpose:
 - `docs/incidents/` – incidents and RCAs (`YYYY-MM-DD-short-slug.md`)
 - `docs/work/` – roadmap, phases, backlog, in-progress/done, implementation plans
 - `docs/adrs/` – architecture decisions (`adr-XXXX-short-title.md`)
-- `docs/product-handshake/` – marketing ↔ app contracts, public status URLs
+- `docs/service-contracts/` – contracts between AI core, marketing, and app services
 - `docs/schema/` – shared/marketing DB schemas
 - `docs/archive/` – deprecated or legacy docs kept for reference
 

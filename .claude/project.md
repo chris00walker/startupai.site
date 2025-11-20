@@ -4,10 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**StartupAI Marketing Site** (`startupai.site`) - Marketing website for the StartupAI platform. Part of a two-site architecture:
+**StartupAI Marketing Site** (`startupai.site`) - Public transparency interface for StartupAI's AI Founders Team. Part of the AI Founders Architecture:
 
-- **startupai.site** (Marketing) - Convert prospects to customers ← **THIS REPO**
-- **app.startupai.site** (Product) - Deliver value and create advocates
+- **startupai-crew** (AI Core) - CrewAI agents that analyze markets and validate ideas
+- **startupai.site** (Marketing) - Public transparency layer showcasing AI team activity ← **THIS REPO**
+- **app.startupai.site** (Product) - Customer portal for AI-driven validation delivery
 
 **Tech Stack:**
 
@@ -258,16 +259,16 @@ docs/
 
 **Key Files:**
 
-- `docs/overview/platform-overview.md` - Two-site architecture
-- `docs/overview/two-site-plan-public.md` - Implementation plan
+- `docs/overview/platform-overview.md` - AI Founders Architecture overview
+- `docs/overview/ai-founders-architecture.md` - Implementation plan
 - `docs/overview/architecture.md` - System architecture
 - `docs/overview/messaging-matrix.md` - Feature/messaging mapping
 
 ### External References
 
-- **Two-Site Implementation Plan:** See docs/overview/two-site-plan-public.md - Single source of truth for all StartupAI development
-- **Product Platform:** `../app.startupai.site` - Related product repository
-- **CrewAI Backend:** `../startupai-crew` - AI analysis backend
+- **AI Founders Implementation Plan:** See docs/overview/ai-founders-architecture.md - Single source of truth for all StartupAI development
+- **AI Core Service:** `../startupai-crew` - CrewAI agents (the brain of the operation)
+- **Product Interface:** `../app.startupai.site` - Customer portal for AI validation delivery
 
 ## Common Pitfalls
 

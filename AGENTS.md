@@ -1,6 +1,6 @@
 # Repository Guidelines
 
-This Next.js 15 marketing site exports statically to Netlify and hands prospects to the product app via a shared Supabase handshake.
+This Next.js 15 marketing site serves as the public transparency interface for StartupAI's AI Founders Team, exporting statically to Netlify and routing qualified visitors to the product app via Supabase authentication.
 
 ## Project Structure & Module Organization
 
@@ -8,7 +8,7 @@ This Next.js 15 marketing site exports statically to Netlify and hands prospects
 - `src/components/ui` houses Shadcn UI primitives (synced with `components.json`). Add via `pnpm dlx shadcn-ui@latest add <component>`.
 - Shared logic is under `src/lib` (Supabase client, analytics), `src/styles`, and `src/types`; import through the `@/*` alias.
 - `netlify/functions` contains serverless hooks (e.g., `waitlist.ts` → Resend). `supabase/.temp` tracks the linked project ref—commit changes.
-- Read `docs/overview/two-site-plan-public.md` before altering cross-site flows; keep CTA and plan contracts aligned with `docs/product-handshake/marketing-to-app-contracts.md`.
+- Read `docs/overview/ai-founders-architecture.md` before altering service integration flows; keep CTA and plan contracts aligned with `docs/service-contracts/marketing-to-app-contracts.md`.
 
 ## Build, Test, and Development Commands
 
@@ -28,7 +28,7 @@ This Next.js 15 marketing site exports statically to Netlify and hands prospects
 - Required env vars: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_APP_URL`; mirror Netlify values in `.env.local` and add PostHog/Formspree keys when needed.
 - Always create clients through `src/lib/supabase/client.ts`; do not embed keys in components.
 - Use Supabase CLI against the ref stored in `supabase/.temp/project-ref` for migrations or status checks.
-- Test OAuth with `pnpm dev:staging` to confirm redirect origins and plan query params (see pricing CTA mapping in `docs/product-handshake/marketing-to-app-contracts.md`).
+- Test OAuth with `pnpm dev:staging` to confirm redirect origins and plan query params (see pricing CTA mapping in `docs/service-contracts/marketing-to-app-contracts.md`).
 
 ## Testing Guidelines
 
@@ -40,4 +40,4 @@ This Next.js 15 marketing site exports statically to Netlify and hands prospects
 
 - Use Conventional Commits (`fix:`, `feat:`, `chore:`) with scoped granularity (`feat(waitlist-form): ...`).
 - PRs must list validation commands, Supabase/Netlify envs touched, and include before/after visuals for UI updates.
-- Link relevant docs (`docs/dev/local-dev.md`, two-site plan, contracts) and request design/infra review when touching Shadcn tokens, routing, or auth.
+- Link relevant docs (`docs/dev/local-dev.md`, AI Founders architecture, contracts) and request design/infra review when touching Shadcn tokens, routing, or auth.

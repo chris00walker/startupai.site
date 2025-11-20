@@ -1,30 +1,30 @@
 ---
-purpose: "Private technical source of truth for the application platform overview"
+purpose: "Private technical source of truth for the AI Founders Architecture platform"
 status: "active"
-last_reviewed: "2025-10-26"
+last_reviewed: "2025-11-20"
 ---
 
-# Platform Overview
+# AI Founders Platform Overview
 
-This private overview complements the public marketing plan and details how the product platform operates.
+This private overview details how the AI Founders Architecture operates across three core services: the AI Founders Team (CrewAI), marketing transparency interface, and product delivery portal.
 
 ### Source of Truth
 
-- Master reference: `docs/overview/two-site-implementation-plan.md`. Update that plan first when flows, blockers, or ownership change, then mirror the distilled takeaways across this overview and status docs.
-- Many historical documents cited in the plan now live under `docs/archive/legacy/`. Keep them for provenance while ensuring all current statements stay aligned with the live plan.
-- Sprint ritual: review the plan at the start of each cycle, confirm navigation coverage, blockers, and readiness, then propagate any deltas here and in `docs/status/implementation-status.md`.
+- Master reference: `docs/overview/ai-founders-architecture.md`. Update that plan first when service interactions, AI agent roles, or ownership change, then mirror the distilled takeaways across this overview and status docs.
+- Historical documents now live under `docs/archive/legacy/`. Keep them for provenance while ensuring all current statements align with the AI Founders Architecture.
+- Sprint ritual: review the architecture at the start of each cycle, confirm service integration points, AI agent readiness, and transparency features, then propagate any deltas here and in implementation status.
 
-## Domains & Ownership
+## Service Domains & Ownership
 
 | Domain | Owner | Notes |
 | --- | --- | --- |
-| Marketing site (`startupai.site`) | Growth Engineering | Next.js static site deployed separately. CTAs include plan hints consumed by `/signup`. |
-| Auth and Identity | Platform Engineering | Supabase Auth (GitHub OAuth, email) with profile trigger (`handle_new_user`) keeping `user_profiles` in sync. |
-| Application site (`app.startupai.site`) | Platform Engineering | Next.js App Router. Onboarding wizard, dashboards, and automation live here. |
-| Database and Storage | Platform Engineering | Supabase Postgres + pgvector. Migrations in `supabase/migrations`. Storage buckets currently paused. |
-| AI Workflows | AI Platform | Python CrewAI backend under `backend/src/startupai` plus Netlify wrappers. Not live yet. |
-| Analytics | Shared (Growth + Platform) | PostHog instrumentation via `frontend/src/lib/analytics`. Product and marketing share dashboards with segmented properties. |
-| Ops and Incident Response | Platform (primary), Ops (secondary) | Pager coverage when Netlify or Supabase incidents occur. Runbooks tracked in private ops docs. |
+| AI Founders Core (`startupai-crew`) | AI Platform | CrewAI Python agents (Sage, Forge, Pulse, Compass, Guardian). Central intelligence orchestrating both marketing transparency and product delivery. |
+| Marketing Interface (`startupai.site`) | Growth Engineering | Next.js static site providing public transparency into AI team activity. Includes lead capture and trust-building through AI visibility. |
+| Product Interface (`app.startupai.site`) | Platform Engineering | Next.js App Router for customer portal. Delivers AI-driven validation results and strategic insights from CrewAI analysis. |
+| Database and Storage | Platform Engineering | Supabase Postgres + pgvector shared across services. Migrations in `supabase/migrations`. RLS policies enforce service boundaries. |
+| Auth and Identity | Platform Engineering | Supabase Auth (GitHub OAuth, email) with profile trigger (`handle_new_user`) coordinating across marketing and product interfaces. |
+| Analytics | Shared (Growth + Platform + AI) | PostHog instrumentation across all three services. AI agent activity metrics, marketing funnels, and product engagement tracked separately. |
+| Ops and Incident Response | Platform (primary), Ops (secondary), AI (CrewAI) | Coverage for all three services. Runbooks for CrewAI orchestration, Netlify deployments, and Supabase operations. |
 
 ## Navigation Snapshot
 
@@ -53,6 +53,6 @@ This private overview complements the public marketing plan and details how the 
 - Supabase migrations require platform sign-off. Notify AI platform when schema changes touch CrewAI tables so Python clients stay in sync.
 - Marketing changes to plan tiers must be reflected in `frontend/src/app/api/onboarding/start/route.ts` (`PLAN_LIMITS`) and in the trial usage counters table.
 - Feature flags for CrewAI rollout will live in Supabase config or LaunchDarkly (decision pending). Update this doc when the rollout plan is finalised.
-- During sprint kick-off, confirm the navigation and blocker sections in `docs/overview/two-site-implementation-plan.md` before adjusting this overview or the implementation status report.
+- During sprint kick-off, confirm the service integration points and AI agent readiness in `docs/overview/ai-founders-architecture.md` before adjusting this overview or the implementation status report.
 
 For deeper technical detail see [`overview/architecture.md`](architecture.md) and the specs under `docs/specs/`.

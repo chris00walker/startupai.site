@@ -1,7 +1,7 @@
 ---
 purpose: "Private technical source of truth for onboarding API contracts"
 status: "active"
-last_reviewed: "2025-10-27"
+last_reviewed: "2025-11-20"
 ---
 
 # Onboarding API Specification
@@ -56,7 +56,7 @@ Error responses follow `{ success: false, error: { code, message, retryable, fal
 
 - Accepts `{ sessionId, message, intent?, metadata? }`.
 - Returns AI response, follow-up question, stage progress, optional actions (e.g., `triggerWorkflow`).
-- For marketing copy: current implementation uses scripted responses; CrewAI integration will replace these once agent orchestration ships.
+- For marketing copy: beta implementation uses hybrid approach—API returns AI responses that are reviewed before delivery. See "Beta Delivery Model" section below.
 
 ### `/complete`
 
@@ -86,11 +86,49 @@ Marketing copy should reference these guardrails (e.g., trial limitations, upgra
 - Entrepreneur briefs saved in `entrepreneur_briefs` (JSONB structure).
 - Events tracked via PostHog using helpers in `frontend/src/lib/analytics/index.ts` (look for onboarding-specific events).
 
+## Beta Delivery Model (November 2025)
+
+Beta users receive a **hybrid delivery model** combining automated and manual orchestration:
+
+### How It Works
+
+1. **Automated Components**:
+   - Session management and progress tracking via API
+   - Basic AI responses for onboarding flow
+   - Analytics and data collection
+
+2. **Manual Orchestration**:
+   - Chris reviews all strategic outputs before delivery
+   - CrewAI agents are manually triggered and supervised
+   - Final validation reports are QA'd before sending to user
+
+### Mapping to User Promises
+
+| Marketing Promise | Technical Implementation |
+|-------------------|--------------------------|
+| 3 validation cycles | 3 sessions (sprint plan limit) |
+| 2-week delivery | Manual orchestration timeline per cycle |
+| Strategy + Build + Test | CrewAI agents run with human oversight |
+| Pivot recommendation | Compass agent output + Chris review |
+
+### Why Hybrid?
+
+During beta (200 LTD users), manual oversight ensures quality while we:
+- Validate CrewAI agent accuracy
+- Refine prompts and workflows
+- Build confidence for full automation post-beta
+
 ## CrewAI Integration Status
 
-- Stubs return scripted AI responses today.
-- Once CrewAI orchestration is live, `/message` and `/complete` will enqueue background jobs via `frontend/src/lib/crewai/`.
-- Marketing should set expectations accordingly (“AI-generated insights where available”).
+**Current State (Beta)**: Hybrid automation with manual oversight
+- API manages sessions and basic flow
+- CrewAI agents are triggered but outputs are reviewed
+- `/complete` triggers background jobs that require manual QA
+
+**Post-Beta Target**: Full automation
+- `/message` and `/complete` will run CrewAI agents autonomously
+- Human oversight only for edge cases
+- Target: Q2 2026 public launch
 
 ## Known Gaps / TODOs
 

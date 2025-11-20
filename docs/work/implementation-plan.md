@@ -1,7 +1,7 @@
 # StartupAI Marketing Site Implementation Plan
 
-**Date**: November 14, 2025
-**Status**: Ready for Execution
+**Date**: November 20, 2025
+**Status**: Phase 1-3 Complete, Phase 4 Ready to Execute
 **Purpose**: Phased implementation plan to align marketing site with pre-launch beta strategy
 
 ---
@@ -589,17 +589,22 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 
 ## Phase 3: Polish (Week 5-6) - MEDIUM PRIORITY
 
-**Goal:** AI Founders Team integration with Guardian governance architecture, refinements, testing, and final prep before beta launch
+**Goal:** AI Founders Architecture implementation with three-service integration, Guardian governance, refinements, testing, and final prep before beta launch
 
-**Strategic Update (Nov 19):** Enhanced with Guardian (5th AI Founder) and two-layer governance architecture. StartupAI demonstrates industry-leading AI governance by having Guardian monitor the orchestration governance layer itself—addressing the Anthropic vulnerability directly.
+**Strategic Update (Nov 20):** Complete AI Founders Architecture with CrewAI as the core service (not just an integration). The architecture positions CrewAI as the brain of StartupAI, with marketing and product as interfaces to the AI team's work.
 
 **Core Positioning:** "We validate startups using AI. We're validated BY AI. We're RUN by AI. We're GOVERNED by AI."
 
-**Architecture:** Two-layer defense:
+**AI Founders Architecture:** Three-service hub model:
+1. **AI Founders Core (startupai-crew)** - CrewAI agents providing the brain of the operation
+2. **Marketing Interface (startupai.site)** - Public transparency into AI team activity
+3. **Product Interface (app.startupai.site)** - Customer portal for AI-driven delivery
+
+**Governance Architecture:** Two-layer defense:
 1. **Orchestration Governance Layer** (deterministic rules)
 2. **Guardian** (AI that monitors and evolves the governance layer)
 
-**Integration Approach:** Create AI Founders Team page showing 5 founders, with Guardian positioned as meta-governance. Chris Walker stays behind the scenes.
+**Integration Approach:** Create AI Founders Team page showing 5 founders as the core of StartupAI, with both marketing and product serving as windows into their work. Chris Walker stays behind the scenes.
 
 ---
 
@@ -735,38 +740,42 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 
 **Original Section 3 details (completed with custom avatars):**
 
-- [x] **Founder Profiles (4 AI Founders)**
+- [x] **Founder Profiles (4 AI Founders - Core CrewAI Service)**
   - **Sage** (Strategy AI)
     - Avatar: AI-generated (consistent style, professional)
     - Role: Chief Strategy Officer
-    - Real Agent: Maps to Strategic Analysis CrewAI agent
+    - Core Service: Primary agent in startupai-crew
     - Capabilities: Business Model Canvas, Value Proposition Design, Market Analysis
     - Personality: "Analytical, framework-driven. I ask tough questions because assumptions are expensive."
     - Current Status: "Analyzing [X] validation cycles this week"
+    - API Endpoint: `/api/v1/agents/sage/status`
 
   - **Forge** (Engineering AI)
     - Avatar: AI-generated (consistent with Sage's style)
     - Role: Chief Technology Officer
-    - Real Agent: Maps to Build/Deploy CrewAI agent
+    - Core Service: Primary agent in startupai-crew
     - Capabilities: MVP generation, code architecture, deployment automation
     - Personality: "Pragmatic, speed-focused. Working software beats perfect plans. Let's ship it."
     - Current Status: "Deployed [X] MVPs this month"
+    - API Endpoint: `/api/v1/agents/forge/status`
 
   - **Pulse** (Growth AI)
     - Avatar: AI-generated (consistent style)
     - Role: Chief Growth Officer
-    - Real Agent: Maps to Marketing/Testing CrewAI agent
+    - Core Service: Primary agent in startupai-crew
     - Capabilities: Ad campaign optimization, user acquisition experiments, analytics
     - Personality: "Data-driven, experimental. Every campaign is a hypothesis. Let's test it."
     - Current Status: "Running [X] ad experiments across [Y] startups"
+    - API Endpoint: `/api/v1/agents/pulse/status`
 
   - **Compass** (Decision AI)
     - Avatar: AI-generated (consistent style)
     - Role: Chief Product Officer
-    - Real Agent: Maps to Orchestrator/Synthesis CrewAI agent
+    - Core Service: Primary agent in startupai-crew
     - Capabilities: Evidence synthesis, pivot analysis, founder-friendly recommendations
     - Personality: "Balanced, evidence-based. I synthesize what the team learns and recommend your next move."
     - Current Status: "Analyzed [X] pivot decisions this week"
+    - API Endpoint: `/api/v1/agents/compass/status`
 
 - [ ] **Section 4: Transparency Dashboard**
   - Component showing recent AI agent activity
@@ -779,13 +788,16 @@ consulting" positioning to the correct "AI co-founding validation platform" with
   - Optional: Live status indicators ("Sage is analyzing a strategy right now...")
 
 - [ ] **Section 5: How It Works (Technical Explanation)**
-  - Headline: "Behind the Scenes: Real CrewAI Agents"
-  - Explain the technical stack:
+  - Headline: "Behind the Scenes: The AI Founders Architecture"
+  - Explain the three-service architecture:
+    - "CrewAI is the core service—the brain of StartupAI"
     - "Each AI founder is a CrewAI agent with specific capabilities"
-    - "Agents collaborate to deliver your validation cycle"
-    - "Sage analyzes strategy → Forge builds MVP → Pulse tests with users → Compass synthesizes recommendations"
-  - Code transparency: Optional link to GitHub repo (if open-sourcing agent orchestration code)
-  - "For Developers" expandable accordion with technical details
+    - "This marketing site provides transparency into their work"
+    - "The product app delivers their validation results to customers"
+    - "Sage analyzes strategy → Forge builds MVP → Pulse tests with users → Compass synthesizes recommendations → Guardian ensures governance"
+  - Architecture diagram: Show three-service hub model
+  - Code transparency: Optional link to startupai-crew repo (if open-sourcing)
+  - "For Developers" expandable accordion with API specifications
 
 - [ ] **Section 6: The Journey (Blog-Style Updates)**
   - Headline: "What We're Learning Building an AI Company"
