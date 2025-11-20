@@ -313,10 +313,44 @@ Before creating any page in `src/app/`:
 
 ## Documentation
 
-- Full documentation index: `docs/README.md`
-- Two-site architecture: See product app's `docs/technical/two-site-implementation-plan.md`
+All project documentation lives under `docs/`.
+
+**Markdown allowed in repo root:**
+
+- `README.md` – project overview
+- `CLAUDE.md` – assistant + architecture guidance
+- `AGENTS.md` – AI agents and responsibilities
+
+Exceptions:
+- Tooling dotfiles like `.mcp.README.md` may live in root only if required by the tool.
 
 ---
 
-**Last Updated**: November 2025 - Added Next.js 15 Client/Server Component Rules  
-**Maintainer**: Chris Walker
+### Where to put what (routing rules)
+
+When creating a new `.md` file, place it under `docs/` based on purpose:
+
+- `docs/overview/` – vision, personas, JTBD, messaging, high-level architecture, public roadmap
+- `docs/specs/` – feature specs, flows, API contracts, data schema and integrations
+- `docs/dev/` – stack, local dev, performance, security, a11y/i18n, analytics, technical interaction specs
+- `docs/ops/` – deployments, monitoring, runbooks, seeding, operational workflows
+- `docs/incidents/` – incidents and RCAs (`YYYY-MM-DD-short-slug.md`)
+- `docs/work/` – roadmap, phases, backlog, in-progress/done, implementation plans
+- `docs/adrs/` – architecture decisions (`adr-XXXX-short-title.md`)
+- `docs/product-handshake/` – marketing ↔ app contracts, public status URLs
+- `docs/schema/` – shared/marketing DB schemas
+- `docs/archive/` – deprecated or legacy docs kept for reference
+
+---
+
+### Rules for AI assistants (Claude, etc.)
+
+When generating documentation:
+
+1. **Do not create new `.md` files in the repo root**, unless the name is exactly:
+   - `README.md`
+   - `CLAUDE.md`
+   - `AGENTS.md`
+2. Put all other docs under `docs/` using the routing rules above.
+3. If no directory is clearly correct, default to `docs/work/` **or** propose a new subdirectory under `docs/` and briefly describe its purpose at the top of the file.
+4. After creating a new doc, add a link to it in `docs/README.md` for discoverability.
