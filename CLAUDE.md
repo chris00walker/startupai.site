@@ -325,6 +325,19 @@ Before creating any page in `src/app/`:
 - **Product Interface**: `app.startupai.site` (customer portal for AI-driven validation)
 - **Marketing Interface**: `startupai.site` (this repository - public transparency layer)
 
+### Master Architecture
+
+The **single source of truth** for cross-service architecture lives in:
+```
+startupai-crew/docs/master-architecture/
+├── ecosystem.md              # Three-service reality diagram
+├── organizational-structure.md # C-suite → Agent hierarchy
+├── current-state.md          # Honest status assessment
+└── validation-backlog.md     # Hypothesis-driven feature queue
+```
+
+This marketing site should only contain documentation specific to its own implementation. For anything that spans services, refer to the crew's master architecture.
+
 ## Documentation
 
 All project documentation lives under `docs/`.
@@ -351,9 +364,10 @@ When creating a new `.md` file, place it under `docs/` based on purpose:
 - `docs/incidents/` – incidents and RCAs (`YYYY-MM-DD-short-slug.md`)
 - `docs/work/` – roadmap, phases, backlog, in-progress/done, implementation plans
 - `docs/adrs/` – architecture decisions (`adr-XXXX-short-title.md`)
-- `docs/service-contracts/` – contracts between AI core, marketing, and app services
 - `docs/schema/` – shared/marketing DB schemas
 - `docs/archive/` – deprecated or legacy docs kept for reference
+
+**Note**: Cross-service contracts and master architecture live in `startupai-crew/docs/master-architecture/`
 
 ---
 
