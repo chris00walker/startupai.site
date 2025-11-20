@@ -1,7 +1,7 @@
 ---
 purpose: "Instructions for running the marketing site locally"
 status: "active"
-last_reviewed: "2025-10-27"
+last_reviewed: "2025-11-20"
 ---
 
 # Local Development
@@ -38,6 +38,52 @@ The marketing site is a standalone Next.js (App Router) project that consumes sh
    pnpm type-check
    ```
    (No unit tests today; visual/axe coverage handled in the app repo.)
+
+## Staging Environment (Netlify Dev)
+
+For production-like testing with Netlify Functions and cross-site auth:
+
+```bash
+pnpm dev:staging    # Runs on http://localhost:8888
+```
+
+**What happens:**
+- Runs `netlify dev` which proxies through Netlify's server
+- Loads environment from `[context.dev.environment]` in `netlify.toml`
+- Simulates Netlify infrastructure (redirects, headers, functions)
+- Tests cross-site authentication with product app on port 8889
+
+**Use staging when:** Testing Netlify Functions, validating env vars, checking cross-site auth flows.
+
+### Cross-Site Testing
+
+```bash
+# Terminal 1: Start staging marketing site
+pnpm dev:staging              # http://localhost:8888
+
+# Terminal 2: Start staging app platform
+cd ~/app.startupai.site/frontend
+pnpm dev:staging              # http://localhost:8889
+
+# Test flow: Marketing → Auth → App redirect
+```
+
+## Secret Management (direnv)
+
+Secrets load from a centralized location via `.envrc`:
+
+```bash
+# Setup
+brew install direnv            # macOS
+eval "$(direnv hook zsh)"      # Add to shell
+direnv allow .                 # Enable for this repo
+
+# Secrets stored in ~/.secrets/startupai
+export OPENAI_API_KEY=sk-...
+export RESEND_API_KEY=re_...
+```
+
+Secrets never committed to git and shared across all repos.
 
 ## Cross-Repo Dependencies
 

@@ -33,25 +33,25 @@ Documents from October 2025 that may reference outdated information:
 
 - **What we promise** – [`overview/value-proposition.md`](overview/value-proposition.md)
 - **Beta launch plan** – [`work/implementation-plan.md`](work/implementation-plan.md)
-- **How the two sites connect** – [`overview/two-site-plan-public.md`](overview/two-site-plan-public.md)
+- **How the services connect** – [`overview/ai-founders-architecture.md`](overview/ai-founders-architecture.md)
 - **Current roadmap snapshot** – [`overview/roadmap-public.md`](overview/roadmap-public.md) and internal view at [`work/roadmap.md`](work/roadmap.md)
 - **Operations runbooks** – [`ops/`](ops/)
 - **Developer guides** – [`dev/`](dev/)
-- **Cross-team contracts** – [`product-handshake/`](product-handshake/)
+- **Service contracts** – [`service-contracts/`](service-contracts/)
 - **Work tracking** – [`work/`](work/)
 
 ## Directory Guide
 
 | Folder | Summary |
 | --- | --- |
-| [`overview/`](overview/) | Value proposition, messaging matrix, personas, two-site plan, and public roadmap. |
+| [`overview/`](overview/) | Value proposition, messaging matrix, AI Founders personas, architecture, and public roadmap. |
 | [`specs/`](specs/) | Feature specs, API contracts, data schema, and integrations. |
-| [`dev/`](dev/) | Stack overview, local dev, environments, accessibility, analytics, performance, and security. |
+| [`dev/`](dev/) | Local dev, accessibility, analytics, performance, and security guides. |
 | [`ops/`](ops/) | Deploy, monitoring, incident response, lead handling, and PostHog runbooks. |
 | [`incidents/`](incidents/) | Historical incident reports with timelines, root cause, and follow-up actions. |
 | [`work/`](work/) | Backlog, in-progress items, delivered work, phases, and roadmap themes. |
 | [`adrs/`](adrs/) | Architecture Decision Records. |
-| [`product-handshake/`](product-handshake/) | Contracts and status links shared with the application team. |
+| [`service-contracts/`](service-contracts/) | API contracts between AI Founders core, marketing site, and product app. |
 | [`schema/`](schema/) | Supabase plans for marketing-owned data (current + roadmap). |
 | [`archive/`](archive/) | Legacy references preserved for historical context. |
 
