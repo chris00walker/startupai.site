@@ -22,13 +22,15 @@ Use this index to navigate the restored documentation. Each section cross-links 
 
 | Folder | Summary |
 | --- | --- |
-| [`overview/`](overview/) | Value proposition, messaging matrix, two-site plan, and public roadmap. |
-| [`dev/`](dev/) | Stack overview, local dev instructions, accessibility, analytics, performance, security, and data sources. |
+| [`overview/`](overview/) | Value proposition, messaging matrix, personas, two-site plan, and public roadmap. |
+| [`specs/`](specs/) | Feature specs, API contracts, data schema, and integrations. |
+| [`dev/`](dev/) | Stack overview, local dev, environments, accessibility, analytics, performance, and security. |
 | [`ops/`](ops/) | Deploy, monitoring, incident response, lead handling, and PostHog runbooks. |
 | [`incidents/`](incidents/) | Historical incident reports with timelines, root cause, and follow-up actions. |
-| [`schema/`](schema/) | Supabase plans for marketing-owned data (current + roadmap). |
-| [`product-handshake/`](product-handshake/) | Contracts and status links shared with the application team. |
 | [`work/`](work/) | Backlog, in-progress items, delivered work, phases, and roadmap themes. |
+| [`adrs/`](adrs/) | Architecture Decision Records. |
+| [`product-handshake/`](product-handshake/) | Contracts and status links shared with the application team. |
+| [`schema/`](schema/) | Supabase plans for marketing-owned data (current + roadmap). |
 | [`archive/`](archive/) | Legacy references preserved for historical context. |
 
 ## Related Resources

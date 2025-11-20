@@ -1,7 +1,7 @@
 ---
 purpose: "Explain how marketing work is organized and tracked"
 status: "active"
-last_reviewed: "2025-10-27"
+last_reviewed: "2025-11-20"
 ---
 
 # Working Model
@@ -35,4 +35,4 @@ Marketing work flows through a lightweight Kanban that mirrors the product team.
 
 ## Features Directory
 
-- Each major campaign or launch gets a folder under `docs/features/` describing scope, audience, KPIs, and outcomes. See product repo for historical examples.
+- Each major campaign or launch gets a folder under `docs/work/features/` describing scope, audience, KPIs, and outcomes. See product repo for historical examples.

@@ -1,7 +1,7 @@
 ---
 purpose: "Describe how to document marketing features"
 status: "active"
-last_reviewed: "2025-10-27"
+last_reviewed: "2025-11-20"
 ---
 
 # Feature Documentation
