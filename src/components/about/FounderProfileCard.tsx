@@ -25,6 +25,7 @@ const borderColorMap: Record<string, string> = {
   orange: 'border-orange-500/20',
   green: 'border-green-500/20',
   purple: 'border-purple-500/20',
+  silver: 'border-slate-400/30',
 };
 
 // Filter activities for a specific founder
@@ -37,6 +38,7 @@ function getFounderActivities(founderName: string): AgentActivity[] {
 export function FounderProfileCard({ founder }: FounderProfileCardProps) {
   const borderColor = borderColorMap[founder.color] || 'border-gray-500/20';
   const founderActivities = getFounderActivities(founder.name);
+  const isGuardian = founder.layer === 'meta';
 
   const handleDialogOpen = (open: boolean) => {
     if (open) {
@@ -45,73 +47,33 @@ export function FounderProfileCard({ founder }: FounderProfileCardProps) {
   };
 
   return (
-    <Card className={`border-2 ${borderColor} h-full flex flex-col`}>
-      <CardHeader className="text-center pb-4 flex-shrink-0">
-        <div className="mx-auto h-20 w-20 rounded-full overflow-hidden">
+    <Card className={`border-2 ${borderColor} h-full flex flex-col ${isGuardian ? 'shadow-lg bg-gradient-to-b from-slate-50 to-white' : ''}`}>
+      <CardHeader className="text-center pb-2 flex-shrink-0">
+        <div className="mx-auto h-16 w-16 rounded-full overflow-hidden">
           <Image
             src={founder.avatarUrl}
             alt={`${founder.name} - ${founder.role}`}
-            width={80}
-            height={80}
+            width={64}
+            height={64}
             className="object-cover"
           />
         </div>
-        <div className="mt-4">
-          <h3 className="text-xl font-bold">{founder.name}</h3>
-          <p className="text-sm text-muted-foreground">{founder.title}</p>
+        <div className="mt-3">
+          <h3 className="text-lg font-bold">{founder.name}</h3>
+          <p className="text-xs text-muted-foreground">{founder.title}</p>
         </div>
-        <Badge variant="outline" className="mt-2 mx-auto">
+        <Badge variant="outline" className="mt-2 mx-auto text-xs">
           {founder.role}
         </Badge>
       </CardHeader>
-      <CardContent className="flex flex-col flex-1">
-        <div className="space-y-4 flex-1">
-          {/* Quote */}
-          <blockquote className="text-sm italic text-muted-foreground border-l-2 pl-3">
-            &ldquo;{founder.quote}&rdquo;
-          </blockquote>
-
-          {/* Capabilities */}
-          <div>
-            <p className="text-xs font-semibold uppercase text-muted-foreground mb-2">
-              Capabilities
-            </p>
-            <ul className="text-sm space-y-1">
-              {founder.capabilities.slice(0, 4).map((capability, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  <span className="text-primary mt-1">-</span>
-                  <span>{capability}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Current Status */}
-          <div className="pt-2 border-t">
-            <p className="text-xs font-semibold uppercase text-muted-foreground mb-1">
-              Current Status
-            </p>
-            <p className="text-sm">{founder.currentStatus}</p>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-2 pt-2 border-t">
-            {founder.stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-lg font-bold">{stat.value}</p>
-                <p className="text-xs text-muted-foreground">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* View Recent Work Button - Pinned to bottom */}
-        <div className="mt-auto pt-4">
+      <CardContent className="flex flex-col flex-1 pt-2">
+        {/* View Profile Button - Prominent */}
+        <div className="mt-auto pt-2">
           <Dialog onOpenChange={handleDialogOpen}>
             <DialogTrigger asChild>
-              <Button variant="outline" size="sm" className="w-full">
+              <Button variant="default" size="sm" className="w-full">
               <Activity className="h-4 w-4 mr-2" />
-              View Recent Work
+              View Profile
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
@@ -133,6 +95,11 @@ export function FounderProfileCard({ founder }: FounderProfileCardProps) {
               </div>
             </DialogHeader>
 
+            {/* Quote */}
+            <blockquote className="mt-4 text-sm italic text-muted-foreground border-l-2 pl-3">
+              &ldquo;{founder.quote}&rdquo;
+            </blockquote>
+
             {/* Extended Personality */}
             <div className="mt-4">
               <p className="text-xs font-semibold uppercase text-muted-foreground mb-2">
@@ -142,6 +109,35 @@ export function FounderProfileCard({ founder }: FounderProfileCardProps) {
                 {founder.personality}
               </p>
             </div>
+
+            {/* Governance Role (Guardian only) */}
+            {founder.governanceRole && (
+              <div className="mt-4">
+                <p className="text-xs font-semibold uppercase text-muted-foreground mb-2">
+                  Governance Role
+                </p>
+                <p className="text-sm italic text-slate-600">
+                  &ldquo;{founder.governanceRole}&rdquo;
+                </p>
+              </div>
+            )}
+
+            {/* Governance Metrics (Guardian only) */}
+            {founder.governanceMetrics && (
+              <div className="mt-4 p-3 rounded-lg bg-slate-50 border border-slate-200">
+                <p className="text-xs font-semibold uppercase text-muted-foreground mb-2">
+                  Governance Metrics
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  {founder.governanceMetrics.map((metric) => (
+                    <div key={metric.label} className="text-center">
+                      <p className="text-lg font-bold text-slate-700">{metric.value}</p>
+                      <p className="text-xs text-muted-foreground">{metric.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* All Capabilities */}
             <div className="mt-4">

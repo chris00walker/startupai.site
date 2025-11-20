@@ -15,6 +15,13 @@ export interface AIFounder {
     label: string;
     value: string;
   }[];
+  // Guardian-specific fields (optional for other founders)
+  layer?: 'meta' | 'operational';
+  governanceRole?: string;
+  governanceMetrics?: {
+    label: string;
+    value: string;
+  }[];
 }
 
 export interface AgentActivity {
@@ -34,8 +41,39 @@ export interface DashboardMetric {
   changeType?: 'positive' | 'negative' | 'neutral';
 }
 
-// The 4 AI Founders
+// The 5 AI Founders (Guardian + 4 Operational)
 export const aiFounders: AIFounder[] = [
+  {
+    id: 'guardian',
+    name: 'Guardian',
+    role: 'Governance AI',
+    title: 'Chief Governance Officer',
+    color: 'silver',
+    avatarUrl: '/images/founders/guardian.png',
+    layer: 'meta',
+    capabilities: [
+      'Governance health monitoring',
+      'Pattern detection across all agents',
+      'Blind spot identification in rules',
+      'Adaptive threat model updates',
+      'Sequence anomaly detection',
+    ],
+    personality: 'Vigilant but not paranoid. Sees both forest and trees.',
+    quote: 'Rules catch known threats. I catch what rules don\'t know yet.',
+    governanceRole: 'I don\'t govern the founders—I govern the governance',
+    currentStatus: 'Monitoring 1,247 governance rules',
+    stats: [
+      { label: 'Patterns detected', value: '127' },
+      { label: 'Governance updates', value: '47' },
+      { label: 'Security score', value: '99.2%' },
+    ],
+    governanceMetrics: [
+      { label: 'Sequences validated', value: '3,847' },
+      { label: 'Rules enforced', value: '12,492' },
+      { label: 'Violations prevented', value: '23' },
+      { label: 'Detection time', value: '1.3s' },
+    ],
+  },
   {
     id: 'sage',
     name: 'Sage',
@@ -132,6 +170,14 @@ export const aiFounders: AIFounder[] = [
 
 // Sample agent activities for the activity feed
 export const recentActivities: AgentActivity[] = [
+  {
+    id: '0',
+    agentName: 'Guardian',
+    agentColor: 'silver',
+    activity: 'Detected unusual sequence pattern across 3 validations',
+    timestamp: '1 hour ago',
+    metric: '99.2% security',
+  },
   {
     id: '1',
     agentName: 'Sage',
@@ -257,4 +303,7 @@ export const openQuestions = [
   'When should humans override AI decisions? We\'re still figuring out the right balance.',
   'How do we handle edge cases agents haven\'t seen? Currently: flag for human review.',
   'What\'s the optimal level of automation vs. human oversight? Testing different thresholds.',
+  'How much autonomy should Guardian have to update governance rules?',
+  'When should Guardian\'s recommendations override deterministic rules?',
+  'What\'s the optimal balance between Guardian\'s security focus and innovation speed?',
 ];

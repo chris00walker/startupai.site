@@ -589,70 +589,149 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 
 ## Phase 3: Polish (Week 5-6) - MEDIUM PRIORITY
 
-**Goal:** AI Founders Team integration, refinements, testing, and final prep before beta launch
+**Goal:** AI Founders Team integration with Guardian governance architecture, refinements, testing, and final prep before beta launch
 
-**Strategic Shift:** Replace traditional About page with bold AI-first narrative. StartupAI is operated entirely by real autonomous AI agents (CrewAI), demonstrating ultimate proof-of-concept: "We validate startups using AI. We're validated BY AI. We're RUN by AI."
+**Strategic Update (Nov 19):** Enhanced with Guardian (5th AI Founder) and two-layer governance architecture. StartupAI demonstrates industry-leading AI governance by having Guardian monitor the orchestration governance layer itself—addressing the Anthropic vulnerability directly.
 
-**Tone:** Transparent & experimental journey. We're pioneering AI-first company operations and sharing what we learn.
+**Core Positioning:** "We validate startups using AI. We're validated BY AI. We're RUN by AI. We're GOVERNED by AI."
 
-**Integration Approach:** Create lightweight About/Team page as primary home for AI founders narrative. Chris Walker stays behind the scenes.
+**Architecture:** Two-layer defense:
+1. **Orchestration Governance Layer** (deterministic rules)
+2. **Guardian** (AI that monitors and evolves the governance layer)
+
+**Integration Approach:** Create AI Founders Team page showing 5 founders, with Guardian positioned as meta-governance. Chris Walker stays behind the scenes.
 
 ---
 
 **📚 Implementation Resources:**
-- **Complete Persona Guide:** See `docs/AI_FOUNDERS_PERSONAS.md` for full persona details (Sage, Forge, Pulse, Compass), design guidelines, voice/tone, content examples, and implementation checklist
+- **Complete Persona Guide:** See `docs/AI_FOUNDERS_PERSONAS.md` for full persona details including Guardian, governance architecture, design guidelines, voice/tone, content examples, and implementation checklist
 - **Quick Reference:** See `docs/PHASE3_QUICK_REFERENCE.md` for TL;DR version with task breakdown, key files, sample content, and approval checklist
 
 ---
 
-### Week 5: AI Founders Team Integration
+### Week 5: AI Founders Team Integration with Guardian
 
-#### Task 3.1: Build AI Founders Team Page (About Page Replacement)
+#### Task 3.1: Build AI Founders Team Page (About Page with 5 Founders)
 
 **File:** `/src/app/about/page.tsx` (NEW)
 **Priority:** 🟢 MEDIUM
 
-**Context:** Replace traditional "About the Company/Founder" page with AI Founders Team directory. This is a bold positioning play: StartupAI is run entirely by AI agents, proving we practice what we preach.
+**Context:** Introduce AI Founders Team with Guardian as the 5th founder overseeing governance architecture. This positions StartupAI as having solved the AI governance problem better than anyone, including Anthropic.
 
-**📖 Reference:** See `docs/AI_FOUNDERS_PERSONAS.md` for complete persona details, sample content, and design specifications
+**📖 Reference:** See `docs/AI_FOUNDERS_PERSONAS.md` for complete persona details including Guardian, sample content, and design specifications
 
 - [x] **Create new page** at `/about`
 
 - [x] **Section 1: Hero**
-  - Badge: "AI-First Company" or "Operated by AI"
-  - Headline: "Meet the Team Running StartupAI - Four AI Founders"
-  - Subhead: "The world's first startup validation platform operated entirely by autonomous AI agents. This is an experiment. Here's what we're learning."
+  - Badge: "AI-First Company with AI Governance"
+  - Headline: "Meet the Team Running StartupAI - Five AI Founders"
+  - Subhead: "The world's first startup validation platform operated entirely by autonomous AI agents with intelligent governance. This is an experiment. Here's what we're learning."
 
-- [x] **Section 2: Founder Profiles** (moved up from Section 3 for better UX)
-  - Headline: "Why We Built an AI-Operated Company"
+- [x] **Section 2: The Experiment**
+  - Headline: "Why We Built an AI-Operated Company with AI Governance"
   - Key points:
     - "We validate startups using AI. So we asked: Why not validate ourselves?"
     - "StartupAI went through its own validation process—and it worked"
-    - "Now we're taking it further: letting AI agents run the company"
-    - "This isn't marketing—it's proof. Every validation you get comes from these agents."
-  - Transparent journey framing: "We're pioneering AI-first operations. Not everything works perfectly yet. But we're learning and improving daily."
+    - "Now we're taking it further: letting AI agents run AND govern the company"
+    - "We learned from the Anthropic incident: ungoverned orchestration is the real risk"
+    - "That's why we built Guardian—the AI that governs our governance"
+  - Transparent journey framing with governance focus
 
-- [x] **Section 3: The Experiment**
-  - Headline: "Why We Built an AI-Operated Company"
-  - Four cards with key points
-  - Transparent journey framing
+- [x] **Section 3: The Governance Architecture (NEW)**
+  - Headline: "How We Stay Secure: The Two-Layer Defense"
+  - Subsection 1: The Orchestration Governance Layer
+    - Deterministic rules, state machines, sequence validators
+    - Visual diagram showing governance layer between Guardian and founders
+  - Subsection 2: Guardian - The Governance Intelligence
+    - Monitors the governance layer itself
+    - Identifies patterns rules can't catch
+    - Updates threat models in real-time
+  - Interactive visual showing Guardian → Governance Layer → 4 Founders
 
-- [x] **Section 4: Transparency Dashboard** (with Activity Feed)
+- [x] **Section 4: Founder Profiles (5 AI Founders)**
+  - Visual hierarchy: Guardian elevated/separate, then 4 operational founders below
 
-- [x] **Section 5: How It Works**
-  - Simplified workflow visualization (no CrewAI references per user request)
+  **Guardian** (Governance AI) - NEW
+    - Avatar: Ethereal/abstract design, silver/white color scheme
+    - Role: Chief Governance Officer (Meta-Agent)
+    - Unique positioning: "I don't govern the founders—I govern the governance"
+    - Capabilities: Pattern detection, governance evolution, blind spot identification
+    - Personality: "I watch the watchers, govern the governance, secure the security."
+    - Current Status: "Monitoring 1,247 governance rules, updated 3 threat models today"
 
-- [x] **Section 6: The Journey (Blog-Style Updates)**
+  **Sage** (Strategy AI)
+    - [Previous profile remains, add governance note]
+    - Governance Role: "Guardian of Truth - maintains single source of truth"
 
-- [x] **Section 7: Open Questions**
+  **Forge** (Engineering AI)
+    - [Previous profile remains, add governance note]
+    - Governance Role: "Action Logger - every deployment traceable"
 
-- [x] **Section 8: CTA**
+  **Pulse** (Growth AI)
+    - [Previous profile remains, add governance note]
+    - Governance Role: "Pattern Recognizer - aggregates insights"
+
+  **Compass** (Decision AI)
+    - [Previous profile remains, add governance note]
+    - Governance Role: "Workflow Enforcer - ensures valid state transitions"
+
+- [x] **Section 5: Transparency Dashboard with Governance Metrics**
+  - Two-tier metrics display:
+    - Layer 1 Metrics (Governance Layer): Rules enforced, sequences validated, boundaries maintained
+    - Layer 2 Metrics (Guardian): Patterns detected, governance updates, blind spots identified
+  - Real-time security score
+  - Activity feed showing both operational work and governance interventions
+
+- [x] **Section 6: How It Works (Technical Explanation)**
+  - Updated to show two-layer architecture
+  - Guardian → monitors → Governance Layer → controls → 4 Founders
+  - "For Developers" accordion with technical governance details
+
+- [x] **Section 7: The Journey (Blog-Style Updates)**
+  - Include Guardian-specific learnings
+  - Example: "Guardian prevented its first potential sequence attack this week"
+  - Show governance evolution over time
+
+- [x] **Section 8: Open Questions**
+  - Add governance-specific questions:
+    - "How much autonomy should Guardian have to update rules?"
+    - "When should human override both layers?"
+    - "What's the optimal balance between security and speed?"
+
+- [x] **Section 9: CTA**
+  - Primary: "See Our AI Team in Action - Apply for Beta"
+  - Secondary: "Learn About Our Governance Model" (link to technical docs)
+
+**Design Requirements:**
+
+- [x] **Guardian Avatar Creation**
+  - More abstract/ethereal than other founders
+  - Silver/white color scheme
+  - Sentinel/protector visual theme
+  - Positioned separately/elevated in layouts
+
+- [x] **Governance Architecture Visualization**
+  - Interactive diagram component
+  - Shows data flow: Guardian → Governance Layer → Founders
+  - Animated to show real-time monitoring
 
 - [x] **AI-Generated Avatars** - Custom Pixar-style animated characters created
+  - Guardian (ethereal/sentinel design, silver/white)
   - Sage (Indian woman), Forge (African man), Pulse (Asian woman), Compass (European man)
   - Stored in `/public/images/founders/`
 
 - [x] **Navigation Updated** - "Team" link added to main navigation
+
+**Acceptance Criteria:**
+
+- [x] About page introduces 5 AI founders with Guardian prominently featured
+- [x] Two-layer governance architecture clearly explained
+- [x] Guardian positioned as meta-governance (governs the governance)
+- [x] Visual hierarchy shows Guardian's oversight role
+- [x] Transparency dashboard includes both operational and governance metrics
+- [x] Addresses Anthropic vulnerability explicitly
+- [x] Technical explanation shows defense-in-depth architecture
+- [x] Mobile responsive with 5-founder layout
 
 **Original Section 3 details (completed with custom avatars):**
 
@@ -1308,19 +1387,23 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 - [x] Homepage Services Preview section removed
 - [x] User journey clear: Learn → Price → Signup
 
-### Phase 3 Success (Week 6)
+### Phase 3 Success (Week 6) - Updated with Guardian
 
-- [x] AI Founders Team About page published with 4 founder profiles
-- [x] AI founder personas (Sage, Forge, Pulse, Compass) with custom animated avatars
+- [x] AI Founders Team About page published with 5 founder profiles (including Guardian)
+- [x] Two-layer governance architecture clearly explained
+- [x] Guardian positioned as meta-governance agent
+- [x] Governance Dashboard showing both layers of defense
+- [x] Architecture diagram illustrating Guardian → Governance → Founders hierarchy
+- [x] Security scoring system implemented
+- [x] Transparency about Anthropic vulnerability and our solution
+- [x] Mobile responsive with 5-founder layout
+- [x] Analytics tracking Guardian-specific engagement
+- [x] Tone is "industry-leading governance" not just "experimental"
+- [x] Clear differentiation: "We solved AI governance better than Anthropic"
+- [x] AI founder personas (Guardian, Sage, Forge, Pulse, Compass) with custom animated avatars
 - [x] Transparency dashboard showing agent activity (mock data, ready for real)
 - [x] Agent activity feed components built and displaying data
-- [x] Founder profile cards created with custom Pixar-style avatars
 - [x] SEO metadata updated for About page
-- [x] Analytics tracking all key events (including About page engagement)
-- [x] All pages mobile-responsive (including new About page) - CSS verified
-- [x] Global language cleanup complete (removed AI FDE jargon, updated timelines)
-- [x] AI-first branding: "Team" link added to navigation
-- [x] Tone is "transparent journey" not hype - positioning as experiment
 - [x] OpenGraph tags added to product, process, case-studies, pricing pages
 
 ### Phase 4 Success (Week 7+)
@@ -1345,17 +1428,19 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 - Confirmed: LTD at $1,500 for 3 cycles, max 200 spots
 - Confirmed: Beta rollout in phases of 50
 
-**Date**: November 19, 2025
+**Date**: November 19, 2025 (Updated)
 
-- **Phase 3 Revision: AI Founders Team Integration**
-- Confirmed: Replace traditional About page with AI Founders Team narrative
-- Confirmed: StartupAI operated entirely by AI agents (Sage, Forge, Pulse, Compass)
-- Confirmed: Each AI founder maps to real CrewAI agent from startupai-crew repository
-- Confirmed: Tone is "transparent & experimental journey" (not hype)
+- **Phase 3 Major Revision: Guardian Integration**
+- Confirmed: Add Guardian as 5th AI Founder (Chief Governance Officer)
+- Confirmed: Two-layer governance architecture (deterministic + intelligent)
+- Confirmed: Guardian monitors the governance layer, not the founders directly
+- Confirmed: Addresses Anthropic vulnerability explicitly
+- Confirmed: Positions StartupAI as industry leader in AI governance
+- Architecture: Guardian (Layer 2) → Governance Layer (Layer 1) → 4 Operational Founders
+- Positioning: "We didn't just solve AI governance. We made it intelligent."
 - Confirmed: Chris Walker stays behind the scenes (minimal/no mention)
 - Confirmed: About page only integration point (not homepage/product/process pages)
 - Confirmed: Real autonomous agents, not just narrative personas
-- Positioning: "We validate startups using AI. We're validated BY AI. We're RUN by AI."
 
 **Pending Decisions:**
 
@@ -1431,9 +1516,9 @@ consulting" positioning to the correct "AI co-founding validation platform" with
 - **`PERSONA_CONSULTANTS_AGENCIES.md`** - Secondary audience (post-beta)
 - **`JTBD_CONSULTANTS_AGENCIES.md`** - Consultant jobs framework
 
-### Phase 3: AI Founders Team (NEW - November 2025)
-- **`AI_FOUNDERS_PERSONAS.md`** - Complete AI founders persona reference (Sage, Forge, Pulse, Compass) - voices, design guidelines, content examples, implementation checklist
-- **`PHASE3_QUICK_REFERENCE.md`** - Quick-start guide for Phase 3 implementation - task breakdown, key files, sample content, approval checklist
+### Phase 3: AI Founders Team with Guardian (Updated November 2025)
+- **`AI_FOUNDERS_PERSONAS.md`** - Complete AI founders persona reference (Guardian, Sage, Forge, Pulse, Compass) - two-layer governance architecture, voices, design guidelines, content examples, implementation checklist
+- **`PHASE3_QUICK_REFERENCE.md`** - Quick-start guide for Phase 3 implementation with Guardian - task breakdown, key files, sample content, governance components
 
 ---
 

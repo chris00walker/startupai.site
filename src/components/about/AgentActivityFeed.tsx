@@ -7,6 +7,7 @@ interface AgentActivityFeedProps {
 }
 
 const avatarMap: Record<string, string> = {
+  Guardian: '/images/founders/guardian.png',
   Sage: '/images/founders/sage.png',
   Forge: '/images/founders/forge.png',
   Pulse: '/images/founders/pulse.png',

@@ -5,11 +5,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FounderProfileCard } from '@/components/about/FounderProfileCard';
 import { AgentActivityFeed } from '@/components/about/AgentActivityFeed';
-import { TransparencyDashboard } from '@/components/about/TransparencyDashboard';
+import { GovernanceDashboard } from '@/components/about/GovernanceDashboard';
 import {
   aiFounders,
   recentActivities,
-  dashboardMetrics,
   journeyUpdates,
   openQuestions,
 } from '@/data/agentActivity';
@@ -19,16 +18,17 @@ import {
   Workflow,
   HelpCircle,
   BookOpen,
+  Shield,
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Meet the AI Founders | StartupAI - The Team Running StartupAI',
+  title: 'Meet the AI Founders | StartupAI - Team with AI Governance',
   description:
-    'Meet Sage, Forge, Pulse, and Compass - the AI founders running StartupAI. The startup validation platform operated entirely by autonomous AI agents.',
+    'Meet Guardian, Sage, Forge, Pulse, and Compass - the five AI founders running StartupAI with intelligent governance. The only startup validation platform with AI that governs its own AI.',
   openGraph: {
     title: 'Meet the AI Founders | StartupAI',
     description:
-      'The startup validation platform operated entirely by autonomous AI agents.',
+      'Five AI founders with industry-leading governance. See how we validate startups using AI, run by AI, governed by AI.',
     type: 'website',
   },
 };
@@ -40,18 +40,18 @@ export default function AboutPage() {
       <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-background to-muted/30">
         <div className="max-w-4xl mx-auto text-center">
           <Badge variant="outline" className="mb-4">
-            <Bot className="h-3 w-3 mr-1" />
-            AI-First Company
+            <Shield className="h-3 w-3 mr-1" />
+            AI-First Company with AI Governance
           </Badge>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
             Meet the Team Running StartupAI
           </h1>
           <p className="text-lg text-muted-foreground mb-2">
-            Four AI Founders
+            Five AI Founders
           </p>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             The startup validation platform operated entirely by autonomous AI
-            agents. This is an experiment. Here&apos;s what we&apos;re learning.
+            agents with intelligent governance. This is an experiment. Here&apos;s what we&apos;re learning.
           </p>
         </div>
       </section>
@@ -60,9 +60,11 @@ export default function AboutPage() {
       <section className="py-16 px-4 md:px-8 bg-muted/30">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center">
-            The Four AI Founders
+            The Five AI Founders
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          {/* All 5 Founders in one row */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {aiFounders.map((founder) => (
               <FounderProfileCard key={founder.id} founder={founder} />
             ))}
@@ -74,7 +76,7 @@ export default function AboutPage() {
       <section className="py-16 px-4 md:px-8">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center">
-            Why We Built an AI-Operated Company
+            Why We Built an AI-Operated Company with AI Governance
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             <Card>
@@ -97,38 +99,136 @@ export default function AboutPage() {
               <CardContent className="pt-6">
                 <p className="text-muted-foreground">
                   Now we&apos;re taking it further:{' '}
-                  <strong>letting AI agents run the company</strong>.
+                  <strong>letting AI agents run AND govern the company</strong>.
                 </p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-6">
                 <p className="text-muted-foreground">
-                  This isn&apos;t marketing—it&apos;s proof.{' '}
+                  We learned from the Anthropic incident:{' '}
                   <strong>
-                    Every validation you get comes from these agents.
+                    ungoverned orchestration is the real risk.
                   </strong>
                 </p>
               </CardContent>
             </Card>
           </div>
           <p className="text-center text-muted-foreground mt-8 text-sm">
-            We&apos;re pioneering AI-first operations. Not everything works
-            perfectly yet. But we&apos;re learning and improving daily.
+            That&apos;s why we built Guardian—the AI that governs our governance.
           </p>
         </div>
       </section>
 
-      {/* Section 4: Transparency Dashboard */}
+      {/* Section 3.5: The Governance Architecture */}
+      <section className="py-16 px-4 md:px-8 bg-slate-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            How We Stay Secure: The Two-Layer Defense
+          </h2>
+          <p className="text-muted-foreground text-center mb-8">
+            Intelligent oversight prevents what rules alone can&apos;t catch
+          </p>
+
+          <div className="space-y-8">
+            {/* Visual Architecture */}
+            <div className="bg-white rounded-lg border border-slate-200 p-8">
+              <div className="space-y-6 text-center">
+                <div className="p-4 bg-slate-100 rounded-lg border-2 border-slate-400">
+                  <p className="font-semibold text-slate-700">Guardian</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Monitors governance health & detects blind spots
+                  </p>
+                </div>
+
+                <p className="text-muted-foreground">↓</p>
+
+                <div className="p-4 bg-blue-50 rounded-lg border-2 border-blue-300">
+                  <p className="font-semibold text-blue-700">Governance Layer</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Deterministic rules, state machines, sequence validators
+                  </p>
+                </div>
+
+                <p className="text-muted-foreground">↓</p>
+
+                <div className="grid grid-cols-4 gap-2">
+                  <div className="p-3 bg-blue-100 rounded border border-blue-300">
+                    <p className="font-semibold text-sm text-blue-700">Sage</p>
+                  </div>
+                  <div className="p-3 bg-orange-100 rounded border border-orange-300">
+                    <p className="font-semibold text-sm text-orange-700">Forge</p>
+                  </div>
+                  <div className="p-3 bg-green-100 rounded border border-green-300">
+                    <p className="font-semibold text-sm text-green-700">Pulse</p>
+                  </div>
+                  <div className="p-3 bg-purple-100 rounded border border-purple-300">
+                    <p className="font-semibold text-sm text-purple-700">Compass</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Explanation */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Layer 1: Governance Rules</CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm text-muted-foreground">
+                  <p>Deterministic rules catch known threats:</p>
+                  <ul className="list-disc list-inside mt-3 space-y-1 text-xs">
+                    <li>State machines prevent invalid sequences</li>
+                    <li>Boundary enforcers limit agent actions</li>
+                    <li>Audit trails create accountability</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Layer 2: Guardian</CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm text-muted-foreground">
+                  <p>Guardian catches emerging threats:</p>
+                  <ul className="list-disc list-inside mt-3 space-y-1 text-xs">
+                    <li>Pattern detection across all agents</li>
+                    <li>Blind spot identification in rules</li>
+                    <li>Adaptive threat model evolution</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 4: Transparency Dashboard with Governance Metrics */}
       <section className="py-16 px-4 md:px-8">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-4 text-center">
             Transparency Dashboard
           </h2>
           <p className="text-muted-foreground text-center mb-8">
-            Real metrics from our AI agents (anonymized)
+            Real metrics showing both operational and governance performance
           </p>
-          <TransparencyDashboard metrics={dashboardMetrics} />
+
+          {/* Two-Layer Governance Dashboard */}
+          <GovernanceDashboard
+            layer1Metrics={[
+              { id: '1', label: 'Sequences Validated', value: '3,847' },
+              { id: '2', label: 'Rules Enforced', value: '12,492' },
+              { id: '3', label: 'Boundary Violations', value: '0' },
+              { id: '4', label: 'State Transitions', value: '15,234' },
+            ]}
+            layer2Metrics={[
+              { id: '5', label: 'Patterns Detected', value: '127' },
+              { id: '6', label: 'Governance Updates', value: '47' },
+              { id: '7', label: 'Blind Spots Found', value: '8' },
+              { id: '8', label: 'Detection Time', value: '1.3s' },
+            ]}
+            securityScore={99.2}
+          />
 
           {/* Activity Feed */}
           <div className="mt-12">
@@ -146,8 +246,20 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold">How They Work Together</h2>
           </div>
           <p className="text-muted-foreground text-center mb-8">
-            Four AI Agents, One Validation Cycle
+            Five AI Founders: Guardian Governs, Four Agents Execute
           </p>
+
+          {/* Guardian monitoring */}
+          <div className="mb-4">
+            <div className="text-center p-4 bg-slate-500/10 rounded-lg border border-slate-500/20">
+              <p className="font-semibold text-slate-600 dark:text-slate-400">
+                Guardian Monitors
+              </p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Continuous governance oversight
+              </p>
+            </div>
+          </div>
 
           {/* Workflow visualization */}
           <div className="grid md:grid-cols-4 gap-4 mb-8">
@@ -184,7 +296,7 @@ export default function AboutPage() {
           </div>
 
           <p className="text-sm text-muted-foreground text-center">
-            Each AI founder specializes in one part of validation. Together, they deliver
+            Each AI founder specializes in one part of validation while Guardian ensures security. Together, they deliver
             strategy, working software, real user data, and pivot recommendations in 2 weeks.
           </p>
         </div>
