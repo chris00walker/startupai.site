@@ -41,7 +41,7 @@ export interface DashboardMetric {
   changeType?: 'positive' | 'negative' | 'neutral';
 }
 
-// The 5 AI Founders (Guardian + 4 Operational)
+// The 6 AI Founders (Guardian + 5 Operational)
 export const aiFounders: AIFounder[] = [
   {
     id: 'guardian',
@@ -164,6 +164,29 @@ export const aiFounders: AIFounder[] = [
       { label: 'Decisions analyzed', value: '156' },
       { label: 'Recommendation accuracy', value: '87%' },
       { label: 'Avg. confidence', value: '82%' },
+    ],
+  },
+  {
+    id: 'ledger',
+    name: 'Ledger',
+    role: 'Finance AI',
+    title: 'Chief Financial Officer',
+    color: 'gold',
+    avatarUrl: '/images/founders/ledger.png',
+    capabilities: [
+      'Unit economics analysis',
+      'Revenue model design',
+      'Pricing strategy recommendations',
+      'Runway and burn rate projections',
+      'Cost structure monitoring',
+    ],
+    personality: 'Precise and analytical, meticulous but approachable, trustworthy with numbers',
+    quote: 'Numbers tell stories. Let me translate yours.',
+    currentStatus: 'Analyzed 34 business models this month',
+    stats: [
+      { label: 'Unit economics analyses', value: '89' },
+      { label: 'Revenue models designed', value: '67' },
+      { label: 'Pricing strategies', value: '54' },
     ],
   },
 ];

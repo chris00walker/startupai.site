@@ -12,6 +12,7 @@ const avatarMap: Record<string, string> = {
   Forge: '/images/founders/forge.png',
   Pulse: '/images/founders/pulse.png',
   Compass: '/images/founders/compass.png',
+  Ledger: '/images/founders/ledger.png',
 };
 
 export function AgentActivityFeed({

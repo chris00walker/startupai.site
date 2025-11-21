@@ -26,6 +26,7 @@ const borderColorMap: Record<string, string> = {
   green: 'border-green-500/20',
   purple: 'border-purple-500/20',
   silver: 'border-slate-400/30',
+  gold: 'border-yellow-500/20',
 };
 
 // Filter activities for a specific founder
