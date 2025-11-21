@@ -44,6 +44,7 @@ import {
   AlertCircleIcon,
   Users,
 } from 'lucide-react';
+import { FormProgress } from '@/components/ui/FormProgress';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -206,6 +207,19 @@ export default function BetaPage() {
         <PageContainer variant="narrow">
           <Card className="business-card">
             <CardContent className="pt-6">
+              {/* Progress Indicator */}
+              <FormProgress
+                steps={[
+                  { label: 'Name', completed: !!form.watch('name') && form.watch('name').length >= 2 },
+                  { label: 'Email', completed: !!form.watch('email') && form.watch('email').includes('@') },
+                  { label: 'Idea', completed: !!form.watch('startupIdea') && form.watch('startupIdea').length >= 10 },
+                  { label: 'Industry', completed: !!form.watch('industry') },
+                  { label: 'Timeline', completed: !!form.watch('timeline') },
+                  { label: 'Confirm', completed: form.watch('budgetConfirmation') === true },
+                ]}
+                className="mb-8"
+              />
+
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}

@@ -3,6 +3,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { TrendingUp, Shield } from 'lucide-react';
 import type { DashboardMetric } from '@/data/agentActivity';
+import { Sparkline } from '@/components/ui/Sparkline';
 
 interface GovernanceDashboardProps {
   layer1Metrics: DashboardMetric[];
@@ -40,13 +41,32 @@ export function GovernanceDashboard({
             Layer 1: Governance Rules
           </h4>
           <div className="grid grid-cols-2 gap-3">
-            {layer1Metrics.map((metric) => (
+            {layer1Metrics.map((metric, index) => (
               <Card key={metric.id}>
                 <CardContent className="pt-4 pb-3">
                   <p className="text-2xl font-bold">{metric.value}</p>
                   <p className="text-xs text-muted-foreground mt-1">
                     {metric.label}
                   </p>
+                  <Sparkline
+                    data={[
+                      // Generate pseudo-random but consistent data based on index
+                      30 + index * 5,
+                      45 + index * 3,
+                      40 + index * 4,
+                      55 + index * 2,
+                      60 + index * 3,
+                      70 + index * 2,
+                      75 + index * 4,
+                      85,
+                      90,
+                      95,
+                    ]}
+                    color="#3b82f6"
+                    width={60}
+                    height={20}
+                    className="mt-2"
+                  />
                 </CardContent>
               </Card>
             ))}
@@ -59,13 +79,31 @@ export function GovernanceDashboard({
             Layer 2: Guardian Intelligence
           </h4>
           <div className="grid grid-cols-2 gap-3">
-            {layer2Metrics.map((metric) => (
+            {layer2Metrics.map((metric, index) => (
               <Card key={metric.id} className="border-slate-300 bg-slate-50">
                 <CardContent className="pt-4 pb-3">
                   <p className="text-2xl font-bold text-slate-700">{metric.value}</p>
                   <p className="text-xs text-muted-foreground mt-1">
                     {metric.label}
                   </p>
+                  <Sparkline
+                    data={[
+                      40 + index * 4,
+                      50 + index * 3,
+                      45 + index * 5,
+                      60 + index * 2,
+                      65 + index * 3,
+                      75 + index * 2,
+                      80 + index * 3,
+                      88,
+                      92,
+                      97,
+                    ]}
+                    color="#64748b"
+                    width={60}
+                    height={20}
+                    className="mt-2"
+                  />
                 </CardContent>
               </Card>
             ))}
