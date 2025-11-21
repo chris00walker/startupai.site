@@ -406,7 +406,7 @@ export default function ProcessPage() {
                   <div className="flex items-center gap-3">
                     <Badge
                       variant="default"
-                      className="text-lg px-4 py-1 bg-secondary"
+                      className="text-lg px-4 py-1 bg-green-500 hover:bg-green-500"
                     >
                       Week 2
                     </Badge>
