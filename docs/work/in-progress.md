@@ -1,29 +1,56 @@
 ---
 purpose: "Track marketing work actively in flight"
 status: "active"
-last_reviewed: "2025-11-20"
+last_reviewed: "2025-11-21"
 ---
 
 # In Progress
 
-Current work items from the beta launch implementation plan. For full task details, see [implementation-plan.md](implementation-plan.md).
+## Priority Order
 
-## Phase 4: Launch & Iteration
+Work these items in order. Items marked "Ready" can start immediately.
 
-| Task | Description | Status | Notes |
-|------|-------------|--------|-------|
-| Task 4.1 | Soft Launch to Inner Circle | 🟡 Ready to start | Announce to personal network, set up beta tracking, accept first 10 applicants |
-| Task 4.2 | First Validation Cycles | 🟠 Waiting | Manual delivery of Week 1 (strategy + build) and Week 2 (test + analyze) |
-| Task 4.3 | Open Phase 2 (Next 50 Spots) | 🟠 Queued | After first cohort feedback |
-| Task 4.4 | Case Study Development | 🟠 Queued | Document first 5 success stories |
-| Task 4.5 | Continuous Iteration | 🟢 Ongoing | Weekly reviews, A/B testing, prepare for Q2 2026 public launch |
+### P0: Pre-Launch Setup (Work First)
 
-## Deferred from Earlier Phases
+| Priority | Item | Status | Owner | Notes |
+|----------|------|--------|-------|-------|
+| 1 | Beta tracking system | **Ready** | @growth | Notion/spreadsheet: Name, Email, Application Date, Payment Status, Start Date, Cycle Status |
+| 2 | Slack community setup | **Ready** | @growth | Channels: #announcements, #support, #feedback, #wins |
+| 3 | Acceptance email template | **Ready** | @growth | Include Stripe payment link |
+| 4 | Device QA testing | **Ready** | @qa | Test on various devices and browsers |
 
-| Task | Description | Status | Notes |
-|------|-------------|--------|-------|
-| Task 1.6 | Create Waitlist for Overflow | 🟡 Optional | For users who miss the 200 LTD cap. Waitlist form and Formspree integration. |
-| Task 3.2 | Define & Document AI Agent Mapping | ⏭️ Skipped | User decided not to reveal underlying technology stack |
+### P1: Soft Launch
+
+| Priority | Item | Status | Owner | Notes |
+|----------|------|--------|-------|-------|
+| 5 | Announce to inner circle | Ready after P0 | @growth | Email, LinkedIn, Twitter/X |
+| 6 | Accept first 10 applicants | Ready after P0 | @growth | Use beta tracking system |
+| 7 | First validation cycles | Manual delivery | @ops | Week 1 (strategy + build), Week 2 (test + analyze) |
+
+### P2: Blocked by CrewAI
+
+| Priority | Item | Status | Blocked By | Notes |
+|----------|------|--------|------------|-------|
+| 8 | Activity Feed API integration | **Blocked** | CrewAI Phase 1 | Connect About page to live agent status |
+| 9 | Trust Metrics API integration | **Blocked** | CrewAI Phase 1 | Live validation counts and metrics |
+| 10 | Phase 2 expansion (Next 50) | **Blocked** | First cohort feedback | After validation cycles complete |
+
+---
+
+## Cross-Repo Dependencies
+
+```
+startupai-crew (CrewAI Phase 1)
+    ↓ Builds activity feed & metrics APIs
+app.startupai.site (Product App)
+    ↓ Results display, user dashboards
+startupai.site (This repo)
+    ↓ Displays activity, captures leads
+```
+
+**Blocking Chain**: CrewAI Phase 1 → Activity/Metrics APIs → Marketing Integration
+
+---
 
 ## Pre-Launch Checklist
 
@@ -33,37 +60,41 @@ Before accepting first beta users:
 - [x] Pricing page features LTD offer
 - [x] Beta application page created
 - [x] Payment processing works
-- [ ] Beta tracking system set up (spreadsheet/Notion)
+- [ ] Beta tracking system set up (Notion/spreadsheet)
 - [ ] Slack community created
+- [ ] Acceptance email template ready
 - [x] Personal brand references removed
 - [x] "How It Works" section added
 - [x] Mobile responsive
 - [x] Analytics tracking set up
 
-## AI Founders Architecture - Service Integration
+---
 
-The documentation has been updated to the AI Founders Architecture model. Next step is implementing the live integrations:
+## Deferred Items
 
 | Task | Description | Status | Notes |
 |------|-------------|--------|-------|
-| Activity Feed API | Build endpoint in startupai-crew | 🟠 Queued | `GET /api/v1/public/activity` |
-| Trust Metrics API | Build endpoint in startupai-crew | 🟠 Queued | `GET /api/v1/public/metrics` |
-| Marketing Integration | Connect About page to live APIs | 🟠 Queued | Replace mock data |
-| CrewAI Deployment | Deploy core service to production | 🟠 Queued | Railway/Render/AWS decision needed |
+| Task 1.6 | Waitlist for overflow | Optional | For users who miss 200 LTD cap |
+| Task 3.2 | AI Agent Mapping docs | Skipped | User decided not to reveal stack |
 
-**Reference**: See `docs/service-contracts/marketing-to-app-contracts.md` for API specifications.
+---
 
-## Next Actions
+## Immediate Actions
 
-### Pre-Launch (Critical)
-1. **Set up beta tracking system** - Create Notion/spreadsheet to track: Name, Email, Application Date, Payment Status, Start Date, Cycle Status
-2. **Create Slack community** - Channels: #announcements, #support, #feedback, #wins
-3. **Prepare acceptance email template** - With payment link (Stripe)
-4. **Announce to inner circle** - Email, LinkedIn, Twitter/X
+1. **Set up beta tracking system** - Critical for managing applicants
+2. **Create Slack community** - Support channel for beta users
+3. **Prepare acceptance email** - With payment link
+4. **Monitor CrewAI Phase 1** - Unblocks Activity Feed and Metrics APIs
 
-### AI Founders Architecture (High Priority)
-5. **Deploy CrewAI core service** - Choose platform (Railway/Render/AWS)
-6. **Implement Activity Feed endpoint** - Agent status and current tasks
-7. **Connect marketing to live APIs** - Replace mock data on About page
+---
 
-Update this table whenever scope shifts or items complete. Move completed items to [done.md](done.md).
+## How to Use This Document
+
+1. **Pick highest priority "Ready" item** from the table
+2. **Update status** when you start work
+3. **Move to done.md** when complete
+4. **Check cross-repo-blockers.md** for upstream status
+
+---
+
+**Last Updated**: 2025-11-21
