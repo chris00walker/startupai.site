@@ -21,3 +21,9 @@ features/
 ```
 
 Feel free to copy this template when adding new work.
+
+## Ecosystem Context
+
+- **Master Architecture**: `startupai-crew/docs/master-architecture/`
+- **API Contracts**: `startupai-crew/docs/master-architecture/reference/api-contracts.md`
+- **Product App Features**: `app.startupai.site/docs/work/features/`

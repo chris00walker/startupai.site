@@ -36,3 +36,10 @@ Marketing work flows through a lightweight Kanban that mirrors the product team.
 ## Features Directory
 
 - Each major campaign or launch gets a folder under `docs/work/features/` describing scope, audience, KPIs, and outcomes. See product repo for historical examples.
+
+## Cross-Repo Coordination
+
+- **Cross-Repo Blockers**: [cross-repo-blockers.md](cross-repo-blockers.md)
+- **Product App Work Tracking**: `app.startupai.site/docs/work/`
+- **CrewAI Work Tracking**: `startupai-crew/docs/work/`
+- **Master Architecture**: `startupai-crew/docs/master-architecture/` (ecosystem source of truth)
