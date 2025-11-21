@@ -6,9 +6,11 @@ This repository hosts the public transparency interface for StartupAI's AI Found
 
 This site is one of three core services in the AI Founders Architecture:
 
-- **AI Founders Team ([`startupai-crew`](https://github.com/chris00walker/startupai-crew))** – The CrewAI agents that form the brain of StartupAI, analyzing markets and validating ideas.
+- **AI Founders Engine ([`startupai-crew`](https://github.com/chris00walker/startupai-crew))** – 8 crews / 18 agents powered by CrewAI Flows, forming the brain of StartupAI.
 - **Marketing Interface (this repository)** – Public transparency layer showing AI team activity, capturing leads, and building trust through visibility.
 - **Product Interface ([`app.startupai.site`](https://github.com/chris00walker/app.startupai.site))** – Customer portal where users receive AI-driven validation results and strategic insights.
+
+**Ecosystem Source of Truth**: `startupai-crew/docs/master-architecture/` contains the canonical architecture for all three services.
 
 ### Technical Implementation
 
@@ -93,8 +95,10 @@ See [`docs/README.md`](docs/README.md) for a full documentation index.
 
 ## Related Services
 
-- **AI Founders Core**: [`startupai-crew`](https://github.com/chris00walker/startupai-crew) – The CrewAI agents that power StartupAI's core intelligence.
-- **Product Interface**: [`app.startupai.site`](https://github.com/chris00walker/app.startupai.site) – Customer portal for AI-driven validation delivery.
+- **AI Founders Engine**: [`startupai-crew`](https://github.com/chris00walker/startupai-crew) – 8 crews / 18 agents (brain of the ecosystem)
+- **Product Interface**: [`app.startupai.site`](https://github.com/chris00walker/app.startupai.site) – Customer portal for validation delivery
+
+**Master Architecture**: `startupai-crew/docs/master-architecture/`
 
 ## License
 
