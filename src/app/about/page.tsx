@@ -20,15 +20,17 @@ import {
   BookOpen,
   Shield,
 } from 'lucide-react';
+import { GovernanceArchitectureDiagram } from '@/components/diagrams/GovernanceArchitectureDiagram';
+import { ProcessFlowDiagram } from '@/components/diagrams/ProcessFlowDiagram';
 
 export const metadata: Metadata = {
   title: 'Meet the AI Founders | StartupAI - Team with AI Governance',
   description:
-    'Meet Guardian, Sage, Forge, Pulse, and Compass - the five AI founders running StartupAI with intelligent governance. The only startup validation platform with AI that governs its own AI.',
+    'Meet Guardian, Sage, Forge, Pulse, Compass, and Ledger - the six AI founders running StartupAI with intelligent governance. The only startup validation platform with AI that governs its own AI.',
   openGraph: {
     title: 'Meet the AI Founders | StartupAI',
     description:
-      'Five AI founders with industry-leading governance. See how we validate startups using AI, run by AI, governed by AI.',
+      'Six AI founders with industry-leading governance. See how we validate startups using AI, run by AI, governed by AI.',
     type: 'website',
   },
 };
@@ -47,7 +49,7 @@ export default function AboutPage() {
             Meet the Team Running StartupAI
           </h1>
           <p className="text-lg text-muted-foreground mb-2">
-            Five AI Founders
+            Six AI Founders
           </p>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             The startup validation platform operated entirely by autonomous AI
@@ -60,11 +62,11 @@ export default function AboutPage() {
       <section className="py-16 px-4 md:px-8 bg-muted/30">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center">
-            The Five AI Founders
+            The Six AI Founders
           </h2>
 
-          {/* All 5 Founders in one row */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {/* 6 Founders in 2 rows */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {aiFounders.map((founder) => (
               <FounderProfileCard key={founder.id} founder={founder} />
             ))}
@@ -131,42 +133,9 @@ export default function AboutPage() {
           </p>
 
           <div className="space-y-8">
-            {/* Visual Architecture */}
-            <div className="bg-white rounded-lg border border-slate-200 p-8">
-              <div className="space-y-6 text-center">
-                <div className="p-4 bg-slate-100 rounded-lg border-2 border-slate-400">
-                  <p className="font-semibold text-slate-700">Guardian</p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Monitors governance health & detects blind spots
-                  </p>
-                </div>
-
-                <p className="text-muted-foreground">↓</p>
-
-                <div className="p-4 bg-blue-50 rounded-lg border-2 border-blue-300">
-                  <p className="font-semibold text-blue-700">Governance Layer</p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Deterministic rules, state machines, sequence validators
-                  </p>
-                </div>
-
-                <p className="text-muted-foreground">↓</p>
-
-                <div className="grid grid-cols-4 gap-2">
-                  <div className="p-3 bg-blue-100 rounded border border-blue-300">
-                    <p className="font-semibold text-sm text-blue-700">Sage</p>
-                  </div>
-                  <div className="p-3 bg-orange-100 rounded border border-orange-300">
-                    <p className="font-semibold text-sm text-orange-700">Forge</p>
-                  </div>
-                  <div className="p-3 bg-green-100 rounded border border-green-300">
-                    <p className="font-semibold text-sm text-green-700">Pulse</p>
-                  </div>
-                  <div className="p-3 bg-purple-100 rounded border border-purple-300">
-                    <p className="font-semibold text-sm text-purple-700">Compass</p>
-                  </div>
-                </div>
-              </div>
+            {/* Visual Architecture Diagram */}
+            <div className="bg-white rounded-lg border border-slate-200 p-4 md:p-8">
+              <GovernanceArchitectureDiagram />
             </div>
 
             {/* Explanation */}
@@ -246,53 +215,12 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold">How They Work Together</h2>
           </div>
           <p className="text-muted-foreground text-center mb-8">
-            Five AI Founders: Guardian Governs, Four Agents Execute
+            Six AI Founders: Guardian Governs, Five Agents Execute
           </p>
 
-          {/* Guardian monitoring */}
-          <div className="mb-4">
-            <div className="text-center p-4 bg-slate-500/10 rounded-lg border border-slate-500/20">
-              <p className="font-semibold text-slate-600 dark:text-slate-400">
-                Guardian Monitors
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                Continuous governance oversight
-              </p>
-            </div>
-          </div>
-
           {/* Workflow visualization */}
-          <div className="grid md:grid-cols-4 gap-4 mb-8">
-            <div className="text-center p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
-              <p className="font-semibold text-blue-600 dark:text-blue-400">
-                1. Sage
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                Analyzes strategy
-              </p>
-            </div>
-            <div className="text-center p-4 bg-orange-500/10 rounded-lg border border-orange-500/20">
-              <p className="font-semibold text-orange-600 dark:text-orange-400">
-                2. Forge
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">Builds MVP</p>
-            </div>
-            <div className="text-center p-4 bg-green-500/10 rounded-lg border border-green-500/20">
-              <p className="font-semibold text-green-600 dark:text-green-400">
-                3. Pulse
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                Tests with users
-              </p>
-            </div>
-            <div className="text-center p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
-              <p className="font-semibold text-purple-600 dark:text-purple-400">
-                4. Compass
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                Recommends next steps
-              </p>
-            </div>
+          <div className="mb-8">
+            <ProcessFlowDiagram />
           </div>
 
           <p className="text-sm text-muted-foreground text-center">
