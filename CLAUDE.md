@@ -330,13 +330,38 @@ Before creating any page in `src/app/`:
 The **single source of truth** for cross-service architecture lives in:
 ```
 startupai-crew/docs/master-architecture/
-├── ecosystem.md              # Three-service reality diagram
-├── organizational-structure.md # C-suite → Agent hierarchy
-├── current-state.md          # Honest status assessment
-└── validation-backlog.md     # Hypothesis-driven feature queue
+├── 01-ecosystem.md           # Three-service reality diagram
+├── 02-organization.md        # C-suite → Agent hierarchy
+├── 03-validation-spec.md     # Technical implementation guide
+├── 04-status.md              # Honest status assessment
+└── reference/                # API contracts, approval workflows
+
+startupai-crew/docs/work/
+└── backlog.md                # Hypothesis-driven feature queue
 ```
 
 This marketing site should only contain documentation specific to its own implementation. For anything that spans services, refer to the crew's master architecture.
+
+## Cross-Repo Coordination
+
+**⚠️ This repo is DOWNSTREAM of all others.** It depends on CrewAI and Product App.
+
+### Before Starting Work
+- Check `docs/work/cross-repo-blockers.md` for current dependencies
+- If working on blocked items (Activity Feed, Metrics, etc.), verify upstream status:
+  - CrewAI APIs: `startupai-crew/docs/work/cross-repo-blockers.md`
+  - Product results UI: `app.startupai.site/docs/work/cross-repo-blockers.md`
+
+### When Blockers Are Resolved Upstream
+1. Update `docs/work/cross-repo-blockers.md` status
+2. Move items to "In Progress" in `docs/work/in-progress.md`
+
+### Dependency Chain
+```
+CrewAI → Product App → Marketing Site (this repo)
+```
+
+**Current blockers**: See `docs/work/cross-repo-blockers.md`
 
 ## Documentation
 
