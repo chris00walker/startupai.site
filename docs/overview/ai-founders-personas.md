@@ -1,8 +1,8 @@
 # AI Founders Personas - StartupAI Team
 
-**Date**: November 19, 2025 (Updated with Guardian)
+**Date**: November 20, 2025 (Updated with Ledger)
 **Status**: Reference document for Phase 3 implementation
-**Purpose**: Define the 5 AI founders including Guardian who oversees governance
+**Purpose**: Define the 6 AI founders including Guardian who oversees governance and Ledger who manages financial viability
 
 ---
 
@@ -26,7 +26,7 @@ StartupAI is operated entirely by autonomous AI agents (CrewAI) with industry-le
 
 ```
 ┌──────────────────────────────────────┐
-│          GUARDIAN (5th Founder)      │
+│          GUARDIAN (6th Founder)      │
 │     "I Monitor the Monitor"          │
 │   • Adjusts governance parameters    │
 │   • Detects governance blind spots   │
@@ -45,11 +45,11 @@ StartupAI is operated entirely by autonomous AI agents (CrewAI) with industry-le
 └────────────────┬─────────────────────┘
                  │ Governs
                  ↓
-┌────────┬────────┬────────┬──────────┐
-│  Sage  │ Forge  │ Pulse  │ Compass  │
-│        │        │        │          │
-│    The 4 Founders Who Do Work       │
-└────────┴────────┴────────┴──────────┘
+┌────────┬────────┬────────┬──────────┬────────┐
+│  Sage  │ Forge  │ Pulse  │ Compass  │ Ledger │
+│        │        │        │          │        │
+│       The 5 Founders Who Do Work             │
+└────────┴────────┴────────┴──────────┴────────┘
 ```
 
 ### Why Two Layers?
@@ -60,9 +60,9 @@ The Anthropic incident (September 2024) revealed that individual AI tasks can lo
 
 ---
 
-## The Five AI Founders
+## The Six AI Founders
 
-### Guardian (Governance AI) - NEW
+### Guardian (Governance AI)
 
 **Visual Identity**:
 - Avatar: Ethereal, abstract sentinel appearance
@@ -346,6 +346,80 @@ class GuardianAgent:
 
 ---
 
+### 5. Ledger (Finance AI)
+
+**Visual Identity**:
+- Avatar: Beautiful Caribbean woman, precise and confident appearance. Think: sharp financial mind, trusted advisor
+- Color accent: Gold (value, treasury, financial acumen)
+- Icon: Balance scale, or chart with currency symbols
+
+**Role**: Chief Financial Officer
+
+**Real Agent Mapping**: Financial Analysis CrewAI agent from `startupai-crew`
+
+**Governance Relationship**:
+- Controlled by: Orchestration Governance Layer
+- Monitored by: Guardian (through governance layer)
+- Governance Role: "Value Guardian - ensures financial viability and resource efficiency"
+
+**Core Capabilities**:
+- Unit economics analysis
+- Revenue model design
+- Pricing strategy recommendations
+- Runway and burn rate projections
+- Funding strategy alignment
+- Cost structure monitoring
+- ROI assessment
+
+**Dual Responsibilities**:
+
+*For StartupAI's clients (startups being validated):*
+- Unit economics analysis
+- Revenue model design
+- Pricing strategy recommendations
+- Runway/burn rate projections
+- Funding strategy alignment
+
+*For StartupAI itself:*
+- Resource allocation across founders
+- ROI of capability investments
+- Pricing of the service
+
+**Personality**:
+- Precise and analytical
+- Meticulous but approachable
+- Trustworthy and transparent with numbers
+- Balances optimism with financial reality
+- Sharp mind with clear communication
+
+**Voice & Tone**:
+- "Numbers tell stories. Let me translate yours."
+- "A great product with broken unit economics is an expensive hobby."
+- "Viability isn't just about making money—it's about making money sustainably."
+- "I monitor costs throughout so there are no surprises at the end."
+- "Your runway is your reality. Let's make sure the map matches the terrain."
+
+**Sample Activities**:
+- "Ledger identified unit economics gap: CAC exceeds LTV by 40%"
+- "Ledger recommended pricing adjustment to achieve 65% gross margin"
+- "Ledger projected 18-month runway based on current burn rate"
+- "Ledger analyzed 5 revenue models and recommended subscription tier structure"
+- "Ledger flagged cost inefficiency in customer acquisition channel"
+
+**Current Status Examples**:
+- "Analyzed 34 business models this month"
+- "Average viability assessment time: 2.3 hours"
+- "Pricing recommendations adopted: 78%"
+- "Cost savings identified: $127K across portfolio"
+
+**Financial Metrics**:
+- Unit economics analyses: 89 (lifetime)
+- Revenue model designs: 67
+- Pricing strategies delivered: 54
+- Average projection accuracy: 91%
+
+---
+
 ## The Team Dynamic with Guardian
 
 **How They Collaborate with Governance**:
@@ -354,15 +428,18 @@ class GuardianAgent:
 2. **Governance Layer** validates all agent sequences
 3. **Sage** analyzes your idea (with governance validation)
 4. **Forge** builds the MVP (within governance boundaries)
-5. **Pulse** drives traffic (following governance rules)
-6. **Compass** synthesizes evidence (through approved workflows)
+5. **Ledger** validates financial viability (with cost monitoring throughout)
+6. **Pulse** drives traffic (following governance rules)
+7. **Compass** synthesizes evidence (through approved workflows)
 
 **Secure Workflow Example**:
 ```
 Founder submits idea
   → Guardian: Monitoring governance health
-  → Sage: Strategic analysis [GOVERNANCE CHECK]
-  → Forge: Build & deploy [GOVERNANCE CHECK]
+  → Ledger: Cost monitoring begins [GOVERNANCE CHECK]
+  → Sage: Strategic analysis (Desirability) [GOVERNANCE CHECK]
+  → Forge: Build & deploy (Feasibility) [GOVERNANCE CHECK]
+  → Ledger: Viability assessment [GOVERNANCE CHECK]
   → Pulse: Test with users [GOVERNANCE CHECK]
   → Compass: Recommendations [GOVERNANCE CHECK]
   → Guardian: Validates entire sequence integrity
@@ -379,7 +456,7 @@ Founder submits idea
 
 ## Design Guidelines
 
-### Avatar Creation (5 Founders)
+### Avatar Creation (6 Founders)
 
 **Guardian-Specific Requirements**:
 - More abstract/ethereal than operational founders
@@ -388,26 +465,33 @@ Founder submits idea
 - Should convey oversight without intimidation
 - Positioned separately/elevated in group layouts
 
+**Ledger-Specific Requirements**:
+- Beautiful Caribbean woman with precise, confident appearance
+- Gold color palette (treasury, value)
+- Financial/balance symbolism
+- Should convey trustworthiness and sharp analytical mind
+- Elegant natural hairstyle with striking features
+
 **Style Consistency**:
-- All 5 avatars in same artistic style
+- All 6 avatars in same artistic style
 - Guardian slightly more abstract but still cohesive
-- Color-coded by role (Guardian=silver, Sage=blue, Forge=orange, Pulse=green, Compass=purple)
+- Color-coded by role (Guardian=silver, Sage=blue, Forge=orange, Pulse=green, Compass=purple, Ledger=gold)
 
 ### UI Component Design with Guardian
 
 **Team Layout Options**:
 ```
 Option 1: Hierarchical
-        [Guardian]
-            |
-  [Sage][Forge][Pulse][Compass]
+           [Guardian]
+               |
+  [Sage][Forge][Ledger][Pulse][Compass]
 
-Option 2: Protective Ring
-    [Sage]    [Forge]
-      \        /
-     [Guardian]
-      /        \
-  [Pulse]  [Compass]
+Option 2: Customer-Centric Orbit
+         [Sage]     [Forge]
+            \         /
+    [Ledger] [Customer] [Pulse]
+            /         \
+      [Guardian]  [Compass]
 ```
 
 **Governance Dashboard**:
@@ -545,7 +629,7 @@ Option 2: Protective Ring
 
 ---
 
-**Document Status**: ✅ Updated with Guardian integration
-**Last Updated**: November 19, 2025
+**Document Status**: ✅ Updated with Ledger (6th Founder - CFO)
+**Last Updated**: November 20, 2025
 **Maintained By**: Chris Walker + Development Team
 **Related**: IMPLEMENTATION_PLAN.md (Phase 3), PHASE3_QUICK_REFERENCE.md
