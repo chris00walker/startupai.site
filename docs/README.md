@@ -37,22 +37,22 @@ Documents from October 2025 that may reference outdated information:
 - **Current roadmap snapshot** – [`overview/roadmap-public.md`](overview/roadmap-public.md) and internal view at [`work/roadmap.md`](work/roadmap.md)
 - **Operations runbooks** – [`ops/`](ops/)
 - **Developer guides** – [`dev/`](dev/)
-- **Service contracts** – [`service-contracts/`](service-contracts/)
+- **Service contracts** – [`specs/service-contracts.md`](specs/service-contracts.md)
 - **Work tracking** – [`work/`](work/)
+- **Cross-repo blockers** – [`work/cross-repo-blockers.md`](work/cross-repo-blockers.md)
 
 ## Directory Guide
 
 | Folder | Summary |
 | --- | --- |
 | [`overview/`](overview/) | Value proposition, messaging matrix, AI Founders personas, architecture, and public roadmap. |
-| [`specs/`](specs/) | Feature specs, API contracts, data schema, and integrations. |
-| [`dev/`](dev/) | Local dev, accessibility, analytics, performance, and security guides. |
+| [`dev/`](dev/) | Local dev, accessibility, analytics, performance, security, and data sources. |
 | [`ops/`](ops/) | Deploy, monitoring, incident response, lead handling, and PostHog runbooks. |
 | [`incidents/`](incidents/) | Historical incident reports with timelines, root cause, and follow-up actions. |
-| [`work/`](work/) | Backlog, in-progress items, delivered work, phases, and roadmap themes. |
+| [`work/`](work/) | Backlog, in-progress items, delivered work, cross-repo blockers, and roadmap themes. |
 | [`adrs/`](adrs/) | Architecture Decision Records. |
-| [`service-contracts/`](service-contracts/) | API contracts between AI Founders core, marketing site, and product app. |
 | [`schema/`](schema/) | Supabase plans for marketing-owned data (current + roadmap). |
+| [`specs/`](specs/) | Feature specs, API contracts, data schema, service contracts, and AI agent interactions. |
 | [`archive/`](archive/) | Legacy references preserved for historical context. |
 
 ## Related Resources
