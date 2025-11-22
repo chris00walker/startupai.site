@@ -39,6 +39,19 @@ Phase 4 (Launch & Iteration) requires:
 ### Current Workaround
 Task 4.2 "First Validation Cycles" planned as manual delivery while E2E flow is incomplete.
 
+## Flywheel Learning (Competitive Moat)
+
+The CrewAI backend includes a Flywheel Learning System that makes all 6 AI Founders smarter over time. This is a key differentiator for marketing messaging.
+
+**Marketing Angles:**
+- "AI that learns from every validation"
+- "Shared intelligence across all clients (anonymized)"
+- "Fortune 500-quality insights that improve with usage"
+
+**Technical Spec**: See `startupai-crew/docs/master-architecture/reference/flywheel-learning.md`
+
+**Privacy Safeguards**: All learnings are anonymized before storage - no client data is ever exposed.
+
 ## Coordination Notes
 
 - Marketing Phase 4 is **ready to start** but waiting on upstream dependencies
