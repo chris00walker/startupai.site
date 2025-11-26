@@ -24,7 +24,7 @@ Marketing work flows through a lightweight Kanban that mirrors the product team.
 
 - Active work summarized in [`in-progress.md`](in-progress.md).
 - Completed launches captured in [`done.md`](done.md) with links to assets and metrics.
-- Future candidates live in [`backlog.md`](backlog.md); roadmap framing in [`phases.md`](phases.md) and [`roadmap.md`](roadmap.md).
+- Future candidates live in [`backlog.md`](backlog.md); roadmap framing in [`implementation-plan.md`](implementation-plan.md) and [`roadmap.md`](roadmap.md).
 
 ## PR Requirements
 

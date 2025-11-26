@@ -56,7 +56,7 @@ See [`docs/README.md`](docs/README.md) for a full documentation index.
 
 1. **Install dependencies**
    ```bash
-   nvm use        # Node 18+
+   nvm use        # Node 22.18.0 (see .nvmrc)
    pnpm install
    ```
 2. **Create `.env.local`**
