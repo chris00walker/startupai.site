@@ -12,6 +12,13 @@ This site is one of three core services in the AI Founders Architecture:
 
 **Ecosystem Source of Truth**: `startupai-crew/docs/master-architecture/` contains the canonical architecture for all three services.
 
+### Current Status
+
+> **Reality Check:** The AI Founders engine exists and responds to API calls, but all outputs are currently LLM-generated synthetic data. Real market research, competitor analysis, and financial modeling tools are planned but not yet implemented. See [`startupai-crew/docs/master-architecture/04-status.md`](https://github.com/chris00walker/startupai-crew/blob/main/docs/master-architecture/04-status.md) for the full marketing vs reality gap analysis.
+
+**Working:** Lead capture, authentication flow, static site deployment
+**In Progress:** Real-time activity display (blocked by CrewAI Activity Feed API)
+
 ### Technical Implementation
 
 - **Static export + edge services** – `next.config.js` sets `output: 'export'`, so pages ship as static assets. Dynamic needs are handled client-side, through Formspree, or via Netlify Functions.
