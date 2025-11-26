@@ -1,12 +1,41 @@
 ---
 purpose: "Cross-repository dependency tracking for coordinated delivery"
 status: "active"
-last_reviewed: "2025-11-21"
+last_reviewed: "2025-11-26"
 ---
 
 # Cross-Repository Blockers
 
 This document tracks dependencies between StartupAI repositories to ensure coordinated delivery.
+
+## Marketing Promise Gap (Critical)
+
+The marketing site makes promises that the technical platform cannot currently deliver. This represents **capabilities to build**, not promises to reduce.
+
+| Promise | Page | Technical Gap |
+|---------|------|---------------|
+| "Build your MVP" | /product, /pricing | No code generation capability |
+| "Real ad spend ($450-525)" | /pricing | No Meta/Google Ads API integrated |
+| "Real user testing" | /product | No analytics/experiment framework |
+| "Unit economics (CAC/LTV)" | /pricing | Finance Crew outputs are synthetic |
+| "2-week validation cycles" | /pricing | Flow runs fast but outputs fiction |
+| "Evidence-based validation" | /product | All evidence is LLM-generated |
+| "6 AI Founders team" | /product | Agents exist but are LLM stubs |
+
+### Capabilities Required to Deliver on Promises
+
+1. **MVP Generation**: Code scaffolding, template deployment, GitHub integration
+2. **Ad Platform Integration**: Meta Business API, Google Ads API for real campaigns
+3. **Analytics Integration**: Real user tracking, conversion measurement
+4. **Financial Modeling**: Connect to real cost/revenue data, not LLM generation
+5. **Web Research Tools**: Competitor research APIs, market data sources
+6. **Results Persistence**: Store outputs to Supabase for frontend display
+
+### Honest Timeline Impact
+
+Even when CrewAI Phase 1 "completes", the outputs will be LLM-generated synthetic data. Marketing claims of "real validation" require building the capabilities listed above.
+
+---
 
 ## This Repo Blocked By
 
