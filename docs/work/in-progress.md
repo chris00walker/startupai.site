@@ -1,7 +1,8 @@
 ---
 purpose: "Track marketing work actively in flight"
 status: "active"
-last_reviewed: "2025-11-21"
+last_reviewed: "2025-11-26"
+last_synced: "2025-11-26 - Synced with startupai-crew Phase 2D completion"
 ---
 
 # In Progress
@@ -27,28 +28,30 @@ Work these items in order. Items marked "Ready" can start immediately.
 | 6 | Accept first 10 applicants | Ready after P0 | @growth | Use beta tracking system |
 | 7 | First validation cycles | Manual delivery | @ops | Week 1 (strategy + build), Week 2 (test + analyze) |
 
-### P2: Blocked by CrewAI
+### P2: Waiting on Public APIs (Updated 2025-11-26)
 
 | Priority | Item | Status | Blocked By | Notes |
 |----------|------|--------|------------|-------|
-| 8 | Activity Feed API integration | **Blocked** | CrewAI Phase 1 | Connect About page to live agent status |
-| 9 | Trust Metrics API integration | **Blocked** | CrewAI Phase 1 | Live validation counts and metrics |
-| 10 | Phase 2 expansion (Next 50) | **Blocked** | First cohort feedback | After validation cycles complete |
+| 8 | Activity Feed API integration | **Waiting** | Activity Feed API (not yet built) | Core CrewAI engine is complete; public API pending |
+| 9 | Trust Metrics API integration | **Waiting** | Metrics API (not yet built) | Core CrewAI engine is complete; public API pending |
+| 10 | Phase 2 expansion (Next 50) | **Waiting** | First cohort feedback | After validation cycles complete |
+
+**CrewAI Status (2025-11-26):** Phase 2D complete (~85%). Core engine fully functional with 18 tools. Only the public APIs for marketing transparency are not yet built.
 
 ---
 
-## Cross-Repo Dependencies
+## Cross-Repo Dependencies - UPDATED 2025-11-26
 
 ```
-startupai-crew (CrewAI Phase 1)
-    ↓ Builds activity feed & metrics APIs
-app.startupai.site (Product App)
-    ↓ Results display, user dashboards
+✅ startupai-crew (CrewAI Phase 2D Complete - 85%)
+    ↓ Core engine done; public APIs (Activity, Metrics) pending
+✅ app.startupai.site (Product App)
+    ↓ Results display ready, E2E testing in progress
 startupai.site (This repo)
-    ↓ Displays activity, captures leads
+    ↓ Waiting on Activity Feed + Metrics APIs
 ```
 
-**Blocking Chain**: CrewAI Phase 1 → Activity/Metrics APIs → Marketing Integration
+**Blocking Chain**: Public APIs (Activity Feed, Metrics) → Marketing Transparency Features
 
 ---
 
@@ -79,12 +82,14 @@ Before accepting first beta users:
 
 ---
 
-## Immediate Actions
+## Immediate Actions (Updated 2025-11-26)
 
 1. **Set up beta tracking system** - Critical for managing applicants
 2. **Create Slack community** - Support channel for beta users
 3. **Prepare acceptance email** - With payment link
-4. **Monitor CrewAI Phase 1** - Unblocks Activity Feed and Metrics APIs
+4. **Manual validation cycles can proceed** - CrewAI core engine is ready
+
+**Good News:** CrewAI core engine is complete (~85%). E2E validation flow is ready for testing. Marketing transparency features (Activity Feed, Metrics APIs) are the only remaining blockers.
 
 ---
 
@@ -97,4 +102,4 @@ Before accepting first beta users:
 
 ---
 
-**Last Updated**: 2025-11-21
+**Last Updated**: 2025-11-26
