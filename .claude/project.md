@@ -1,330 +1,369 @@
-# .claude/project.md
+# Purpose
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides explicit instructions and context for AI‑based coding assistants (e.g. OpenAI Codex, Agent Mode and other code generation tools) working on this repository. It complements the organisation‑wide global rules by defining project‑specific setup, structure, conventions and workflow. Agents must read this document before generating or modifying any code.
 
-## Project Overview
+# Project Overview
 
-**StartupAI Marketing Site** (`startupai.site`) - Public transparency interface for StartupAI's AI Founders Team. Part of the AI Founders Architecture:
+**StartupAI.site** is a Next.js-based marketing website and authentication portal for an AI-powered business strategy platform. This is the front-end gateway that introduces users to the AI co-founder concept and handles user onboarding before redirecting to the main agentic platform.
 
-- **startupai-crew** (AI Core) - CrewAI agents that analyze markets and validate ideas
-- **startupai.site** (Marketing) - Public transparency layer showcasing AI team activity ← **THIS REPO**
-- **app.startupai.site** (Product) - Customer portal for AI-driven validation delivery
+## Business Context
 
-**Tech Stack:**
+Based on comprehensive market research (see `/docs/business/` directory), StartupAI addresses a validated market need where entrepreneurs feel "overwhelmed with startup ideas" and "unsure how to validate them." The platform targets the $300-$1,000 market currently served by freelance consultants and fragmented tools.
 
-- Frontend: Next.js 15.5.3 (TypeScript 5.8.3, React 19.1.1)
-- Styling: Tailwind CSS 3.4.17 with ShadCN/UI component library (68+ components)
-- Backend: Supabase PostgreSQL with Auth (JWT, OAuth)
-- Analytics: PostHog v1.270.1
-- Forms: Formspree integration, Resend API for email
-- Package Manager: pnpm 9.12.1
-- Node Version: 22.18.0 (managed via `.nvmrc`)
+**Key Value Propositions:**
 
-## Development Commands
+- **Speed**: Transform ideas into Business Model Canvas in minutes vs. weeks
+- **Evidence-Based**: All recommendations backed by research and citations
+- **Privacy-First**: Enterprise-grade data protection for sensitive business ideas
+- **Integrated Workflow**: From strategy to domain models to code scaffolding
 
-### Setup and Development
+## Architecture Role
 
-```bash
-# Initial setup
-nvm use                    # Load Node 22.18.0
-pnpm install              # Install dependencies
+**StartupAI.site** serves as:
 
-# Development
-pnpm dev                  # Next.js dev with Turbopack (localhost:3000)
-pnpm dev:local            # Explicit local dev (port 3000)
-pnpm dev:staging          # Netlify dev (port 8888) for production-like testing
+1. **Marketing Hub**: Landing pages, feature explanations, pricing tiers
+2. **Authentication Gateway**: User registration and login
+3. **Documentation Portal**: Business research, case studies, methodology
+4. **Redirect Portal**: Seamless handoff to CWC Agentic Platform (localhost:3001)
 
-# Building
-pnpm build                # Next.js static export build
-pnpm build:staging        # Build with NODE_ENV=staging
-pnpm build:production     # Build with NODE_ENV=production
+## Technology Stack
 
-# Code Quality
-pnpm lint                 # ESLint check
-pnpm type-check           # TypeScript validation
-pnpm format               # Prettier format (JS, TS, JSON, MD, HTML, CSS)
-pnpm format:check         # Check formatting without changes
+- **Framework**: Next.js 14+ with App Router
+- **Styling**: Tailwind CSS with shadcn/ui components
+- **Database**: Supabase PostgreSQL with pgvector extension
+- **ORM**: Drizzle ORM for type-safe database operations
+- **Authentication**: Supabase Auth with cross-site JWT handoff
+- **Storage**: Supabase Storage with RLS policies
+- **Vector Search**: pgvector with HNSW indexes for semantic search
+- **Package Manager**: pnpm (✅ migrated from npm)
+- **Deployment**: Netlify with GitHub auto-deployment (✅ live)
+- **CLI Tools**: Supabase CLI for migrations and local development
+- **Content**: Markdown-based documentation in `/docs/business/`
 
-# Environment
-pnpm env:check            # Check environment variables
-```
+## Target Users
 
-## Architecture
+**Primary**: Non-technical founders and small tech teams seeking AI-assisted business planning
+**Secondary**: Startup studios, accelerators, and business consultants
+**Tertiary**: Technical indie hackers wanting strategy-to-code automation
 
-### Next.js App Router
+# Setup Commands
 
-This project uses **Next.js App Router** exclusively (`src/app/`).
+Before modifying or running the application, execute the following commands:
 
-**Key Routes:**
+````text
+| Task                     | Command          |
+| ------------------------ | ---------------- |
+| Install dependencies     | `pnpm install`   |
+| Start development server | `pnpm dev`       |
+| Run unit tests           | `pnpm test`      |
+| Run linter               | `pnpm lint`      |
+| Build for production     | `pnpm build`     |
+```text
 
-- `/` - Home page with hero and service overview
-- `/login`, `/signup` - Authentication flows (Supabase)
-- `/services/*` - 5 service pages (discovery, validation, scaling, advisory, optimization)
-- `/contact` - Contact form (Formspree integration)
-- `/pricing` - Pricing page
-- `/blog` - Blog listing
-- `/process`, `/product` - Process and product showcase
-- `/case-studies` - Case studies
-- `/ai-strategy` - AI strategy page
-- `/demo/dashboard` - Demo dashboard preview
-- `/api/waitlist` - POST endpoint for waitlist signup
+Agents should run these commands to verify that the project builds and tests pass both before and after making changes.
 
-**Layout Structure:**
+# Project Structure
 
-- Root layout: `src/app/layout.tsx` includes Navigation and Footer
-- All pages are static/pre-rendered for optimal performance
+Understand and respect the repository layout:
+
+## Core Directories
+
+**`/src/`** - Main application source code
+- `/src/components/` - Reusable UI components (shadcn/ui based). Use React functional components with hooks.
+- `/src/app/` - Next.js App Router pages and layouts. Follow file-system routing conventions.
+- `/src/lib/` - Shared utilities, configurations, and helper functions. Keep these pure and well-tested.
+
+**`/docs/`** - Documentation and business research
+- `/docs/business/` - Sequenced business analysis documents (1-research.md through 6-bibliography.md)
+- Follow the established cross-referencing system between documents
+
+**`/public/`** - Static assets such as images, icons, and fonts. Do not modify at runtime.
+
+**`/components/`** - Additional UI components (may be legacy structure)
+
+## Key Files
+
+- `.claude/agents.md` - This file, project-specific AI assistant instructions
+- `package.json` - Dependencies and scripts (uses pnpm)
+- `tailwind.config.js` - Tailwind CSS configuration
+- `next.config.js` - Next.js configuration
+
+## Important Notes
+
+- **Authentication**: Login form currently modified for testing (see MEMORY) - requires reset after testing
+- **Business Documents**: Maintain the 1-6 sequence and cross-reference system in `/docs/business/`
+- **Styling**: Use Tailwind CSS classes and shadcn/ui components for consistency
+- **Routing**: Follow Next.js App Router conventions in `/src/app/`
+
+Create new files in the appropriate folder following existing patterns. Avoid restructuring or renaming top‑level directories unless asked to do so.
+
+# Coding Conventions
+
+## TypeScript Standards
+- Use strict mode and adhere to the compiler options defined in `tsconfig.json`
+- Define proper interfaces for all props, API responses, and data structures
+- Leverage Next.js TypeScript integration for pages and API routes
+
+## Code Formatting
+- Follow Prettier and ESLint rules configured in this repo
+- Use single quotes, trailing commas, and consistent indentation
+- Run `pnpm lint` to check your work before committing
+
+## React/Next.js Patterns
+- **Components**: Write functional components with hooks, prefer composition over inheritance
+- **File Structure**: Use kebab-case for files, PascalCase for components, camelCase for variables/functions
+- **shadcn/ui**: Leverage existing component library for consistent UI patterns
+- **App Router**: Follow Next.js 14+ App Router conventions in `/src/app/`
+
+## StartupAI-Specific Conventions
 
 ### Component Organization
+````
 
-```
-src/components/
-├── ui/                    # ShadCN/UI components (40+ components)
-│   ├── Navigation.tsx     # Navigation header
-│   ├── Footer.tsx         # Footer section
-│   ├── button.tsx, card.tsx, dialog.tsx
-│   ├── form.tsx, input.tsx, label.tsx
-│   ├── data-display/      # Table, list, tags, filters
-│   ├── data-entry/        # Form components
-│   ├── feedback/          # Alert, toast, loading
-│   └── navigation/        # Breadcrumb, sidebar, pagination
-├── sections/
-│   ├── Hero.tsx           # Home hero section
-│   ├── ContactForm.tsx    # Contact section
-│   ├── ServiceCard.tsx    # Service card component
-│   └── AIStrategy.tsx     # AI strategy section
-├── demo/
-│   ├── DashboardLayout.tsx  # Demo dashboard layout
-│   └── AppSidebar.tsx     # Demo sidebar
-├── login-form.tsx         # Login form (Supabase integration)
-├── signup-form.tsx        # Signup form
-└── waitlist-form.tsx      # Waitlist form
-```
+/src/components/
+├── ui/ # shadcn/ui components
+├── forms/ # Form components (login, contact, etc.)
+├── layout/ # Headers, footers, navigation
+└── marketing/ # Landing page sections
 
-**UI Library:** Built on Radix UI primitives with Tailwind CSS. Components in `ui/` follow ShadCN conventions (new-york style variant).
+````
 
-### Static Export Configuration
+### Business Content Integration
+- Reference business research from `/docs/business/` when creating marketing copy
+- Maintain evidence-based claims with proper citations
+- Use the established 1-6 document sequence for content flow
 
-**Build Output:**
+### Authentication Considerations
+- **Current State**: Supabase Auth configured for cross-site integration with GitHub OAuth ✅
+- **Production Requirements**: OAuth providers (Google, GitHub, Azure), magic links, MFA support
+- **Database Integration**: User profiles, sessions, and handoff tracking in Supabase
+- **Integration**: Seamless JWT token handoff to app.startupai.site platform
+- **Security**: Row Level Security (RLS) policies and encrypted token validation
 
-- Static export to `/out` directory
-- Deployed to Netlify CDN
-- Images unoptimized (required for static export)
-- Trailing slashes enabled for URL consistency
+**⚠️ OAuth Configuration Requires TWO Steps:**
+1. **Code**: Environment variables in `.env.production` with production URLs
+2. **Supabase Dashboard**: Site URL and Redirect URLs must match production domains
 
-### Authentication
+Missing either causes OAuth to redirect to localhost in production.
 
-**Supabase Integration:**
+## Environment Variables
+- Use environment variables for all configuration
+- **Required Variables**:
+  - `.env.local` (development, gitignored): NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, NEXT_PUBLIC_APP_URL=http://localhost:3000
+  - `.env.production` (production, committed): Same variables with NEXT_PUBLIC_APP_URL=https://app-startupai-site.netlify.app
+  - `netlify.toml`: Build environment variables duplicated for build-time access
+- **Database**: DATABASE_URL with Supavisor pooling for serverless compatibility
+- **Authentication**: JWT_SECRET for cross-site token signing
+- **AI Integration**: OPENAI_API_KEY for embeddings generation
+- Never hardcode API endpoints, secrets, or platform URLs
+- Document new environment variables in project documentation
 
-- OAuth providers: Google, GitHub, Azure
-- JWT token management
-- Secure cross-site token handoff to app.startupai.site
-- Magic link support
+# Testing Instructions
 
-**Key Files:**
+## Test Strategy for StartupAI.site
 
-- `src/lib/supabase/client.ts` - Supabase client initialization
-- `src/lib/auth.ts` - Authentication helpers
-- `src/components/login-form.tsx` - Login UI
-- `src/components/signup-form.tsx` - Signup UI
+### Component Testing
+- Co-locate test files with components using `.test.tsx` or `.spec.tsx` extensions
+- Use React Testing Library for component interaction testing
+- Test both happy paths and error states for forms and user interactions
 
-### Environment Variables
+### Authentication Flow Testing
+- **Current State**: Supabase Auth integration with cross-site token handoff
+- **Production State**: Test OAuth flows, magic links, and JWT token validation
+- **Cross-Site Testing**: Verify secure handoff to app-startupai-site.netlify.app
+- **Database Testing**: Test user profile creation, session management, and RLS policies
+- Mock external authentication providers for development environment
 
-**Required** (set in `.env.local`):
+### Content Integration Testing
+- Test markdown content rendering from `/docs/business/` directory
+- Verify cross-references between business documents work correctly
+- Ensure citation links point to correct bibliography entries
 
-- `NEXT_PUBLIC_SUPABASE_URL` - Supabase project URL
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Supabase anonymous key
-- `NEXT_PUBLIC_MARKETING_URL` - Marketing site URL (this site)
-- `NEXT_PUBLIC_APP_URL` - Product platform URL (app.startupai.site)
-- `NEXT_PUBLIC_POSTHOG_KEY` - PostHog analytics key
-- `NEXT_PUBLIC_POSTHOG_HOST` - PostHog endpoint (https://us.i.posthog.com)
+### Next.js Specific Testing
+- Test App Router navigation and routing
+- Verify server-side rendering works correctly
+- Test API routes if any are implemented
 
-**Optional:**
+## Test Configuration
 
-- `JWT_SECRET` - Session JWT (backend only)
-- `SESSION_SECRET` - Session secret (backend only)
-- `RESEND_API_KEY` - Email API for waitlist notifications
-- `NODE_ENV` - Environment (development/staging/production)
+```bash
+# Run all tests
+pnpm test
 
-**Environment Files:**
+# Run tests in watch mode during development
+pnpm test:watch
 
-- `.env.example` - Template for all environments
-- `.env.local` - Local development (gitignored)
-- `.env.production` - Production variables (committed)
-- `.env.staging` - Staging environment
-- `.envrc` - direnv config (loads from `~/.secrets/startupai`)
+# Run tests with coverage
+pnpm test:coverage
+````
 
-See `.env.example` for complete template.
+## Testing Guidelines
 
-## Important Conventions
+- **Deterministic Tests**: Avoid calls to live services, use mocks and fixtures
+- **Business Logic**: Test business content integration and citation systems
+- **User Flows**: Test complete user journeys from landing to authentication
+- **Responsive Design**: Test component behavior across different screen sizes
+- **Accessibility**: Include basic a11y testing for key user interactions
 
-### Styling
+## Critical Test Areas
 
-- **CSS Variables:** Use HSL values defined in `src/styles/globals.css`
-- **Tailwind Utilities:** Use `cn()` helper from `src/lib/utils.ts` (clsx + tailwind-merge)
-- **Dark Mode:** Supported via class-based approach
-- **Responsive Design:** Mobile-first with Tailwind breakpoints
+1. **Authentication Flow**: Login form, validation, redirect to CWC platform
+2. **Business Content**: Markdown rendering, cross-references, citation links
+3. **Marketing Pages**: Landing page components, pricing displays, feature explanations
+4. **Navigation**: App Router functionality, responsive navigation
+5. **Form Validation**: Contact forms, newsletter signup, user input handling
 
-### Forms
+Run all tests with `pnpm test` before committing. Do not reduce test coverage or break existing tests.
 
-- **Validation:** All forms use Zod schemas for validation
-- **Form Handling:** React Hook Form for state management
-- **Patterns:**
+# Pull Request Guidelines
 
-  ```typescript
-  import { useForm } from 'react-hook-form';
-  import { zodResolver } from '@hookform/resolvers/zod';
-  import { z } from 'zod';
+## Pre-PR Checklist
 
-  const schema = z.object({ email: z.string().email() });
-  const form = useForm({ resolver: zodResolver(schema) });
-  ```
+Before opening a pull request, verify all checks pass:
 
-### Analytics
-
-- **PostHog Integration:** Event tracking via `src/lib/analytics.ts`
-- **Type-Safe Events:** Use defined event types for consistency
-- **Common Events:** Page views, button clicks, form submissions
-
-### File Organization
-
-- **Component Colocation:** Keep related components together
-- **No Mock Data:** All components use real data from Supabase
-- **Import Aliases:** Use `@/` prefix for src imports (e.g., `@/components`, `@/lib`)
-
-### Code Quality
-
-- **TypeScript Strict Mode:** All code must type-check
-- **No Unused Imports:** Clean up imports before committing
-- **Explicit Error Handling:** All async operations should handle errors
-- **Accessibility:** All interactive elements need proper ARIA labels
-- **Security:** Never commit secrets, use environment variables
-
-### Git Workflow
-
-- **Never force push to main** without explicit permission
-- **Follow existing commit message style:** Check `git log` for patterns
-- **Test before committing:** Run `pnpm type-check` and `pnpm build`
-- **Format code:** Run `pnpm format` before committing
-
-## Deployment
-
-### Netlify Configuration
-
-**Build Settings (`netlify.toml`):**
-
-- Build command: `pnpm build`
-- Publish directory: `out`
-- Node.js 18, pnpm 9.12.1
-
-**Deployment Contexts:**
-
-1. **Production (main branch)**
-   - URL: https://startupai-site.netlify.app
-   - NODE_ENV=production
-
-2. **Staging (staging branch)**
-   - URL: https://staging--startupai-site.netlify.app
-   - NODE_ENV=staging
-
-**Features:**
-
-- Automatic builds on push to main
-- Preview deploys for pull requests
-- Redirects for old HTML routes
-- Security headers (X-Frame-Options, XSS-Protection, CSP)
-- Cache control for static assets
-- SPA routing fallback
-
-## Key Documentation
-
-### Repository Documentation
-
-- **README.md** - Comprehensive project overview with features and setup
-- **docs/environments.md** - Multi-environment setup guide (local, staging, production)
-- **.claude/agents.md** - AI agents implementation details
-
-### Docs Directory (`/docs`)
-
-```
-docs/
-├── overview/           # Platform overview & architecture
-├── specs/              # Technical specifications
-├── schema/             # Database schema documentation
-├── ops/                # Operations and deployment guides
-├── engineering/        # Engineering practices and migrations
-├── adrs/               # Architecture Decision Records
-├── work/               # Work tracking and issues
-└── archive/            # Archived documentation
+```bash
+pnpm run lint       # Style and linting
+pnpm run type-check # Static type checking
+pnpm run test       # Unit and integration tests
+pnpm run build      # Production build
+pnpm dev           # Verify development server starts correctly
 ```
 
-**Key Files:**
+## StartupAI-Specific Requirements
 
-- `docs/overview/platform-overview.md` - AI Founders Architecture overview
-- `docs/overview/ai-founders-architecture.md` - Implementation plan
-- `docs/overview/architecture.md` - System architecture
-- `docs/overview/messaging-matrix.md` - Feature/messaging mapping
+### Documentation Updates
 
-### External References
+- Update `.claude/agents.md` if project structure, APIs, or conventions change
+- Update business documentation in `/docs/business/` if content strategy changes
+- Maintain cross-reference integrity between sequenced documents (1-6)
+- Document any new environment variables or configuration requirements
 
-- **AI Founders Implementation Plan:** See docs/overview/ai-founders-architecture.md - Single source of truth for all StartupAI development
-- **AI Core Service:** `../startupai-crew` - CrewAI agents (the brain of the operation)
-- **Product Interface:** `../app.startupai.site` - Customer portal for AI validation delivery
+### Authentication Considerations
 
-## Common Pitfalls
+- **If modifying login/auth**: Test Supabase Auth integration and JWT token generation
+- **If database changes**: Update Drizzle ORM schemas and run migrations
+- **If vector search changes**: Test pgvector functions and embedding generation
+- **Integration testing**: Verify secure handoff to app-startupai-site.netlify.app works
+- **Database testing**: Verify RLS policies and cross-site data access
 
-1. **Don't use `npm`:** This project uses `pnpm` exclusively
-2. **Don't modify `.next/` or `node_modules/`:** These are generated directories
-3. **Don't store secrets in code:** Use environment variables and `.env.local`
-4. **Don't skip type checking:** Run `pnpm type-check` before committing
-5. **Don't commit unformatted code:** Run `pnpm format` before committing
-6. **Don't bypass authentication:** All protected routes must check Supabase session
-7. **Don't disable image optimization without reason:** Static export requires it
+### Content and Marketing Changes
 
-## Project Status
+- **Evidence-based claims**: Cite sources from `/docs/business/` research
+- **Pricing information**: Ensure alignment with validated pricing tiers ($99-$199, $500-$1000, $1000-$3000)
+- **Value propositions**: Maintain consistency with established business messaging
 
-**Overall:** ~95% Complete (as of October 2025)
+### UI/UX Changes
 
-- ✅ Infrastructure: 100% (Netlify, Supabase, Analytics)
-- ✅ UI Components: 95% (68+ components, ShadCN/UI library)
-- ✅ Pages: 100% (19 pages, all static/pre-rendered)
-- ⚠️ Authentication: 90% (Supabase integration ongoing)
-- ⚠️ Testing: 0% (No testing framework configured)
+- **Design consistency**: Use shadcn/ui components and Tailwind patterns
+- **Responsive design**: Test across mobile, tablet, and desktop viewports
+- **Accessibility**: Ensure WCAG compliance for key user interactions
+- **Performance**: Verify no negative impact on Core Web Vitals
 
-**Recent Updates:**
+## Commit and PR Standards
 
-- Migrated from npm to pnpm (Sept 26, 2025)
-- Updated to Next.js 15.5.3 and React 19.1.1
-- Integrated PostHog analytics
-- Added comprehensive environment documentation
+### Commit Format
 
-**Next Priorities:**
+Use conventional commits: `[type] description`
 
-1. Complete Supabase authentication integration
-2. Add Jest/Vitest testing framework
-3. Implement E2E tests with Playwright
-4. Add more blog content
-5. Complete signup flow integration
+- `[feature]` - New functionality
+- `[fix]` - Bug fixes
+- `[docs]` - Documentation updates
+- `[style]` - UI/styling changes
+- `[refactor]` - Code refactoring
+- `[test]` - Test additions/updates
+
+### PR Description Template
+
+```markdown
+## Changes
+
+- Brief description of what changed
+
+## Business Context
+
+- Reference to relevant business research if applicable
+- Impact on user experience or business goals
 
 ## Testing
 
-**Current Status:** No testing framework configured
+- [ ] All automated tests pass
+- [ ] Manual testing completed
+- [ ] Cross-browser testing (if UI changes)
+- [ ] Authentication flow tested (if relevant)
 
-- No Jest, Vitest, or Playwright tests
-- Type checking via TypeScript (`pnpm type-check`)
-- Linting via ESLint
-- Manual testing approach currently in use
+## Screenshots/GIFs
 
-**Recommended Testing Setup:**
+- Include for any UI changes
+```
 
-- Unit tests: Jest or Vitest for component testing
-- Integration tests: Test API routes and Supabase integration
-- E2E tests: Playwright for user flow testing
+Keep scope focused – limit each PR to a single concern. Do not mix unrelated changes.
 
-## Getting Help
+Programmatic Checks & Quality Gates
 
-- **Documentation Issues:** Check `README.md` and `docs/` directory first
-- **Build Errors:** Ensure `nvm use` and `pnpm install` completed successfully
-- **Type Errors:** Run `pnpm type-check` for detailed error messages
-- **Environment Issues:** Verify `.env.local` has all required variables
-- **Supabase Issues:** Check Supabase dashboard and connection strings
-- **Deployment Issues:** Check Netlify build logs and deployment status
+Run the following scripts to enforce quality before completing any task:
+
+pnpm run lint – Static analysis and style checks.
+
+pnpm run type-check – TypeScript type checking.
+
+pnpm run test – Unit and integration tests.
+
+pnpm run build – Production build to ensure compilation and bundling succeed.
+
+Only mark a task as complete and submit a pull request when all of the above checks pass.
+
+Security & Environment
+
+Secrets management – Never hardcode secrets, API keys or credentials. Use environment variables and document them in .env.example.
+
+Input validation – Validate and sanitise all user input and external data before processing or storage.
+
+Least privilege – Use the minimum permissions required for database queries and API access. Do not expose sensitive endpoints or data.
+
+HTTPS – Ensure secure protocols are used for all network requests in production. Manage cookies and session tokens securely.
+
+Collaboration with Windsurf/Cascade
+
+Always read the organisation‑wide global_rules.md in ~/.codeium/windsurf/memories/global_rules.md before starting. These rules define overarching coding and testing practices.
+
+If a .windsurfrules.md file exists in this repository, treat it as an override for project‑specific constraints (e.g. UI framework rules). When there is a conflict, local rules take precedence.
+
+Use the Windsurf rules format (front matter triggers, patterns and instructions) to define new project‑specific rules instead of overloading global rules.
+
+# Domain‑Specific Notes
+
+## Business Intelligence Context
+
+This project is built on extensive market research validating the "AI co-founder" concept. Key business insights that inform development decisions:
+
+**Market Validation**: 83% demand score based on pain intensity, solution gaps, and willingness-to-pay analysis
+**Target Pricing**: $99-$199/month SaaS tier, $500-$1000 strategy sprints, $1000-$3000/month enterprise
+**Competitive Landscape**: Convoboss, Plannifyra, and traditional consultants (see `/docs/business/3-alternatives.md`)
+
+## Key Business Terminology
+
+- **AI Co-Founder**: AI system that acts as a strategic partner for business planning
+- **Evidence Ledger**: System for tracking and citing sources for all business recommendations
+- **Business Model Canvas (BMC)**: Strategic planning tool that's core to the platform
+- **Jobs-to-Be-Done (JTBD)**: Framework used throughout business analysis
+- **Mixture-of-Experts**: AI architecture approach for specialized domain knowledge
+
+## User Experience Principles
+
+1. **Speed Over Perfection**: Users value rapid iteration over perfect initial outputs
+2. **Evidence-Based Trust**: All recommendations must be traceable to sources
+3. **Privacy-First**: Entrepreneurs are highly sensitive about idea confidentiality
+4. **Progressive Disclosure**: Start simple, add complexity as users engage
+
+## Integration Points
+
+- **app.startupai.site Platform**: Main application at https://app-startupai-site.netlify.app
+- **Supabase Database**: Shared PostgreSQL with pgvector for semantic search
+- **Supabase Storage**: File uploads, reports, and asset management
+- **Authentication Flow**: JWT token handoff with Supabase Auth
+- **Vector Search**: Semantic search across evidence and business content
+- **Documentation Portal**: Business research serves as both content and validation
+
+## Content Strategy
+
+The `/docs/business/` directory contains the foundational research that validates this entire platform. When creating marketing content or user-facing copy, reference this research to ensure claims are evidence-based and properly cited.
