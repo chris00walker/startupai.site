@@ -70,6 +70,12 @@ See [`docs/README.md`](docs/README.md) for a full documentation index.
    RESEND_FROM=onboarding@resend.dev
    ```
    Production values come from Netlify environment settings.
+
+**Development Ports (Canonical):**
+   - **This repo (Marketing Site)**: `localhost:3000`
+   - **Product App** (`app.startupai.site`): `localhost:3001`
+   - **CrewAI Backend** (`startupai-crew`): Deployed on CrewAI AMP (no local port)
+
 3. **Run locally**
    ```bash
    pnpm dev            # Next.js + Turbopack

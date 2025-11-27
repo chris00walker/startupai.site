@@ -13,9 +13,13 @@ import { Loader2 } from 'lucide-react';
 export default function LoginPage() {
   useEffect(() => {
     // Redirect to app site login page
-    const appUrl =
-      process.env.NEXT_PUBLIC_APP_URL ||
-      'https://app-startupai-site.netlify.app';
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+
+    if (!appUrl) {
+      console.error('NEXT_PUBLIC_APP_URL environment variable is not set');
+      return;
+    }
+
     window.location.href = `${appUrl}/login`;
   }, []);
 

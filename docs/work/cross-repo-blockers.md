@@ -103,4 +103,4 @@ The CrewAI backend includes a fully implemented Flywheel Learning System:
 
 - CrewAI blockers: `startupai-crew/docs/work/cross-repo-blockers.md`
 - Product app blockers: `app.startupai.site/docs/work/cross-repo-blockers.md`
-- Master architecture: `startupai-crew/docs/master-architecture/ecosystem.md`
+- Master architecture: `startupai-crew/docs/master-architecture/01-ecosystem.md`

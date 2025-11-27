@@ -59,11 +59,16 @@ export function getPlatformUrl(user: User): string {
 
   // Check if we're in development mode
   if (process.env.NODE_ENV === 'development') {
-    return 'http://localhost:3001';
+    return process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
   }
 
-  // Production URL for the deployed app platform
-  return 'https://app-startupai-site.netlify.app';
+  // Production URL from environment variable
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+  if (!appUrl) {
+    throw new Error('NEXT_PUBLIC_APP_URL environment variable is required in production');
+  }
+
+  return appUrl;
 }
 
 // Store authentication token (in production, use secure storage)

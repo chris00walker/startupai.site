@@ -30,6 +30,9 @@ The three services (AI Core, Marketing Interface, Product Interface) share authe
 ## AI Core ↔ Marketing Contracts
 
 ### Activity Feed API
+
+**⚠️ STATUS: NOT IMPLEMENTED** - This is an aspirational contract. Implementation pending.
+
 ```
 GET /api/v1/agents/activity
 Response: {
@@ -45,6 +48,9 @@ Response: {
 ```
 
 ### Trust Metrics API
+
+**⚠️ STATUS: NOT IMPLEMENTED** - This is an aspirational contract. Implementation pending.
+
 ```
 GET /api/v1/metrics/public
 Response: {
@@ -63,6 +69,9 @@ Response: {
 ## AI Core ↔ Product Contracts
 
 ### Analysis Request API
+
+**⚠️ STATUS: NOT IMPLEMENTED** - This is an aspirational contract. Current implementation uses CrewAI AMP API directly.
+
 ```
 POST /api/v1/analysis/start
 Body: {
@@ -83,6 +92,9 @@ Response: {
 ```
 
 ### Results Delivery API
+
+**⚠️ STATUS: NOT IMPLEMENTED** - This is an aspirational contract. Current implementation uses CrewAI AMP API directly.
+
 ```
 GET /api/v1/analysis/{analysisId}/results
 Response: {
@@ -98,6 +110,9 @@ Response: {
 ```
 
 ### Progress Webhooks
+
+**⚠️ STATUS: NOT IMPLEMENTED** - This is an aspirational contract. Current implementation uses CrewAI AMP webhooks.
+
 ```
 POST {PRODUCT_WEBHOOK_URL}/analysis/progress
 Body: {
