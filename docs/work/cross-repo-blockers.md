@@ -1,8 +1,8 @@
 ---
 purpose: "Cross-repository dependency tracking for coordinated delivery"
 status: "active"
-last_reviewed: "2025-11-26"
-last_synced: "2025-11-26 - Synced with startupai-crew Phase 2D completion"
+last_reviewed: "2025-11-30"
+last_synced: "2025-11-30 - Activity Feed API + Metrics API shipped by Product App"
 ---
 
 # Cross-Repository Blockers
@@ -45,10 +45,10 @@ The primary gap is **ad platform integration** (Meta/Google APIs) which has been
 | Blocker | Status | Description | Impact |
 |---------|--------|-------------|--------|
 | Core Validation Engine | ✅ Complete | 8 crews, 18 agents, 18 tools | Ready for E2E validation |
-| Activity Feed API | ❌ Not Started | `GET /api/v1/public/activity` endpoint | Cannot show real-time agent activity on AI Founders page |
-| Metrics API | ❌ Not Started | `GET /api/v1/public/metrics` endpoint | Cannot display trust metrics (analyses completed, etc.) |
+| Activity Feed API | ✅ Done | `GET /api/v1/public/activity` endpoint | Can show real-time agent activity |
+| Metrics API | ✅ Done | `GET /api/v1/public/metrics` endpoint | Can display trust metrics |
 
-**Note:** The core CrewAI engine is ~85% complete. Only the public APIs for marketing transparency are missing.
+**Note:** Core engine (~85%) + Public APIs complete. Marketing site fully unblocked as of 2025-11-30.
 
 ### Product App (`app.startupai.site`)
 
@@ -63,16 +63,18 @@ The primary gap is **ad platform integration** (Meta/Google APIs) which has been
 |--------------|------|--------|-------------|
 | None currently | — | — | Marketing site is downstream |
 
-## Phase 4 Dependencies - UPDATED 2025-11-26
+## Phase 4 Dependencies - UPDATED 2025-11-30
 
-Phase 4 (Launch & Iteration) requires:
+Phase 4 (Launch & Iteration) requirements - **ALL COMPLETE**:
 1. **Users can complete E2E flow** → ✅ Product app ready, ✅ CrewAI Phase 2D complete
-2. **Transparency features** → ❌ Activity Feed API (not yet built in CrewAI)
-3. **Trust metrics** → ❌ Metrics API (not yet built in CrewAI)
+2. **Transparency features** → ✅ Activity Feed API shipped 2025-11-30
+3. **Trust metrics** → ✅ Metrics API shipped 2025-11-30
 
 ### Current Status
-- **E2E flow is ready to test** - CrewAI webhook implemented, product app UI ready
-- Transparency features (Activity Feed, Metrics) are the only remaining blockers for full marketing parity
+- **All blockers resolved** - Marketing site fully unblocked
+- **APIs available at Product App:**
+  - `GET /api/v1/public/activity` - Anonymized agent activity feed
+  - `GET /api/v1/public/metrics` - Platform stats + per-founder metrics
 
 ## Flywheel Learning (Competitive Moat) - ✅ IMPLEMENTED
 
@@ -95,9 +97,9 @@ The CrewAI backend includes a fully implemented Flywheel Learning System:
 ## Coordination Notes
 
 - **CrewAI core engine is COMPLETE** (~85%) - not blocking marketing
-- **Product App E2E flow ready to test** - webhook integration implemented
-- **Marketing site waiting only on**: Activity Feed API and Metrics API
-- Marketing Phase 4 can proceed with manual validation cycles while public APIs are built
+- **Product App APIs COMPLETE** - Activity Feed + Metrics APIs shipped 2025-11-30
+- **Marketing site FULLY UNBLOCKED** - All Phase 4 dependencies resolved
+- Marketing Phase 4 can now proceed with full feature parity
 
 ## Cross-Repo Links
 
