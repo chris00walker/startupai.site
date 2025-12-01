@@ -1,10 +1,12 @@
 ---
 purpose: "Explain how marketing work is organized and tracked"
 status: "active"
-last_reviewed: "2025-11-20"
+last_reviewed: "2025-12-01"
 ---
 
 # Working Model
+
+**Current Status:** Beta launch preparation. See [implementation-plan.md](implementation-plan.md) for roadmap.
 
 Marketing work flows through a lightweight Kanban that mirrors the product team. Use this document as the source of truth for process expectations.
 

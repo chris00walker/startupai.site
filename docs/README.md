@@ -1,7 +1,7 @@
 ---
 purpose: "Public-friendly index for StartupAI marketing documentation"
 status: "active"
-last_reviewed: "2025-11-20"
+last_reviewed: "2025-12-01"
 ---
 
 # StartupAI Marketing Documentation
@@ -24,10 +24,10 @@ These documents reflect the current beta launch implementation:
 ### Deprecated
 - **[`archive/phases.md`](archive/phases.md)** – Old phase system from October 2025. See `implementation-plan.md` instead.
 
-### May Need Updates
-Documents from October 2025 that may reference outdated information:
-- `overview/messaging/messaging-matrix.md` – May reference old "strategy co-pilot" positioning
-- `specs/auth.md`, `specs/api-onboarding.md` – Technical specs may be accurate but dates are old
+### Needs Review
+These documents have older dates but may still be accurate - verify before relying on specifics:
+- `overview/messaging/messaging-matrix.md` – Verify current positioning terminology
+- `specs/auth.md`, `specs/api-onboarding.md` – Technical specs (verify implementation matches)
 
 ## Quick Start
 

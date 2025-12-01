@@ -17,7 +17,7 @@ This site is one of three core services in the AI Founders Architecture:
 > **Phase 2D Complete:** The AI Founders engine (8-crew/18-agent Flows) has 18 tools implemented including TavilySearchTool for real-time web research, financial modeling tools, and the full HITL/Flywheel infrastructure. See [`startupai-crew/docs/master-architecture/04-status.md`](https://github.com/chris00walker/startupai-crew/blob/main/docs/master-architecture/04-status.md) for detailed status.
 
 **Working:** Lead capture, authentication flow, static site deployment, CrewAI integration
-**In Progress:** Real-time activity display (blocked by CrewAI Activity Feed API)
+**Backlog:** Real-time activity display (requires CrewAI Activity Feed API - not yet prioritized)
 
 ### Technical Implementation
 
@@ -116,3 +116,7 @@ See [`docs/README.md`](docs/README.md) for a full documentation index.
 ## License
 
 MIT © Chris Walker. See [LICENSE](LICENSE) for details.
+
+---
+
+**Last Updated:** 2025-12-01
