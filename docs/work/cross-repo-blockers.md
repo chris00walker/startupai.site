@@ -1,13 +1,36 @@
 ---
 purpose: "Cross-repository dependency tracking for coordinated delivery"
 status: "active"
-last_reviewed: "2025-11-30"
-last_synced: "2025-11-30 - Activity Feed API + Metrics API shipped by Product App"
+last_reviewed: "2025-12-05"
+last_synced: "2025-12-05 - CrewAI architecture migrated from Flow to 3-Crew"
 ---
 
 # Cross-Repository Blockers
 
 This document tracks dependencies between StartupAI repositories to ensure coordinated delivery.
+
+## Architecture Change Notice (2025-12-05)
+
+**MAJOR UPSTREAM CHANGE**: CrewAI has migrated from Flow-based to 3-Crew architecture.
+
+**What changed:**
+- Flow architecture replaced with 3 independent crews
+- Crew 1 (Intake), Crew 2 (Validation), Crew 3 (Decision)
+- 19 agents, 32 tasks, 7 HITL checkpoints total
+
+**Current status:**
+- Code complete, deployment pending
+- CrewAI login session expired, needs re-authentication
+- Crews 2 & 3 need separate GitHub repos
+
+**Impact on Marketing:**
+- No immediate action required
+- Same APIs will be available once deployment completes
+- Activity Feed and Metrics APIs unaffected
+
+**ADR**: See `startupai-crew/docs/adr/001-flow-to-crew-migration.md`
+
+---
 
 ## Marketing Promise Gap - UPDATED 2025-11-26
 
@@ -40,15 +63,16 @@ The primary gap is **ad platform integration** (Meta/Google APIs) which has been
 
 ## This Repo Blocked By
 
-### CrewAI Backend (`startupai-crew`) - Core Engine ✅ Complete
+### CrewAI Backend (`startupai-crew`) - Architecture Migration in Progress
 
 | Blocker | Status | Description | Impact |
 |---------|--------|-------------|--------|
-| Core Validation Engine | ✅ Complete | 8 crews, 18 agents, 18 tools | Ready for E2E validation |
+| 3-Crew Architecture | ✅ Code Complete | 19 agents, 32 tasks, 7 HITL | Ready once deployed |
+| AMP Deployment | ⚠️ Pending | Needs `crewai login` then deploy | E2E validation blocked |
 | Activity Feed API | ✅ Done | `GET /api/v1/public/activity` endpoint | Can show real-time agent activity |
 | Metrics API | ✅ Done | `GET /api/v1/public/metrics` endpoint | Can display trust metrics |
 
-**Note:** Core engine (~85%) + Public APIs complete. Marketing site fully unblocked as of 2025-11-30.
+**Note (2025-12-05):** CrewAI migrated from Flow to 3-Crew architecture. Code complete, deployment pending. Activity Feed and Metrics APIs remain available through Product App.
 
 ### Product App (`app.startupai.site`)
 

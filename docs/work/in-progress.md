@@ -1,11 +1,23 @@
 ---
 purpose: "Track marketing work actively in flight"
 status: "active"
-last_reviewed: "2025-11-26"
-last_synced: "2025-11-26 - Synced with startupai-crew Phase 2D completion"
+last_reviewed: "2025-12-05"
+last_synced: "2025-12-05 - CrewAI migrated to 3-Crew architecture"
 ---
 
 # In Progress
+
+## Upstream Architecture Change (2025-12-05)
+
+**CrewAI has migrated from Flow to 3-Crew architecture.**
+
+- Code complete: 19 agents, 32 tasks, 7 HITL checkpoints
+- Deployment pending
+- Activity Feed and Metrics APIs remain available (no change)
+
+See `cross-repo-blockers.md` for details.
+
+---
 
 ## Priority Order
 
@@ -28,30 +40,31 @@ Work these items in order. Items marked "Ready" can start immediately.
 | 6 | Accept first 10 applicants | Ready after P0 | @growth | Use beta tracking system |
 | 7 | First validation cycles | Manual delivery | @ops | Week 1 (strategy + build), Week 2 (test + analyze) |
 
-### P2: Waiting on Public APIs (Updated 2025-11-26)
+### P2: API Integration (Updated 2025-12-05)
 
 | Priority | Item | Status | Blocked By | Notes |
 |----------|------|--------|------------|-------|
-| 8 | Activity Feed API integration | **Waiting** | Activity Feed API (not yet built) | Core CrewAI engine is complete; public API pending |
-| 9 | Trust Metrics API integration | **Waiting** | Metrics API (not yet built) | Core CrewAI engine is complete; public API pending |
+| 8 | Activity Feed API integration | **Ready** | - | API available at Product App |
+| 9 | Trust Metrics API integration | **Ready** | - | API available at Product App |
 | 10 | Phase 2 expansion (Next 50) | **Waiting** | First cohort feedback | After validation cycles complete |
 
-**CrewAI Status (2025-11-26):** Phase 2D complete (~85%). Core engine fully functional with 18 tools. Only the public APIs for marketing transparency are not yet built.
+**CrewAI Status (2025-12-05):** Migrated to 3-Crew architecture. Code complete, deployment pending. Public APIs (Activity Feed, Metrics) remain available through Product App.
 
 ---
 
-## Cross-Repo Dependencies - UPDATED 2025-11-26
+## Cross-Repo Dependencies - UPDATED 2025-12-05
 
 ```
-✅ startupai-crew (CrewAI Phase 2D Complete - 85%)
-    ↓ Core engine done; public APIs (Activity, Metrics) pending
+⚠️ startupai-crew (3-Crew Architecture - Deployment Pending)
+    ↓ Code complete, deployment pending
+    ↓ 19 agents, 32 tasks, 7 HITL checkpoints
 ✅ app.startupai.site (Product App)
-    ↓ Results display ready, E2E testing in progress
-startupai.site (This repo)
-    ↓ Waiting on Activity Feed + Metrics APIs
+    ↓ Results display ready, Activity Feed + Metrics APIs available
+✅ startupai.site (This repo)
+    ↓ APIs available, P0 work can proceed
 ```
 
-**Blocking Chain**: Public APIs (Activity Feed, Metrics) → Marketing Transparency Features
+**Note**: Marketing is NOT blocked by the architecture change. Public APIs are already available.
 
 ---
 
@@ -102,4 +115,9 @@ Before accepting first beta users:
 
 ---
 
-**Last Updated**: 2025-11-26
+**Last Updated**: 2025-12-05
+
+**Changes (2025-12-05):**
+- Added Upstream Architecture Change notice
+- Updated CrewAI status: Flow → 3-Crew migration
+- Activity Feed + Metrics APIs now marked as Ready (available at Product App)
