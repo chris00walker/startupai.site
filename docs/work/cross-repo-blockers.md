@@ -15,9 +15,11 @@ This document tracks dependencies between StartupAI repositories to ensure coord
 
 | Service | Status | Completion |
 |---------|--------|------------|
-| CrewAI Backend | ✅ 3 Crews deployed to AMP | ~85% |
+| CrewAI Backend | ✅ Canonical: 5 Flows/14 Crews/44 Agents; Deployed: 3 Crews/19 Agents | ~85% |
 | Product App | ✅ Phase Alpha complete | ~85% |
 | Marketing Site | ✅ Production, static export | ~90% |
+
+**Architecture Note**: Canonical architecture (5 Flows, 14 Crews, 44 Agents, 10 HITL) is fully specified. AMP deployment (3 Crews, 19 Agents, 7 HITL) is a platform workaround.
 
 **Source of Truth**: `startupai-crew/docs/master-architecture/09-status.md`
 
@@ -39,8 +41,8 @@ This document tracks dependencies between StartupAI repositories to ensure coord
 
 | Blocker | Status | Description | Impact |
 |---------|--------|-------------|--------|
-| 3-Crew Architecture | ✅ DEPLOYED | 19 agents, 32 tasks, 7 HITL | Full pipeline operational |
-| AMP Deployment | ✅ DEPLOYED | All 3 crews online | E2E flow works |
+| Architecture Docs | ✅ ALIGNED | Canonical: 5 Flows/14 Crews/44 Agents/10 HITL | Pattern clarity |
+| AMP Deployment | ✅ DEPLOYED | 3 Crews/19 Agents/7 HITL (platform workaround) | E2E flow works |
 
 **All CrewAI blockers resolved.**
 
@@ -76,7 +78,7 @@ This document tracks dependencies between StartupAI repositories to ensure coord
 | "Unit economics (CAC/LTV)" | /pricing | ✅ 10 UnitEconomicsModels with industry benchmarks |
 | "2-week validation cycles" | /pricing | ⚠️ Tools exist; quality depends on data |
 | "Evidence-based validation" | /product | ✅ TavilySearchTool provides real web research |
-| "6 AI Founders team" | /product | ✅ 19 agents across 3 crews |
+| "6 AI Founders team" | /product | ✅ 44 agents (canonical) / 19 agents (deployed) across 14/3 crews |
 
 **Primary gap**: Ad platform integration (Meta/Google APIs) - explicitly deferred.
 
@@ -125,6 +127,12 @@ Now backed by real code in CrewAI backend:
 ---
 
 **Last Updated**: 2026-01-07
+
+**Changes (2026-01-07 - Architecture Alignment Sync)**:
+- Synced with CrewAI architecture pattern alignment (canonical vs deployed)
+- Canonical architecture: 5 Flows, 14 Crews, 44 Agents, 10 HITL
+- AMP deployment: 3 Crews, 19 Agents, 7 HITL (platform workaround)
+- Updated AI Founders team count to reflect canonical architecture
 
 **Changes (2026-01-07 - Full Ecosystem Sync)**:
 - Synced with `startupai-crew/docs/master-architecture/09-status.md` cross-repo rewrite
