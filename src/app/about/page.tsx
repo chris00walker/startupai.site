@@ -4,11 +4,13 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FounderProfileCard } from '@/components/about/FounderProfileCard';
-import { AgentActivityFeed } from '@/components/about/AgentActivityFeed';
 import { GovernanceDashboard } from '@/components/about/GovernanceDashboard';
+import { LiveAgentActivityFeed } from '@/components/about/LiveAgentActivityFeed';
+import { LiveMetricsDashboard } from '@/components/about/LiveMetricsDashboard';
 import {
   aiFounders,
   recentActivities,
+  dashboardMetrics,
   journeyUpdates,
   openQuestions,
 } from '@/data/agentActivity';
@@ -182,6 +184,15 @@ export default function AboutPage() {
             Real metrics showing both operational and governance performance
           </p>
 
+          {/* Live Operational Metrics */}
+          <div className="mb-8">
+            <h3 className="text-lg font-semibold mb-4">Operational Metrics</h3>
+            <LiveMetricsDashboard
+              fallbackMetrics={dashboardMetrics}
+              refreshInterval={300000}
+            />
+          </div>
+
           {/* Two-Layer Governance Dashboard */}
           <GovernanceDashboard
             layer1Metrics={[
@@ -199,10 +210,14 @@ export default function AboutPage() {
             securityScore={99.2}
           />
 
-          {/* Activity Feed */}
+          {/* Live Activity Feed */}
           <div className="mt-12">
             <h3 className="text-xl font-semibold mb-4">Recent Agent Activity</h3>
-            <AgentActivityFeed activities={recentActivities} maxItems={6} />
+            <LiveAgentActivityFeed
+              fallbackActivities={recentActivities}
+              maxItems={6}
+              refreshInterval={60000}
+            />
           </div>
         </div>
       </section>
