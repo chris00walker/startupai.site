@@ -1,15 +1,15 @@
 ---
 purpose: "Cross-repository dependency tracking for coordinated delivery"
 status: "active"
-last_reviewed: "2026-01-09"
-last_synced: "2026-01-09 - MCP architecture designed in CrewAI"
+last_reviewed: "2026-01-10"
+last_synced: "2026-01-10 - Modal tables deployed, security fixes applied in Product App"
 ---
 
 # Cross-Repository Blockers
 
 This document tracks dependencies between StartupAI repositories to ensure coordinated delivery.
 
-> **MCP ARCHITECTURE READY (2026-01-09)**: CrewAI adopting Model Context Protocol for unified tool interface. 33 tools mapped to 45 agents. 60-hour, 4-week implementation. Marketing site unblocked - all APIs available.
+> **Schema Alignment COMPLETE (2026-01-10)**: Modal tables deployed + security fixes applied in Product App. No action required for Marketing site - this is upstream work.
 
 ## Ecosystem Status (2026-01-09)
 
@@ -157,9 +157,14 @@ Now backed by real code in CrewAI backend:
 
 ---
 
-**Last Updated**: 2026-01-09
+**Last Updated**: 2026-01-10
 
-**Changes (2026-01-09 - MCP Architecture Designed)**:
+**Changes (2026-01-10 - Upstream Schema Alignment Complete)**:
+- ✅ Product App deployed Modal tables (`validation_runs`, `validation_progress`, `hitl_requests`)
+- ✅ Product App applied 9 security/performance migrations (views, functions, RLS, indexes)
+- No action required for Marketing site - upstream work complete
+
+**Previous (2026-01-09 - MCP Architecture Designed)**:
 - 🚀 **MCP-FIRST**: CrewAI adopted Model Context Protocol as unified tool interface
 - Architecture: 13 EXISTS + 10 MCP Custom + 4 MCP External + 6 LLM-Based = 33 tools
 - Implementation roadmap: 60 hours over 4 weeks (~$5-10/month cost)
