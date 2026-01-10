@@ -6,7 +6,7 @@ This repository hosts the public transparency interface for StartupAI's AI Found
 
 This site is one of three core services in the AI Founders Architecture:
 
-- **AI Founders Engine ([`startupai-crew`](https://github.com/chris00walker/startupai-crew))** – 8 crews / 18 agents powered by CrewAI Flows, forming the brain of StartupAI.
+- **AI Founders Engine ([`startupai-crew`](https://github.com/chris00walker/startupai-crew))** – 14 crews / 45 agents powered by Modal Serverless, forming the brain of StartupAI.
 - **Marketing Interface (this repository)** – Public transparency layer showing AI team activity, capturing leads, and building trust through visibility.
 - **Product Interface ([`app.startupai.site`](https://github.com/chris00walker/app.startupai.site))** – Customer portal where users receive AI-driven validation results and strategic insights.
 
@@ -14,10 +14,10 @@ This site is one of three core services in the AI Founders Architecture:
 
 ### Current Status
 
-> **Phase 2D Complete:** The AI Founders engine (8-crew/18-agent Flows) has 18 tools implemented including TavilySearchTool for real-time web research, financial modeling tools, and the full HITL/Flywheel infrastructure. See [`startupai-crew/docs/master-architecture/04-status.md`](https://github.com/chris00walker/startupai-crew/blob/main/docs/master-architecture/04-status.md) for detailed status.
+> **Modal Serverless Deployed:** The AI Founders engine (5 Flows / 14 Crews / 45 Agents) is deployed to Modal serverless with production endpoints verified. Crew implementation is in progress. See [`startupai-crew/docs/master-architecture/09-status.md`](https://github.com/chris00walker/startupai-crew/blob/main/docs/master-architecture/09-status.md) for detailed status.
 
-**Working:** Lead capture, authentication flow, static site deployment, CrewAI integration
-**Backlog:** Real-time activity display (requires CrewAI Activity Feed API - not yet prioritized)
+**Working:** Lead capture, authentication flow, static site deployment, live Activity Feed, live Metrics Dashboard
+**In Progress:** Verify Netlify deploy shows live data from Product App APIs
 
 ### Technical Implementation
 
@@ -74,7 +74,7 @@ See [`docs/README.md`](docs/README.md) for a full documentation index.
 **Development Ports (Canonical):**
    - **This repo (Marketing Site)**: `localhost:3000`
    - **Product App** (`app.startupai.site`): `localhost:3001`
-   - **CrewAI Backend** (`startupai-crew`): Deployed on CrewAI AMP (no local port)
+   - **CrewAI Backend** (`startupai-crew`): Modal Serverless (use `modal serve` for local dev)
 
 3. **Run locally**
    ```bash
@@ -108,10 +108,15 @@ See [`docs/README.md`](docs/README.md) for a full documentation index.
 
 ## Related Services
 
-- **AI Founders Engine**: [`startupai-crew`](https://github.com/chris00walker/startupai-crew) – 8 crews / 18 agents (brain of the ecosystem)
+- **AI Founders Engine**: [`startupai-crew`](https://github.com/chris00walker/startupai-crew) – 14 crews / 45 agents (brain of the ecosystem)
 - **Product Interface**: [`app.startupai.site`](https://github.com/chris00walker/app.startupai.site) – Customer portal for validation delivery
 
 **Master Architecture**: `startupai-crew/docs/master-architecture/`
+
+**Production URLs**:
+- Modal: `https://chris00walker--startupai-validation-fastapi-app.modal.run`
+- Product App: `https://app-startupai-site.netlify.app`
+- Marketing: `https://startupai.site`
 
 ## License
 
@@ -119,4 +124,4 @@ MIT © Chris Walker. See [LICENSE](LICENSE) for details.
 
 ---
 
-**Last Updated:** 2025-12-01
+**Last Updated:** 2026-01-08
