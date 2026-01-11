@@ -2,22 +2,22 @@
 purpose: "Cross-repository dependency tracking for coordinated delivery"
 status: "active"
 last_reviewed: "2026-01-10"
-last_synced: "2026-01-10 - Modal tables deployed, security fixes applied in Product App"
+last_synced: "2026-01-10 - Tool integration complete, asset generation specs done"
 ---
 
 # Cross-Repository Blockers
 
 This document tracks dependencies between StartupAI repositories to ensure coordinated delivery.
 
-> **Schema Alignment COMPLETE (2026-01-10)**: Modal tables deployed + security fixes applied in Product App. No action required for Marketing site - this is upstream work.
+> **TOOLS COMPLETE (2026-01-10)**: 15 tools wired to 35+ agents, 681 tests. Phase 0-2 live testing verified. Asset generation specs complete (Blueprint Pattern + Ad Platform Library).
 
-## Ecosystem Status (2026-01-09)
+## Ecosystem Status (2026-01-10)
 
-**MCP architecture designed. CrewAI implementing tools over next 4 weeks. Marketing site fully operational.**
+**Phase 0-2 validated. Phase 3-4 live testing next. Marketing site fully operational.**
 
 | Service | Status | Completion | Notes |
 |---------|--------|------------|-------|
-| CrewAI Backend | **MCP IMPLEMENTATION** | ~80% | 60h roadmap, starting Phase A |
+| CrewAI Backend | **PHASE 0-2 VALIDATED** | ~92% | Phase 3-4 live testing next |
 | Product App | Modal integration complete | ~95% | Pointing to Modal endpoints |
 | Marketing Site | Live API integration | ~95% | Activity Feed + Metrics connected |
 
@@ -52,27 +52,32 @@ This document tracks dependencies between StartupAI repositories to ensure coord
 | Modal Infrastructure | ✅ DEPLOYED | Production endpoints live | Validation available |
 | API Endpoints | ✅ WORKING | `/kickoff`, `/status`, `/hitl/approve`, `/health` | Full API operational |
 | 14 Crews Implementation | ✅ COMPLETE | 45 agents across 14 crews | Structure complete |
-| **MCP Tool Implementation** | 🔄 **IN PROGRESS** | 60h roadmap, 4 weeks | Evidence-based outputs |
+| Tool Integration | ✅ COMPLETE | 15 tools, 35+ agents, 681 tests | Evidence-based outputs |
+| Phase 0-2 Live Testing | ✅ COMPLETE | Pivot workflow verified | Desirability gate working |
+| Asset Generation Specs | ✅ COMPLETE | Blueprint Pattern + Ad Platform Library | Ready for implementation |
+| **Phase 3-4 Live Testing** | ⏳ **NEXT** | Feasibility + Viability gates | Final validation phases |
 
-**Modal infrastructure deployed. Crew structure complete. MCP implementation in progress.**
+**Tool integration complete. Phase 0-2 validated. Phase 3-4 live testing next.**
 
-#### MCP Architecture (Unified Tool Interface)
+#### Tool Architecture (Complete)
 
-CrewAI adopting Model Context Protocol for all agent tools:
+| Category | Count | Status |
+|----------|-------|--------|
+| Customer Research | 4 | ✅ Complete |
+| Advanced Analysis | 4 | ✅ Complete |
+| Analytics & Privacy | 4 | ✅ Complete |
+| LLM-Based Tools | 3 | ✅ Complete |
+| **TOTAL** | 15 | **✅ 35+ agents** |
 
-| Category | Count | Implementation |
-|----------|-------|----------------|
-| EXISTS | 13 | Ready to wire (direct Python import) |
-| MCP Custom | 10 | FastMCP on Modal (forum_search, analyze_reviews, etc.) |
-| MCP External | 4 | Community servers (Meta Ads, Google Ads, Calendar, Fetch) |
-| LLM-Based | 6 | Pydantic structured output |
-| **TOTAL** | 33 | 45 agents mapped |
+#### Asset Generation Specs (New)
 
-**Implementation Phases** (in progress in `startupai-crew`):
-- Phase A (Week 1): Core MCP Server - 15h
-- Phase B (Week 2): Advanced Tools - 14h
-- Phase C (Week 3): External MCP + Analytics - 13h
-- Phase D (Week 4): CrewAI Integration - 18h
+| Spec | Status | Description |
+|------|--------|-------------|
+| `LandingPageGeneratorTool` | ✅ Spec Complete | Blueprint Pattern, 9 components, Progressive Images |
+| `AdCreativeGeneratorTool` | ✅ Spec Complete | Copy + Visuals, Progressive Resolution |
+| Ad Platform Library | ✅ Created | Meta, Google, LinkedIn, TikTok specs |
+
+**Reference**: `startupai-crew/docs/master-architecture/reference/`
 
 ---
 
@@ -101,15 +106,17 @@ CrewAI adopting Model Context Protocol for all agent tools:
 
 | Promise | Page | Technical Status |
 |---------|------|------------------|
-| "Build your MVP" | /product, /pricing | ⚠️ LandingPageGeneratorTool exists; full scaffold pending |
-| "Real ad spend ($450-525)" | /pricing | ❌ No Meta/Google Ads API integrated |
-| "Real user testing" | /product | ❌ No analytics/experiment framework |
+| "Build your MVP" | /product, /pricing | ⚠️ LandingPageGeneratorTool SPEC COMPLETE; implementation pending |
+| "Real ad spend ($450-525)" | /pricing | ⚠️ AdCreativeGeneratorTool SPEC COMPLETE; API integration pending |
+| "Real user testing" | /product | ⚠️ Progressive Image Resolution spec ready; implementation pending |
 | "Unit economics (CAC/LTV)" | /pricing | ✅ 10 UnitEconomicsModels with industry benchmarks |
 | "2-week validation cycles" | /pricing | ⚠️ Tools exist; quality depends on data |
 | "Evidence-based validation" | /product | ✅ TavilySearchTool provides real web research |
-| "6 AI Founders team" | /product | ✅ 45 agents (canonical) across 14 crews |
+| "6 AI Founders team" | /product | ✅ 45 agents across 14 crews |
 
-**Primary gap**: Ad platform integration (Meta/Google APIs) - explicitly deferred.
+**Primary gaps**:
+- Ad platform integration (Meta/Google APIs) - explicitly deferred
+- Asset generation implementation - specs complete, waiting on F2/F3 content quality fix
 
 ---
 
@@ -157,7 +164,14 @@ Now backed by real code in CrewAI backend:
 
 ---
 
-**Last Updated**: 2026-01-10
+**Last Updated**: 2026-01-10 22:00
+
+**Changes (2026-01-10 - Upstream Tool Integration & Asset Specs Complete)**:
+- ✅ **TOOLS COMPLETE**: 15 tools wired to 35+ agents, 681 tests passing
+- ✅ **PHASE 0-2 VALIDATED**: Live testing with pivot workflow verified
+- ✅ **ASSET GENERATION SPECS**: Blueprint Pattern, Progressive Images, Ad Platform Library
+- ✅ **NEW REFERENCE DOCS**: `ad-platform-specifications.md`, `observability-architecture.md`
+- ⏳ **NEXT**: Phase 3-4 live testing (Feasibility + Viability gates)
 
 **Changes (2026-01-10 - Upstream Schema Alignment Complete)**:
 - ✅ Product App deployed Modal tables (`validation_runs`, `validation_progress`, `hitl_requests`)
