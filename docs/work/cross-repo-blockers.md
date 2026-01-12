@@ -27,7 +27,7 @@ This document tracks dependencies between StartupAI repositories to ensure coord
 - Marketing: `https://startupai.site`
 
 **Canonical Architecture**: 5 Flows, 14 Crews, 45 Agents, 10 HITL checkpoints
-**AMP (ARCHIVED)**: Legacy 3-repo workaround deprecated
+**Legacy 3-repo workaround**: archived
 
 **Source of Truth**: `startupai-crew/docs/master-architecture/09-status.md`
 
@@ -148,9 +148,9 @@ Now backed by real code in CrewAI backend:
 ## Coordination Notes
 
 - **Modal infrastructure DEPLOYED** - Production endpoints verified (2026-01-08)
-- **Product App UPDATED** - Pointing to Modal endpoints (not AMP)
+- **Product App UPDATED** - Pointing to Modal endpoints
 - **Marketing site CONNECTED** - Live components created for Activity Feed + Metrics
-- **AMP DEPRECATED** - Legacy repos being archived
+- **Legacy 3-repo workaround** - Archived
 - **Primary work**: Verify Netlify deploy shows live data
 
 ---
@@ -193,4 +193,4 @@ Now backed by real code in CrewAI backend:
 - Modal serverless deployed to production
 - Marketing site live components created
 - TypeScript compilation verified
-- AMP marked as deprecated
+- Legacy 3-repo workaround marked as archived
