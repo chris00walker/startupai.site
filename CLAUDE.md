@@ -363,6 +363,9 @@ CrewAI → Product App → Marketing Site (this repo)
 
 **Current blockers**: See `docs/work/cross-repo-blockers.md`
 
+## LLM Coordination Protocol
+See `startupai-crew/docs/master-architecture/llm-coordination.md`.
+
 ## Claude Code Customizations
 
 ### Available Agents (Project-Level)
