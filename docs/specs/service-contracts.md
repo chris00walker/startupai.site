@@ -70,7 +70,7 @@ Response: {
 
 ### Analysis Request API
 
-**⚠️ STATUS: NOT IMPLEMENTED** - This is an aspirational contract. Current implementation uses CrewAI AMP API directly.
+**⚠️ STATUS: NOT IMPLEMENTED** - This is an aspirational contract. Current implementation uses Modal endpoints directly.
 
 ```
 POST /api/v1/analysis/start
@@ -93,7 +93,7 @@ Response: {
 
 ### Results Delivery API
 
-**⚠️ STATUS: NOT IMPLEMENTED** - This is an aspirational contract. Current implementation uses CrewAI AMP API directly.
+**⚠️ STATUS: NOT IMPLEMENTED** - This is an aspirational contract. Current implementation uses Modal endpoints directly.
 
 ```
 GET /api/v1/analysis/{analysisId}/results
@@ -111,7 +111,7 @@ Response: {
 
 ### Progress Webhooks
 
-**⚠️ STATUS: NOT IMPLEMENTED** - This is an aspirational contract. Current implementation uses CrewAI AMP webhooks.
+**⚠️ STATUS: NOT IMPLEMENTED** - This is an aspirational contract. Current implementation uses Modal webhooks.
 
 ```
 POST {PRODUCT_WEBHOOK_URL}/analysis/progress

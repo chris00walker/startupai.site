@@ -28,7 +28,7 @@ Based on comprehensive market research (see `/docs/business/` directory), Startu
 
 ## Technology Stack
 
-- **Framework**: Next.js 14+ with App Router
+- **Framework**: Next.js 15 with App Router
 - **Styling**: Tailwind CSS with shadcn/ui components
 - **Database**: Supabase PostgreSQL with pgvector extension
 - **ORM**: Drizzle ORM for type-safe database operations
@@ -113,7 +113,7 @@ Create new files in the appropriate folder following existing patterns. Avoid re
 - **Components**: Write functional components with hooks, prefer composition over inheritance
 - **File Structure**: Use kebab-case for files, PascalCase for components, camelCase for variables/functions
 - **shadcn/ui**: Leverage existing component library for consistent UI patterns
-- **App Router**: Follow Next.js 14+ App Router conventions in `/src/app/`
+- **App Router**: Follow Next.js 15 App Router conventions in `/src/app/`
 
 ## StartupAI-Specific Conventions
 
