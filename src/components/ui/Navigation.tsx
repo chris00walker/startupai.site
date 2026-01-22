@@ -23,14 +23,6 @@ import {
 } from '@/components/ui/sheet';
 import { Menu, Brain } from 'lucide-react';
 
-const navigation = [
-  { name: 'Process', href: '/process' },
-  { name: 'Product', href: '/product' },
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'Sign-up', href: '/signup' },
-  { name: 'Login', href: '/login' },
-];
-
 export function Navigation() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
