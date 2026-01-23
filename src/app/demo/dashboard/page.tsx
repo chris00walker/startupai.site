@@ -1,3 +1,9 @@
+/**
+ * Demo Dashboard Page
+ *
+ * @story US-MF11
+ */
+
 'use client';
 
 import * as React from 'react';

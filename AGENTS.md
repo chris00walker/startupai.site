@@ -16,6 +16,11 @@ This Next.js 15 marketing site serves as the public transparency interface for S
 - `pnpm build` must pass before merge; `pnpm lint` and `pnpm type-check` gate linting and types.
 - Format with `pnpm format` (or `pnpm format:check` in CI).
 
+## Package Management
+
+- Use `pnpm` for installs, upgrades, and scripts; avoid `npm` for dependency changes.
+- When asked to upgrade dependencies, default to `pnpm up -L` unless a task specifies otherwise.
+
 ## Coding Style & Naming Conventions
 
 - TypeScript-first; use PascalCase files for components, camelCase for utilities, kebab-case for non-React files.

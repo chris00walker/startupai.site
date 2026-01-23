@@ -3,6 +3,8 @@
  *
  * This page redirects users to the app site for login to ensure
  * OAuth flows complete on the same domain (prevents PKCE errors).
+ *
+ * @story US-MF14
  */
 
 'use client';

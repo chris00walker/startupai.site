@@ -1,3 +1,9 @@
+/**
+ * AI Strategy Page
+ *
+ * @story US-MF05
+ */
+
 import type { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';

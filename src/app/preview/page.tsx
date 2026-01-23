@@ -1,3 +1,9 @@
+/**
+ * Preview Page
+ *
+ * @story US-MF13
+ */
+
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

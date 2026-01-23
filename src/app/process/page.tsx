@@ -1,3 +1,9 @@
+/**
+ * Process Page
+ *
+ * @story US-MF05
+ */
+
 import { Metadata } from 'next';
 import {
   Card,

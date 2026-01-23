@@ -1,3 +1,9 @@
+/**
+ * Case Studies Page
+ *
+ * @story US-MF07
+ */
+
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';

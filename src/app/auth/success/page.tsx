@@ -1,3 +1,9 @@
+/**
+ * Auth Success Page
+ *
+ * @story US-MF14
+ */
+
 import { Suspense } from 'react';
 import { CheckCircle } from 'lucide-react';
 

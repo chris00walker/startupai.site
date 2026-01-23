@@ -1,3 +1,9 @@
+/**
+ * Beta Application Page
+ *
+ * @story US-MF10
+ */
+
 'use client';
 
 import * as React from 'react';

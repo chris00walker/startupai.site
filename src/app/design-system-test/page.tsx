@@ -1,3 +1,9 @@
+/**
+ * Design System Test Page
+ *
+ * @story US-MF15
+ */
+
 'use client';
 
 export default function DesignSystemTest() {

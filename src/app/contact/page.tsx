@@ -1,3 +1,9 @@
+/**
+ * Contact Page
+ *
+ * @story US-MF09
+ */
+
 import { Metadata } from 'next';
 import { ContactForm } from '@/components/sections/ContactForm';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';

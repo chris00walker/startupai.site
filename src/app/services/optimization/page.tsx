@@ -1,3 +1,9 @@
+/**
+ * Optimization Service Page
+ *
+ * @story US-MF06
+ */
+
 import { Metadata } from 'next';
 import {
   Card,

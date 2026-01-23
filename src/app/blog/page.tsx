@@ -1,3 +1,9 @@
+/**
+ * Blog Page
+ *
+ * @story US-MF08
+ */
+
 import { Metadata } from 'next';
 import {
   Card,
