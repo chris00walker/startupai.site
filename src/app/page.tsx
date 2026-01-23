@@ -1,3 +1,9 @@
+/**
+ * Landing Page
+ *
+ * @story US-MF01
+ */
+
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Hero } from '@/components/sections/Hero';

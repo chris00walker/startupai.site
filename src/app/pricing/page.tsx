@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * Pricing Page
+ *
+ * @story US-MF02
+ */
+
 import * as React from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
