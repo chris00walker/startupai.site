@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "repo": "startupai.site",
+  "generated_at": "2026-01-28T00:00:00Z",
+  "routes": [
+    {
+      "path": "/api/newsletter",
+      "methods": ["POST"],
+      "type": "nextjs",
+      "description": "Newsletter subscription endpoint"
+    },
+    {
+      "path": "/api/contact",
+      "methods": ["POST"],
+      "type": "nextjs",
+      "description": "Contact form submission"
+    },
+    {
+      "path": "/api/waitlist",
+      "methods": ["POST"],
+      "type": "nextjs",
+      "description": "Waitlist signup"
+    }
+  ]
+}
