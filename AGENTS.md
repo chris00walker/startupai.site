@@ -46,3 +46,9 @@ This Next.js 15 marketing site serves as the public transparency interface for S
 - Use Conventional Commits (`fix:`, `feat:`, `chore:`) with scoped granularity (`feat(waitlist-form): ...`).
 - PRs must list validation commands, Supabase/Netlify envs touched, and include before/after visuals for UI updates.
 - Link relevant docs (`docs/dev/local-dev.md`, AI Founders architecture, contracts) and request design/infra review when touching Shadcn tokens, routing, or auth.
+
+## ExecPlans
+
+- Use an ExecPlan (see `.agent/PLANS.md`) for complex features, cross-layer integrations, or significant refactors.
+- ExecPlans are living documents; keep them updated as work progresses.
+- When executing an ExecPlan, proceed milestone by milestone without asking for "next steps" between milestones unless blocked or scope changes.
